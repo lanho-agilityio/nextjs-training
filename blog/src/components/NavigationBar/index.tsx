@@ -53,14 +53,12 @@ const NavigationBar = (): JSX.Element => {
               <NavLink to="/" title="Home" />
             </DetailsContainer>
           ) : null}
-          {/* Computer View */}
           <NavigationRight>
             <NavLink to="/" title="Pages" />
             <NavLink to="/" title="Free Version" />
             <NavLink to="/" title="Home" />
           </NavigationRight>
         </NavigationBarContainer>
-        {/* Computer View */}
       </nav>
     </Container>
   );
