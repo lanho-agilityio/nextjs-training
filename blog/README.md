@@ -1,34 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Practice - Blog Managment
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Build a post management web application
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Requirements
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Blog Post Management
+- Each blog post should have a title, content, optional images, and tags.
+Users should be able to edit their own blog posts, updating the title, content, images, and tags.
+- Save post in React context
+- Mock some posts to display when blog init
+2. Blog Display
+- The application should have a main page that displays a list of all blog posts.
+- Each blog post in the list should display the title, a brief preview of the content, the author's name, the publication date, and tags.
+- Clicking on a blog post in the list should lead to the full blog post page.
+3. Individual Blog Post Page
+- Each blog post should have its own dedicated page with the full content displayed.
+- The individual blog post page should also display the author's name, publication date, and tags.
+4. Search and Filtering
+- Users should be able to search for blog posts based on keywords.
+- Filtering options should allow users to view posts by specific tags, authors, or publication dates.
+5. Responsive Design
+- The application should be responsive and usable on various screen sizes, including mobile devices and tablets.
+6. Performance
+- Optimize the application for performance, ensuring fast loading times and smooth interactions. (use React Dev tool + Why it render)
+7. SEO Optimization:
+- Optimize blog post pages for search engines by providing metadata (e.g., meta titles, descriptions, open graph tags).
+8. Error Handling:
+- Implement error handling and provide informative error messages to users when issues occur.
+9. Night Mode Switch (Optional):
+- Implement a night mode toggle switch or button that allows users to switch between light and dark modes.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stacks
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- React 18
+- Next.js
+- Material-UI (Need customize theme)
 
-## Learn More
+## Design
 
-To learn more about Next.js, take a look at the following resources:
+- [web3templates](https://stablo-pro.web3templates.com/home/lifestyle)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Installations
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+| Command                  | Action                                          |
+| :----------------------- | :---------------------------------------------- |
+| `pnpm install`           | Installs dependencies                           |
+| `pnpm run dev`           | Run the application                             |
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
