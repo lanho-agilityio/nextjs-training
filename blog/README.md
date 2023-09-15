@@ -48,4 +48,3 @@ Users should be able to edit their own blog posts, updating the title, content, 
 | :----------------------- | :---------------------------------------------- |
 | `pnpm install`           | Installs dependencies                           |
 | `pnpm run dev`           | Run the application                             |
-
