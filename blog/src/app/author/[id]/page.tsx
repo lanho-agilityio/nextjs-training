@@ -7,6 +7,7 @@ import {
   HeaderContainer,
   HeaderStyled
 } from './page.styled';
+import PostList from '../../../components/PostList';
 
 const AuthorPage = ({
   params: { id }
@@ -31,6 +32,7 @@ const AuthorPage = ({
           </p>
         </DescriptionWrapper>
       </HeaderContainer>
+      <PostList />
     </Container>
   );
 };
