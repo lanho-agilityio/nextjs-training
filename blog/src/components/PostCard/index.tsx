@@ -13,7 +13,14 @@ const PostCard = (): JSX.Element => {
       <CardPicture imagePath={post.imagePath} href={'/'} />
       <TagContainer>
         {post.tags.map((e, i) => {
-          return <CardTag key={i} title={e.name} color={e.color} href={'/'} />;
+          return (
+            <CardTag
+              key={i}
+              title={e.name}
+              color={e.color}
+              href={`/category/${e.name}`}
+            />
+          );
         })}
       </TagContainer>
       <CardTitle title={post.title} href={'/'} />

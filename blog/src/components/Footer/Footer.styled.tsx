@@ -11,10 +11,7 @@ export const Container = styled(Box)`
   border-top-width: 1px;
   border-color: #f3f4f6;
   max-width: 1024px;
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+
   @media (min-width: 1024px) {
     padding-top: 2rem;
     padding-bottom: 2rem;

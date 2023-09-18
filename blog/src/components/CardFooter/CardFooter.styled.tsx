@@ -3,8 +3,6 @@ import { Box, Link, Typography, styled } from '@mui/material';
 export const FooterContainer = styled(Box)`
   display: flex;
   margin-top: 0.75rem;
-  margin-left: 0.75rem;
-  margin-left: 0.875rem;
   align-items: center;
   color: #6b7280;
 `;

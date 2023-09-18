@@ -15,7 +15,11 @@ const CardFooter = (): JSX.Element => {
     <FooterContainer>
       <AuthorContainer href={'/'}>
         <ProfilePictureStyled>
-          <Avatar alt={author.name} src={author.imagePath}   sx={{ width: 20, height: 20 }}/>
+          <Avatar
+            alt={author.name}
+            src={author.imagePath}
+            sx={{ width: 20, height: 20 }}
+          />
         </ProfilePictureStyled>
         <Name>{author.name}</Name>
       </AuthorContainer>

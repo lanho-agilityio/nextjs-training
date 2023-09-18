@@ -16,7 +16,7 @@ export const MOCK_POST: Post = {
     },
     {
       id: '2',
-      name: 'Travel',
+      name: 'Personal Growth',
       color: '#6a34c1'
     }
   ],
@@ -36,7 +36,7 @@ export const MOCK_LIST: Post[] = [
     tags: [
       {
         id: '1',
-        name: 'Design',
+        name: 'Personal Growth',
         color: '#af6060'
       },
       {
@@ -87,7 +87,7 @@ export const MOCK_LIST: Post[] = [
       },
       {
         id: '2',
-        name: 'Travel',
+        name: 'Technology',
         color: '#6a34c1'
       }
     ],
