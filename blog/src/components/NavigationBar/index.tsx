@@ -1,19 +1,21 @@
 'use client';
 
 import {
-  NavigationBarContainer,
+  NavigationBarWrapper,
   Container,
-  DetailsContainer,
+  DetailsWrapper,
   NavigationLeft,
   NavigationRight,
-  NavigationBarContainerMobile
+  NavigationBarWrapperMobile
 } from './NavigationBar.styled';
 import Image from 'next/image';
 import logoIcon from '../../app/logo.svg';
-import { useState } from 'react';
-import NavButton from '../NavButton';
-import { Link } from '@mui/material';
-import NavLink from '../NavLink';
+import { lazy, useState } from 'react';
+import { NAVIGATION_LIST } from '../../constants/navigation';
+
+const NavLink = lazy(() => import('../NavLink'));
+const NavButton = lazy(() => import('../NavButton'));
+
 const NavigationBar = (): JSX.Element => {
   const [open, setOpen] = useState(false);
 
@@ -21,16 +23,18 @@ const NavigationBar = (): JSX.Element => {
     setOpen(!open);
   };
 
+  const HALF = Math.ceil(NAVIGATION_LIST.length / 2);
+
   return (
     <Container>
       <nav>
-        <NavigationBarContainer>
+        <NavigationBarWrapper>
           <NavigationLeft>
-            <NavLink to="/" title="Home" />
-            <NavLink to="/" title="About" />
-            <NavLink to="/" title="Contact" />
+            {NAVIGATION_LIST.slice(0, HALF).map((e, i) => {
+              return <NavLink key={i} to={e.to} title={e.title} />;
+            })}
           </NavigationLeft>
-          <NavigationBarContainerMobile>
+          <NavigationBarWrapperMobile>
             <a href="/" style={{ width: '7rem' }}>
               <Image
                 src={logoIcon}
@@ -42,23 +46,20 @@ const NavigationBar = (): JSX.Element => {
               ></Image>
             </a>
             <NavButton clicked={open} onClick={handleClick} />
-          </NavigationBarContainerMobile>
+          </NavigationBarWrapperMobile>
           {open ? (
-            <DetailsContainer>
-              <NavLink to="/" title="Home" />
-              <NavLink to="/" title="About" />
-              <NavLink to="/" title="Contact" />
-              <NavLink to="/" title="Pages" />
-              <NavLink to="/" title="Free Version" />
-              <NavLink to="/" title="Home" />
-            </DetailsContainer>
+            <DetailsWrapper>
+              {NAVIGATION_LIST.map((e, i) => {
+                return <NavLink key={i} to={e.to} title={e.title} />;
+              })}
+            </DetailsWrapper>
           ) : null}
           <NavigationRight>
-            <NavLink to="/" title="Pages" />
-            <NavLink to="/" title="Free Version" />
-            <NavLink to="/" title="Home" />
+            {NAVIGATION_LIST.slice(HALF).map((e, i) => {
+              return <NavLink key={i} to={e.to} title={e.title} />;
+            })}
           </NavigationRight>
-        </NavigationBarContainer>
+        </NavigationBarWrapper>
       </nav>
     </Container>
   );

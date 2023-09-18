@@ -18,7 +18,7 @@ export const Container = styled(Box)`
   }
 `;
 
-export const NavigationBarContainer = styled(Box)`
+export const NavigationBarWrapper = styled(Box)`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -29,7 +29,7 @@ export const NavigationBarContainer = styled(Box)`
   }
 `;
 
-export const NavigationBarContainerMobile = styled(Box)`
+export const NavigationBarWrapperMobile = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,7 +40,7 @@ export const NavigationBarContainerMobile = styled(Box)`
   }
 `;
 
-export const DetailsContainer = styled(Box)`
+export const DetailsWrapper = styled(Box)`
   display: flex;
   margin-top: 1rem;
   margin-left: -1rem;

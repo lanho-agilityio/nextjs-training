@@ -39,7 +39,7 @@ export const Made = styled(Typography)`
   color: #6b7280;
 `;
 
-export const ThemeContainer = styled(Box)`
+export const ThemeWrapper = styled(Box)`
   display: flex;
   margin-top: 0.5rem;
   justify-content: center;
