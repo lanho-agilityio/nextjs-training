@@ -1,5 +1,4 @@
-import { Avatar, Link } from '@mui/material';
-import { MOCK_AUTHOR } from '../../mocks/author';
+import { Avatar } from '@mui/material';
 import {
   AuthorContainer,
   FooterContainer,
@@ -7,13 +6,17 @@ import {
   ProfilePictureStyled,
   Separator
 } from './CardFooter.styled';
+import { Author } from '../../types/author';
 
-const CardFooter = (): JSX.Element => {
-  const author = MOCK_AUTHOR;
+export interface CardFooterProps {
+  author: Author;
+  time: string;
+}
 
+const CardFooter = ({ author, time }: CardFooterProps): JSX.Element => {
   return (
     <FooterContainer>
-      <AuthorContainer href={'/'}>
+      <AuthorContainer href={`/author/${author.name}`}>
         <ProfilePictureStyled>
           <Avatar
             alt={author.name}
@@ -34,7 +37,7 @@ const CardFooter = (): JSX.Element => {
           whiteSpace: 'nowrap'
         }}
       >
-        October 21, 2022
+        {time}
       </time>
     </FooterContainer>
   );

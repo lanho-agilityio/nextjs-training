@@ -5,9 +5,12 @@ import CardTag from '../CardTag';
 import CardTitle from '../CardTitle';
 import CardPicture from '../CardImage';
 import CardFooter from '../CardFooter';
+import { MOCK_AUTHOR } from '../../mocks/author';
 
 const PostCard = (): JSX.Element => {
   const post = MOCK_POST;
+  const author = MOCK_AUTHOR;
+
   return (
     <CardStyled>
       <CardPicture imagePath={post.imagePath} href={'/'} />
@@ -24,7 +27,7 @@ const PostCard = (): JSX.Element => {
         })}
       </TagContainer>
       <CardTitle title={post.title} href={'/'} />
-      <CardFooter />
+      <CardFooter author={author} time={'October 21, 2022'} />
     </CardStyled>
   );
 };

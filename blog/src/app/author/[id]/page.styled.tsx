@@ -27,19 +27,28 @@ export const HeaderContainer = styled(Box)`
 `;
 
 export const HeaderStyled = styled(Typography)`
+  margin-top: 0.5rem;
   font-size: 1.875rem;
   line-height: 2.25rem;
   font-weight: 600;
   letter-spacing: -0.025em;
 
   @media (min-width: 1024px) {
-    font-size: 3rem;
-    line-height: 1;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
     line-height: 1.25;
   }
 `;
 
-export const CountStyled = styled(Typography)`
-  margin-top: 0.25rem;
-  color: #4b5563;
+export const DescriptionWrapper = styled(Box)`
+  display: flex;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  margin-top: 0.5rem;
+  flex-direction: column;
+  max-width: 36rem;
+  text-align: center;
+  color: #6b7280;
 `;
+
+export const DescriptionStyled = styled(Typography)``;
