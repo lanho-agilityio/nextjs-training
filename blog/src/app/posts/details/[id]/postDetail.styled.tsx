@@ -3,14 +3,11 @@ import { Box, Link, Typography, styled } from '@mui/material';
 export const Container = styled(Box)`
   margin-right: auto;
   margin-left: auto;
-  padding-top: 1.25rem;
   padding-bottom: 1.25rem;
   padding-left: 2rem;
   padding-right: 2rem;
   max-width: 1024px;
-
   @media (min-width: 1024px) {
-    padding-top: 2rem;
     padding-bottom: 2rem;
   }
   @media (min-width: 1280px) {
@@ -27,7 +24,6 @@ export const HeaderContainer = styled(Box)`
   padding-right: 2rem;
   max-width: 1024px;
   @media (min-width: 1024px) {
-    padding-top: 2rem;
     padding-bottom: 2rem;
   }
   @media (min-width: 1280px) {
@@ -50,7 +46,6 @@ export const TitleStyled = styled(Typography)`
   font-weight: 600;
   letter-spacing: -0.025em;
   text-align: center;
-
   @media (min-width: 1024px) {
     font-size: 2.25rem;
     line-height: 2.5rem;
@@ -119,8 +114,8 @@ export const ContentWrapper = styled(Box)`
 `;
 
 export const ContentStyled = styled(Box)`
-margin-left: auto;
-margin-right: auto;
-margin-top: 0.75rem;
-margin-bottom: 0.75rem;
-`
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+`;

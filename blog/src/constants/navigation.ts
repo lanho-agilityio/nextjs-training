@@ -6,8 +6,8 @@ export const NAVIGATION_LIST: Navigation[] = [
     title: 'Home'
   },
   {
-    to: '/',
-    title: 'About'
+    to: '/posts/add',
+    title: 'Add'
   },
   {
     to: '/',
@@ -15,7 +15,7 @@ export const NAVIGATION_LIST: Navigation[] = [
   },
   {
     to: '/',
-    title: 'Pages'
+    title: 'Search'
   },
   {
     to: '/',

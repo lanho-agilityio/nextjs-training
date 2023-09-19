@@ -7,10 +7,11 @@ export type Post = {
   content: string;
   imageBase64: string;
   imagePath: string;
+  imageFile: File | undefined;
   tags: Tag[];
   dateCreated: Date;
 };
 
-export type CreatePost = Omit<Post, 'id'>;
+export type AddPost = Omit<Post, 'id' | 'userId' | 'dateCreated'>;
 
 export type UpdatePost = Post;

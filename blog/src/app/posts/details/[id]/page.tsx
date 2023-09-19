@@ -1,8 +1,8 @@
 'use client';
 import { Avatar, Box } from '@mui/material';
-import Tag from '../../../components/Tag';
-import { MOCK_AUTHOR } from '../../../mocks/author';
-import { MOCK_POST } from '../../../mocks/post';
+import Tag from '../../../../components/Tag';
+import { MOCK_AUTHOR } from '../../../../mocks/author';
+import { MOCK_POST } from '../../../../mocks/post';
 import {
   AuthorContainer,
   AuthorStyled,
@@ -87,7 +87,9 @@ const PostPage = ({
         ></Image>
       </PicWrapper>
       <ContentWrapper>
-        <article style={{"maxWidth":"768px", marginRight: 'auto', marginLeft: 'auto'}}>
+        <article
+          style={{ maxWidth: '768px', marginRight: 'auto', marginLeft: 'auto' }}
+        >
           {post.content}
         </article>
       </ContentWrapper>

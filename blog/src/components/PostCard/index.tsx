@@ -13,7 +13,10 @@ const PostCard = (): JSX.Element => {
 
   return (
     <CardStyled>
-      <CardPicture imagePath={post.imagePath} href={`/posts/${post.id}`} />
+      <CardPicture
+        imagePath={post.imagePath}
+        href={`/posts/details/${post.id}`}
+      />
       <TagContainer>
         {post.tags.map((e, i) => {
           return (
@@ -26,7 +29,7 @@ const PostCard = (): JSX.Element => {
           );
         })}
       </TagContainer>
-      <CardTitle title={post.title} href={`/posts/${post.id}`} />
+      <CardTitle title={post.title} href={`/posts/details/${post.id}`} />
       <CardFooter author={author} time={'October 21, 2022'} />
     </CardStyled>
   );
