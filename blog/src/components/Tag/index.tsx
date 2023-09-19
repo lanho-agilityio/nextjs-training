@@ -1,5 +1,5 @@
 import { LinkProps } from '@mui/material';
-import { TagStyled } from './CardTag.styled';
+import { TagStyled } from './Tag.styled';
 
 export interface TagStyledProps extends LinkProps {
   title: string;
@@ -7,12 +7,7 @@ export interface TagStyledProps extends LinkProps {
   color: string;
 }
 
-const CardTag = ({
-  title,
-  href,
-  color,
-  ...props
-}: TagStyledProps): JSX.Element => {
+const Tag = ({ title, href, color, ...props }: TagStyledProps): JSX.Element => {
   return (
     <TagStyled title={title} href={href} color={color} {...props}>
       {title}
@@ -20,4 +15,4 @@ const CardTag = ({
   );
 };
 
-export default CardTag;
+export default Tag;

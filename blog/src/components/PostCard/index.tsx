@@ -1,7 +1,7 @@
 'use client';
 import { MOCK_POST } from '../../mocks/post';
 import { CardStyled, TagContainer } from './PostCard.styled';
-import CardTag from '../CardTag';
+import Tag from '../Tag';
 import CardTitle from '../CardTitle';
 import CardPicture from '../CardImage';
 import CardFooter from '../CardFooter';
@@ -13,11 +13,11 @@ const PostCard = (): JSX.Element => {
 
   return (
     <CardStyled>
-      <CardPicture imagePath={post.imagePath} href={'/'} />
+      <CardPicture imagePath={post.imagePath} href={`/posts/${post.id}`} />
       <TagContainer>
         {post.tags.map((e, i) => {
           return (
-            <CardTag
+            <Tag
               key={i}
               title={e.name}
               color={e.color}
@@ -26,7 +26,7 @@ const PostCard = (): JSX.Element => {
           );
         })}
       </TagContainer>
-      <CardTitle title={post.title} href={'/'} />
+      <CardTitle title={post.title} href={`/posts/${post.id}`} />
       <CardFooter author={author} time={'October 21, 2022'} />
     </CardStyled>
   );

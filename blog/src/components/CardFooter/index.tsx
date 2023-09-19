@@ -28,7 +28,6 @@ const CardFooter = ({ author, time }: CardFooterProps): JSX.Element => {
       </AuthorContainer>
       <Separator>•</Separator>
       <time
-        dateTime="2022-10-21T15:48:00.000Z"
         style={{
           fontSize: '0.875rem',
           lineHeight: '1.25rem',

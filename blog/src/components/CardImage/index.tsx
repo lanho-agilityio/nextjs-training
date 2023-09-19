@@ -1,4 +1,4 @@
-import { Link, LinkProps } from '@mui/material';
+import { LinkProps } from '@mui/material';
 import Image from 'next/image';
 import { CardImageWrapper, LinkStyled } from './CardImage.styled';
 
