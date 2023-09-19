@@ -1,62 +1,45 @@
-'use client';
-import * as React from 'react';
-import Image from 'next/image';
-import { Box, IconButton, Typography } from '@mui/material';
-import { FileInformation, FileUploadStyled, PicWrapper } from '.';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import CloseIcon from '@mui/icons-material/Close';
-export interface FileUploadProps {
-  value?: File | undefined;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onRemove?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}
+import { Box, Button, ButtonProps, styled } from '@mui/material';
 
-const FileUpload = ({
-  value,
-  onChange,
-  onRemove,
-  ...props
-}: FileUploadProps): JSX.Element => {
-  return (
-    <Box >
-      <input
-        accept="image/*"
-        style={{ display: 'none' }}
-        id="raised-button-file"
-        type="file"
-        onChange={onChange}
-        {...props}
-      />
-      <label htmlFor="raised-button-file">
-        <FileUploadStyled component="span" startIcon={<CloudUploadIcon />}>
-          Upload Picture
-        </FileUploadStyled>
-      </label>
-      {value ? (
-        <>
-          <FileInformation sx={{display: 'flex', justifyItems: 'center'}}>
-            <Typography>
-            {value?.name}
-            </Typography>
-            <IconButton aria-label="delete" onClick={onRemove}>
-              <CloseIcon sx={{ color: 'red' }} />
-            </IconButton>
-          </FileInformation>
-          <PicWrapper>
-            <Image
-              src={URL.createObjectURL(value)}
-              alt="Post Image"
-              width={100}
-              height={100}
-              priority
-              style={{ width: '50%', height: 'auto' }}
+export const FileUploadStyled = styled(Button)<ButtonProps>`
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+  border-radius: 0.375rem;
+  width: 100%;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #111827;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 
-            ></Image>
-          </PicWrapper>
-        </>
-      ) : null}
-    </Box>
-  );
-};
+  :hover {
+    background-color: #1f2937;
+  }
+`;
 
-export default FileUpload;
+export const FileInformation = styled(Box)`
+  padding-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+`;
+
+export const PicWrapper = styled(Box)`
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  max-width: 1024px;
+
+  @media (min-width: 1024px) {
+    border-radius: 0.5rem;
+  }
+`;

@@ -10,8 +10,9 @@ import {
 import { Controller, SubmitHandler, set, useForm } from 'react-hook-form';
 import { REQUIRED } from '../../../constants/form';
 import { FormControl, TextField } from '@mui/material';
-import FileUpload from '../../../components/FileUpload/FileUpload.styled';
+import FileUpload from '../../../components/FileUpload';
 import Autocomplete from '../../../components/Autocomplete';
+import Button from '../../../components/Button';
 
 const AddPostPage = (): JSX.Element => {
   const {
@@ -101,6 +102,9 @@ const AddPostPage = (): JSX.Element => {
           onChange={handleFileUpload}
           onRemove={handleRemoveFile}
         />
+        <Button type="submit" fullWidth sx={{ marginTop: '1rem' }}>
+          ADD
+        </Button>
       </FormContainer>
     </Container>
   );
