@@ -16,7 +16,7 @@ const CardImage = ({
     <CardImageWrapper>
       <LinkStyled href={href} {...props}>
         <Image
-          src={imagePath}
+          src={imagePath !== "" ? imagePath: '/postPic.png'}
           alt="Post Image"
           width={100}
           height={100}

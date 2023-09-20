@@ -6,27 +6,31 @@ import CardTitle from '../CardTitle';
 import CardPicture from '../CardImage';
 import CardFooter from '../CardFooter';
 import { MOCK_AUTHOR } from '../../mocks/author';
+import { Post } from '../../types/post';
 
-const PostCard = (): JSX.Element => {
-  const post = MOCK_POST;
+export interface PostCardProps {
+  data: Post;
+}
+
+const PostCard = ({data}: PostCardProps): JSX.Element => {
   const author = MOCK_AUTHOR;
 
   return (
     <CardStyled>
       <CardPicture
-        imagePath={post.imagePath}
-        href={`/posts/details/${post.id}`}
+        imagePath={data.imageBase64}
+        href={`/posts/details/${data.id}`}
       />
       <TagContainer>
-        {post.tag !== null ? (
+        {data.tag !== null ? (
           <Tag
-            title={post.tag.name}
-            color={post.tag.color}
-            href={`/category/${post.tag.name}`}
+            title={data.tag.name}
+            color={data.tag.color}
+            href={`/category/${data.tag.name}`}
           />
         ) : null}
       </TagContainer>
-      <CardTitle title={post.title} href={`/posts/details/${post.id}`} />
+      <CardTitle title={data.title} href={`/posts/details/${data.id}`} />
       <CardFooter author={author} time={'October 21, 2022'} />
     </CardStyled>
   );

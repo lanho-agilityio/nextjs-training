@@ -6,8 +6,7 @@ export type Post = {
   title: string;
   content: string;
   imageBase64: string;
-  imagePath: string;
-  imageFile: File | undefined;
+  imageFile?: File | undefined;
   tag: Tag | null;
   dateCreated: Date;
 };

@@ -16,6 +16,7 @@ import Button from '../../../components/Button';
 import { createPost } from '../../../services/post';
 import useSWRMutation from 'swr/mutation';
 import { API_ENDPOINTS } from '../../../constants/fetch';
+import { Tag } from '../../../types/tag';
 
 const AddPostPage = (): JSX.Element => {
   const {
@@ -23,7 +24,6 @@ const AddPostPage = (): JSX.Element => {
     handleSubmit,
     control,
     watch,
-    getValues,
     setValue
   } = useForm<AddPost>({
     values: {
@@ -58,7 +58,7 @@ const AddPostPage = (): JSX.Element => {
   );
 
   const handleTag = useCallback(
-    (value: any) => {
+    (value: Tag | null) => {
       setValue('tag', value);
     },
     [setValue]
@@ -110,7 +110,7 @@ const AddPostPage = (): JSX.Element => {
           name="tag"
           control={control}
           rules={{ required: { value: true, message: REQUIRED } }}
-          render={({ field }) => (
+          render={() => (
             <FormControl fullWidth sx={{ paddingBottom: '1rem' }}>
               <Autocomplete value={watch('tag')} onChange={handleTag} />
             </FormControl>

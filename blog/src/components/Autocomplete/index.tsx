@@ -90,4 +90,4 @@ const TagSelect = ({ value, onChange }: TagSelectProps): JSX.Element => {
   );
 };
 
-export default TagSelect;
+export default React.memo(TagSelect);

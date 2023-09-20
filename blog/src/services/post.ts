@@ -11,7 +11,7 @@ export const createPost = async (url: string, { arg }: { arg: AddPost }) => {
     userId: 1,
     title: arg.title,
     content: arg.content,
-    imageBase64: base64,
+    imageBase64: base64 ?? '',
     tag: arg.tag,
     dateCreated: new Date()
   };

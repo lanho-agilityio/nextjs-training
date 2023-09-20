@@ -1,15 +1,22 @@
 'use client';
+import { Post } from '../../types/post';
 import PostCard from '../PostCard';
 import { Container, PostListStyled } from './PostList.styled';
 
-const PostList = (): JSX.Element => {
+export interface PostListProps {
+  data: Post[]
+}
+
+const PostList = ({data}: PostListProps): JSX.Element => {
   return (
     <Container>
       <PostListStyled>
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
+        {
+          data.map((e) => 
+            <PostCard key={e.id} data={e}/>
+          )
+        }
+       
       </PostListStyled>
     </Container>
   );
