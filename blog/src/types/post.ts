@@ -12,6 +12,6 @@ export type Post = {
   dateCreated: Date;
 };
 
-export type AddPost = Omit<Post, 'id' | 'userId' | 'dateCreated'>;
+export type AddPost = Pick<Post, 'title' | 'content' | 'imageFile' | 'tags'>;
 
 export type UpdatePost = Post;

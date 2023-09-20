@@ -45,7 +45,7 @@ const FileUpload = ({
               <CloseIcon sx={{ color: 'red' }} />
             </IconButton>
           </FileInformation>
-          <PicWrapper>
+          {/* <PicWrapper>
             <Image
               src={URL.createObjectURL(value)}
               alt="Post Image"
@@ -54,7 +54,7 @@ const FileUpload = ({
               priority
               style={{ width: '25%', height: 'auto' }}
             ></Image>
-          </PicWrapper>
+          </PicWrapper> */}
         </Box>
       ) : null}
     </Box>

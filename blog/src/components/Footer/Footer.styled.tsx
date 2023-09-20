@@ -23,6 +23,7 @@ export const Container = styled(Box)`
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
+  display: block;
 `;
 
 export const Copyright = styled(Typography)`

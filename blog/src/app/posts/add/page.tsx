@@ -26,17 +26,16 @@ const AddPostPage = (): JSX.Element => {
     values: {
       title: '',
       content: '',
-      imageBase64: '',
-      imagePath: '',
       imageFile: undefined,
       tags: []
     },
     mode: 'onBlur'
   });
 
-  const onSubmitForm: SubmitHandler<AddPost> = useCallback((data) => {
+  const onSubmitForm: SubmitHandler<AddPost> = (data) => {
+    console.log(12321313);
     console.log(data);
-  }, []);
+  };
 
   const handleFileUpload = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,6 +49,13 @@ const AddPostPage = (): JSX.Element => {
   const handleRemoveFile = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       setValue('imageFile', undefined), [];
+    },
+    [setValue]
+  );
+
+  const handleTag = useCallback(
+    (value: any) => {
+      setValue('tags', value);
     },
     [setValue]
   );
@@ -96,13 +102,22 @@ const AddPostPage = (): JSX.Element => {
             </FormControl>
           )}
         />
-        <Autocomplete />
+        <Controller
+          name="tags"
+          control={control}
+          rules={{ required: { value: true, message: REQUIRED } }}
+          render={({ field }) => (
+            <FormControl fullWidth sx={{ paddingBottom: '1rem' }}>
+              <Autocomplete value={watch('tags')} onChange={handleTag} />
+            </FormControl>
+          )}
+        />
         <FileUpload
           value={watch('imageFile')}
           onChange={handleFileUpload}
           onRemove={handleRemoveFile}
         />
-        <Button type="submit" fullWidth sx={{ marginTop: '1rem' }}>
+        <Button type="submit" sx={{ marginTop: '1rem' }}>
           ADD
         </Button>
       </FormContainer>
