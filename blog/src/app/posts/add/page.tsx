@@ -13,6 +13,9 @@ import { FormControl, TextField } from '@mui/material';
 import FileUpload from '../../../components/FileUpload';
 import Autocomplete from '../../../components/Autocomplete';
 import Button from '../../../components/Button';
+import { createPost } from '../../../services/post';
+import useSWRMutation from 'swr/mutation';
+import { API_ENDPOINTS } from '../../../constants/fetch';
 
 const AddPostPage = (): JSX.Element => {
   const {
@@ -32,9 +35,10 @@ const AddPostPage = (): JSX.Element => {
     mode: 'onBlur'
   });
 
-  const onSubmitForm: SubmitHandler<AddPost> = (data) => {
-    console.log(12321313);
-    console.log(data);
+  const { trigger } = useSWRMutation(API_ENDPOINTS.POSTS, createPost);
+
+  const onSubmitForm: SubmitHandler<AddPost> = async (data) => {
+    await trigger(data);
   };
 
   const handleFileUpload = useCallback(

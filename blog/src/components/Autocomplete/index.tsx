@@ -8,8 +8,6 @@ import { API_ENDPOINTS } from '../../constants/fetch';
 import { FetchService } from '../../services/fetchApi';
 import { FETCH_METHODS } from '../../enums/fetch';
 import { randomHexColor } from '../../helpers/color';
-import useSWRMutation from 'swr/mutation';
-import { createTag } from '../../services/tag';
 
 export interface TagSelectProps {
   value?: Tag[];
@@ -19,11 +17,10 @@ export interface TagSelectProps {
 const filter = createFilterOptions<Tag>();
 
 const TagSelect = ({ value, onChange }: TagSelectProps): JSX.Element => {
-  const { data, error, isLoading, mutate } = useSWR(
-    API_ENDPOINTS.TAGS,
-    (url) => FetchService.fetch(url, FETCH_METHODS.ISR)
+  const { data, error, isLoading } = useSWR(API_ENDPOINTS.TAGS, (url) =>
+    FetchService.fetch(url, FETCH_METHODS.ISR)
   );
-  
+
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
 
@@ -41,7 +38,6 @@ const TagSelect = ({ value, onChange }: TagSelectProps): JSX.Element => {
         options={data}
         onChange={(_, newValue) => {
           onChange(newValue);
-          
         }}
         filterOptions={(options, params) => {
           const filtered = filter(options, params);
@@ -51,9 +47,8 @@ const TagSelect = ({ value, onChange }: TagSelectProps): JSX.Element => {
             (option) => inputValue === option.name
           );
           if (inputValue !== '' && !isExisting) {
-            
             filtered.push({
-              id: new Date().getMilliseconds().toString(),
+              id: new Date().getTime().toString(),
               color: randomHexColor(),
               name: `${inputValue}`
             });
