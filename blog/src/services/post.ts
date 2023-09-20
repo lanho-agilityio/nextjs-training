@@ -1,7 +1,7 @@
 import { toBase64 } from '../helpers/base64pic';
 import { AddPost } from '../types/post';
 import { FetchService } from './fetchApi';
-import { findNewTag } from './tag';
+import { updateNewTag } from './tag';
 
 export const createPost = async (url: string, { arg }: { arg: AddPost }) => {
   let base64;
@@ -12,10 +12,10 @@ export const createPost = async (url: string, { arg }: { arg: AddPost }) => {
     title: arg.title,
     content: arg.content,
     imageBase64: base64,
-    tags: arg.tags,
+    tag: arg.tag,
     dateCreated: new Date()
   };
-  await findNewTag(arg.tags)
+  if (arg.tag) await updateNewTag(arg.tag);
   const response = await FetchService.post(data, url);
   return response;
 };

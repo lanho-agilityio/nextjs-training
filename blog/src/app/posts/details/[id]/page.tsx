@@ -30,16 +30,13 @@ const PostPage = ({
       <HeaderContainer>
         <HeaderWidth>
           <TagContainer>
-            {post.tags.map((e, i) => {
-              return (
-                <Tag
-                  key={i}
-                  title={e.name}
-                  color={e.color}
-                  href={`/category/${e.name}`}
-                />
-              );
-            })}
+            {post.tag !== null ? (
+              <Tag
+                title={post.tag.name}
+                color={post.tag.color}
+                href={`/category/${post.tag.name}`}
+              />
+            ) : null}
           </TagContainer>
           <TitleStyled>
             {post.title}-{id}

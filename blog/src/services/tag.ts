@@ -3,17 +3,7 @@ import { FETCH_METHODS } from '../enums/fetch';
 import { Tag } from '../types/tag';
 import { FetchService } from './fetchApi';
 
-export const createTag = async (url: string, { arg }: { arg: Tag }) => {
-    const data: Tag = {
-        id: arg.id,
-        name: arg.name,
-        color: arg.color
-    }
-    const response = FetchService.post(data, url);
-    return response;
-};
-
-export const getTag = async (): Promise<Tag[]> => {
+export const getTags = async (): Promise<Tag[]> => {
   const response = await FetchService.fetch(
     API_ENDPOINTS.TAGS,
     FETCH_METHODS.ISR
@@ -21,22 +11,22 @@ export const getTag = async (): Promise<Tag[]> => {
   return response;
 };
 
-export const findNewTag = async (addedTagList: Tag[]): Promise<Tag[]> => {
-    let currentTagList = await getTag()
-    let tagList: Tag[] = [];
-    addedTagList.forEach(async element => {
-        if(!currentTagList.find(e => e.name === element.name)){
-            tagList.push(element)
-        }
-    })
-    const updated = await updateNewTags(tagList);
-    console.log(updated)
-    return updated;
-}
+export const createTag = async (url: string, { arg }: { arg: Tag }) => {
+  const data: Tag = {
+    id: arg.id,
+    name: arg.name,
+    color: arg.color
+  };
+  const response = FetchService.post(data, url);
+  return response;
+};
 
-export const updateNewTags = async (tagList: Tag[]): Promise<Tag[]> => {
-    tagList.forEach(async element => {
-        await createTag(API_ENDPOINTS.TAGS, {arg: element})
-    })
-    return tagList;
-}   
+export const updateNewTag = async (newTag: Tag): Promise<Tag | null> => {
+  let currentTagList = await getTags();
+  let updated: Tag | null = null;
+  if (!currentTagList.find((e) => e.name === newTag.name)) {
+    updated = await createTag(API_ENDPOINTS.TAGS, { arg: newTag });
+    return updated;
+  }
+  return updated;
+};

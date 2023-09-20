@@ -9,18 +9,12 @@ export const MOCK_POST: Post = {
   imageBase64: '',
   imagePath: '/postPic.png',
   imageFile: undefined,
-  tags: [
-    {
-      id: '1',
-      name: 'Design',
-      color: '#af6060'
-    },
-    {
-      id: '2',
-      name: 'Personal Growth',
-      color: '#6a34c1'
-    }
-  ],
+  tag: {
+    id: '1',
+    name: 'Design',
+    color: '#af6060'
+  },
+
   dateCreated: new Date(2023, 6, 25, 9, 30)
 };
 
@@ -35,18 +29,11 @@ export const MOCK_LIST: Post[] = [
     imageBase64: '',
     imagePath: '/postPic.png',
     imageFile: undefined,
-    tags: [
-      {
-        id: '1',
-        name: 'Personal Growth',
-        color: '#af6060'
-      },
-      {
-        id: '2',
-        name: 'Travel',
-        color: '#6a34c1'
-      }
-    ],
+    tag: {
+      id: '1',
+      name: 'Design',
+      color: '#af6060'
+    },
     dateCreated: new Date(2023, 6, 25, 9, 30)
   },
   {
@@ -59,18 +46,11 @@ export const MOCK_LIST: Post[] = [
     imageBase64: '',
     imagePath: '/postPic.png',
     imageFile: undefined,
-    tags: [
-      {
-        id: '1',
-        name: 'Design',
-        color: '#af6060'
-      },
-      {
-        id: '2',
-        name: 'Travel',
-        color: '#6a34c1'
-      }
-    ],
+    tag: {
+      id: '1',
+      name: 'Design',
+      color: '#af6060'
+    },
     dateCreated: new Date(2023, 6, 25, 9, 30)
   },
   {
@@ -83,18 +63,11 @@ export const MOCK_LIST: Post[] = [
     imageBase64: '',
     imagePath: '/postPic.png',
     imageFile: undefined,
-    tags: [
-      {
-        id: '1',
-        name: 'Design',
-        color: '#af6060'
-      },
-      {
-        id: '2',
-        name: 'Technology',
-        color: '#6a34c1'
-      }
-    ],
+    tag: {
+      id: '1',
+      name: 'Design',
+      color: '#af6060'
+    },
     dateCreated: new Date(2023, 6, 25, 9, 30)
   }
 ];

@@ -18,16 +18,13 @@ const PostCard = (): JSX.Element => {
         href={`/posts/details/${post.id}`}
       />
       <TagContainer>
-        {post.tags.map((e, i) => {
-          return (
-            <Tag
-              key={i}
-              title={e.name}
-              color={e.color}
-              href={`/category/${e.name}`}
-            />
-          );
-        })}
+        {post.tag !== null ? (
+          <Tag
+            title={post.tag.name}
+            color={post.tag.color}
+            href={`/category/${post.tag.name}`}
+          />
+        ) : null}
       </TagContainer>
       <CardTitle title={post.title} href={`/posts/details/${post.id}`} />
       <CardFooter author={author} time={'October 21, 2022'} />

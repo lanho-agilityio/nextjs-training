@@ -30,7 +30,7 @@ const AddPostPage = (): JSX.Element => {
       title: '',
       content: '',
       imageFile: undefined,
-      tags: []
+      tag: null
     },
     mode: 'onBlur'
   });
@@ -59,7 +59,7 @@ const AddPostPage = (): JSX.Element => {
 
   const handleTag = useCallback(
     (value: any) => {
-      setValue('tags', value);
+      setValue('tag', value);
     },
     [setValue]
   );
@@ -107,12 +107,12 @@ const AddPostPage = (): JSX.Element => {
           )}
         />
         <Controller
-          name="tags"
+          name="tag"
           control={control}
           rules={{ required: { value: true, message: REQUIRED } }}
           render={({ field }) => (
             <FormControl fullWidth sx={{ paddingBottom: '1rem' }}>
-              <Autocomplete value={watch('tags')} onChange={handleTag} />
+              <Autocomplete value={watch('tag')} onChange={handleTag} />
             </FormControl>
           )}
         />

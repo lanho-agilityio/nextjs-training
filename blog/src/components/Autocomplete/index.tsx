@@ -10,7 +10,7 @@ import { FETCH_METHODS } from '../../enums/fetch';
 import { randomHexColor } from '../../helpers/color';
 
 export interface TagSelectProps {
-  value?: Tag[];
+  value?: Tag | null;
   onChange: any;
 }
 
@@ -28,7 +28,7 @@ const TagSelect = ({ value, onChange }: TagSelectProps): JSX.Element => {
     <>
       <Autocomplete
         value={value}
-        multiple
+        // multiple
         fullWidth
         sx={{ paddingBottom: '1rem' }}
         freeSolo
