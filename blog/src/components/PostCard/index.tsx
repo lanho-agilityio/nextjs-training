@@ -1,5 +1,3 @@
-'use client';
-import { MOCK_POST } from '../../mocks/post';
 import { CardStyled, TagContainer } from './PostCard.styled';
 import Tag from '../Tag';
 import CardTitle from '../CardTitle';
@@ -12,7 +10,7 @@ export interface PostCardProps {
   data: Post;
 }
 
-const PostCard = ({data}: PostCardProps): JSX.Element => {
+const PostCard = ({ data }: PostCardProps): JSX.Element => {
   const author = MOCK_AUTHOR;
 
   return (
@@ -20,6 +18,7 @@ const PostCard = ({data}: PostCardProps): JSX.Element => {
       <CardPicture
         imagePath={data.imageBase64}
         href={`/posts/details/${data.id}`}
+        // href={`/posts/edit/${data.id}`}
       />
       <TagContainer>
         {data.tag !== null ? (
@@ -30,7 +29,11 @@ const PostCard = ({data}: PostCardProps): JSX.Element => {
           />
         ) : null}
       </TagContainer>
-      <CardTitle title={data.title} href={`/posts/details/${data.id}`} />
+      <CardTitle
+        title={data.title}
+        href={`/posts/details/${data.id}`}
+        // href={`/posts/edit/${data.id}`}
+      />
       <CardFooter author={author} time={'October 21, 2022'} />
     </CardStyled>
   );

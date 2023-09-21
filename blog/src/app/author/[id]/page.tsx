@@ -32,7 +32,6 @@ const AuthorPage = ({
           </p>
         </DescriptionWrapper>
       </HeaderContainer>
-      <PostList />
     </Container>
   );
 };

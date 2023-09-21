@@ -4,3 +4,7 @@ export const APP_ERRORS = {
   INVALID_EMAIL_PASSWORD: 'Wrong email or password.',
   NOT_EXIST_USER: `This account doesn't exist yet. Please Register!`
 };
+
+export const POST_ERRORS = {
+  POST_NOT_FOUND: `This post doesn't exist`
+};

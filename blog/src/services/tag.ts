@@ -6,7 +6,7 @@ import { FetchService } from './fetchApi';
 export const getTags = async (): Promise<Tag[]> => {
   const response = await FetchService.fetch(
     API_ENDPOINTS.TAGS,
-    FETCH_METHODS.ISR
+    FETCH_METHODS.SSR
   );
   return response;
 };

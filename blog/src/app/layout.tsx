@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import NavigationBar from '../components/NavigationBar';
 import Footer from '../components/Footer';
+import RootStyleRegistry from './emotion';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,9 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavigationBar />
-        {children}
-        <Footer />
+        <RootStyleRegistry>
+          <main>
+            <NavigationBar />
+            {children}
+            <Footer />
+          </main>
+        </RootStyleRegistry>
       </body>
     </html>
   );

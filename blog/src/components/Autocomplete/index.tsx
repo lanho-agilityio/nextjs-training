@@ -18,7 +18,7 @@ const filter = createFilterOptions<Tag>();
 
 const TagSelect = ({ value, onChange }: TagSelectProps): JSX.Element => {
   const { data, error, isLoading } = useSWR(API_ENDPOINTS.TAGS, (url) =>
-    FetchService.fetch(url, FETCH_METHODS.ISR)
+    FetchService.fetch(url, FETCH_METHODS.SSR)
   );
 
   if (error) return <div>failed to load</div>;

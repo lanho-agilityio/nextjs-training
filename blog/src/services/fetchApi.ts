@@ -18,7 +18,7 @@ export class FetchApiService {
         response = await fetch(requestUrl, { cache: 'no-store' });
         break;
 
-      case FETCH_METHODS.ISR:
+      case FETCH_METHODS.SSR:
         response = await fetch(requestUrl, {
           next: { revalidate: REVALIDATE_DEFAULT_TIME }
         });

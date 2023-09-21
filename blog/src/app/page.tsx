@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 'use client';
 import useSWR from 'swr';
 import PostList from '../components/PostList';
@@ -7,7 +8,7 @@ import { FetchService } from '../services/fetchApi';
 
 export default function Home() {
   const { data, error, isLoading } = useSWR(API_ENDPOINTS.POSTS, (url) =>
-    FetchService.fetch(url, FETCH_METHODS.ISR)
+    FetchService.fetch(url, FETCH_METHODS.SSR)
   );
 
   if (error) return <div>failed to load</div>;
@@ -15,7 +16,7 @@ export default function Home() {
 
   return (
     <main>
-      <PostList data={data}/>
+      <PostList data={data} />
     </main>
   );
 }

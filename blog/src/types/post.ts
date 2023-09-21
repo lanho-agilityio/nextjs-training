@@ -6,11 +6,12 @@ export type Post = {
   title: string;
   content: string;
   imageBase64: string;
+  imageName: string;
   imageFile?: File | undefined;
   tag: Tag | null;
-  dateCreated: Date;
+  dateCreated: Date | undefined;
 };
 
 export type AddPost = Pick<Post, 'title' | 'content' | 'imageFile' | 'tag'>;
 
-export type UpdatePost = Post;
+export type EditPost = Post;

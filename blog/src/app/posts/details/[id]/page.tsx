@@ -69,7 +69,7 @@ const PostPage = ({
       </HeaderContainer>
       <PicWrapper>
         <Image
-          src={post.imagePath}
+          src={post.imageBase64}
           alt="Post Image"
           width={100}
           height={100}

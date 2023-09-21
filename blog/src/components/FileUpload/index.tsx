@@ -1,6 +1,5 @@
 'use client';
 import * as React from 'react';
-import Image from 'next/image';
 import { Box, IconButton, Typography } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CloseIcon from '@mui/icons-material/Close';
