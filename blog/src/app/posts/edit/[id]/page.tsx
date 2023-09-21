@@ -6,7 +6,7 @@ import {
   FormContainer,
   HeaderContainer,
   HeaderStyled
-} from './editPost.styled';
+} from './edit.styled';
 import { Controller, SubmitHandler, set, useForm } from 'react-hook-form';
 import { REQUIRED } from '../../../../constants/form';
 import { FormControl, TextField } from '@mui/material';
@@ -34,7 +34,6 @@ const EditPostPage = ({
 
   const { trigger } = useSWRMutation(API_ENDPOINTS.POSTS, editPost);
 
-
   const {
     formState: { errors },
     handleSubmit,
@@ -52,7 +51,7 @@ const EditPostPage = ({
       imageName: '',
       imageFile: undefined,
       tag: null,
-      dateCreated: undefined,
+      dateCreated: undefined
     },
     mode: 'onBlur'
   });
@@ -63,7 +62,7 @@ const EditPostPage = ({
         base64ToFile(data[0].imageBase64, data[0].imageName).then((file) => {
           reset({
             id: data[0].id,
-            userId:data[0].userId,
+            userId: data[0].userId,
             title: data[0].title,
             content: data[0].content,
             imageBase64: data[0].imageBase64,
@@ -76,19 +75,18 @@ const EditPostPage = ({
       } else {
         reset({
           id: data[0].id,
-          userId:data[0].userId,
+          userId: data[0].userId,
           title: data[0].title,
           content: data[0].content,
           imageBase64: data[0].imageBase64,
           imageName: data[0].imageName,
           imageFile: undefined,
           tag: data[0].tag,
-          dateCreated: data[0].dateCreated          
+          dateCreated: data[0].dateCreated
         });
       }
     }
   }, [data, reset]);
-
 
   const onSubmitForm: SubmitHandler<EditPost> = async (data) => {
     await trigger(data);

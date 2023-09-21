@@ -10,15 +10,15 @@ export const NAVIGATION_LIST: Navigation[] = [
     title: 'Add'
   },
   {
-    to: '/',
-    title: 'Contact'
+    to: '/user/login',
+    title: 'Login'
   },
   {
     to: '/',
     title: 'Search'
   },
   {
-    to: '/',
-    title: 'Free Version'
+    to: '/user/register',
+    title: 'Register'
   }
 ];

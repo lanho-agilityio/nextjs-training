@@ -6,7 +6,7 @@ import {
   FormContainer,
   HeaderContainer,
   HeaderStyled
-} from './addPost.styled';
+} from './add.styled';
 import { Controller, SubmitHandler, set, useForm } from 'react-hook-form';
 import { REQUIRED } from '../../../constants/form';
 import { FormControl, TextField } from '@mui/material';

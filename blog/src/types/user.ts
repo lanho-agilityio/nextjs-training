@@ -4,8 +4,6 @@ export interface User {
   password: string;
   confirmPassword?: string;
   name: string;
-  imageBase64: string;
-  imagePath: string;
 }
 
 export type UserLogin = Pick<User, 'email' | 'password'>;
