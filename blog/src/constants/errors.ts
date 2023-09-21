@@ -8,3 +8,8 @@ export const APP_ERRORS = {
 export const POST_ERRORS = {
   POST_NOT_FOUND: `This post doesn't exist`
 };
+
+export const USER_ERRORS = {
+  USER_EXISTED: 'User already existed. Please use a different email.',
+  INCORRECT_INFO: 'Incorrect username or password'
+};
