@@ -12,6 +12,9 @@ import { FormControl, Link, TextField, Typography } from '@mui/material';
 import Button from '../../../components/Button';
 
 import { UserLogin } from '../../../types/user';
+import useSWRMutation from 'swr/mutation';
+import { API_ENDPOINTS } from '../../../constants/fetch';
+import { loginUser } from '../../../services/user';
 
 const LoginPage = (): JSX.Element => {
   const {
@@ -26,11 +29,11 @@ const LoginPage = (): JSX.Element => {
     mode: 'onBlur'
   });
 
-  //   const { trigger } = useSWRMutation(API_ENDPOINTS.POSTS, createPost);
+  const { trigger } = useSWRMutation(API_ENDPOINTS.USERS, loginUser);
 
   const onSubmitForm: SubmitHandler<UserLogin> = async (data) => {
-    // await trigger(data);
-    console.log(data);
+    await trigger(data);
+    // console.log(data);
   };
 
   return (
@@ -65,7 +68,7 @@ const LoginPage = (): JSX.Element => {
                 helperText={errors.email && errors.email.message}
                 variant="outlined"
                 type="text"
-                placeholder="Email"
+                placeholder="Email*"
                 {...field}
               />
             </FormControl>
@@ -82,7 +85,7 @@ const LoginPage = (): JSX.Element => {
                 helperText={errors.password && errors.password.message}
                 variant="outlined"
                 type="password"
-                placeholder="Password"
+                placeholder="Password*"
                 {...field}
               />
             </FormControl>

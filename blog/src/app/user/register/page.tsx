@@ -18,22 +18,30 @@ import { FormControl, Link, TextField, Typography } from '@mui/material';
 import Button from '../../../components/Button';
 
 import { UserRegister } from '../../../types/user';
+import useSWRMutation from 'swr/mutation';
+import { API_ENDPOINTS } from '../../../constants/fetch';
+import { registerUser } from '../../../services/user';
 
-const LoginPage = (): JSX.Element => {
+const RegisterPage = (): JSX.Element => {
   const {
     formState: { errors },
     handleSubmit,
     control,
     getValues
   } = useForm<UserRegister>({
+    values: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    },
     mode: 'onBlur'
   });
 
-  //   const { trigger } = useSWRMutation(API_ENDPOINTS.POSTS, createPost);
+  const { trigger } = useSWRMutation(API_ENDPOINTS.USERS, registerUser);
 
   const onSubmitForm: SubmitHandler<UserRegister> = async (data) => {
-    // await trigger(data);
-    console.log(data);
+    await trigger(data);
   };
 
   return (
@@ -67,7 +75,7 @@ const LoginPage = (): JSX.Element => {
                 helperText={errors.name && errors.name.message}
                 variant="outlined"
                 type="text"
-                placeholder="First name"
+                placeholder="Name*"
                 {...field}
               />
             </FormControl>
@@ -87,7 +95,7 @@ const LoginPage = (): JSX.Element => {
                 helperText={errors.email && errors.email.message}
                 variant="outlined"
                 type="text"
-                placeholder="Email"
+                placeholder="Email*"
                 {...field}
               />
             </FormControl>
@@ -104,7 +112,7 @@ const LoginPage = (): JSX.Element => {
                 helperText={errors.password && errors.password.message}
                 variant="outlined"
                 type="password"
-                placeholder="Password"
+                placeholder="Password*"
                 {...field}
               />
             </FormControl>
@@ -130,7 +138,7 @@ const LoginPage = (): JSX.Element => {
                 }
                 variant="outlined"
                 type="password"
-                placeholder="Confirm Password"
+                placeholder="Confirm Password*"
                 {...field}
               />
             </FormControl>
@@ -144,4 +152,4 @@ const LoginPage = (): JSX.Element => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
