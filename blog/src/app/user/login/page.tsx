@@ -12,9 +12,8 @@ import { FormControl, Link, TextField, Typography } from '@mui/material';
 import Button from '../../../components/Button';
 
 import { UserLogin } from '../../../types/user';
-import useSWRMutation from 'swr/mutation';
-import { API_ENDPOINTS } from '../../../constants/fetch';
-import { loginUser } from '../../../services/user';
+import { useAuthContext } from '../../../hooks/useAuthContext';
+import { useCallback } from 'react';
 
 const LoginPage = (): JSX.Element => {
   const {
@@ -29,11 +28,19 @@ const LoginPage = (): JSX.Element => {
     mode: 'onBlur'
   });
 
-  const { trigger } = useSWRMutation(API_ENDPOINTS.USERS, loginUser);
+  const { login } = useAuthContext();
 
-  const onSubmitForm: SubmitHandler<UserLogin> = async (data) => {
-    await trigger(data);
-    // console.log(data);
+  const handleSuccess = useCallback(() => {
+    console.log('LOGIN');
+  }, []);
+
+  const handleError = useCallback((e: unknown) => {
+    const error = e as Error;
+    console.log(error);
+  }, []);
+
+  const onSubmitForm: SubmitHandler<UserLogin> = (data) => {
+    login(data, handleSuccess, handleError);
   };
 
   return (

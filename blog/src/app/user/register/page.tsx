@@ -21,6 +21,8 @@ import { UserRegister } from '../../../types/user';
 import useSWRMutation from 'swr/mutation';
 import { API_ENDPOINTS } from '../../../constants/fetch';
 import { registerUser } from '../../../services/user';
+import { useAuthContext } from '../../../hooks/useAuthContext';
+import { useCallback } from 'react';
 
 const RegisterPage = (): JSX.Element => {
   const {
@@ -38,10 +40,19 @@ const RegisterPage = (): JSX.Element => {
     mode: 'onBlur'
   });
 
-  const { trigger } = useSWRMutation(API_ENDPOINTS.USERS, registerUser);
+  const { register } = useAuthContext();
 
-  const onSubmitForm: SubmitHandler<UserRegister> = async (data) => {
-    await trigger(data);
+  const handleSuccess = useCallback(() => {
+    console.log('REGISTERED');
+  }, []);
+
+  const handleError = useCallback((e: unknown) => {
+    const error = e as Error;
+    console.log(error);
+  }, []);
+
+  const onSubmitForm: SubmitHandler<UserRegister> = (data) => {
+    register(data, handleSuccess, handleError);
   };
 
   return (

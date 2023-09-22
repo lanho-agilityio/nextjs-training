@@ -1,3 +1,5 @@
+'use client';
+
 import {
   createContext,
   ReactNode,
@@ -38,7 +40,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         },
         onError: (e: unknown) => {
           handleError(e);
-        }
+        },
+        throwOnError: false
       });
     },
     [useLogin]
@@ -58,7 +61,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         },
         onError: (e: unknown) => {
           handleError(e);
-        }
+        },
+        throwOnError: false
       });
     },
     [useRegister]
