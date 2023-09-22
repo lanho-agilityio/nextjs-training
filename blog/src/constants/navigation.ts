@@ -10,12 +10,12 @@ export const NAVIGATION_LIST: Navigation[] = [
     title: 'Add'
   },
   {
-    to: '/user/login',
-    title: 'Login'
+    to: '/posts/edit/1695281067254',
+    title: 'Edit'
   },
   {
-    to: '/',
-    title: 'Search'
+    to: '/user/login',
+    title: 'Login'
   },
   {
     to: '/user/register',
