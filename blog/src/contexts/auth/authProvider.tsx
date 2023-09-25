@@ -9,7 +9,7 @@ import {
 
 import authReducer, { USER_ACTION } from './authReducer';
 import { UserLogin, UserRegister, UserSession } from '../../types/user';
-import { AuthContextType } from '../../types/auth';
+import { AuthContextType } from '../../types/authContext';
 import useSWRMutation from 'swr/mutation';
 import { API_ENDPOINTS } from '../../constants/fetch';
 import { loginUser, registerUser } from '../../services/user';

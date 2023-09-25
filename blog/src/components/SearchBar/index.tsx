@@ -45,10 +45,10 @@ const SearchBar = ({ value, onSubmit }: SearchBarProps): JSX.Element => {
 
   const resetData = () => {
     onSubmit({
-        search: '',
-        tag: null
-      })
-  }
+      search: '',
+      tag: null
+    });
+  };
 
   return (
     <SearchBarContainer onSubmit={handleSubmit(onSubmitForm)}>
@@ -81,9 +81,7 @@ const SearchBar = ({ value, onSubmit }: SearchBarProps): JSX.Element => {
           </FormControl>
         )}
       />
-      <Button type="submit" >
-        Search
-      </Button>
+      <Button type="submit">Search</Button>
       <Button type="button" sx={{ marginTop: '1rem' }} onClick={resetData}>
         Reset
       </Button>

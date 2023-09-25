@@ -5,6 +5,7 @@ import { toBase64 } from '../helpers/base64pic';
 import { AddPost, EditPost, Post } from '../types/post';
 import { FetchService } from './fetchApi';
 import { updateNewTag } from './tag';
+import { Filter } from '../types/filter';
 
 export const createPost = async (url: string, { arg }: { arg: AddPost }) => {
   let base64;
@@ -46,5 +47,23 @@ export const editPost = async (url: string, { arg }: { arg: EditPost }) => {
     const newTag = await updateNewTag(arg.tag);
   }
   const response = await FetchService.put(arg.id, url, data);
+  return response;
+};
+
+export const queryPosts = async ([key, params]: [
+  string,
+  Filter | null
+]): Promise<Post[] | Error> => {
+  let tagSearch = '';
+  let deepSearch = '';
+  if (params && params.tag) {
+    tagSearch = `&tag.id=${params.tag.id}`;
+  }
+  if (params && params.search) {
+    deepSearch = `&q=${params.search}`;
+  }
+
+  const url = `${key}?${tagSearch}${deepSearch}&_sort=dateCreated&_order=asc`;
+  let response = await FetchService.fetch(url, FETCH_METHODS.SSR);
   return response;
 };
