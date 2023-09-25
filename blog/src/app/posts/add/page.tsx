@@ -7,11 +7,11 @@ import {
   HeaderContainer,
   HeaderStyled
 } from './add.styled';
-import { Controller, SubmitHandler, set, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { REQUIRED } from '../../../constants/form';
 import { FormControl, TextField } from '@mui/material';
 import FileUpload from '../../../components/FileUpload';
-import Autocomplete from '../../../components/Autocomplete';
+import TagSelect from '../../../components/TagSelect';
 import Button from '../../../components/Button';
 import { createPost } from '../../../services/post';
 import useSWRMutation from 'swr/mutation';
@@ -112,7 +112,7 @@ const AddPostPage = (): JSX.Element => {
           rules={{ required: { value: true, message: REQUIRED } }}
           render={() => (
             <FormControl fullWidth sx={{ paddingBottom: '1rem' }}>
-              <Autocomplete value={watch('tag')} onChange={handleTag} />
+              <TagSelect value={watch('tag')} onChange={handleTag} />
             </FormControl>
           )}
         />

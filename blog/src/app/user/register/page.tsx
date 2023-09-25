@@ -14,13 +14,8 @@ import {
   REQUIRED
 } from '../../../constants/form';
 import { FormControl, Link, TextField, Typography } from '@mui/material';
-
 import Button from '../../../components/Button';
-
 import { UserRegister } from '../../../types/user';
-import useSWRMutation from 'swr/mutation';
-import { API_ENDPOINTS } from '../../../constants/fetch';
-import { registerUser } from '../../../services/user';
 import { useAuthContext } from '../../../hooks/useAuthContext';
 import { useCallback } from 'react';
 

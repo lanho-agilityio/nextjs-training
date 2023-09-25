@@ -17,7 +17,7 @@ export const createTag = async (url: string, { arg }: { arg: Tag }) => {
     name: arg.name,
     color: arg.color
   };
-  const response = FetchService.post(data, url);
+  const response = await FetchService.post(data, url);
   return response;
 };
 

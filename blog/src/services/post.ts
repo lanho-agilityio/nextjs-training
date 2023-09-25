@@ -29,7 +29,7 @@ export const editPost = async (url: string, { arg }: { arg: EditPost }) => {
     `${API_ENDPOINTS.POSTS}?id=${arg.id}`,
     FETCH_METHODS.SSR
   );
-  if ((post.length = 0)) throw new Error(POST_ERRORS.POST_NOT_FOUND);
+  if (post.length === 0) throw new Error(POST_ERRORS.POST_NOT_FOUND);
   let base64;
   if (arg.imageFile) base64 = await toBase64(arg.imageFile);
   const data = {
@@ -42,7 +42,9 @@ export const editPost = async (url: string, { arg }: { arg: EditPost }) => {
     tag: arg.tag,
     dateCreated: new Date()
   };
-  if (arg.tag) await updateNewTag(arg.tag);
+  if (arg.tag) {
+    const newTag = await updateNewTag(arg.tag);
+  }
   const response = await FetchService.put(arg.id, url, data);
   return response;
 };

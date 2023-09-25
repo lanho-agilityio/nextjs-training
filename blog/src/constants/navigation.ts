@@ -20,5 +20,9 @@ export const NAVIGATION_LIST: Navigation[] = [
   {
     to: '/user/register',
     title: 'Register'
+  },
+  {
+    to: '/posts/search',
+    title: 'Search'
   }
 ];

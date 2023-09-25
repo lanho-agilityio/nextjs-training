@@ -1,5 +1,4 @@
 'use client';
-
 import {
   createContext,
   ReactNode,
@@ -20,7 +19,9 @@ export const AuthContext = createContext<AuthContextType | null>(null);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, dispatch] = useReducer(
     authReducer,
-    JSON.parse(sessionStorage.getItem('user') || 'null')
+    typeof window !== 'undefined'
+      ? JSON.parse(window.sessionStorage.getItem('user') || 'null')
+      : null
   );
 
   const useLogin = useSWRMutation(API_ENDPOINTS.USERS, loginUser);
@@ -35,7 +36,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       await useLogin.trigger(values, {
         onSuccess: (response: UserSession) => {
           dispatch({ type: USER_ACTION.SET_USER, payload: response });
-          console.log(response);
+          sessionStorage.setItem('user', JSON.stringify(response));
           handleSuccess(response);
         },
         onError: (e: unknown) => {
@@ -56,7 +57,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       await useRegister.trigger(values, {
         onSuccess: (response: UserSession) => {
           dispatch({ type: USER_ACTION.SET_USER, payload: response });
-          console.log(response);
+          sessionStorage.setItem('user', JSON.stringify(response));
           handleSuccess(response);
         },
         onError: (e: unknown) => {

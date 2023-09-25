@@ -26,8 +26,8 @@ const NavigationBar = (): JSX.Element => {
   const HALF = Math.ceil(NAVIGATION_LIST.length / 2);
 
   return (
-    <Container>
-      <nav>
+    <nav>
+      <Container>
         <NavigationBarWrapper>
           <NavigationLeft>
             {NAVIGATION_LIST.slice(0, HALF).map((e, i) => {
@@ -60,8 +60,8 @@ const NavigationBar = (): JSX.Element => {
             })}
           </NavigationRight>
         </NavigationBarWrapper>
-      </nav>
-    </Container>
+      </Container>
+    </nav>
   );
 };
 
