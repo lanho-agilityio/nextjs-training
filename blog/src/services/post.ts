@@ -20,7 +20,7 @@ export const createPost = async (url: string, { arg }: { arg: AddPost }) => {
     tag: arg.tag,
     dateCreated: new Date()
   };
-  if (arg.tag.length > 0) await findNewTag(arg.tag);
+  if (arg.tag) await findNewTag(arg.tag);
   const response = await FetchService.post(data, url);
   return response;
 };
@@ -43,7 +43,7 @@ export const editPost = async (url: string, { arg }: { arg: EditPost }) => {
     tag: arg.tag,
     dateCreated: new Date()
   };
-  if (arg.tag.length > 0) await findNewTag(arg.tag);
+  if (arg.tag) await findNewTag(arg.tag);
   const response = await FetchService.put(arg.id, url, data);
   return response;
 };
@@ -54,15 +54,17 @@ export const queryPosts = async ([key, params]: [
 ]): Promise<Post[] | Error> => {
   let tagSearch = '';
   let deepSearch = '';
-  // if (params && params.tag.length > 0) {
-  //   if (params.tag.id != '') tagSearch = `&tag.id=${params.tag.id}`;
-  //   else tagSearch = `&tag.name=${params.tag.name}`;
-  // }
+  if (params && params.tag.length > 0) {
+    for (let i = 0; i < params.tag.length; i++) {
+      tagSearch += `&tag.name=${params.tag[i].name.replace(/%20/g, ' ')}`;
+    }
+  }
   if (params && params.search) {
     deepSearch = `&q=${params.search}`;
   }
 
   const url = `${key}?${tagSearch}${deepSearch}&_sort=dateCreated&_order=asc`;
+  console.log(url);
   let response = await FetchService.fetch(url, FETCH_METHODS.SSR);
   return response;
 };

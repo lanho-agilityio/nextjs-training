@@ -4,13 +4,13 @@ import {
   SearchIconWrapper,
   SearchInputContainer
 } from './SearchBar.styled';
-import TagSelect from '../TagSelect';
 import SearchIcon from '@mui/icons-material/Search';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Filter } from '../../types/filter';
 import { useCallback } from 'react';
 import { Tag } from '../../types/tag';
 import Button from '../Button';
+import TagSelectMultiple from '../TagSelectMultiple';
 
 interface SearchBarProps {
   value?: Filter | null;
@@ -77,7 +77,7 @@ const SearchBar = ({ value, onSubmit }: SearchBarProps): JSX.Element => {
         control={control}
         render={() => (
           <FormControl fullWidth sx={{ paddingBottom: '1rem' }}>
-            <TagSelect value={watch('tag')} onChange={handleTag} />
+            <TagSelectMultiple value={watch('tag')} onChange={handleTag} />
           </FormControl>
         )}
       />

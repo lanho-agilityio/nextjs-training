@@ -24,11 +24,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthProvider>
           <PostProvider>
-            <main>
-              <NavigationBar />
-              {children}
-              <Footer />
-            </main>
+            <NavigationBar />
+            <main>{children}</main>
+            <Footer />
           </PostProvider>
         </AuthProvider>
       </body>

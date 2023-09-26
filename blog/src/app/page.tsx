@@ -17,14 +17,12 @@ export default function Home() {
   if (queryPosts.error) return <div>failed to load</div>;
   if (queryPosts.isLoading) return <div>loading...</div>;
   return (
-    <main>
-      <PostList
-        data={
-          queryPosts.data instanceof Error || queryPosts.data === undefined
-            ? []
-            : queryPosts.data
-        }
-      />
-    </main>
+    <PostList
+      data={
+        queryPosts.data instanceof Error || queryPosts.data === undefined
+          ? []
+          : queryPosts.data
+      }
+    />
   );
 }

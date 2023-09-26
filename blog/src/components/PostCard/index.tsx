@@ -21,14 +21,14 @@ const PostCard = ({ data }: PostCardProps): JSX.Element => {
         // href={`/posts/edit/${data.id}`}
       />
       <TagContainer>
-        {data.tag.map((e) => (
+        {data.tag && (
           <Tag
-            key={e.id}
-            title={e.name}
-            color={e.color}
-            href={`/category/${e.name}`}
+            key={data.tag.id}
+            title={data.tag.name}
+            color={data.tag.color}
+            href={`/category/${data.tag.name}`}
           />
-        ))}
+        )}
       </TagContainer>
       <CardTitle title={data.title} href={`/posts/details/${data.id}`} />
       <CardFooter

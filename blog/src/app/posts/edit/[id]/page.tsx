@@ -11,7 +11,6 @@ import { Controller, SubmitHandler, set, useForm } from 'react-hook-form';
 import { REQUIRED } from '../../../../constants/form';
 import { Alert, FormControl, Snackbar, TextField } from '@mui/material';
 import FileUpload from '../../../../components/FileUpload';
-import TagSelect from '../../../../components/TagSelect';
 import Button from '../../../../components/Button';
 import { API_ENDPOINTS } from '../../../../constants/fetch';
 import { Tag } from '../../../../types/tag';
@@ -21,6 +20,7 @@ import { FetchService } from '../../../../services/fetchApi';
 import { base64ToFile } from '../../../../helpers/base64pic';
 import { useRouter } from 'next/navigation';
 import { usePostContext } from '../../../../hooks/usePostContext';
+import TagSelectSingle from '../../../../components/TagSelectSingle';
 
 const EditPostPage = ({
   params: { id }
@@ -48,7 +48,7 @@ const EditPostPage = ({
       imageBase64: '',
       imageName: '',
       imageFile: undefined,
-      tag: [],
+      tag: null,
       dateCreated: new Date(1970, 1, 1, 0, 0)
     },
     mode: 'onBlur'
@@ -103,9 +103,12 @@ const EditPostPage = ({
     setOpenSnackbar(true);
   }, []);
 
-  const onSubmitForm: SubmitHandler<EditPost> = async (data) => {
-    edit(data, handleSuccess, handleError);
-  };
+  const onSubmitForm: SubmitHandler<EditPost> = useCallback(
+    async (data) => {
+      edit(data, handleSuccess, handleError);
+    },
+    [edit, handleError, handleSuccess]
+  );
 
   const handleFileUpload = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,7 +127,7 @@ const EditPostPage = ({
   );
 
   const handleTag = useCallback(
-    (value: Tag[]) => {
+    (value: Tag | null) => {
       setValue('tag', value);
     },
     [setValue]
@@ -180,19 +183,17 @@ const EditPostPage = ({
           control={control}
           rules={{
             validate: (value) => {
-              return watch('tag').length > 0 || REQUIRED;
+              return watch('tag') !== null || REQUIRED;
             }
           }}
           render={() => (
             <FormControl fullWidth sx={{ paddingBottom: '1rem' }}>
-              <TagSelect
+              <TagSelectSingle
                 value={watch('tag')}
                 onChange={handleTag}
-                validation={!!errors.tag && watch('tag').length === 0}
+                validation={!!errors.tag && watch('tag') === null}
                 helperText={
-                  watch('tag').length === 0
-                    ? errors.tag && errors.tag.message
-                    : ''
+                  watch('tag') === null ? errors.tag && errors.tag.message : ''
                 }
               />
             </FormControl>
