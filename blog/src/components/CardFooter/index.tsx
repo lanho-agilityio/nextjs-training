@@ -16,7 +16,7 @@ export interface CardFooterProps {
 const CardFooter = ({ user, time }: CardFooterProps): JSX.Element => {
   return (
     <FooterContainer>
-      <AuthorContainer href={`/author/${user.name}`}>
+      <AuthorContainer href={`/author/${user.id}`}>
         <ProfilePictureStyled>
           {/* <Avatar
             alt={author.name}

@@ -4,12 +4,14 @@ import CardTitle from '../CardTitle';
 import CardPicture from '../CardImage';
 import CardFooter from '../CardFooter';
 import { Post } from '../../types/post';
+import { User } from '../../types/user';
 
 export interface PostCardProps {
   data: Post;
+  user?: User;
 }
 
-const PostCard = ({ data }: PostCardProps): JSX.Element => {
+const PostCard = ({ data, user }: PostCardProps): JSX.Element => {
   return (
     <CardStyled>
       <CardPicture imagePath={data.imageBase64} href={`/post/${data.id}`} />
@@ -25,7 +27,7 @@ const PostCard = ({ data }: PostCardProps): JSX.Element => {
       </TagContainer>
       <CardTitle title={data.title} href={`/post/${data.id}`} />
       <CardFooter
-        user={data.user}
+        user={data.user || user}
         time={new Date(data.dateCreated).toDateString()}
       />
     </CardStyled>

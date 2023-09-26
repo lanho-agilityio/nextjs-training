@@ -53,7 +53,7 @@ const PostPage = ({
             {data.title}-{id}
           </TitleStyled>
           <AuthorContainer>
-            <AuthorStyled href={`/author/${data.user.name}`}>
+            <AuthorStyled href={`/author/${data.user.id}`}>
               <AvatarWrapper />
               <Box>
                 <Name>{data.name}</Name>

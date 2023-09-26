@@ -15,21 +15,22 @@ const CardImage = ({
   return (
     <CardImageWrapper>
       <LinkStyled href={href} {...props}>
-        {imagePath && <Image
-          src={imagePath}
-          alt="Post Image"
-          width={100}
-          height={100}
-          priority
-          style={{
-            position: 'absolute',
-            height: '100%',
-            width: '100%',
-            inset: '0px',
-            color: 'transparent'
-          }}
-        ></Image>}
-        
+        {imagePath && (
+          <Image
+            src={imagePath}
+            alt="Post Image"
+            width={100}
+            height={100}
+            priority
+            style={{
+              position: 'absolute',
+              height: '100%',
+              width: '100%',
+              inset: '0px',
+              color: 'transparent'
+            }}
+          ></Image>
+        )}
       </LinkStyled>
     </CardImageWrapper>
   );
