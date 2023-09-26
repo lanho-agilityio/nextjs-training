@@ -16,6 +16,7 @@ import { Tag } from '../../../types/tag';
 import { usePostContext } from '../../../hooks/usePostContext';
 import { useRouter } from 'next/navigation';
 import TagSelectSingle from '../../../components/TagSelectSingle';
+import { useAuthContext } from '../../../hooks/useAuthContext';
 
 const AddPostPage = (): JSX.Element => {
   const {
@@ -26,6 +27,7 @@ const AddPostPage = (): JSX.Element => {
     setValue
   } = useForm<AddPost>({
     values: {
+      userId: '',
       title: '',
       content: '',
       imageFile: undefined,
@@ -33,6 +35,8 @@ const AddPostPage = (): JSX.Element => {
     },
     mode: 'onBlur'
   });
+
+  const { user } = useAuthContext();
   const { add } = usePostContext();
 
   const router = useRouter();
@@ -52,9 +56,18 @@ const AddPostPage = (): JSX.Element => {
 
   const onSubmitForm: SubmitHandler<AddPost> = useCallback(
     async (data) => {
-      add(data, handleSuccess, handleError);
+      if (user) {
+        const value = {
+          ...data,
+          userId: user.id
+        };
+        add(value, handleSuccess, handleError);
+      } else {
+        setMessage('Please Log In');
+        setOpenSnackbar(true);
+      }
     },
-    [add, handleError, handleSuccess]
+    [add, handleError, handleSuccess, user]
   );
 
   const handleFileUpload = useCallback(

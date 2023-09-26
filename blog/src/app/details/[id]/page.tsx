@@ -1,8 +1,8 @@
 'use client';
 import { Avatar, Box } from '@mui/material';
-import Tag from '../../../../components/Tag';
-import { MOCK_AUTHOR } from '../../../../mocks/author';
-import { MOCK_POST } from '../../../../mocks/post';
+import Tag from '../../../components/Tag';
+import { MOCK_AUTHOR } from '../../../mocks/author';
+import { MOCK_POST } from '../../../mocks/post';
 import {
   AuthorContainer,
   AuthorStyled,

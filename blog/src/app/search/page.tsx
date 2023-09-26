@@ -1,13 +1,13 @@
 'use client';
 import useSWR from 'swr';
-import SearchBar from '../../../components/SearchBar';
-import { Filter } from '../../../types/filter';
+import SearchBar from '../../components/SearchBar';
+import { Filter } from '../../types/filter';
 import { Container, HeaderContainer, HeaderStyled } from './search.styled';
-import { API_ENDPOINTS } from '../../../constants/fetch';
+import { API_ENDPOINTS } from '../../constants/fetch';
 import { useState } from 'react';
-import PostList from '../../../components/PostList';
-import { queryPosts } from '../../../services/post';
-import { usePostContext } from '../../../hooks/usePostContext';
+import PostList from '../../components/PostList';
+import { queryPosts } from '../../services/post';
+import { usePostContext } from '../../hooks/usePostContext';
 
 const SearchPage = (): JSX.Element => {
   const { queryPosts, params, changeParams } = usePostContext();

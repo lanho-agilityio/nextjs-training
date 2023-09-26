@@ -32,7 +32,7 @@ export const PostProvider = ({ children }: { children: ReactNode }) => {
       handleError: (e: unknown) => void
     ) => {
       await useAddPost.trigger(values, {
-        onSuccess: (response: AddPost) => {
+        onSuccess: (response: any) => {
           handleSuccess(response);
         },
         onError: (e: unknown) => {

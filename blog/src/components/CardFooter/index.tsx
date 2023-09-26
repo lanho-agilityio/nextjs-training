@@ -9,14 +9,14 @@ import {
 import { Author } from '../../types/author';
 
 export interface CardFooterProps {
-  author: Author;
+  user: Author;
   time: string;
 }
 
-const CardFooter = ({ author, time }: CardFooterProps): JSX.Element => {
+const CardFooter = ({ user, time }: CardFooterProps): JSX.Element => {
   return (
     <FooterContainer>
-      <AuthorContainer href={`/author/${author.name}`}>
+      <AuthorContainer href={`/author/${user.name}`}>
         <ProfilePictureStyled>
           {/* <Avatar
             alt={author.name}
@@ -24,7 +24,7 @@ const CardFooter = ({ author, time }: CardFooterProps): JSX.Element => {
             sx={{ width: 20, height: 20 }}
           /> */}
         </ProfilePictureStyled>
-        <Name>{author.name}</Name>
+        <Name>{user.name}</Name>
       </AuthorContainer>
       <Separator>•</Separator>
       <time

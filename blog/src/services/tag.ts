@@ -23,9 +23,8 @@ export const createTag = async (url: string, { arg }: { arg: Tag }) => {
 
 export const findNewTag = async (newTag: Tag): Promise<Tag | null> => {
   let currentTagList = await getTags();
-
   if (!currentTagList.find((e) => e.name === newTag.name)) {
     return await createTag(API_ENDPOINTS.TAGS, { arg: newTag });
   }
-  throw new Error('Error');
+  return null;
 };

@@ -6,11 +6,11 @@ export const NAVIGATION_LIST: Navigation[] = [
     title: 'Home'
   },
   {
-    to: '/posts/add',
+    to: '/upsert/add',
     title: 'Add'
   },
   {
-    to: '/posts/edit/1695701037510',
+    to: '/upsert/edit/1695701037510',
     title: 'Edit'
   },
   {
@@ -22,7 +22,7 @@ export const NAVIGATION_LIST: Navigation[] = [
     title: 'Register'
   },
   {
-    to: '/posts/search',
+    to: '/search',
     title: 'Search'
   }
 ];

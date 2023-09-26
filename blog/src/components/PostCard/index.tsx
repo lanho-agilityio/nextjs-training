@@ -3,7 +3,6 @@ import Tag from '../Tag';
 import CardTitle from '../CardTitle';
 import CardPicture from '../CardImage';
 import CardFooter from '../CardFooter';
-import { MOCK_AUTHOR } from '../../mocks/author';
 import { Post } from '../../types/post';
 
 export interface PostCardProps {
@@ -11,15 +10,9 @@ export interface PostCardProps {
 }
 
 const PostCard = ({ data }: PostCardProps): JSX.Element => {
-  const author = MOCK_AUTHOR;
-
   return (
     <CardStyled>
-      <CardPicture
-        imagePath={data.imageBase64}
-        href={`/posts/details/${data.id}`}
-        // href={`/posts/edit/${data.id}`}
-      />
+      <CardPicture imagePath={data.imageBase64} href={`/posts/${data.id}`} />
       <TagContainer>
         {data.tag && (
           <Tag
@@ -30,9 +23,9 @@ const PostCard = ({ data }: PostCardProps): JSX.Element => {
           />
         )}
       </TagContainer>
-      <CardTitle title={data.title} href={`/posts/details/${data.id}`} />
+      <CardTitle title={data.title} href={`/posts/${data.id}`} />
       <CardFooter
-        author={author}
+        user={data.user}
         time={new Date(data.dateCreated).toDateString()}
       />
     </CardStyled>

@@ -12,7 +12,7 @@ export const createPost = async (url: string, { arg }: { arg: AddPost }) => {
   if (arg.imageFile) base64 = await toBase64(arg.imageFile);
   const data = {
     id: new Date().getTime().toString(),
-    userId: 1,
+    userId: arg.userId,
     title: arg.title,
     content: arg.content,
     imageBase64: base64 ?? '',
@@ -63,8 +63,7 @@ export const queryPosts = async ([key, params]: [
     deepSearch = `&q=${params.search}`;
   }
 
-  const url = `${key}?${tagSearch}${deepSearch}&_sort=dateCreated&_order=asc`;
-  console.log(url);
+  const url = `${key}?${tagSearch}${deepSearch}&_sort=dateCreated&_order=asc&_expand=user`;
   let response = await FetchService.fetch(url, FETCH_METHODS.SSR);
   return response;
 };

@@ -10,8 +10,17 @@ export type Post = {
   imageFile?: File | undefined;
   tag: Tag | null;
   dateCreated: Date;
+  user: {
+    id: string;
+    email: string;
+    password: string;
+    name: string;
+  };
 };
 
-export type AddPost = Pick<Post, 'title' | 'content' | 'imageFile' | 'tag'>;
+export type AddPost = Pick<
+  Post,
+  'userId' | 'title' | 'content' | 'imageFile' | 'tag'
+>;
 
-export type EditPost = Post;
+export type EditPost = Omit<Post, 'user'>;

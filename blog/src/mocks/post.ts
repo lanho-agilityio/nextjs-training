@@ -9,13 +9,10 @@ export const MOCK_POST: Post = {
   imageBase64: '',
   imageName: '',
   imageFile: undefined,
-  tag: [
-    {
-      id: '1',
-      name: 'Design',
-      color: '#af6060'
-    }
-  ],
-
+  tag: {
+    id: '1',
+    name: 'Design',
+    color: '#af6060'
+  },
   dateCreated: new Date(2023, 6, 25, 9, 30)
 };
