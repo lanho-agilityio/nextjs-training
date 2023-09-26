@@ -38,6 +38,13 @@ export const HeaderWidth = styled(Box)`
   max-width: 768px;
 `;
 
+export const AvatarWrapper = styled(Box)`\
+  width: 50px;
+  height: 50px;
+  background-color: gray;
+  border-radius: 999px;
+`;
+
 export const TitleStyled = styled(Typography)`
   margin-top: 0.5rem;
   margin-bottom: 0.75rem;

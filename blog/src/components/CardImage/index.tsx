@@ -15,8 +15,8 @@ const CardImage = ({
   return (
     <CardImageWrapper>
       <LinkStyled href={href} {...props}>
-        <Image
-          src={imagePath !== '' ? imagePath : '/postPic.png'}
+        {imagePath && <Image
+          src={imagePath}
           alt="Post Image"
           width={100}
           height={100}
@@ -28,7 +28,8 @@ const CardImage = ({
             inset: '0px',
             color: 'transparent'
           }}
-        ></Image>
+        ></Image>}
+        
       </LinkStyled>
     </CardImageWrapper>
   );

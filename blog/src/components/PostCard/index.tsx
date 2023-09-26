@@ -12,7 +12,7 @@ export interface PostCardProps {
 const PostCard = ({ data }: PostCardProps): JSX.Element => {
   return (
     <CardStyled>
-      <CardPicture imagePath={data.imageBase64} href={`/posts/${data.id}`} />
+      <CardPicture imagePath={data.imageBase64} href={`/post/${data.id}`} />
       <TagContainer>
         {data.tag && (
           <Tag
@@ -23,7 +23,7 @@ const PostCard = ({ data }: PostCardProps): JSX.Element => {
           />
         )}
       </TagContainer>
-      <CardTitle title={data.title} href={`/posts/${data.id}`} />
+      <CardTitle title={data.title} href={`/post/${data.id}`} />
       <CardFooter
         user={data.user}
         time={new Date(data.dateCreated).toDateString()}

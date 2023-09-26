@@ -37,7 +37,12 @@ const CategoryPage = ({
     <Container>
       <HeaderContainer>
         <HeaderStyled variant="h1">{name.replace(/%20/g, ' ')}</HeaderStyled>
-        <CountStyled variant="body1">5 Articles</CountStyled>
+        <CountStyled variant="body1">
+          {queryPosts.data instanceof Error || queryPosts.data === undefined
+            ? 0
+            : queryPosts.data.length}{' '}
+          Articles
+        </CountStyled>
       </HeaderContainer>
       <PostList
         data={

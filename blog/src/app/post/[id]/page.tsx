@@ -6,6 +6,7 @@ import { MOCK_POST } from '../../../mocks/post';
 import {
   AuthorContainer,
   AuthorStyled,
+  AvatarWrapper,
   Container,
   ContentWrapper,
   HeaderContainer,
@@ -16,41 +17,46 @@ import {
   TitleStyled
 } from './postDetail.styled';
 import Image from 'next/image';
+import { API_ENDPOINTS } from '../../../constants/fetch';
+import { FetchService } from '../../../services/fetchApi';
+import { FETCH_METHODS } from '../../../enums/fetch';
+import useSWR from 'swr';
 
 const PostPage = ({
   params: { id }
 }: {
   params: { id: string };
 }): JSX.Element => {
-  const post = MOCK_POST;
-  const author = MOCK_AUTHOR;
+  const { data, error, isLoading } = useSWR(
+    `${API_ENDPOINTS.POSTS}/${id}?&_expand=user`,
+    (url) => FetchService.fetch(url, FETCH_METHODS.SSR)
+  );
+
+  if (error) return <div>failed to load</div>;
+  if (isLoading) return <div>loading...</div>;
 
   return (
     <Container>
       <HeaderContainer>
         <HeaderWidth>
           <TagContainer>
-            {post.tag && (
+            {data.tag && (
               <Tag
-                key={post.tag.id}
-                title={post.tag.name}
-                color={post.tag.color}
-                href={`/category/${post.tag.name}`}
+                key={data.tag.id}
+                title={data.tag.name}
+                color={data.tag.color}
+                href={`/category/${data.tag.name}`}
               />
             )}
           </TagContainer>
           <TitleStyled>
-            {post.title}-{id}
+            {data.title}-{id}
           </TitleStyled>
-          {/* <AuthorContainer>
-            <AuthorStyled href={`/author/${author.name}`}>
-              <Avatar
-                alt={author.name}
-                src={author.imagePath}
-                sx={{ width: 50, height: 50 }}
-              />
+          <AuthorContainer>
+            <AuthorStyled href={`/author/${data.user.name}`}>
+              <AvatarWrapper />
               <Box>
-                <Name>{author.name}</Name>
+                <Name>{data.name}</Name>
                 <time
                   style={{
                     fontSize: '0.875rem',
@@ -61,34 +67,36 @@ const PostPage = ({
                     color: '#6B7280'
                   }}
                 >
-                  {post.dateCreated.toDateString()}
+                  {new Date(data.dateCreated).toDateString()}
                 </time>
               </Box>
             </AuthorStyled>
-          </AuthorContainer> */}
+          </AuthorContainer>
         </HeaderWidth>
       </HeaderContainer>
       <PicWrapper>
-        <Image
-          src={post.imageBase64}
-          alt="Post Image"
-          width={100}
-          height={100}
-          priority
-          style={{
-            position: 'absolute',
-            height: '100%',
-            width: '100%',
-            inset: '0px',
-            color: 'transparent'
-          }}
-        ></Image>
+        {data.imageBase64 && (
+          <Image
+            src={data.imageBase64}
+            alt="Post Image"
+            width={100}
+            height={100}
+            priority
+            style={{
+              position: 'absolute',
+              height: '100%',
+              width: '100%',
+              inset: '0px',
+              color: 'transparent'
+            }}
+          ></Image>
+        )}
       </PicWrapper>
       <ContentWrapper>
         <article
           style={{ maxWidth: '768px', marginRight: 'auto', marginLeft: 'auto' }}
         >
-          {post.content}
+          {data.content}
         </article>
       </ContentWrapper>
     </Container>
