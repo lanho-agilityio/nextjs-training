@@ -20,11 +20,13 @@ const CategoryPage = ({
   useEffect(() => {
     changeParams({
       search: '',
-      tag: [{
-        name: name,
-        color: '',
-        id: ''
-      }]
+      tag: [
+        {
+          name: name,
+          color: '',
+          id: ''
+        }
+      ]
     });
   }, [changeParams, name]);
 

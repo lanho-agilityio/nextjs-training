@@ -9,7 +9,7 @@ export type Post = {
   imageName: string;
   imageFile?: File | undefined;
   tag: Tag[];
-  dateCreated: Date | undefined;
+  dateCreated: Date;
 };
 
 export type AddPost = Pick<Post, 'title' | 'content' | 'imageFile' | 'tag'>;

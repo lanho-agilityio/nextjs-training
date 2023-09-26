@@ -13,7 +13,7 @@ import { FormControl, TextField } from '@mui/material';
 import FileUpload from '../../../../components/FileUpload';
 import TagSelect from '../../../../components/TagSelect';
 import Button from '../../../../components/Button';
-import { createPost, editPost } from '../../../../services/post';
+import { editPost } from '../../../../services/post';
 import useSWRMutation from 'swr/mutation';
 import { API_ENDPOINTS } from '../../../../constants/fetch';
 import { Tag } from '../../../../types/tag';
@@ -51,7 +51,7 @@ const EditPostPage = ({
       imageName: '',
       imageFile: undefined,
       tag: [],
-      dateCreated: undefined
+      dateCreated: new Date()
     },
     mode: 'onBlur'
   });
@@ -163,10 +163,23 @@ const EditPostPage = ({
         <Controller
           name="tag"
           control={control}
-          rules={{ required: { value: true, message: REQUIRED } }}
+          rules={{
+            validate: (value) => {
+              return watch('tag').length > 0 || REQUIRED;
+            }
+          }}
           render={() => (
             <FormControl fullWidth sx={{ paddingBottom: '1rem' }}>
-              <TagSelect value={watch('tag')} onChange={handleTag} />
+              <TagSelect
+                value={watch('tag')}
+                onChange={handleTag}
+                validation={!!errors.tag && watch('tag').length === 0}
+                helperText={
+                  watch('tag').length === 0
+                    ? errors.tag && errors.tag.message
+                    : ''
+                }
+              />
             </FormControl>
           )}
         />

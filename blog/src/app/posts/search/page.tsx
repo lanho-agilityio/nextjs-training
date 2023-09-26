@@ -17,7 +17,7 @@ const SearchPage = (): JSX.Element => {
 
   const handleSearch = (data: Filter) => {
     changeParams(data);
-    queryPosts.mutate(API_ENDPOINTS.POSTS)
+    queryPosts.mutate(API_ENDPOINTS.POSTS);
   };
 
   return (

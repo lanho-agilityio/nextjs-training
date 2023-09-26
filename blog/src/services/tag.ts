@@ -24,9 +24,9 @@ export const createTag = async (url: string, { arg }: { arg: Tag }) => {
 export const findNewTag = async (newTag: Tag[]): Promise<Tag[]> => {
   let currentTagList = await getTags();
   let updated: Tag[] = [];
-  for(let i = 0; i < newTag.length; i++){
+  for (let i = 0; i < newTag.length; i++) {
     if (!currentTagList.find((e) => e.name === newTag[i].name)) {
-      updated.push(newTag[i])
+      updated.push(newTag[i]);
       await createTag(API_ENDPOINTS.TAGS, { arg: newTag[i] });
     }
   }

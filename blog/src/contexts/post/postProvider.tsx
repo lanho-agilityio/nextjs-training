@@ -23,8 +23,7 @@ export const PostProvider = ({ children }: { children: ReactNode }) => {
   const useAddPost = useSWRMutation(API_ENDPOINTS.POSTS, createPost);
   const useEditPost = useSWRMutation(API_ENDPOINTS.POSTS, editPost);
 
-  const useQueryPosts = useSWR([API_ENDPOINTS.POSTS, queryParams], queryPosts );
-
+  const useQueryPosts = useSWR([API_ENDPOINTS.POSTS, queryParams], queryPosts);
 
   const onAddPost = useCallback(
     async (

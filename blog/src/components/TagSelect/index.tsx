@@ -12,7 +12,8 @@ import { randomHexColor } from '../../helpers/color';
 export interface TagSelectProps {
   value?: Tag[];
   onChange?: any;
-  freeSolo?: boolean;
+  validation?: boolean;
+  helperText?: string;
 }
 
 const filter = createFilterOptions<Tag>();
@@ -20,7 +21,8 @@ const filter = createFilterOptions<Tag>();
 const TagSelect = ({
   value,
   onChange,
-  freeSolo = true
+  validation,
+  helperText
 }: TagSelectProps): JSX.Element => {
   const { data, error, isLoading } = useSWR(API_ENDPOINTS.TAGS, (url) =>
     FetchService.fetch(url, FETCH_METHODS.SSR)
@@ -36,7 +38,6 @@ const TagSelect = ({
         // multiple
         fullWidth
         sx={{ paddingBottom: '1rem' }}
-        freeSolo={freeSolo}
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
@@ -90,7 +91,14 @@ const TagSelect = ({
             />
           ));
         }}
-        renderInput={(params) => <TextField {...params} placeholder="Tags" />}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            placeholder="Tags"
+            error={validation}
+            helperText={helperText}
+          />
+        )}
       />
     </>
   );

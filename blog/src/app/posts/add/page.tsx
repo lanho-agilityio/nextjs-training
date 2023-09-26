@@ -109,10 +109,23 @@ const AddPostPage = (): JSX.Element => {
         <Controller
           name="tag"
           control={control}
-          rules={{ required: { value: true, message: REQUIRED } }}
+          rules={{
+            validate: (value) => {
+              return watch('tag').length > 0 || REQUIRED;
+            }
+          }}
           render={() => (
             <FormControl fullWidth sx={{ paddingBottom: '1rem' }}>
-              <TagSelect value={watch('tag')} onChange={handleTag} />
+              <TagSelect
+                value={watch('tag')}
+                onChange={handleTag}
+                validation={!!errors.tag && watch('tag').length === 0}
+                helperText={
+                  watch('tag').length === 0
+                    ? errors.tag && errors.tag.message
+                    : ''
+                }
+              />
             </FormControl>
           )}
         />

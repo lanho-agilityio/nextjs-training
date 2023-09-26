@@ -52,7 +52,6 @@ export const queryPosts = async ([key, params]: [
   string,
   Filter | null
 ]): Promise<Post[] | Error> => {
-  
   let tagSearch = '';
   let deepSearch = '';
   // if (params && params.tag.length > 0) {
