@@ -1,13 +1,11 @@
 'use client';
-
-import { Avatar } from '@mui/material';
 import {
+  AvatarWrapper,
   Container,
   DescriptionWrapper,
   HeaderContainer,
   HeaderStyled
 } from './page.styled';
-import PostList from '../../../components/PostList';
 
 const AuthorPage = ({
   params: { id }
@@ -17,11 +15,7 @@ const AuthorPage = ({
   return (
     <Container>
       <HeaderContainer>
-        <Avatar
-          alt={id.replace(/%20/g, ' ')}
-          src={'/profilePic.png'}
-          sx={{ width: 75, height: 75 }}
-        />
+        <AvatarWrapper />
         <HeaderStyled variant="h1">{id.replace(/%20/g, ' ')}</HeaderStyled>
         <DescriptionWrapper>
           <p>

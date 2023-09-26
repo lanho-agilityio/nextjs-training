@@ -1,5 +1,5 @@
 'use client';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { AddPost } from '../../../types/post';
 import {
   Container,
@@ -9,14 +9,13 @@ import {
 } from './add.styled';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { REQUIRED } from '../../../constants/form';
-import { FormControl, TextField } from '@mui/material';
+import { Alert, FormControl, Snackbar, TextField } from '@mui/material';
 import FileUpload from '../../../components/FileUpload';
 import TagSelect from '../../../components/TagSelect';
 import Button from '../../../components/Button';
-import { createPost } from '../../../services/post';
-import useSWRMutation from 'swr/mutation';
-import { API_ENDPOINTS } from '../../../constants/fetch';
 import { Tag } from '../../../types/tag';
+import { usePostContext } from '../../../hooks/usePostContext';
+import { useRouter } from 'next/navigation';
 
 const AddPostPage = (): JSX.Element => {
   const {
@@ -34,11 +33,25 @@ const AddPostPage = (): JSX.Element => {
     },
     mode: 'onBlur'
   });
+  const { add } = usePostContext();
 
-  const { trigger } = useSWRMutation(API_ENDPOINTS.POSTS, createPost);
+  const router = useRouter();
+
+  const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
+
+  const handleSuccess = useCallback(() => {
+    router.push('/');
+  }, [router]);
+
+  const handleError = useCallback((e: unknown) => {
+    const error = e as Error;
+    setMessage(error.message);
+    setOpenSnackbar(true);
+  }, []);
 
   const onSubmitForm: SubmitHandler<AddPost> = async (data) => {
-    await trigger(data);
+    add(data, handleSuccess, handleError);
   };
 
   const handleFileUpload = useCallback(
@@ -138,6 +151,11 @@ const AddPostPage = (): JSX.Element => {
           ADD
         </Button>
       </FormContainer>
+      <Snackbar open={openSnackbar} autoHideDuration={6000}>
+        <Alert severity="error" sx={{ width: '100%' }}>
+          {message}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };

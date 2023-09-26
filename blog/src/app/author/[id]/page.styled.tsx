@@ -26,6 +26,13 @@ export const HeaderContainer = styled(Box)`
   align-items: center;
 `;
 
+export const AvatarWrapper = styled(Box)`\
+  width: 75px;
+  height: 75px;
+  background-color: gray;
+  border-radius: 999px;
+`;
+
 export const HeaderStyled = styled(Typography)`
   margin-top: 0.5rem;
   font-size: 1.875rem;

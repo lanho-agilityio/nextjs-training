@@ -10,7 +10,7 @@ export const NAVIGATION_LIST: Navigation[] = [
     title: 'Add'
   },
   {
-    to: '/posts/edit/1695695841785',
+    to: '/posts/edit/1695701037510',
     title: 'Edit'
   },
   {

@@ -27,6 +27,8 @@ export const ProfilePictureStyled = styled(Box)`
   position: relative;
   width: 1.25rem;
   height: 1.25rem;
+  background-color: gray;
+  border-radius: 9999px;
 `;
 
 export const Name = styled(Typography)`

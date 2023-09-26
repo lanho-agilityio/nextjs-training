@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { AddPost, EditPost } from '../../../../types/post';
 import {
   Container,
@@ -9,18 +9,18 @@ import {
 } from './edit.styled';
 import { Controller, SubmitHandler, set, useForm } from 'react-hook-form';
 import { REQUIRED } from '../../../../constants/form';
-import { FormControl, TextField } from '@mui/material';
+import { Alert, FormControl, Snackbar, TextField } from '@mui/material';
 import FileUpload from '../../../../components/FileUpload';
 import TagSelect from '../../../../components/TagSelect';
 import Button from '../../../../components/Button';
-import { editPost } from '../../../../services/post';
-import useSWRMutation from 'swr/mutation';
 import { API_ENDPOINTS } from '../../../../constants/fetch';
 import { Tag } from '../../../../types/tag';
 import useSWR from 'swr';
 import { FETCH_METHODS } from '../../../../enums/fetch';
 import { FetchService } from '../../../../services/fetchApi';
 import { base64ToFile } from '../../../../helpers/base64pic';
+import { useRouter } from 'next/navigation';
+import { usePostContext } from '../../../../hooks/usePostContext';
 
 const EditPostPage = ({
   params: { id }
@@ -31,8 +31,6 @@ const EditPostPage = ({
     `${API_ENDPOINTS.POSTS}?id=${id}`,
     (url) => FetchService.fetch(url, FETCH_METHODS.SSR)
   );
-
-  const { trigger } = useSWRMutation(API_ENDPOINTS.POSTS, editPost);
 
   const {
     formState: { errors },
@@ -51,7 +49,7 @@ const EditPostPage = ({
       imageName: '',
       imageFile: undefined,
       tag: [],
-      dateCreated: new Date()
+      dateCreated: new Date(1970, 1, 1, 0, 0)
     },
     mode: 'onBlur'
   });
@@ -88,8 +86,25 @@ const EditPostPage = ({
     }
   }, [data, reset]);
 
+  const { edit } = usePostContext();
+
+  const router = useRouter();
+
+  const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
+
+  const handleSuccess = useCallback(() => {
+    router.push('/');
+  }, [router]);
+
+  const handleError = useCallback((e: unknown) => {
+    const error = e as Error;
+    setMessage(error.message);
+    setOpenSnackbar(true);
+  }, []);
+
   const onSubmitForm: SubmitHandler<EditPost> = async (data) => {
-    await trigger(data);
+    edit(data, handleSuccess, handleError);
   };
 
   const handleFileUpload = useCallback(
@@ -192,6 +207,11 @@ const EditPostPage = ({
           EDIT
         </Button>
       </FormContainer>
+      <Snackbar open={openSnackbar} autoHideDuration={6000}>
+        <Alert severity="error" sx={{ width: '100%' }}>
+          {message}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };
