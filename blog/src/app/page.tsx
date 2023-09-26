@@ -1,22 +1,30 @@
 /** @jsxImportSource @emotion/react */
 'use client';
-import useSWR from 'swr';
+import { useEffect } from 'react';
 import PostList from '../components/PostList';
-import { API_ENDPOINTS } from '../constants/fetch';
-import { FETCH_METHODS } from '../enums/fetch';
-import { FetchService } from '../services/fetchApi';
+import { usePostContext } from '../hooks/usePostContext';
 
 export default function Home() {
-  const { data, error, isLoading } = useSWR(API_ENDPOINTS.POSTS, (url) =>
-    FetchService.fetch(url, FETCH_METHODS.SSR)
-  );
+  const { queryPosts, changeParams } = usePostContext();
 
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+  useEffect(() => {
+    changeParams({
+      search: '',
+      tag: []
+    });
+  }, [changeParams]);
 
+  if (queryPosts.error) return <div>failed to load</div>;
+  if (queryPosts.isLoading) return <div>loading...</div>;
   return (
     <main>
-      <PostList data={data} />
+      <PostList
+        data={
+          queryPosts.data instanceof Error || queryPosts.data === undefined
+            ? []
+            : queryPosts.data
+        }
+      />
     </main>
   );
 }

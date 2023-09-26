@@ -4,7 +4,7 @@ import { FETCH_METHODS } from '../enums/fetch';
 import { toBase64 } from '../helpers/base64pic';
 import { AddPost, EditPost, Post } from '../types/post';
 import { FetchService } from './fetchApi';
-import { updateNewTag } from './tag';
+import { findNewTag } from './tag';
 import { Filter } from '../types/filter';
 
 export const createPost = async (url: string, { arg }: { arg: AddPost }) => {
@@ -20,7 +20,7 @@ export const createPost = async (url: string, { arg }: { arg: AddPost }) => {
     tag: arg.tag,
     dateCreated: new Date()
   };
-  if (arg.tag) await updateNewTag(arg.tag);
+  if (arg.tag.length > 0) await findNewTag(arg.tag);
   const response = await FetchService.post(data, url);
   return response;
 };
@@ -43,9 +43,7 @@ export const editPost = async (url: string, { arg }: { arg: EditPost }) => {
     tag: arg.tag,
     dateCreated: new Date()
   };
-  if (arg.tag) {
-    const newTag = await updateNewTag(arg.tag);
-  }
+  if (arg.tag.length > 0) await findNewTag(arg.tag);
   const response = await FetchService.put(arg.id, url, data);
   return response;
 };
@@ -54,11 +52,13 @@ export const queryPosts = async ([key, params]: [
   string,
   Filter | null
 ]): Promise<Post[] | Error> => {
+  
   let tagSearch = '';
   let deepSearch = '';
-  if (params && params.tag) {
-    tagSearch = `&tag.id=${params.tag.id}`;
-  }
+  // if (params && params.tag.length > 0) {
+  //   if (params.tag.id != '') tagSearch = `&tag.id=${params.tag.id}`;
+  //   else tagSearch = `&tag.name=${params.tag.name}`;
+  // }
   if (params && params.search) {
     deepSearch = `&q=${params.search}`;
   }

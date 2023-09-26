@@ -8,7 +8,7 @@ export const Container = styled(Box)`
   padding-bottom: 1.25rem;
   padding-left: 2rem;
   padding-right: 2rem;
-  max-width: 1024px;
+  max-width: 500px;
 
   @media (min-width: 1024px) {
     padding-top: 2rem;

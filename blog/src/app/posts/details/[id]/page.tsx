@@ -30,18 +30,21 @@ const PostPage = ({
       <HeaderContainer>
         <HeaderWidth>
           <TagContainer>
-            {post.tag !== null ? (
-              <Tag
-                title={post.tag.name}
-                color={post.tag.color}
-                href={`/category/${post.tag.name}`}
-              />
-            ) : null}
+          {post.tag.map((e) => 
+         (
+          <Tag
+            key={(e.id)}
+            title={e.name}
+            color={e.color}
+            href={`/category/${e.name}`}
+          />
+        )
+        )}
           </TagContainer>
           <TitleStyled>
             {post.title}-{id}
           </TitleStyled>
-          <AuthorContainer>
+          {/* <AuthorContainer>
             <AuthorStyled href={`/author/${author.name}`}>
               <Avatar
                 alt={author.name}
@@ -64,7 +67,7 @@ const PostPage = ({
                 </time>
               </Box>
             </AuthorStyled>
-          </AuthorContainer>
+          </AuthorContainer> */}
         </HeaderWidth>
       </HeaderContainer>
       <PicWrapper>

@@ -30,7 +30,7 @@ const AddPostPage = (): JSX.Element => {
       title: '',
       content: '',
       imageFile: undefined,
-      tag: null
+      tag: []
     },
     mode: 'onBlur'
   });
@@ -58,7 +58,7 @@ const AddPostPage = (): JSX.Element => {
   );
 
   const handleTag = useCallback(
-    (value: Tag | null) => {
+    (value: Tag[]) => {
       setValue('tag', value);
     },
     [setValue]

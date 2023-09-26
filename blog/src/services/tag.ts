@@ -21,12 +21,14 @@ export const createTag = async (url: string, { arg }: { arg: Tag }) => {
   return response;
 };
 
-export const updateNewTag = async (newTag: Tag): Promise<Tag | null> => {
+export const findNewTag = async (newTag: Tag[]): Promise<Tag[]> => {
   let currentTagList = await getTags();
-  let updated: Tag | null = null;
-  if (!currentTagList.find((e) => e.name === newTag.name)) {
-    updated = await createTag(API_ENDPOINTS.TAGS, { arg: newTag });
-    return updated;
+  let updated: Tag[] = [];
+  for(let i = 0; i < newTag.length; i++){
+    if (!currentTagList.find((e) => e.name === newTag[i].name)) {
+      updated.push(newTag[i])
+      await createTag(API_ENDPOINTS.TAGS, { arg: newTag[i] });
+    }
   }
   return updated;
 };

@@ -8,7 +8,7 @@ export type Post = {
   imageBase64: string;
   imageName: string;
   imageFile?: File | undefined;
-  tag: Tag | null;
+  tag: Tag[];
   dateCreated: Date | undefined;
 };
 

@@ -3,6 +3,6 @@ import { Tag } from './tag';
 export type Filter = {
   search: string;
   // userId?: string;
-  tag?: Tag | null;
+  tag: Tag[];
   // dateCreated?: Date;
 };

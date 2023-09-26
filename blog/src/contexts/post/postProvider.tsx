@@ -1,3 +1,4 @@
+'use client';
 import {
   ReactNode,
   createContext,
@@ -22,7 +23,8 @@ export const PostProvider = ({ children }: { children: ReactNode }) => {
   const useAddPost = useSWRMutation(API_ENDPOINTS.POSTS, createPost);
   const useEditPost = useSWRMutation(API_ENDPOINTS.POSTS, editPost);
 
-  const useQueryPosts = useSWR([API_ENDPOINTS.POSTS, queryParams], queryPosts);
+  const useQueryPosts = useSWR([API_ENDPOINTS.POSTS, queryParams], queryPosts );
+
 
   const onAddPost = useCallback(
     async (
@@ -32,7 +34,6 @@ export const PostProvider = ({ children }: { children: ReactNode }) => {
     ) => {
       await useAddPost.trigger(values, {
         onSuccess: (response: AddPost) => {
-          console.log(response);
           handleSuccess(response);
         },
         onError: (e: unknown) => {
@@ -52,7 +53,6 @@ export const PostProvider = ({ children }: { children: ReactNode }) => {
     ) => {
       await useEditPost.trigger(values, {
         onSuccess: (response) => {
-          console.log(response);
           handleSuccess(response);
         },
         onError: (e: unknown) => {

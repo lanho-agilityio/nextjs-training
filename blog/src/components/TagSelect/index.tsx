@@ -10,7 +10,7 @@ import { FETCH_METHODS } from '../../enums/fetch';
 import { randomHexColor } from '../../helpers/color';
 
 export interface TagSelectProps {
-  value?: Tag | null;
+  value?: Tag[];
   onChange?: any;
   freeSolo?: boolean;
 }
@@ -41,6 +41,7 @@ const TagSelect = ({
         clearOnBlur
         handleHomeEndKeys
         options={data}
+        multiple
         onChange={(_, newValue) => {
           if (onChange) onChange(newValue);
         }}

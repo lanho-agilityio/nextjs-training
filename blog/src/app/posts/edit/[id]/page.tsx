@@ -50,7 +50,7 @@ const EditPostPage = ({
       imageBase64: '',
       imageName: '',
       imageFile: undefined,
-      tag: null,
+      tag: [],
       dateCreated: undefined
     },
     mode: 'onBlur'
@@ -109,7 +109,7 @@ const EditPostPage = ({
   );
 
   const handleTag = useCallback(
-    (value: Tag | null) => {
+    (value: Tag[]) => {
       setValue('tag', value);
     },
     [setValue]

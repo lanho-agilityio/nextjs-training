@@ -13,6 +13,8 @@ export interface PostCardProps {
 const PostCard = ({ data }: PostCardProps): JSX.Element => {
   const author = MOCK_AUTHOR;
 
+  console.log(data)
+
   return (
     <CardStyled>
       <CardPicture
@@ -21,13 +23,16 @@ const PostCard = ({ data }: PostCardProps): JSX.Element => {
         // href={`/posts/edit/${data.id}`}
       />
       <TagContainer>
-        {data.tag !== null ? (
+        {data.tag.map((e) => 
+         (
           <Tag
-            title={data.tag.name}
-            color={data.tag.color}
-            href={`/category/${data.tag.name}`}
+            key={(e.id)}
+            title={e.name}
+            color={e.color}
+            href={`/category/${e.name}`}
           />
-        ) : null}
+        )
+        )}
       </TagContainer>
       <CardTitle
         title={data.title}

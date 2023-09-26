@@ -7,20 +7,17 @@ import { API_ENDPOINTS } from '../../../constants/fetch';
 import { useState } from 'react';
 import PostList from '../../../components/PostList';
 import { queryPosts } from '../../../services/post';
+import { usePostContext } from '../../../hooks/usePostContext';
 
 const SearchPage = (): JSX.Element => {
-  const [queryParams, setQueryParams] = useState<Filter | null>(null);
+  const { queryPosts, params, changeParams } = usePostContext();
 
-  const { data, error, isLoading } = useSWR(
-    [API_ENDPOINTS.POSTS, queryParams],
-    ([key, params]) => queryPosts([key, params])
-  );
-
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+  if (queryPosts.error) return <div>failed to load</div>;
+  if (queryPosts.isLoading) return <div>loading...</div>;
 
   const handleSearch = (data: Filter) => {
-    setQueryParams(data);
+    changeParams(data);
+    queryPosts.mutate(API_ENDPOINTS.POSTS)
   };
 
   return (
@@ -28,9 +25,13 @@ const SearchPage = (): JSX.Element => {
       <HeaderContainer>
         <HeaderStyled variant="h1">Search</HeaderStyled>
       </HeaderContainer>
-      <SearchBar value={queryParams} onSubmit={handleSearch} />
+      <SearchBar value={params} onSubmit={handleSearch} />
       <PostList
-        data={data instanceof Error || data === undefined ? [] : data}
+        data={
+          queryPosts.data instanceof Error || queryPosts.data === undefined
+            ? []
+            : queryPosts.data
+        }
       />
     </Container>
   );

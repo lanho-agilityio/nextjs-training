@@ -28,12 +28,12 @@ const SearchBar = ({ value, onSubmit }: SearchBarProps): JSX.Element => {
   } = useForm<Filter>({
     values: value ?? {
       search: '',
-      tag: null
+      tag: []
     }
   });
 
   const handleTag = useCallback(
-    (value: Tag | null) => {
+    (value: Tag[]) => {
       setValue('tag', value);
     },
     [setValue]
@@ -46,7 +46,7 @@ const SearchBar = ({ value, onSubmit }: SearchBarProps): JSX.Element => {
   const resetData = () => {
     onSubmit({
       search: '',
-      tag: null
+      tag: []
     });
   };
 
