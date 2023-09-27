@@ -4,7 +4,7 @@ import { AddPost, EditPost, Post } from './post';
 import { SWRResponse } from 'swr';
 
 export interface PostContextType {
-  queryPosts: SWRResponse<Error | Post[], any, any>;
+  searchPosts: SWRResponse<Error | Post[], any, any>;
   params: Filter | null;
   add: (
     values: AddPost,

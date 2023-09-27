@@ -1,27 +1,12 @@
-'use client';
-import { useEffect } from 'react';
 import PostList from '../components/PostList';
-import { usePostContext } from '../hooks/usePostContext';
+import { queryAllPosts } from '../services/post';
 
-export default function Home() {
-  const { queryPosts, changeParams } = usePostContext();
+const HomePage = async () => {
+  const data = await queryAllPosts();
 
-  useEffect(() => {
-    changeParams({
-      search: '',
-      tag: []
-    });
-  }, [changeParams]);
-
-  if (queryPosts.error) return <div>failed to load</div>;
-  if (queryPosts.isLoading) return <div>loading...</div>;
   return (
-    <PostList
-      data={
-        queryPosts.data instanceof Error || queryPosts.data === undefined
-          ? []
-          : queryPosts.data
-      }
-    />
+    <PostList data={data instanceof Error || data === undefined ? [] : data} />
   );
-}
+};
+
+export default HomePage;

@@ -6,18 +6,18 @@ import { Container, HeaderContainer, HeaderStyled } from './search.styled';
 import { API_ENDPOINTS } from '../../constants/fetch';
 import { useState } from 'react';
 import PostList from '../../components/PostList';
-import { queryPosts } from '../../services/post';
+import { searchPosts } from '../../services/post';
 import { usePostContext } from '../../hooks/usePostContext';
 
 const SearchPage = (): JSX.Element => {
-  const { queryPosts, params, changeParams } = usePostContext();
+  const { searchPosts, params, changeParams } = usePostContext();
 
-  if (queryPosts.error) return <div>failed to load</div>;
-  if (queryPosts.isLoading) return <div>loading...</div>;
+  if (searchPosts.error) return <div>failed to load</div>;
+  if (searchPosts.isLoading) return <div>loading...</div>;
 
   const handleSearch = (data: Filter) => {
     changeParams(data);
-    queryPosts.mutate(API_ENDPOINTS.POSTS);
+    searchPosts.mutate(API_ENDPOINTS.POSTS);
   };
 
   return (
@@ -28,9 +28,9 @@ const SearchPage = (): JSX.Element => {
       <SearchBar value={params} onSubmit={handleSearch} />
       <PostList
         data={
-          queryPosts.data instanceof Error || queryPosts.data === undefined
+          searchPosts.data instanceof Error || searchPosts.data === undefined
             ? []
-            : queryPosts.data
+            : searchPosts.data
         }
       />
     </Container>

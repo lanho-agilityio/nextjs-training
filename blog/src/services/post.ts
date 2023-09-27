@@ -48,22 +48,8 @@ export const editPost = async (url: string, { arg }: { arg: EditPost }) => {
   return response;
 };
 
-export const queryPosts = async ([key, params]: [
-  string,
-  Filter | null
-]): Promise<Post[] | Error> => {
-  let tagSearch = '';
-  let deepSearch = '';
-  if (params && params.tag.length > 0) {
-    for (let i = 0; i < params.tag.length; i++) {
-      tagSearch += `&tag.name=${params.tag[i].name.replace(/%20/g, ' ')}`;
-    }
-  }
-  if (params && params.search) {
-    deepSearch = `&q=${params.search}`;
-  }
-
-  const url = `${key}?${tagSearch}${deepSearch}&_sort=dateCreated&_order=asc&_expand=user`;
+export const queryAllPosts = async () => {
+  const url = `${API_ENDPOINTS.POSTS}?&_expand=user`;
   return await FetchService.fetch(url, FETCH_METHODS.SSR);
 };
 
@@ -79,5 +65,24 @@ export const queryPostsByCategory = async (categoryName: string) => {
 
 export const getPostDetail = async (postId: string) => {
   const url = `${API_ENDPOINTS.POSTS}/${postId}?&_expand=user`;
+  return await FetchService.fetch(url, FETCH_METHODS.SSR);
+};
+
+export const searchPosts = async ([key, params]: [
+  string,
+  Filter | null
+]): Promise<Post[] | Error> => {
+  let tagSearch = '';
+  let deepSearch = '';
+  if (params && params.tag.length > 0) {
+    for (let i = 0; i < params.tag.length; i++) {
+      tagSearch += `&tag.name=${params.tag[i].name.replace(/%20/g, ' ')}`;
+    }
+  }
+  if (params && params.search) {
+    deepSearch = `&q=${params.search}`;
+  }
+
+  const url = `${key}?${tagSearch}${deepSearch}&_sort=dateCreated&_order=asc&_expand=user`;
   return await FetchService.fetch(url, FETCH_METHODS.SSR);
 };

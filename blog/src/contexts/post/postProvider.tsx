@@ -8,7 +8,7 @@ import {
 } from 'react';
 import useSWRMutation from 'swr/mutation';
 import { API_ENDPOINTS } from '../../constants/fetch';
-import { createPost, editPost, queryPosts } from '../../services/post';
+import { createPost, editPost, searchPosts } from '../../services/post';
 import { AddPost, EditPost } from '../../types/post';
 import { Filter } from '../../types/filter';
 import useSWR from 'swr';
@@ -22,7 +22,7 @@ export const PostProvider = ({ children }: { children: ReactNode }) => {
   const useAddPost = useSWRMutation(API_ENDPOINTS.POSTS, createPost);
   const useEditPost = useSWRMutation(API_ENDPOINTS.POSTS, editPost);
 
-  const useQueryPosts = useSWR([API_ENDPOINTS.POSTS, queryParams], queryPosts);
+  const useQueryPosts = useSWR([API_ENDPOINTS.POSTS, queryParams], searchPosts);
 
   const onAddPost = useCallback(
     async (
@@ -64,7 +64,7 @@ export const PostProvider = ({ children }: { children: ReactNode }) => {
 
   const value = useMemo(
     () => ({
-      queryPosts: useQueryPosts,
+      searchPosts: useQueryPosts,
       add: onAddPost,
       edit: onEditPost,
       params: queryParams,
