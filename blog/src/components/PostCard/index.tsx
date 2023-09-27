@@ -1,3 +1,4 @@
+'use client';
 import { CardStyled, TagContainer } from './PostCard.styled';
 import Tag from '../Tag';
 import CardTitle from '../CardTitle';

@@ -67,3 +67,15 @@ export const queryPosts = async ([key, params]: [
   let response = await FetchService.fetch(url, FETCH_METHODS.SSR);
   return response;
 };
+
+export const queryPostsByUser = async (userId: string) => {
+  const url = `${API_ENDPOINTS.USERS}/${userId}?&_embed=posts`;
+  let response = await FetchService.fetch(url, FETCH_METHODS.SSR);
+  return response;
+};
+
+export const queryPostsByCategory = async (categoryName: string) => {
+  const url = `${API_ENDPOINTS.POSTS}?&tag.name=${categoryName}&_sort=dateCreated&_order=asc&_expand=user`
+  let response = await FetchService.fetch(url, FETCH_METHODS.SSR);
+  return response;
+}

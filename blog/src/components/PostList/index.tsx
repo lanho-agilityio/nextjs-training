@@ -1,3 +1,4 @@
+'use client';
 import { Post } from '../../types/post';
 import { User } from '../../types/user';
 import PostCard from '../PostCard';

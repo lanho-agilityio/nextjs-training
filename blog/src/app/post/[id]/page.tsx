@@ -1,8 +1,6 @@
 'use client';
-import { Avatar, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import Tag from '../../../components/Tag';
-import { MOCK_AUTHOR } from '../../../mocks/author';
-import { MOCK_POST } from '../../../mocks/post';
 import {
   AuthorContainer,
   AuthorStyled,
@@ -49,9 +47,7 @@ const PostPage = ({
               />
             )}
           </TagContainer>
-          <TitleStyled>
-            {data.title}-{id}
-          </TitleStyled>
+          <TitleStyled>{data.title}</TitleStyled>
           <AuthorContainer>
             <AuthorStyled href={`/author/${data.user.id}`}>
               <AvatarWrapper />
