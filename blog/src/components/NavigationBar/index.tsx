@@ -59,6 +59,7 @@ const NavigationBar = (): JSX.Element => {
               return <NavLink key={i} to={e.to} title={e.title} />;
             })}
           </NavigationRight>
+          
         </NavigationBarWrapper>
       </Container>
     </nav>

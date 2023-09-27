@@ -3,26 +3,33 @@ import { Navigation } from '../types/nav';
 export const NAVIGATION_LIST: Navigation[] = [
   {
     to: '/',
-    title: 'Home'
+    title: 'Home',
+    validation: false
   },
+  
   {
     to: '/upsert/add',
-    title: 'Add'
+    title: 'Add',
+    validation: true
   },
   {
     to: '/upsert/edit/1695701037510',
-    title: 'Edit'
-  },
-  {
-    to: '/user/login',
-    title: 'Login'
-  },
-  {
-    to: '/user/register',
-    title: 'Register'
+    title: 'Edit',
+    validation: true
   },
   {
     to: '/search',
-    title: 'Search'
+    title: 'Search',
+    validation: false
+  },
+  {
+    to: '/user/login',
+    title: 'Login',
+    validation: false
+  },
+  {
+    to: '/user/register',
+    title: 'Register',
+    validation: false
   }
 ];

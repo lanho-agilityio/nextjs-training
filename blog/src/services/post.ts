@@ -1,7 +1,7 @@
 import { POST_ERRORS } from '../constants/errors';
 import { API_ENDPOINTS } from '../constants/fetch';
 import { FETCH_METHODS } from '../enums/fetch';
-import { toBase64 } from '../helpers/base64pic';
+import { fileToBase64 } from '../helpers/base64pic';
 import { AddPost, EditPost, Post } from '../types/post';
 import { FetchService } from './fetchApi';
 import { findNewTag } from './tag';
@@ -9,7 +9,7 @@ import { Filter } from '../types/filter';
 
 export const createPost = async (url: string, { arg }: { arg: AddPost }) => {
   let base64;
-  if (arg.imageFile) base64 = await toBase64(arg.imageFile);
+  if (arg.imageFile) base64 = await fileToBase64(arg.imageFile);
   const data = {
     id: new Date().getTime().toString(),
     userId: arg.userId,
@@ -29,7 +29,7 @@ export const editPost = async (url: string, { arg }: { arg: EditPost }) => {
   const post: Post = await getPostDetail(arg.id);
   if (!post) throw new Error(POST_ERRORS.POST_NOT_FOUND);
   let base64;
-  if (arg.imageFile) base64 = await toBase64(arg.imageFile);
+  if (arg.imageFile) base64 = await fileToBase64(arg.imageFile);
   const data = {
     id: arg.id,
     userId: arg.userId,

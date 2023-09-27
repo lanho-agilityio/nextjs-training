@@ -1,19 +1,24 @@
 'use client';
-import useSWR from 'swr';
 import SearchBar from '../../components/SearchBar';
 import { Filter } from '../../types/filter';
 import { Container, HeaderContainer, HeaderStyled } from './search.styled';
 import { API_ENDPOINTS } from '../../constants/fetch';
-import { useState } from 'react';
 import PostList from '../../components/PostList';
-import { searchPosts } from '../../services/post';
 import { usePostContext } from '../../hooks/usePostContext';
 
 const SearchPage = (): JSX.Element => {
   const { searchPosts, params, changeParams } = usePostContext();
 
   if (searchPosts.error) return <div>failed to load</div>;
-  if (searchPosts.isLoading) return <div>loading...</div>;
+  if (searchPosts.isLoading)
+  return (
+    <div
+      role="loading"
+      className="container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 lg:py-8"
+    >
+      <h1 className="text-center animate-pulse">Loading</h1>
+    </div>
+  );
 
   const handleSearch = (data: Filter) => {
     changeParams(data);
