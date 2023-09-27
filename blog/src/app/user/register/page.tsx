@@ -13,11 +13,19 @@ import {
   REGEX_EMAIL,
   REQUIRED
 } from '../../../constants/form';
-import { FormControl, Link, TextField, Typography } from '@mui/material';
+import {
+  Alert,
+  FormControl,
+  Link,
+  Snackbar,
+  TextField,
+  Typography
+} from '@mui/material';
 import Button from '../../../components/Button';
 import { UserRegister } from '../../../types/user';
 import { useAuthContext } from '../../../hooks/useAuthContext';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const RegisterPage = (): JSX.Element => {
   const {
@@ -36,14 +44,19 @@ const RegisterPage = (): JSX.Element => {
   });
 
   const { register } = useAuthContext();
+  const router = useRouter();
+
+  const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
 
   const handleSuccess = useCallback(() => {
-    console.log('REGISTERED');
-  }, []);
+    router.push('/');
+  }, [router]);
 
   const handleError = useCallback((e: unknown) => {
     const error = e as Error;
-    console.log(error);
+    setMessage(error.message);
+    setOpenSnackbar(true);
   }, []);
 
   const onSubmitForm: SubmitHandler<UserRegister> = (data) => {
@@ -154,6 +167,11 @@ const RegisterPage = (): JSX.Element => {
           Register
         </Button>
       </FormContainer>
+      <Snackbar open={openSnackbar} autoHideDuration={6000}>
+        <Alert severity="error" sx={{ width: '100%' }}>
+          {message}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };

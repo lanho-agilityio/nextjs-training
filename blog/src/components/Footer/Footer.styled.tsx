@@ -4,26 +4,22 @@ export const Container = styled(Box)`
   margin-right: auto;
   margin-left: auto;
   padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
   padding-left: 2rem;
   padding-right: 2rem;
   margin-top: 2.5rem;
   border-top-width: 1px;
   border-color: #f3f4f6;
   max-width: 1024px;
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+
   @media (min-width: 1024px) {
     padding-top: 2rem;
-    padding-bottom: 2rem;
   }
   @media (min-width: 1280px) {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
   display: block;
+  height: 150px;
 `;
 
 export const Copyright = styled(Typography)`

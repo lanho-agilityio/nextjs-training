@@ -7,11 +7,19 @@ import {
 } from './login.styled';
 import { Controller, SubmitHandler, set, useForm } from 'react-hook-form';
 import { INVALID_EMAIL, REGEX_EMAIL, REQUIRED } from '../../../constants/form';
-import { FormControl, Link, TextField, Typography } from '@mui/material';
+import {
+  Alert,
+  FormControl,
+  Link,
+  Snackbar,
+  TextField,
+  Typography
+} from '@mui/material';
 import Button from '../../../components/Button';
 import { UserLogin } from '../../../types/user';
 import { useAuthContext } from '../../../hooks/useAuthContext';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const LoginPage = (): JSX.Element => {
   const {
@@ -27,14 +35,19 @@ const LoginPage = (): JSX.Element => {
   });
 
   const { login } = useAuthContext();
+  const router = useRouter();
+
+  const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
 
   const handleSuccess = useCallback(() => {
-    console.log('LOGIN');
-  }, []);
+    router.push('/');
+  }, [router]);
 
   const handleError = useCallback((e: unknown) => {
     const error = e as Error;
-    console.log(error);
+    setMessage(error.message);
+    setOpenSnackbar(true);
   }, []);
 
   const onSubmitForm: SubmitHandler<UserLogin> = (data) => {
@@ -100,6 +113,11 @@ const LoginPage = (): JSX.Element => {
           Login
         </Button>
       </FormContainer>
+      <Snackbar open={openSnackbar} autoHideDuration={6000}>
+        <Alert severity="error" sx={{ width: '100%' }}>
+          {message}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };
