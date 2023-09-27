@@ -13,11 +13,6 @@ export const NAVIGATION_LIST: Navigation[] = [
     validation: true
   },
   {
-    to: '/upsert/edit/1695701037510',
-    title: 'Edit',
-    validation: true
-  },
-  {
     to: '/search',
     title: 'Search',
     validation: false

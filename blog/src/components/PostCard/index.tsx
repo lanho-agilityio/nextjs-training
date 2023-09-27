@@ -30,6 +30,7 @@ const PostCard = ({ data, user }: PostCardProps): JSX.Element => {
       <CardFooter
         user={data.user || user}
         time={new Date(data.dateCreated).toDateString()}
+        postId={data.id}
       />
     </CardStyled>
   );
