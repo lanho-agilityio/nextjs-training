@@ -3,7 +3,7 @@ import { FETCH_METHODS } from '../enums/fetch';
 import { Tag } from '../types/tag';
 import { FetchService } from './fetchApi';
 
-export const getTags = async (): Promise<Tag[]> => {
+export const getCategories = async (): Promise<Tag[]> => {
   const response = await FetchService.fetch(
     API_ENDPOINTS.TAGS,
     FETCH_METHODS.SSR
@@ -22,7 +22,7 @@ export const createTag = async (url: string, { arg }: { arg: Tag }) => {
 };
 
 export const findNewTag = async (newTag: Tag): Promise<Tag | null> => {
-  let currentTagList = await getTags();
+  let currentTagList = await getCategories();
   if (!currentTagList.find((e) => e.name === newTag.name)) {
     return await createTag(API_ENDPOINTS.TAGS, { arg: newTag });
   }

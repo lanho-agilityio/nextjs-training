@@ -1,9 +1,18 @@
-import Tag from '../../../components/Tag';
-
 import Image from 'next/image';
-
 import Link from 'next/link';
-import { getPostDetail } from '../../../services/post';
+import { getPostDetail, queryAllPosts } from '../../../services/post';
+import Tag from '../../../components/Tag';
+import { Post } from '../../../types/post';
+
+export async function generateStaticParams() {
+  const posts = await queryAllPosts();
+
+  return posts.map((post: Post) => {
+    return {
+      id: post.id
+    };
+  });
+}
 
 const PostPage = async ({ params: { id } }: { params: { id: string } }) => {
   const data = await getPostDetail(id);

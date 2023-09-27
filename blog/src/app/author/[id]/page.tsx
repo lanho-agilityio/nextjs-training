@@ -1,5 +1,17 @@
 import PostList from '../../../components/PostList';
 import { queryPostsByUser } from '../../../services/post';
+import { queryAllUsers } from '../../../services/user';
+import { User } from '../../../types/user';
+
+export async function generateStaticParams() {
+  const users = await queryAllUsers()
+
+  return users.map((user: User) => {
+    return {
+      id: user.id
+    };
+  });
+}
 
 const AuthorPage = async ({ params: { id } }: { params: { id: string } }) => {
   const data = await queryPostsByUser(id);

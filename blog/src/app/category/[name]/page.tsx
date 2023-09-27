@@ -1,5 +1,17 @@
 import PostList from '../../../components/PostList';
 import { queryPostsByCategory } from '../../../services/post';
+import { getCategories } from '../../../services/tag';
+import { Tag } from '../../../types/tag';
+
+export async function generateStaticParams(){
+  const categories = await getCategories()
+
+  return categories.map((category: Tag) => {
+    return {
+      name: category.name
+    }
+  })
+}
 
 const CategoryPage = async ({
   params: { name }

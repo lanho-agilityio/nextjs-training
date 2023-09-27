@@ -26,11 +26,8 @@ export const createPost = async (url: string, { arg }: { arg: AddPost }) => {
 };
 
 export const editPost = async (url: string, { arg }: { arg: EditPost }) => {
-  let post: Post[] = await FetchService.fetch(
-    `${API_ENDPOINTS.POSTS}?id=${arg.id}`,
-    FETCH_METHODS.SSR
-  );
-  if (post.length === 0) throw new Error(POST_ERRORS.POST_NOT_FOUND);
+  const post: Post = await getPostDetail(arg.id);
+  if (!post) throw new Error(POST_ERRORS.POST_NOT_FOUND);
   let base64;
   if (arg.imageFile) base64 = await toBase64(arg.imageFile);
   const data = {
