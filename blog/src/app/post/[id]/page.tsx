@@ -1,43 +1,18 @@
-'use client';
-import { Box } from '@mui/material';
 import Tag from '../../../components/Tag';
-import {
-  AuthorContainer,
-  AuthorStyled,
-  AvatarWrapper,
-  Container,
-  ContentWrapper,
-  HeaderContainer,
-  HeaderWidth,
-  Name,
-  PicWrapper,
-  TagContainer,
-  TitleStyled
-} from './postDetail.styled';
+
 import Image from 'next/image';
-import { API_ENDPOINTS } from '../../../constants/fetch';
-import { FetchService } from '../../../services/fetchApi';
-import { FETCH_METHODS } from '../../../enums/fetch';
-import useSWR from 'swr';
 
-const PostPage = ({
-  params: { id }
-}: {
-  params: { id: string };
-}): JSX.Element => {
-  const { data, error, isLoading } = useSWR(
-    `${API_ENDPOINTS.POSTS}/${id}?&_expand=user`,
-    (url) => FetchService.fetch(url, FETCH_METHODS.SSR)
-  );
+import Link from 'next/link';
+import { getPostDetail } from '../../../services/post';
 
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+const PostPage = async ({ params: { id } }: { params: { id: string } }) => {
+  const data = await getPostDetail(id);
 
   return (
-    <Container>
-      <HeaderContainer>
-        <HeaderWidth>
-          <TagContainer>
+    <div>
+      <div className="container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 lg:py-8 !pt-0">
+        <div className="mx-auto max-w-screen-md ">
+          <div className="flex justify-center">
             {data.tag && (
               <Tag
                 key={data.tag.id}
@@ -46,13 +21,20 @@ const PostPage = ({
                 href={`/category/${data.tag.name}`}
               />
             )}
-          </TagContainer>
-          <TitleStyled>{data.title}</TitleStyled>
-          <AuthorContainer>
-            <AuthorStyled href={`/author/${data.user.id}`}>
-              <AvatarWrapper />
-              <Box>
-                <Name>{data.name}</Name>
+          </div>
+          <h1 className="text-brand-primary mb-3 mt-2 text-center text-3xl font-semibold tracking-tight dark:text-white lg:text-4xl lg:leading-snug">
+            {data.title}
+          </h1>
+          <div className="mt-3 flex justify-center space-x-3 text-gray-500 ">
+            <Link
+              className="flex items-center gap-3"
+              href={`/author/${data.user.id}`}
+            >
+              <div className="relative h-10 w-10 flex-shrink-0 bg-gray-500 rounded-full" />
+              <div>
+                <p className="text-gray-800 dark:text-gray-400">
+                  {data.user.name}
+                </p>
                 <time
                   style={{
                     fontSize: '0.875rem',
@@ -65,12 +47,12 @@ const PostPage = ({
                 >
                   {new Date(data.dateCreated).toDateString()}
                 </time>
-              </Box>
-            </AuthorStyled>
-          </AuthorContainer>
-        </HeaderWidth>
-      </HeaderContainer>
-      <PicWrapper>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg">
         {data.imageBase64 && (
           <Image
             src={data.imageBase64}
@@ -87,15 +69,15 @@ const PostPage = ({
             }}
           ></Image>
         )}
-      </PicWrapper>
-      <ContentWrapper>
+      </div>
+      <div className="container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 lg:py-8">
         <article
           style={{ maxWidth: '768px', marginRight: 'auto', marginLeft: 'auto' }}
         >
           {data.content}
         </article>
-      </ContentWrapper>
-    </Container>
+      </div>
+    </div>
   );
 };
 

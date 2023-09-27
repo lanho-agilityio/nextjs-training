@@ -64,18 +64,20 @@ export const queryPosts = async ([key, params]: [
   }
 
   const url = `${key}?${tagSearch}${deepSearch}&_sort=dateCreated&_order=asc&_expand=user`;
-  let response = await FetchService.fetch(url, FETCH_METHODS.SSR);
-  return response;
+  return await FetchService.fetch(url, FETCH_METHODS.SSR);
 };
 
 export const queryPostsByUser = async (userId: string) => {
   const url = `${API_ENDPOINTS.USERS}/${userId}?&_embed=posts`;
-  let response = await FetchService.fetch(url, FETCH_METHODS.SSR);
-  return response;
+  return await FetchService.fetch(url, FETCH_METHODS.SSR);
 };
 
 export const queryPostsByCategory = async (categoryName: string) => {
-  const url = `${API_ENDPOINTS.POSTS}?&tag.name=${categoryName}&_sort=dateCreated&_order=asc&_expand=user`
-  let response = await FetchService.fetch(url, FETCH_METHODS.SSR);
-  return response;
-}
+  const url = `${API_ENDPOINTS.POSTS}?&tag.name=${categoryName}&_sort=dateCreated&_order=asc&_expand=user`;
+  return await FetchService.fetch(url, FETCH_METHODS.SSR);
+};
+
+export const getPostDetail = async (postId: string) => {
+  const url = `${API_ENDPOINTS.POSTS}/${postId}?&_expand=user`;
+  return await FetchService.fetch(url, FETCH_METHODS.SSR);
+};

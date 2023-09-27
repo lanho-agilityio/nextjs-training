@@ -23,6 +23,7 @@ const Button = ({
 }: ButtonStyledProps) => {
   return (
     <ButtonStyled
+      className="bg-[#111827]"
       color={color}
       variant={variant}
       onClick={onClick}

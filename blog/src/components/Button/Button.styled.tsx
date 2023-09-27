@@ -9,7 +9,6 @@ export const ButtonStyled = styled(Button)<ButtonProps>`
   width: 100%;
   font-weight: 600;
   color: #ffffff;
-  background-color: #111827;
   transition-property: color, background-color, border-color,
     text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

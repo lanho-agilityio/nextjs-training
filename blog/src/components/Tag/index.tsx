@@ -1,3 +1,4 @@
+'use client';
 import { LinkProps } from '@mui/material';
 import { TagStyled } from './Tag.styled';
 
