@@ -1,7 +1,6 @@
 'use client';
-import { useState } from 'react';
+import { lazy, useState } from 'react';
 import useSWR from 'swr';
-
 //Constants and Enums
 import { API_ENDPOINTS } from '@/constants/fetch';
 import { FETCH_METHODS } from '@/enums/fetch';
@@ -10,9 +9,10 @@ import { Filter } from '@/Ttypes/filter';
 //Services
 import { FetchService } from '@/services/fetchApi';
 //Components
-import SearchBar from '@/components/SearchBar';
-import PostList from '@/components/PostList';
 import { Container, HeaderContainer, HeaderStyled } from './search.styled';
+const SearchBar = lazy(() => import('@/components/SearchBar'));
+const PostList = lazy(() => import('@/components/PostList'));
+const Loading = lazy(() => import('@/components/Loading'));
 
 const SearchPage = (): JSX.Element => {
   const [url, setUrl] = useState<string>(
@@ -24,15 +24,7 @@ const SearchPage = (): JSX.Element => {
   );
 
   if (error) return <div>failed to load</div>;
-  if (isLoading)
-    return (
-      <div
-        role="loading"
-        className="container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 lg:py-8"
-      >
-        <h1 className="text-center animate-pulse">Loading</h1>
-      </div>
-    );
+  if (isLoading) return (<Loading/>);
 
   const handleSearch = async (data: Filter) => {
     setParams(data);

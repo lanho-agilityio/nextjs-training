@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useState } from 'react';
+import { lazy, useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 //Constants
@@ -17,13 +17,13 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import Button from '@/components/Button';
 import {
   Container,
   FormContainer,
   HeaderContainer,
   HeaderStyled
 } from './login.styled';
+const Button = lazy(() => import('@/components/Button'));
 
 const LoginPage = (): JSX.Element => {
   const {

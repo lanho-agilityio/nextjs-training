@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useState } from 'react';
+import { lazy, useCallback, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 //Constants
@@ -12,15 +12,15 @@ import { AddPost } from '@/Ttypes/post';
 import { Tag } from '@/Ttypes/tag';
 //Components
 import { Alert, FormControl, Snackbar, TextField } from '@mui/material';
-import TagSelectSingle from '@/components/TagSelectSingle';
 import {
   Container,
   FormContainer,
   HeaderContainer,
   HeaderStyled
 } from './add.styled';
-import FileUpload from '@/components/FileUpload';
-import Button from '@/components/Button';
+const Button = lazy(() => import('@/components/Button'));
+const FileUpload = lazy(() => import('@/components/FileUpload'));
+const TagSelectSingle = lazy(() => import('@/components/TagSelectSingle'));
 
 const AddPostPage = (): JSX.Element => {
   const {
