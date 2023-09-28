@@ -57,7 +57,7 @@ export const editPost = async (url: string, { arg }: { arg: EditPost }) => {
 };
 
 export const queryAllPosts = async () => {
-  const url = `${API_ENDPOINTS.POSTS}?${INCLUDE_USER}`;
+  const url = `${API_ENDPOINTS.POSTS}?${SORT}${INCLUDE_USER}`;
   return await FetchService.fetch(url, FETCH_METHODS.SSR);
 };
 
