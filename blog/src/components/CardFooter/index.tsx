@@ -20,7 +20,6 @@ export interface CardFooterProps {
 }
 
 const CardFooter = ({ postId, user, time }: CardFooterProps): JSX.Element => {
-
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -30,21 +29,20 @@ const CardFooter = ({ postId, user, time }: CardFooterProps): JSX.Element => {
     setAnchorEl(null);
   };
 
-  const router = useRouter()
+  const router = useRouter();
 
   const handleDetailClick = () => {
-    router.push(`/post/${postId}`)
-  }
+    router.push(`/post/${postId}`);
+  };
 
   const handleEditClick = () => {
-    router.push(`/upsert/edit/${postId}`)
-
-  }
+    router.push(`/upsert/edit/${postId}`);
+  };
 
   return (
     <FooterContainer>
       <AuthorContainer href={`/author/${user.id}`}>
-        <ProfilePictureStyled/>
+        <ProfilePictureStyled />
         <Name>{user.name}</Name>
       </AuthorContainer>
       <Separator>•</Separator>
@@ -72,7 +70,7 @@ const CardFooter = ({ postId, user, time }: CardFooterProps): JSX.Element => {
       <Menu
         id="long-menu"
         MenuListProps={{
-          'aria-labelledby': 'long-button',
+          'aria-labelledby': 'long-button'
         }}
         anchorEl={anchorEl}
         open={open}
@@ -80,16 +78,12 @@ const CardFooter = ({ postId, user, time }: CardFooterProps): JSX.Element => {
         PaperProps={{
           style: {
             maxHeight: 48 * 4.5,
-            width: '10ch',
-          },
+            width: '10ch'
+          }
         }}
       >
-          <MenuItem  onClick={handleEditClick}>
-            Edit
-          </MenuItem>
-          <MenuItem  onClick={handleDetailClick}>
-            Detail
-          </MenuItem>
+        <MenuItem onClick={handleEditClick}>Edit</MenuItem>
+        <MenuItem onClick={handleDetailClick}>Detail</MenuItem>
       </Menu>
     </FooterContainer>
   );

@@ -62,6 +62,6 @@ export const loginUser = async (url: string, { arg }: { arg: UserLogin }) => {
 };
 
 export const queryAllUsers = async () => {
-  const url = `${API_ENDPOINTS.USERS}`; 
+  const url = `${API_ENDPOINTS.USERS}`;
   return await FetchService.fetch(url, FETCH_METHODS.SSR);
-}
+};

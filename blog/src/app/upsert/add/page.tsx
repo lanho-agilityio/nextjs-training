@@ -56,16 +56,11 @@ const AddPostPage = (): JSX.Element => {
 
   const onSubmitForm: SubmitHandler<AddPost> = useCallback(
     async (data) => {
-      if (user) {
-        const value = {
-          ...data,
-          userId: user.id
-        };
-        add(value, handleSuccess, handleError);
-      } else {
-        setMessage('Please Log In');
-        setOpenSnackbar(true);
-      }
+      const value = {
+        ...data,
+        userId: user ? user.id : ''
+      };
+      add(value, handleSuccess, handleError);
     },
     [add, handleError, handleSuccess, user]
   );

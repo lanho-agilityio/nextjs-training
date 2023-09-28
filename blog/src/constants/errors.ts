@@ -11,5 +11,6 @@ export const POST_ERRORS = {
 
 export const USER_ERRORS = {
   USER_EXISTED: 'User already existed. Please use a different email.',
-  INCORRECT_INFO: 'Incorrect username or password'
+  INCORRECT_INFO: 'Incorrect username or password',
+  MISSING_INFO: 'Please log in'
 };

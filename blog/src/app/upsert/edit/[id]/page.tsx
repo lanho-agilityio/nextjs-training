@@ -21,6 +21,7 @@ import { base64ToFile } from '../../../../helpers/base64pic';
 import { useRouter } from 'next/navigation';
 import { usePostContext } from '../../../../hooks/usePostContext';
 import TagSelectSingle from '../../../../components/TagSelectSingle';
+import { useAuthContext } from '../../../../hooks/useAuthContext';
 
 const EditPostPage = ({
   params: { id }
@@ -85,6 +86,7 @@ const EditPostPage = ({
       }
     }
   }, [data, reset]);
+  const { user } = useAuthContext();
 
   const { edit } = usePostContext();
 
@@ -105,9 +107,13 @@ const EditPostPage = ({
 
   const onSubmitForm: SubmitHandler<EditPost> = useCallback(
     async (data) => {
-      edit(data, handleSuccess, handleError);
+      const value = {
+        ...data,
+        userId: user ? user.id : ''
+      };
+      edit(value, handleSuccess, handleError);
     },
-    [edit, handleError, handleSuccess]
+    [edit, handleError, handleSuccess, user]
   );
 
   const handleFileUpload = useCallback(

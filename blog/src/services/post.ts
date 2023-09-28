@@ -1,4 +1,4 @@
-import { POST_ERRORS } from '../constants/errors';
+import { POST_ERRORS, USER_ERRORS } from '../constants/errors';
 import { API_ENDPOINTS } from '../constants/fetch';
 import { FETCH_METHODS } from '../enums/fetch';
 import { fileToBase64 } from '../helpers/base64pic';
@@ -8,6 +8,7 @@ import { findNewTag } from './tag';
 import { Filter } from '../types/filter';
 
 export const createPost = async (url: string, { arg }: { arg: AddPost }) => {
+  if (!arg.userId) throw new Error(USER_ERRORS.MISSING_INFO);
   let base64;
   if (arg.imageFile) base64 = await fileToBase64(arg.imageFile);
   const data = {
@@ -26,6 +27,7 @@ export const createPost = async (url: string, { arg }: { arg: AddPost }) => {
 };
 
 export const editPost = async (url: string, { arg }: { arg: EditPost }) => {
+  if (!arg.userId) throw new Error(USER_ERRORS.MISSING_INFO);
   const post: Post = await getPostDetail(arg.id);
   if (!post) throw new Error(POST_ERRORS.POST_NOT_FOUND);
   let base64;

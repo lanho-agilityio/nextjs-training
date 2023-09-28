@@ -4,7 +4,7 @@ import { queryAllUsers } from '../../../services/user';
 import { User } from '../../../types/user';
 
 export async function generateStaticParams() {
-  const users = await queryAllUsers()
+  const users = await queryAllUsers();
 
   return users.map((user: User) => {
     return {
