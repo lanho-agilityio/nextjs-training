@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import { useRouter } from 'next/navigation';
 //Components
@@ -14,16 +15,18 @@ import {
 } from './CardFooter.styled';
 //Types
 import { Author } from '@/Ttypes/author';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 export interface CardFooterProps {
   postId: string;
-  user: Author;
+  author: Author;
   time: string;
 }
 
-const CardFooter = ({ postId, user, time }: CardFooterProps): JSX.Element => {
+const CardFooter = ({ postId, author, time }: CardFooterProps): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -41,11 +44,14 @@ const CardFooter = ({ postId, user, time }: CardFooterProps): JSX.Element => {
     router.push(`/upsert/edit/${postId}`);
   };
 
+  const { user } = useAuthContext();
+
+
   return (
     <FooterContainer>
-      <AuthorContainer href={`/author/${user.id}`}>
+      <AuthorContainer href={`/author/${author.id}`}>
         <ProfilePictureStyled />
-        <Name>{user.name}</Name>
+        <Name>{author.name}</Name>
       </AuthorContainer>
       <Separator>•</Separator>
       <time
@@ -84,7 +90,10 @@ const CardFooter = ({ postId, user, time }: CardFooterProps): JSX.Element => {
           }
         }}
       >
-        <MenuItem onClick={handleEditClick}>Edit</MenuItem>
+        {
+          user && user.id === author.id && 
+          <MenuItem onClick={handleEditClick}>Edit</MenuItem>
+        }
         <MenuItem onClick={handleDetailClick}>Detail</MenuItem>
       </Menu>
     </FooterContainer>

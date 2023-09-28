@@ -1,19 +1,23 @@
 import type { Metadata } from 'next';
+import RouteGuard from '@/components/RouteGuard';
 
 export const metadata: Metadata = {
   title: 'Upsert',
   description: 'UPSERT_LAYOUT'
 };
 
-export default function DashboardLayout({
+export default function UpsertLayout({
   children
 }: {
   children: React.ReactNode;
 }) {
+
+
   return (
     <div>
-      <div>UPSERT_LAYOUT</div>
-      {children}
+      <RouteGuard>
+        {children}
+      </RouteGuard>
     </div>
   );
 }

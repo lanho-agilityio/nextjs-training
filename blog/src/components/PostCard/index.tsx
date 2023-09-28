@@ -31,7 +31,7 @@ const PostCard = ({ data, user }: PostCardProps): JSX.Element => {
       </TagContainer>
       <CardTitle title={data.title} href={`/post/${data.id}`} />
       <CardFooter
-        user={data.user || user}
+        author={data.user || user}
         time={new Date(data.dateCreated).toDateString()}
         postId={data.id}
       />
