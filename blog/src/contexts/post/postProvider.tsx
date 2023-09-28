@@ -1,10 +1,13 @@
 'use client';
 import { ReactNode, createContext, useCallback, useMemo } from 'react';
 import useSWRMutation from 'swr/mutation';
-import { API_ENDPOINTS } from '../../constants/fetch';
-import { createPost, editPost } from '../../services/post';
-import { AddPost, EditPost } from '../../types/post';
-import { PostContextType } from '../../types/postContext';
+//Constants
+import { API_ENDPOINTS } from '@/constants/fetch';
+//Services
+import { createPost, editPost } from '@/services/post';
+//Types
+import { AddPost, EditPost } from '@/Ttypes/post';
+import { PostContextType } from '@/Ttypes/postContext';
 
 export const PostContext = createContext<PostContextType | null>(null);
 

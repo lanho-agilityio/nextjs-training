@@ -1,5 +1,8 @@
-import PostList from '../components/PostList';
-import { queryAllPosts } from '../services/post';
+import { lazy } from 'react';
+//Services
+import { queryAllPosts } from '@/services/post';
+//Components
+const PostList = lazy(() => import('@/components/PostList'));
 
 const HomePage = async () => {
   const data = await queryAllPosts();

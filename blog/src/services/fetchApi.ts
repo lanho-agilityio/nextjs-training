@@ -1,6 +1,8 @@
-import { APP_ERRORS } from '../constants/errors';
-import { FETCH_METHODS } from '../enums/fetch';
-import { BASE_URL_API, REVALIDATE_DEFAULT_TIME } from '../constants/fetch';
+//Constants
+import { APP_ERRORS } from '@/constants/errors';
+import { BASE_URL_API, REVALIDATE_DEFAULT_TIME } from '@/constants/fetch';
+//Enums
+import { FETCH_METHODS } from '@/enums/fetch';
 
 export class FetchApiService {
   private readonly baseApi: string;

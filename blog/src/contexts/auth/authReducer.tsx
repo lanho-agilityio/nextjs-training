@@ -1,4 +1,5 @@
-import { UserSession } from '../../types/user';
+//Types
+import { UserSession } from '@/Ttypes/user';
 
 export enum USER_ACTION {
   SET_USER = 'SET_USER',

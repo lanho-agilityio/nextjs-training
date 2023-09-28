@@ -1,18 +1,20 @@
+import { lazy, useCallback } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+//Types
+import { Filter } from '@/Ttypes/filter';
+import { Tag } from '@/Ttypes/tag';
+import { User } from '@/Ttypes/user';
+//Components
 import { FormControl, TextField } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import {
   SearchBarContainer,
   SearchIconWrapper,
   SearchInputContainer
 } from './SearchBar.styled';
-import SearchIcon from '@mui/icons-material/Search';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { Filter } from '../../types/filter';
-import { useCallback } from 'react';
-import { Tag } from '../../types/tag';
-import Button from '../Button';
-import TagSelectMultiple from '../TagSelectMultiple';
-import AuthorSelect from '../AuthorSelect';
-import { User } from '../../types/user';
+const Button = lazy(() => import('@/components/Button'));
+const TagSelectMultiple = lazy(() => import('@/components/TagSelectMultiple'));
+const AuthorSelect = lazy(() => import('@/components/AuthorSelect'));
 
 interface SearchBarProps {
   value?: Filter | null;
@@ -20,19 +22,15 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({ value, onSubmit }: SearchBarProps): JSX.Element => {
-  const {
-    formState,
-    control,
-    watch,
-    setValue,
-    handleSubmit,
-  } = useForm<Filter>({
-    values: value ?? {
-      search: '',
-      users: [],
-      tags: []
+  const { formState, control, watch, setValue, handleSubmit } = useForm<Filter>(
+    {
+      values: value ?? {
+        search: '',
+        users: [],
+        tags: []
+      }
     }
-  });
+  );
 
   const handleTags = useCallback(
     (value: Tag[]) => {
@@ -86,7 +84,7 @@ const SearchBar = ({ value, onSubmit }: SearchBarProps): JSX.Element => {
         name="tags"
         control={control}
         render={() => (
-          <FormControl sx={{width: "49%", marginRight: "2%"}}>
+          <FormControl sx={{ width: '49%', marginRight: '2%' }}>
             <TagSelectMultiple value={watch('tags')} onChange={handleTags} />
           </FormControl>
         )}
@@ -95,13 +93,15 @@ const SearchBar = ({ value, onSubmit }: SearchBarProps): JSX.Element => {
         name="users"
         control={control}
         render={() => (
-          <FormControl sx={{width: "49%"}}>
+          <FormControl sx={{ width: '49%' }}>
             <AuthorSelect value={watch('users')} onChange={handleUsers} />
           </FormControl>
         )}
       />
-      <Button type="submit" sx={{width: "49%", marginRight: "2%"}} >Search</Button>
-      <Button type="button" sx={{ width: "49%"}} onClick={resetData}>
+      <Button type="submit" sx={{ width: '49%', marginRight: '2%' }}>
+        Search
+      </Button>
+      <Button type="button" sx={{ width: '49%' }} onClick={resetData}>
         Reset
       </Button>
     </SearchBarContainer>

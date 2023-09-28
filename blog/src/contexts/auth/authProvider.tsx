@@ -6,13 +6,16 @@ import {
   useMemo,
   useReducer
 } from 'react';
-
-import authReducer, { USER_ACTION } from './authReducer';
-import { UserLogin, UserRegister, UserSession } from '../../types/user';
-import { AuthContextType } from '../../types/authContext';
 import useSWRMutation from 'swr/mutation';
-import { API_ENDPOINTS } from '../../constants/fetch';
-import { loginUser, registerUser } from '../../services/user';
+//Contexts
+import authReducer, { USER_ACTION } from './authReducer';
+//Constants
+import { API_ENDPOINTS } from '@/constants/fetch';
+//Types
+import { UserLogin, UserRegister, UserSession } from '@/Ttypes/user';
+import { AuthContextType } from '@/Ttypes/authContext';
+//Services
+import { loginUser, registerUser } from '@/services/user';
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 

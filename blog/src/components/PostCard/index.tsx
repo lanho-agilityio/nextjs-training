@@ -1,11 +1,14 @@
 'use client';
+import { lazy } from 'react';
+//Types
+import { Post } from '@/Ttypes/post';
+import { User } from '@/Ttypes/user';
+//Components
 import { CardStyled, TagContainer } from './PostCard.styled';
-import Tag from '../Tag';
-import CardTitle from '../CardTitle';
-import CardPicture from '../CardImage';
-import CardFooter from '../CardFooter';
-import { Post } from '../../types/post';
-import { User } from '../../types/user';
+const Tag = lazy(() => import('@/components/Tag'));
+const CardTitle = lazy(() => import('@/components/CardTitle'));
+const CardImage = lazy(() => import('@/components/CardImage'));
+const CardFooter = lazy(() => import('@/components/CardFooter'));
 
 export interface PostCardProps {
   data: Post;
@@ -15,7 +18,7 @@ export interface PostCardProps {
 const PostCard = ({ data, user }: PostCardProps): JSX.Element => {
   return (
     <CardStyled>
-      <CardPicture imagePath={data.imageBase64} href={`/post/${data.id}`} />
+      <CardImage imagePath={data.imageBase64} href={`/post/${data.id}`} />
       <TagContainer>
         {data.tag && (
           <Tag

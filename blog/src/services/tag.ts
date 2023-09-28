@@ -1,7 +1,11 @@
-import { API_ENDPOINTS } from '../constants/fetch';
-import { FETCH_METHODS } from '../enums/fetch';
-import { Tag } from '../types/tag';
+//Constants
+import { API_ENDPOINTS } from '@/constants/fetch';
+//Enums
+import { FETCH_METHODS } from '@/enums/fetch';
+//Sevices
 import { FetchService } from './fetchApi';
+//Types
+import { Tag } from '@/types/tag';
 
 export const getCategories = async (): Promise<Tag[]> => {
   const response = await FetchService.fetch(

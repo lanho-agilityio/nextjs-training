@@ -1,7 +1,11 @@
-import PostList from '../../../components/PostList';
-import { queryPostsByUser } from '../../../services/post';
-import { queryAllUsers } from '../../../services/user';
-import { User } from '../../../types/user';
+import { lazy } from 'react';
+//Types
+import { User } from '@/Ttypes/user';
+//Services
+import { queryPostsByUser } from '@/services/post';
+import { queryAllUsers } from '@/services/user';
+//Components
+const PostList = lazy(() => import('@/components/PostList'));
 
 export async function generateStaticParams() {
   const users = await queryAllUsers();

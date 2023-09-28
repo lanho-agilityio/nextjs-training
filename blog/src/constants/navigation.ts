@@ -1,4 +1,4 @@
-import { Navigation } from '../types/nav';
+import { Navigation } from '@/Ttypes/nav';
 
 export const NAVIGATION_LIST: Navigation[] = [
   {

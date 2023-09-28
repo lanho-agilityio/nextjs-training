@@ -1,18 +1,20 @@
 'use client';
-import {
-  Container,
-  FormContainer,
-  HeaderContainer,
-  HeaderStyled
-} from './register.styled';
-import { Controller, SubmitHandler, set, useForm } from 'react-hook-form';
+import { lazy, useCallback, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+//Constants
 import {
   INVALID_EMAIL,
   INVALID_PASSWORD,
   MATCHING_PASSWORD,
   REGEX_EMAIL,
   REQUIRED
-} from '../../../constants/form';
+} from '@/constants/form';
+//Hooks
+import { useAuthContext } from '@/hooks/useAuthContext';
+//Types
+import { UserRegister } from '@/Ttypes/user';
+//Components
 import {
   Alert,
   FormControl,
@@ -21,11 +23,13 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import Button from '../../../components/Button';
-import { UserRegister } from '../../../types/user';
-import { useAuthContext } from '../../../hooks/useAuthContext';
-import { useCallback, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import {
+  Container,
+  FormContainer,
+  HeaderContainer,
+  HeaderStyled
+} from './register.styled';
+const Button = lazy(() => import('@/components/Button'));
 
 const RegisterPage = (): JSX.Element => {
   const {

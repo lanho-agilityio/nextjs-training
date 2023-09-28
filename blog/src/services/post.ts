@@ -1,11 +1,16 @@
-import { POST_ERRORS, USER_ERRORS } from '../constants/errors';
-import { API_ENDPOINTS } from '../constants/fetch';
-import { FETCH_METHODS } from '../enums/fetch';
-import { fileToBase64 } from '../helpers/base64pic';
-import { AddPost, EditPost, Post } from '../types/post';
-import { FetchService } from './fetchApi';
+//Constants
+import { POST_ERRORS, USER_ERRORS } from '@/constants/errors';
+import { API_ENDPOINTS } from '@/constants/fetch';
+//Enums
+import { FETCH_METHODS } from '@/enums/fetch';
+//Helpers
+import { fileToBase64 } from '@/helpers/base64pic';
+//Services
 import { findNewTag } from './tag';
-import { Filter } from '../types/filter';
+import { FetchService } from './fetchApi';
+//Types
+import { AddPost, EditPost, Post } from '@/Ttypes/post';
+import { Filter } from '@/Ttypes/filter';
 
 export const createPost = async (url: string, { arg }: { arg: AddPost }) => {
   if (!arg.userId) throw new Error(USER_ERRORS.MISSING_INFO);

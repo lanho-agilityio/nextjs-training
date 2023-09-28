@@ -1,4 +1,4 @@
-import { Tag } from './tag';
+import { Tag } from '@/Ttypes/tag';
 
 export type Post = {
   id: string;

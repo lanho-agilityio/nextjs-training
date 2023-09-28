@@ -1,12 +1,14 @@
 'use client';
-import {
-  Container,
-  FormContainer,
-  HeaderContainer,
-  HeaderStyled
-} from './login.styled';
-import { Controller, SubmitHandler, set, useForm } from 'react-hook-form';
-import { INVALID_EMAIL, REGEX_EMAIL, REQUIRED } from '../../../constants/form';
+import { useCallback, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+//Constants
+import { INVALID_EMAIL, REGEX_EMAIL, REQUIRED } from '@/constants/form';
+//Hooks
+import { useAuthContext } from '@/hooks/useAuthContext';
+//Types
+import { UserLogin } from '@/Ttypes/user';
+//Components
 import {
   Alert,
   FormControl,
@@ -15,11 +17,13 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import Button from '../../../components/Button';
-import { UserLogin } from '../../../types/user';
-import { useAuthContext } from '../../../hooks/useAuthContext';
-import { useCallback, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import Button from '@/components/Button';
+import {
+  Container,
+  FormContainer,
+  HeaderContainer,
+  HeaderStyled
+} from './login.styled';
 
 const LoginPage = (): JSX.Element => {
   const {

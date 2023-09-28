@@ -1,7 +1,7 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { NavButtonStyled } from './NavButton.styled';
 import { IconButtonProps } from '@mui/material';
+import { NavButtonStyled } from './NavButton.styled';
 
 export interface NavButtonStyledProps extends IconButtonProps {
   clicked?: boolean;

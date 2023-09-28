@@ -1,12 +1,17 @@
 import * as React from 'react';
+import useSWR from 'swr';
+//Components
 import TextField from '@mui/material/TextField';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import { Chip } from '@mui/material';
-import useSWR from 'swr';
-import { API_ENDPOINTS } from '../../constants/fetch';
-import { FetchService } from '../../services/fetchApi';
-import { FETCH_METHODS } from '../../enums/fetch';
-import { User } from '../../types/user';
+//Constants
+import { API_ENDPOINTS } from '@/constants/fetch';
+//Services
+import { FetchService } from '@/services/fetchApi';
+//Enums
+import { FETCH_METHODS } from '@/enums/fetch';
+//Types
+import { User } from '@/Ttypes/user';
 
 export interface AuthorSelectProps {
   value?: User[];

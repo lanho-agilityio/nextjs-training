@@ -1,6 +1,8 @@
 import { useContext } from 'react';
-import { PostContextType } from '../types/postContext';
-import { PostContext } from '../contexts/post/postProvider';
+//Contexts
+import { PostContext } from '@/contexts/post/postProvider';
+//Types
+import { PostContextType } from '@/Ttypes/postContext';
 
 export const usePostContext = (): PostContextType => {
   const postContext = useContext(PostContext);

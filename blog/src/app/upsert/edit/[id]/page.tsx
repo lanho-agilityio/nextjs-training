@@ -1,27 +1,34 @@
 'use client';
-import { useCallback, useEffect, useState } from 'react';
-import { AddPost, EditPost } from '../../../../types/post';
+import { lazy, useCallback, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import useSWR from 'swr';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+//Constants
+import { REQUIRED } from '@/constants/form';
+import { API_ENDPOINTS } from '@/constants/fetch';
+//Enums
+import { FETCH_METHODS } from '@/enums/fetch';
+//Helpers
+import { base64ToFile } from '@/helpers/base64pic';
+//Hooks
+import { usePostContext } from '@/hooks/usePostContext';
+import { useAuthContext } from '@/hooks/useAuthContext';
+//Services
+import { FetchService } from '@/services/fetchApi';
+//Types
+import { EditPost } from '@/Ttypes/post';
+import { Tag } from '@/Ttypes/tag';
+//Components
+import { Alert, FormControl, Snackbar, TextField } from '@mui/material';
 import {
   Container,
   FormContainer,
   HeaderContainer,
   HeaderStyled
 } from './edit.styled';
-import { Controller, SubmitHandler, set, useForm } from 'react-hook-form';
-import { REQUIRED } from '../../../../constants/form';
-import { Alert, FormControl, Snackbar, TextField } from '@mui/material';
-import FileUpload from '../../../../components/FileUpload';
-import Button from '../../../../components/Button';
-import { API_ENDPOINTS } from '../../../../constants/fetch';
-import { Tag } from '../../../../types/tag';
-import useSWR from 'swr';
-import { FETCH_METHODS } from '../../../../enums/fetch';
-import { FetchService } from '../../../../services/fetchApi';
-import { base64ToFile } from '../../../../helpers/base64pic';
-import { useRouter } from 'next/navigation';
-import { usePostContext } from '../../../../hooks/usePostContext';
-import TagSelectSingle from '../../../../components/TagSelectSingle';
-import { useAuthContext } from '../../../../hooks/useAuthContext';
+const Button = lazy(() => import('@/components/Button'));
+const FileUpload = lazy(() => import('@/components/FileUpload'));
+const TagSelectSingle = lazy(() => import('@/components/TagSelectSingle'));
 
 const EditPostPage = ({
   params: { id }

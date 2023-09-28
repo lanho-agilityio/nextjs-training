@@ -1,5 +1,6 @@
 import { LinkProps } from '@mui/material';
 import Image from 'next/image';
+//Components
 import { CardImageWrapper, LinkStyled } from './CardImage.styled';
 
 export interface CardImageProps extends LinkProps {

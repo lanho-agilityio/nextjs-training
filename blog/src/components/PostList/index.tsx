@@ -1,8 +1,11 @@
 'use client';
-import { Post } from '../../types/post';
-import { User } from '../../types/user';
-import PostCard from '../PostCard';
+import { lazy } from 'react';
+//Types
+import { Post } from '@/Ttypes/post';
+import { User } from '@/Ttypes/user';
+//Components
 import { Container, PostListStyled } from './PostList.styled';
+const PostCard = lazy(() => import('@/components/PostCard'));
 
 export interface PostListProps {
   data: Post[];

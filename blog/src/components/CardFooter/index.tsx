@@ -1,3 +1,10 @@
+import React from 'react';
+import { useRouter } from 'next/navigation';
+//Components
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {
   AuthorContainer,
   FooterContainer,
@@ -5,13 +12,8 @@ import {
   ProfilePictureStyled,
   Separator
 } from './CardFooter.styled';
-import { Author } from '../../types/author';
-import React from 'react';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useRouter } from 'next/navigation';
+//Types
+import { Author } from '@/Ttypes/author';
 
 export interface CardFooterProps {
   postId: string;

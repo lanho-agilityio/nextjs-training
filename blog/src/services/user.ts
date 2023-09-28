@@ -1,10 +1,14 @@
-import { User, UserLogin, UserRegister, UserSession } from '../types/user';
 import { v4 as uuidv4 } from 'uuid';
 import sha256 from 'crypto-js/sha256';
+//Constants
+import { API_ENDPOINTS } from '@/constants/fetch';
+import { USER_ERRORS } from '@/constants/errors';
+//Enums
+import { FETCH_METHODS } from '@/enums/fetch';
+//Services
 import { FetchService } from './fetchApi';
-import { FETCH_METHODS } from '../enums/fetch';
-import { API_ENDPOINTS } from '../constants/fetch';
-import { USER_ERRORS } from '../constants/errors';
+//Types
+import { User, UserLogin, UserRegister, UserSession } from '@/Ttypes/user';
 
 const checkUserExisted = async (
   url: string,

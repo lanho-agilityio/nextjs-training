@@ -1,9 +1,9 @@
 'use client';
-
 import { Box, Select } from '@mui/material';
-import { Container, Copyright, Made, ThemeWrapper } from './Footer.styled';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import { THEME } from '../../enums/theme';
+import { Container, Copyright, Made, ThemeWrapper } from './Footer.styled';
+//Enums
+import { THEME } from '@/enums/theme';
 const Footer = (): JSX.Element => {
   return (
     <footer>

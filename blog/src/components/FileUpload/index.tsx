@@ -3,11 +3,7 @@ import * as React from 'react';
 import { Box, IconButton, Typography } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CloseIcon from '@mui/icons-material/Close';
-import {
-  FileInformation,
-  FileUploadStyled,
-  PicWrapper
-} from './FileUpload.styled';
+import { FileInformation, FileUploadStyled } from './FileUpload.styled';
 
 export interface FileUploadProps {
   value?: File | undefined;

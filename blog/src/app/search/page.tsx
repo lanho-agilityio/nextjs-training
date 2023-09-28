@@ -1,13 +1,18 @@
 'use client';
-import SearchBar from '../../components/SearchBar';
-import { Filter } from '../../types/filter';
-import { Container, HeaderContainer, HeaderStyled } from './search.styled';
-import { API_ENDPOINTS } from '../../constants/fetch';
-import PostList from '../../components/PostList';
-import { FetchService } from '../../services/fetchApi';
-import { FETCH_METHODS } from '../../enums/fetch';
 import { useState } from 'react';
 import useSWR from 'swr';
+
+//Constants and Enums
+import { API_ENDPOINTS } from '@/constants/fetch';
+import { FETCH_METHODS } from '@/enums/fetch';
+//Types
+import { Filter } from '@/Ttypes/filter';
+//Services
+import { FetchService } from '@/services/fetchApi';
+//Components
+import SearchBar from '@/components/SearchBar';
+import PostList from '@/components/PostList';
+import { Container, HeaderContainer, HeaderStyled } from './search.styled';
 
 const SearchPage = (): JSX.Element => {
   const [url, setUrl] = useState<string>(

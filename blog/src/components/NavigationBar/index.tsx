@@ -1,5 +1,8 @@
 'use client';
-
+import { lazy, useState } from 'react';
+import Image from 'next/image';
+import logoIcon from '@/app/logo.svg';
+import { NAVIGATION_LIST } from '@/constants/navigation';
 import {
   NavigationBarWrapper,
   Container,
@@ -8,13 +11,8 @@ import {
   NavigationRight,
   NavigationBarWrapperMobile
 } from './NavigationBar.styled';
-import Image from 'next/image';
-import logoIcon from '../../app/logo.svg';
-import { lazy, useState } from 'react';
-import { NAVIGATION_LIST } from '../../constants/navigation';
-
-const NavLink = lazy(() => import('../NavLink'));
-const NavButton = lazy(() => import('../NavButton'));
+const NavLink = lazy(() => import('@/components/NavLink'));
+const NavButton = lazy(() => import('@/components/NavButton'));
 
 const NavigationBar = (): JSX.Element => {
   const [open, setOpen] = useState(false);

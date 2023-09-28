@@ -1,8 +1,12 @@
+import { lazy } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getPostDetail, queryAllPosts } from '../../../services/post';
-import Tag from '../../../components/Tag';
-import { Post } from '../../../types/post';
+//Types
+import { Post } from '@/Ttypes/post';
+//Services
+import { getPostDetail, queryAllPosts } from '@/services/post';
+//Components
+const Tag = lazy(() => import('@/components/Tag'));
 
 export async function generateStaticParams() {
   const posts = await queryAllPosts();

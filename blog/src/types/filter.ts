@@ -1,5 +1,5 @@
-import { Tag } from './tag';
-import { User } from './user';
+import { Tag } from '@/Ttypes/tag';
+import { User } from '@/Ttypes/user';
 
 export type Filter = {
   search: string;

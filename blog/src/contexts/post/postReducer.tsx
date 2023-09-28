@@ -1,8 +1,9 @@
+//Types
 import {
   AddPost as AddPostPayload,
   EditPost as EditPostPayload,
   Post
-} from '../../types/post';
+} from '@/Ttypes/post';
 
 export enum POST_ACTION {
   ADD_POST = 'ADD_POST',

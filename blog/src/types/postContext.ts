@@ -1,4 +1,4 @@
-import { AddPost, EditPost, Post } from './post';
+import { AddPost, EditPost } from '@/Ttypes/post';
 
 export interface PostContextType {
   add: (

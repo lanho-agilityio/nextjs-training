@@ -1,5 +1,5 @@
 import { LinkProps } from '@mui/material';
-import { LinkStyled, TitleStyled, TitleWrapper } from './CardTitle.styled';
+import { LinkStyled, TitleWrapper } from './CardTitle.styled';
 
 export interface CardTitleProps extends LinkProps {
   title: string;

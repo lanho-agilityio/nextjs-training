@@ -1,13 +1,20 @@
 import * as React from 'react';
+import useSWR from 'swr';
+
+//Constants
+import { API_ENDPOINTS } from '@/constants/fetch';
+//Enums
+import { FETCH_METHODS } from '@/enums/fetch';
+//Services
+import { FetchService } from '@/services/fetchApi';
+//Helpers
+import { randomHexColor } from '@/helpers/color';
+//Types
+import { Tag } from '@/Ttypes/tag';
+//Components
 import TextField from '@mui/material/TextField';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-import { Tag } from '../../types/tag';
 import { Chip } from '@mui/material';
-import useSWR from 'swr';
-import { API_ENDPOINTS } from '../../constants/fetch';
-import { FetchService } from '../../services/fetchApi';
-import { FETCH_METHODS } from '../../enums/fetch';
-import { randomHexColor } from '../../helpers/color';
 
 export interface TagSelectProps {
   value?: Tag | null;

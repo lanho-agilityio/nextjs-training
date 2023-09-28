@@ -1,4 +1,4 @@
-import { UserLogin, UserRegister, UserSession } from './user';
+import { UserLogin, UserRegister, UserSession } from '@/Ttypes/user';
 
 export interface AuthContextType {
   login: (

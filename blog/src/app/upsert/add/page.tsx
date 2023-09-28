@@ -1,22 +1,26 @@
 'use client';
 import { useCallback, useState } from 'react';
-import { AddPost } from '../../../types/post';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+//Constants
+import { REQUIRED } from '@/constants/form';
+//Hooks
+import { usePostContext } from '@/hooks/usePostContext';
+import { useAuthContext } from '@/hooks/useAuthContext';
+//Types
+import { AddPost } from '@/Ttypes/post';
+import { Tag } from '@/Ttypes/tag';
+//Components
+import { Alert, FormControl, Snackbar, TextField } from '@mui/material';
+import TagSelectSingle from '@/components/TagSelectSingle';
 import {
   Container,
   FormContainer,
   HeaderContainer,
   HeaderStyled
 } from './add.styled';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { REQUIRED } from '../../../constants/form';
-import { Alert, FormControl, Snackbar, TextField } from '@mui/material';
-import FileUpload from '../../../components/FileUpload';
-import Button from '../../../components/Button';
-import { Tag } from '../../../types/tag';
-import { usePostContext } from '../../../hooks/usePostContext';
-import { useRouter } from 'next/navigation';
-import TagSelectSingle from '../../../components/TagSelectSingle';
-import { useAuthContext } from '../../../hooks/useAuthContext';
+import FileUpload from '@/components/FileUpload';
+import Button from '@/components/Button';
 
 const AddPostPage = (): JSX.Element => {
   const {
