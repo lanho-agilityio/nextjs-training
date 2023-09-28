@@ -22,9 +22,4 @@ export const NAVIGATION_LIST: Navigation[] = [
     title: 'Login',
     validation: false
   }
-  // {
-  //   to: '/user/register',
-  //   title: 'Register',
-  //   validation: false
-  // }
 ];

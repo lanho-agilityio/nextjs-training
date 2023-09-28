@@ -26,11 +26,11 @@ const SearchPage = (): JSX.Element => {
   );
 
   if (error) return <div>failed to load</div>;
-  if (isLoading) return (<Loading/>);
+  if (isLoading) return <Loading />;
 
   const handleSearch = async (data: Filter) => {
     setParams(data);
-    const searchParams = generateSearchParams(data)
+    const searchParams = generateSearchParams(data);
     const url = `${API_ENDPOINTS.POSTS}?${searchParams}${SORT}${INCLUDE_USER}`;
     setUrl(url);
   };

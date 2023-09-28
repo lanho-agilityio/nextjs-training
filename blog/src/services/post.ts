@@ -1,6 +1,11 @@
 //Constants
 import { POST_ERRORS, USER_ERRORS } from '@/constants/errors';
-import { API_ENDPOINTS, INCLUDE_USER, SORT, WITH_POSTS } from '@/constants/fetch';
+import {
+  API_ENDPOINTS,
+  INCLUDE_USER,
+  SORT,
+  WITH_POSTS
+} from '@/constants/fetch';
 //Enums
 import { FETCH_METHODS } from '@/enums/fetch';
 //Helpers

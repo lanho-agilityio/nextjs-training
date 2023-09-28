@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 //Components
@@ -46,7 +46,6 @@ const CardFooter = ({ postId, author, time }: CardFooterProps): JSX.Element => {
 
   const { user } = useAuthContext();
 
-
   return (
     <FooterContainer>
       <AuthorContainer href={`/author/${author.id}`}>
@@ -90,10 +89,9 @@ const CardFooter = ({ postId, author, time }: CardFooterProps): JSX.Element => {
           }
         }}
       >
-        {
-          user && user.id === author.id && 
+        {user && user.id === author.id && (
           <MenuItem onClick={handleEditClick}>Edit</MenuItem>
-        }
+        )}
         <MenuItem onClick={handleDetailClick}>Detail</MenuItem>
       </Menu>
     </FooterContainer>

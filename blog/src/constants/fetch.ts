@@ -6,6 +6,6 @@ export const API_ENDPOINTS = {
   USERS: '/users'
 };
 
-export const SORT = '&_sort=dateCreated&_order=asc'
-export const INCLUDE_USER = '&_expand=user'
-export const WITH_POSTS = '&_embed=posts'
+export const SORT = '&_sort=dateCreated&_order=asc';
+export const INCLUDE_USER = '&_expand=user';
+export const WITH_POSTS = '&_embed=posts';
