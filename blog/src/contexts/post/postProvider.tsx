@@ -1,28 +1,16 @@
 'use client';
-import {
-  ReactNode,
-  createContext,
-  useCallback,
-  useMemo,
-  useState
-} from 'react';
+import { ReactNode, createContext, useCallback, useMemo } from 'react';
 import useSWRMutation from 'swr/mutation';
 import { API_ENDPOINTS } from '../../constants/fetch';
-import { createPost, editPost, searchPosts } from '../../services/post';
+import { createPost, editPost } from '../../services/post';
 import { AddPost, EditPost } from '../../types/post';
-import { Filter } from '../../types/filter';
-import useSWR from 'swr';
 import { PostContextType } from '../../types/postContext';
 
 export const PostContext = createContext<PostContextType | null>(null);
 
 export const PostProvider = ({ children }: { children: ReactNode }) => {
-  const [queryParams, setQueryParams] = useState<Filter | null>(null);
-
   const useAddPost = useSWRMutation(API_ENDPOINTS.POSTS, createPost);
   const useEditPost = useSWRMutation(API_ENDPOINTS.POSTS, editPost);
-
-  const useQueryPosts = useSWR([API_ENDPOINTS.POSTS, queryParams], searchPosts);
 
   const onAddPost = useCallback(
     async (
@@ -64,13 +52,10 @@ export const PostProvider = ({ children }: { children: ReactNode }) => {
 
   const value = useMemo(
     () => ({
-      searchPosts: useQueryPosts,
       add: onAddPost,
-      edit: onEditPost,
-      params: queryParams,
-      changeParams: setQueryParams
+      edit: onEditPost
     }),
-    [onAddPost, onEditPost, queryParams, useQueryPosts]
+    [onAddPost, onEditPost]
   );
 
   return <PostContext.Provider value={value}>{children}</PostContext.Provider>;
