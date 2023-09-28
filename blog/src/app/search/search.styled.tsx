@@ -10,7 +10,6 @@ export const Container = styled(Box)`
   max-width: 1024px;
 
   @media (min-width: 1024px) {
-    padding-top: 2rem;
     padding-bottom: 2rem;
   }
   @media (min-width: 1280px) {

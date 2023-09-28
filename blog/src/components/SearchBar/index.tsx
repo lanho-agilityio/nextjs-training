@@ -21,12 +21,11 @@ interface SearchBarProps {
 
 const SearchBar = ({ value, onSubmit }: SearchBarProps): JSX.Element => {
   const {
-    formState: { errors },
+    formState,
     control,
     watch,
     setValue,
     handleSubmit,
-    reset
   } = useForm<Filter>({
     values: value ?? {
       search: '',
@@ -87,7 +86,7 @@ const SearchBar = ({ value, onSubmit }: SearchBarProps): JSX.Element => {
         name="tags"
         control={control}
         render={() => (
-          <FormControl fullWidth>
+          <FormControl sx={{width: "49%", marginRight: "2%"}}>
             <TagSelectMultiple value={watch('tags')} onChange={handleTags} />
           </FormControl>
         )}
@@ -96,13 +95,13 @@ const SearchBar = ({ value, onSubmit }: SearchBarProps): JSX.Element => {
         name="users"
         control={control}
         render={() => (
-          <FormControl fullWidth>
+          <FormControl sx={{width: "49%"}}>
             <AuthorSelect value={watch('users')} onChange={handleUsers} />
           </FormControl>
         )}
       />
-      <Button type="submit">Search</Button>
-      <Button type="button" sx={{ marginTop: '1rem' }} onClick={resetData}>
+      <Button type="submit" sx={{width: "49%", marginRight: "2%"}} >Search</Button>
+      <Button type="button" sx={{ width: "49%"}} onClick={resetData}>
         Reset
       </Button>
     </SearchBarContainer>
