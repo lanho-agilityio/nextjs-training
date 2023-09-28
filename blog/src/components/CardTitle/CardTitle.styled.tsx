@@ -7,6 +7,10 @@ export const TitleWrapper = styled(Typography)`
   font-weight: 600;
   letter-spacing: -0.025em;
   line-height: 1.375;
+  white-space: nowrap;
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const LinkStyled = styled(Link)`
