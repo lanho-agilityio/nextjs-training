@@ -6,7 +6,7 @@ import { USER_ERRORS } from '@/constants/errors';
 //Enums
 import { FETCH_METHODS } from '@/enums/fetch';
 //Services
-import { FetchService } from './fetchApi';
+import { FetchService } from '@/services/fetchApi';
 //Types
 import { User, UserLogin, UserRegister, UserSession } from '@/Ttypes/user';
 

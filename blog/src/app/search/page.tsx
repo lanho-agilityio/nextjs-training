@@ -2,8 +2,10 @@
 import { lazy, useState } from 'react';
 import useSWR from 'swr';
 //Constants and Enums
-import { API_ENDPOINTS } from '@/constants/fetch';
+import { API_ENDPOINTS, INCLUDE_USER, SORT } from '@/constants/fetch';
 import { FETCH_METHODS } from '@/enums/fetch';
+//Helpers
+import { generateSearchParams } from '@/helpers/api';
 //Types
 import { Filter } from '@/Ttypes/filter';
 //Services
@@ -16,7 +18,7 @@ const Loading = lazy(() => import('@/components/Loading'));
 
 const SearchPage = (): JSX.Element => {
   const [url, setUrl] = useState<string>(
-    `${API_ENDPOINTS.POSTS}?&_sort=dateCreated&_order=asc&_expand=user`
+    `${API_ENDPOINTS.POSTS}?${SORT}${INCLUDE_USER}`
   );
   const [params, setParams] = useState<Filter | null>(null);
   const { data, error, isLoading } = useSWR(url, (api) =>
@@ -28,23 +30,8 @@ const SearchPage = (): JSX.Element => {
 
   const handleSearch = async (data: Filter) => {
     setParams(data);
-    let tagSearch = '';
-    let userSearch = '';
-    let deepSearch = '';
-    if (data && data.tags.length > 0) {
-      for (let i = 0; i < data.tags.length; i++) {
-        tagSearch += `&tag.name=${data.tags[i].name.replace(/%20/g, ' ')}`;
-      }
-    }
-    if (data && data.users.length > 0) {
-      for (let i = 0; i < data.users.length; i++) {
-        userSearch += `&userId=${data.users[i].id}`;
-      }
-    }
-    if (data && data.search) {
-      deepSearch = `&q=${data.search}`;
-    }
-    const url = `${API_ENDPOINTS.POSTS}?${tagSearch}${userSearch}${deepSearch}&_sort=dateCreated&_order=asc&_expand=user`;
+    const searchParams = generateSearchParams(data)
+    const url = `${API_ENDPOINTS.POSTS}?${searchParams}${SORT}${INCLUDE_USER}`;
     setUrl(url);
   };
 

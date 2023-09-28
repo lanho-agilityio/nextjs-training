@@ -3,7 +3,7 @@ import { API_ENDPOINTS } from '@/constants/fetch';
 //Enums
 import { FETCH_METHODS } from '@/enums/fetch';
 //Sevices
-import { FetchService } from './fetchApi';
+import { FetchService } from '@/services/fetchApi';
 //Types
 import { Tag } from '@/types/tag';
 
