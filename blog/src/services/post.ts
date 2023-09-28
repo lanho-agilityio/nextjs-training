@@ -72,16 +72,22 @@ export const searchPosts = async ([key, params]: [
   Filter | null
 ]): Promise<Post[] | Error> => {
   let tagSearch = '';
+  let userSearch = '';
   let deepSearch = '';
-  if (params && params.tag.length > 0) {
-    for (let i = 0; i < params.tag.length; i++) {
-      tagSearch += `&tag.name=${params.tag[i].name.replace(/%20/g, ' ')}`;
+  if (params && params.tags.length > 0) {
+    for (let i = 0; i < params.tags.length; i++) {
+      tagSearch += `&tag.name=${params.tags[i].name.replace(/%20/g, ' ')}`;
+    }
+  }
+  if (params && params.users.length > 0) {
+    for (let i = 0; i < params.users.length; i++) {
+      userSearch += `&userId=${params.users[i].id}`;
     }
   }
   if (params && params.search) {
     deepSearch = `&q=${params.search}`;
   }
 
-  const url = `${key}?${tagSearch}${deepSearch}&_sort=dateCreated&_order=asc&_expand=user`;
+  const url = `${key}?${tagSearch}${userSearch}${deepSearch}&_sort=dateCreated&_order=asc&_expand=user`;
   return await FetchService.fetch(url, FETCH_METHODS.SSR);
 };

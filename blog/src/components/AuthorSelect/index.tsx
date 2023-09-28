@@ -1,30 +1,22 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-import { Tag } from '../../types/tag';
 import { Chip } from '@mui/material';
 import useSWR from 'swr';
 import { API_ENDPOINTS } from '../../constants/fetch';
 import { FetchService } from '../../services/fetchApi';
 import { FETCH_METHODS } from '../../enums/fetch';
-import { randomHexColor } from '../../helpers/color';
+import { User } from '../../types/user';
 
-export interface TagSelectMultipleProps {
-  value?: Tag[];
+export interface AuthorSelectProps {
+  value?: User[];
   onChange?: any;
-  validation?: boolean;
-  helperText?: string;
 }
 
-const filter = createFilterOptions<Tag>();
+const filter = createFilterOptions<User>();
 
-const TagSelectMultiple = ({
-  value,
-  onChange,
-  validation,
-  helperText
-}: TagSelectMultipleProps): JSX.Element => {
-  const { data, error, isLoading } = useSWR(API_ENDPOINTS.TAGS, (url) =>
+const AuthorSelect = ({ value, onChange }: AuthorSelectProps): JSX.Element => {
+  const { data, error, isLoading } = useSWR(API_ENDPOINTS.USERS, (url) =>
     FetchService.fetch(url, FETCH_METHODS.SSR)
   );
 
@@ -73,17 +65,10 @@ const TagSelectMultiple = ({
             />
           ));
         }}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            placeholder="Tags"
-            error={validation}
-            helperText={helperText}
-          />
-        )}
+        renderInput={(params) => <TextField {...params} placeholder="Author" />}
       />
     </>
   );
 };
 
-export default React.memo(TagSelectMultiple);
+export default React.memo(AuthorSelect);

@@ -1,8 +1,9 @@
 import { Tag } from './tag';
+import { User } from './user';
 
 export type Filter = {
   search: string;
-  // userId?: string;
-  tag: Tag[];
+  users: User[];
+  tags: Tag[];
   // dateCreated?: Date;
 };

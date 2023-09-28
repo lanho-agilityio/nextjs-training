@@ -11,6 +11,8 @@ import { useCallback } from 'react';
 import { Tag } from '../../types/tag';
 import Button from '../Button';
 import TagSelectMultiple from '../TagSelectMultiple';
+import AuthorSelect from '../AuthorSelect';
+import { User } from '../../types/user';
 
 interface SearchBarProps {
   value?: Filter | null;
@@ -28,13 +30,21 @@ const SearchBar = ({ value, onSubmit }: SearchBarProps): JSX.Element => {
   } = useForm<Filter>({
     values: value ?? {
       search: '',
-      tag: []
+      users: [],
+      tags: []
     }
   });
 
-  const handleTag = useCallback(
+  const handleTags = useCallback(
     (value: Tag[]) => {
-      setValue('tag', value);
+      setValue('tags', value);
+    },
+    [setValue]
+  );
+
+  const handleUsers = useCallback(
+    (value: User[]) => {
+      setValue('users', value);
     },
     [setValue]
   );
@@ -46,7 +56,8 @@ const SearchBar = ({ value, onSubmit }: SearchBarProps): JSX.Element => {
   const resetData = () => {
     onSubmit({
       search: '',
-      tag: []
+      users: [],
+      tags: []
     });
   };
 
@@ -73,11 +84,20 @@ const SearchBar = ({ value, onSubmit }: SearchBarProps): JSX.Element => {
         )}
       />
       <Controller
-        name="tag"
+        name="tags"
         control={control}
         render={() => (
-          <FormControl fullWidth sx={{ paddingBottom: '1rem' }}>
-            <TagSelectMultiple value={watch('tag')} onChange={handleTag} />
+          <FormControl fullWidth>
+            <TagSelectMultiple value={watch('tags')} onChange={handleTags} />
+          </FormControl>
+        )}
+      />
+      <Controller
+        name="users"
+        control={control}
+        render={() => (
+          <FormControl fullWidth>
+            <AuthorSelect value={watch('users')} onChange={handleUsers} />
           </FormControl>
         )}
       />
