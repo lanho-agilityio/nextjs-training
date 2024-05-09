@@ -18,16 +18,6 @@ const links = [
     href: '/dashboard/invoices',
     icon: DocumentDuplicateIcon,
   },
-  {
-    name: 'Invoice 1',
-    href: '/dashboard/invoices#red',
-    icon: DocumentDuplicateIcon,
-  },
-  {
-    name: 'Invoice 2',
-    href: '/dashboard/invoices#blue',
-    icon: DocumentDuplicateIcon,
-  },
   { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
 ];
 
