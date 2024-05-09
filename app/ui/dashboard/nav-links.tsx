@@ -29,7 +29,6 @@ const links = [
     icon: DocumentDuplicateIcon,
   },
   { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
-
 ];
 
 export default function NavLinks() {
@@ -48,7 +47,8 @@ export default function NavLinks() {
               {
                 'bg-sky-100 text-blue-600': pathname === link.href,
               },
-            )}          >
+            )}
+          >
             <LinkIcon className="w-6" />
             <p className="hidden md:block">{link.name}</p>
           </Link>
