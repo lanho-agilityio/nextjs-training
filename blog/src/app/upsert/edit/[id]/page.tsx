@@ -104,6 +104,7 @@ const EditPostPage = ({
 
   const handleSuccess = useCallback(() => {
     router.push('/');
+    router.refresh();
   }, [router]);
 
   const handleError = useCallback((e: unknown) => {

@@ -50,6 +50,7 @@ const AddPostPage = (): JSX.Element => {
 
   const handleSuccess = useCallback(() => {
     router.push('/');
+    router.refresh();
   }, [router]);
 
   const handleError = useCallback((e: unknown) => {
