@@ -9,7 +9,7 @@ export interface PostListProps {
 const PostList = ({ posts }: PostListProps): JSX.Element => {
   return (
     <Box>
-      <Stack direction="row" spacing={1.25}>
+      <Stack direction={{ xs: 'column', sm: 'column', md: 'row' }} spacing={5}>
         <PostCard content={posts[0]} _image={{ width: 472, height: 235 }} />
         <PostCard content={posts[0]} _image={{ width: 472, height: 235 }} />
       </Stack>

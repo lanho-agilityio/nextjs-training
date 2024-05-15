@@ -11,8 +11,8 @@ export interface PostCardImageProps {
 
 const PostCardImage = ({ alt, src, to, width = 302, height = 302 }: PostCardImageProps): JSX.Element => {
   return (
-    <Link href={`/${to}`} id='post-image'>
-      <Image alt={alt} src={src} width={width} height={height} />
+    <Link href={`/${to}`} id="post-image">
+      <Image alt={alt} src={src} width={width} height={height} style={{ borderRadius: '6px' }} />
     </Link>
   );
 };

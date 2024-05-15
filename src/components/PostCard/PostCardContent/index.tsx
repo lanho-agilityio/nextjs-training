@@ -18,7 +18,7 @@ const PostCardContent = ({ id, title, tag, author, updatedAt }: PostCardContentP
       <Tag tag={tag} />
       <Box marginTop="8px">
         <Link
-          id='post-title'
+          id="post-title"
           title={title}
           href={`/${id}`}
           style={{
