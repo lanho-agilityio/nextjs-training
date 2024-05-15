@@ -1,4 +1,7 @@
 export const COLORS = {
-  TEXT: '#6b7280',
+  DEFAULT_TEXT: '#6b7280',
   LINK: '#525252',
+  HEADING: '#262626',
+  DESCRIPTION: '#737373',
+  DESCRIPTION_ICON: '#D4D4D4',
 };

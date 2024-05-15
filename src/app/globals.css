@@ -1,0 +1,11 @@
+a#post-title:hover {
+    background-size: 100% 3px;
+    transition-duration: .5s;
+    background: #bbf7d0;
+}
+
+a#post-image:hover {
+    transform: scale(105%);
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: .15s;
+}

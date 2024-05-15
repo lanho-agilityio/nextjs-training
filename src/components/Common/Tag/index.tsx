@@ -1,17 +1,17 @@
 import Link from 'next/link';
+import { PostTag } from '@/models';
 
-export interface TagProps {
-  title: string;
-  href: string;
-  color: string;
+export interface PostTagProps {
+  tag: PostTag;
 }
 
-const Tag = ({ title, href, color }: TagProps): JSX.Element => {
+const Tag = ({ tag }: PostTagProps): JSX.Element => {
+  const { title, color } = tag;
+
   return (
     <Link
       title={title}
-      href={href}
-      color={color}
+      href={`/${title}`}
       style={{
         display: 'inline-block',
         marginTop: '20px',
@@ -20,7 +20,7 @@ const Tag = ({ title, href, color }: TagProps): JSX.Element => {
         fontWeight: 500,
         textTransform: 'uppercase',
         textDecoration: 'none',
-        color: `${color}`
+        color: `${color}`,
       }}
     >
       {title}

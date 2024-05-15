@@ -45,7 +45,7 @@ const NavBarMobile = (): JSX.Element => {
             paddingX: '8px',
             paddingY: '4px',
             borderRadius: '6px',
-            color: COLORS.TEXT,
+            color: COLORS.DEFAULT_TEXT,
           }}
         >
           {open ? <CloseIcon fontSize="inherit" /> : <MenuIcon fontSize="inherit" />}
