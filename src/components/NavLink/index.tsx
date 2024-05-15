@@ -21,6 +21,7 @@ const NavLink = ({ title, to, _style }: NavLinkStyledProps): JSX.Element => {
         lineHeight: '1.25rem',
         fontWeight: 500,
         textDecoration: 'none',
+        color: '#525252',
         ..._style,
       }}
     >
