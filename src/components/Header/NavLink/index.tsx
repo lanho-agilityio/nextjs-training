@@ -1,5 +1,6 @@
 import { CSSProperties } from 'react';
 import Link from 'next/link';
+import { COLORS } from '@/constants';
 
 export interface NavLinkStyledProps {
   title: string;
@@ -12,16 +13,16 @@ const NavLink = ({ title, to, _style }: NavLinkStyledProps): JSX.Element => {
     <Link
       href={to}
       style={{
-        paddingTop: '0.5rem',
-        paddingBottom: '0.5rem',
-        paddingLeft: '1.25rem',
-        paddingRight: '1.25rem',
+        paddingTop: '8px',
+        paddingBottom: '8px',
+        paddingLeft: '20px',
+        paddingRight: '20px',
         width: '100%',
-        fontSize: '0.875rem',
-        lineHeight: '1.25rem',
+        fontSize: '14px',
+        lineHeight: '20px',
         fontWeight: 500,
         textDecoration: 'none',
-        color: '#525252',
+        color: COLORS.LINK,
         ..._style,
       }}
     >

@@ -3,10 +3,10 @@ import { useState } from 'react';
 import Image from 'next/image';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, IconButton, styled } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 
-import { NAVIGATION_LIST } from '@/constants';
-import NavLink from '@/components/NavLink';
+import { COLORS, NAVIGATION_LIST } from '@/constants';
+import { NavLink } from '@/components';
 
 const NavBarMobile = (): JSX.Element => {
   const [open, setOpen] = useState(false);
@@ -27,7 +27,7 @@ const NavBarMobile = (): JSX.Element => {
         justifyContent="space-between"
         width="100%"
       >
-        <a href="/" style={{ width: '7rem' }}>
+        <a href="/" style={{ width: '112px' }}>
           <Image
             src={'/logo.svg'}
             alt="Logo"
@@ -42,10 +42,10 @@ const NavBarMobile = (): JSX.Element => {
           size="large"
           onClick={handleClick}
           sx={{
-            paddingX: '0.5rem',
-            paddingY: '0.25rem',
-            borderRadius: '0.375rem',
-            color: '#6b7280',
+            paddingX: '8px',
+            paddingY: '4px',
+            borderRadius: '6px',
+            color: COLORS.TEXT,
           }}
         >
           {open ? <CloseIcon fontSize="inherit" /> : <MenuIcon fontSize="inherit" />}
@@ -69,7 +69,6 @@ const NavBarMobile = (): JSX.Element => {
                 title={route.title}
                 _style={{
                   paddingLeft: 0,
-                  
                 }}
               />
             );
