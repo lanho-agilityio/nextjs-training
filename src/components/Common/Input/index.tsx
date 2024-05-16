@@ -9,15 +9,6 @@ export type CustomInputProps = {
   type?: string;
 } & TextFieldProps;
 
-const STYLE_DEFAULT_INPUT = {
-  paddingTop: '12px',
-  paddingBottom: '12px',
-  paddingLeft: '16px',
-  paddingRight: '16px',
-  border: '2px solid #d4d4d4',
-  borderRadius: '6px',
-};
-
 const Input = (
   { type = 'string', name, errorMessage, placeholder, ...props }: CustomInputProps,
   ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>,
@@ -40,6 +31,11 @@ const Input = (
               borderRadius: '6px',
             },
           },
+          '&::placeholder': {
+            color: 'black',
+            opacity: 1,
+          },
+          borderRadius: '6px',
         }}
         inputProps={{
           sx: {
@@ -47,9 +43,6 @@ const Input = (
               color: 'black',
               opacity: 1,
             },
-            height: '24px',
-
-            ...(!props.multiline && { ...STYLE_DEFAULT_INPUT }),
           },
         }}
         {...props}
