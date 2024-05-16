@@ -98,17 +98,17 @@ export default function Home() {
       <PostList posts={posts} />
       <Box display="flex" alignItems="center" justifyContent="center" marginTop="40px">
         <Link
-          id='view-all-posts'
-          href={ROUTES.ARCHIVE}
+          id="view-all-posts"
+          href={ROUTES.POSTS}
           style={{
             color: COLORS.DESCRIPTION,
             border: `1px solid ${COLORS.DESCRIPTION}`,
             borderRadius: '6px',
             paddingTop: '8px',
-            paddingBottom: '8px', 
+            paddingBottom: '8px',
             paddingLeft: '16px',
             paddingRight: '12px',
-            textDecoration: 'none'
+            textDecoration: 'none',
           }}
         >
           View All Posts

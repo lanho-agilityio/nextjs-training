@@ -1,8 +1,8 @@
 import { Navigation } from '@/models';
 
 export const ROUTES = {
-  ARCHIVE: '/archive',
-}
+  POSTS: '/posts',
+};
 
 export const NAVIGATION_LIST: Navigation[] = [
   {
@@ -14,11 +14,11 @@ export const NAVIGATION_LIST: Navigation[] = [
     title: 'About',
   },
   {
-    to: '/',
-    title: 'Contact',
+    to: '/posts/create',
+    title: 'Create',
   },
   {
-    to: '/',
+    to: '/posts',
     title: 'Archive',
   },
   {

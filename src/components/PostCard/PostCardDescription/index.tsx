@@ -1,4 +1,4 @@
-import { Avatar, Box } from '@mui/material';
+import { Avatar, Box, Typography } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
 
 import { Author } from '@/models';
@@ -24,9 +24,9 @@ const PostCardDescription = ({ author, updatedAt }: PostCardDescriptionProps): J
       color={COLORS.DESCRIPTION}
     >
       <Avatar alt="name" src={profilePicture} sx={{ height: 20, width: 20 }} />
-      <span>{name}</span>
+      <Typography variant="caption">{name}</Typography>
       <CircleIcon sx={{ height: 5, width: 5, color: COLORS.DESCRIPTION_ICON }} />
-      <span>{updatedAt.toString()}</span>
+      <Typography variant="caption">{updatedAt.toString()}</Typography>
     </Box>
   );
 };
