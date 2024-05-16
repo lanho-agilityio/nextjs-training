@@ -26,7 +26,7 @@ export default function RootLayout({
           {' '}
           <ThemeProvider theme={theme}>
             <Box
-              paddingY={{
+              paddingBottom={{
                 xs: '20px',
                 sm: '20px',
                 lg: '32px',

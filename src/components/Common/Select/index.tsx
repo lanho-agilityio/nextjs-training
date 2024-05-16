@@ -1,7 +1,5 @@
 const Select = (): JSX.Element => {
-    return (
-        
-    )
-}
+  return <></>;
+};
 
-export default Select
+export default Select;

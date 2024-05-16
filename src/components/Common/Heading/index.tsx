@@ -10,27 +10,29 @@ const Heading = ({ title, description }: HeadingProps): JSX.Element => {
     <Container>
       <Typography
         variant="h1"
-        marginTop="8px"
-        marginBottom="12px"
-        fontSize={{
-          xs: '30px',
-          sm: '30px',
-          md: '36px',
-          lg: '36px',
+        sx={{
+          marginTop: '8px',
+          marginBottom: '12px',
+          fontSize: {
+            xs: '30px',
+            sm: '30px',
+            md: '36px',
+            lg: '36px',
+          },
+          lineHeight: {
+            xs: '36px',
+            sm: '36px',
+            md: '40px',
+            lg: '40px',
+          },
+          fontWeight: 600,
+          textAlign: 'center',
         }}
-        lineHeight={{
-          xs: '36px',
-          sm: '36px',
-          md: '40px',
-          lg: '40px',
-        }}
-        fontWeight={600}
-        textAlign="center"
       >
         {title}
       </Typography>
       {description && (
-        <Typography variant="subtitle1" fontSize="18px" lineHeight="28px" textAlign="center">
+        <Typography variant="subtitle1" sx={{ fontSize: '18px', lineHeight: '28px', textAlign: 'center' }}>
           {description}
         </Typography>
       )}

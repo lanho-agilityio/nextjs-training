@@ -49,7 +49,7 @@ const Input = (
         error={!!errorMessage}
       />
       {errorMessage && (
-        <Typography variant="caption" marginTop="4px" color="#DC2626">
+        <Typography variant="caption" sx={{ marginTop: '4px', color: '#DC2626' }}>
           {errorMessage}
         </Typography>
       )}

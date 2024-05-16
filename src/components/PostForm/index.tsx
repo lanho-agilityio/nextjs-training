@@ -4,8 +4,8 @@ import FilePicker from '../FilePicker';
 
 const PostForm = (): JSX.Element => {
   return (
-    <Box marginTop="40px" display="flex" justifyContent="center" alignItems="center">
-      <Box marginTop="40px" width={{ xs: '100%', sm: '100%', md: '70%' }}>
+    <Box sx={{ marginTop: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Box sx={{ marginTop: '40px', width: { xs: '100%', sm: '100%', md: '70%' } }}>
         <Stack spacing={2}>
           <Input name="Title" placeholder="Title" fullWidth />
           <Input name="Content" placeholder="Content" multiline rows={7} fullWidth />

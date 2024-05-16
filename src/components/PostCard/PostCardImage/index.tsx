@@ -11,10 +11,12 @@ export interface PostCardImageProps {
 const PostCardImage = ({ alt, src, to }: PostCardImageProps): JSX.Element => {
   return (
     <Box
-      position="relative"
-      width="100%"
-      height={{ xs: '30vh', sm: '30vh', md: '33vh' }}
-      maxHeight={{ lg: '266px', md: '259px', sm: '332px', xs: '366px' }}
+      sx={{
+        position: 'relative',
+        width: '100%',
+        height: { xs: '30vh', sm: '30vh', md: '33vh' },
+        maxHeight: { lg: '266px', md: '259px', sm: '332px', xs: '366px' },
+      }}
       id="post-image"
     >
       <Link href={`/${to}`}>

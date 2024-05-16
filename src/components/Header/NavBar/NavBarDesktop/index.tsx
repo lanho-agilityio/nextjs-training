@@ -9,17 +9,19 @@ const NavBarDesktop = (): JSX.Element => {
 
   return (
     <Box
-      paddingX="20px"
-      paddingY="32px"
-      display={{
-        xs: 'none',
-        sm: 'none',
-        md: 'flex',
+      sx={{
+        paddingX: '20px',
+        paddingY: '32px',
+        display: {
+          xs: 'none',
+          sm: 'none',
+          md: 'flex',
+        },
+        flexWrap: 'nowrap',
+        gap: '40px',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
-      flexWrap="nowrap"
-      gap="40px"
-      justifyContent="center"
-      alignItems="center"
     >
       <Box>
         {NAVIGATION_LIST.slice(0, HALF).map((e, i) => {

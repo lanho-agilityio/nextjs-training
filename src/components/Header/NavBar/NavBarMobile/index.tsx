@@ -17,21 +17,25 @@ const NavBarMobile = (): JSX.Element => {
 
   return (
     <Box
-      paddingY={{
-        xs: '20px',
-        sm: '20px',
-        md: '12px',
+      sx={{
+        paddingY: {
+          xs: '20px',
+          sm: '20px',
+          md: '0px',
+        },
       }}
     >
       <Box
-        display={{
-          xs: 'flex',
-          sm: 'flex',
-          md: 'none',
+        sx={{
+          display: {
+            xs: 'flex',
+            sm: 'flex',
+            md: 'none',
+          },
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%',
         }}
-        alignItems="center"
-        justifyContent="space-between"
-        width="100%"
       >
         <a href="/" style={{ width: '112px' }}>
           <Image
@@ -59,13 +63,15 @@ const NavBarMobile = (): JSX.Element => {
       </Box>
       {open && (
         <Box
-          display={{
-            xs: 'flex',
-            sm: 'flex',
-            md: 'none',
+          sx={{
+            display: {
+              xs: 'flex',
+              sm: 'flex',
+              md: 'none',
+            },
+            flexDirection: 'column',
+            marginTop: '10px',
           }}
-          flexDirection="column"
-          marginTop="10px"
         >
           {NAVIGATION_LIST.map((route, i) => {
             return (

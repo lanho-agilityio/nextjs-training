@@ -14,9 +14,9 @@ export interface PostCardContentProps {
 
 const PostCardContent = ({ id, title, tag, author, updatedAt }: PostCardContentProps): JSX.Element => {
   return (
-    <Box display="flex" flexDirection="column">
+    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <Tag tag={tag} />
-      <Box marginTop="8px">
+      <Box sx={{ marginTop: '8px' }}>
         <Link
           id="post-title"
           title={title}
