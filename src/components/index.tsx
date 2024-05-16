@@ -1,3 +1,4 @@
+export { default as FilePicker } from './FilePicker';
 export { default as Footer } from './Footer';
 export { default as NavBar } from './Header/NavBar';
 export { default as NavLink } from './Header/NavLink';

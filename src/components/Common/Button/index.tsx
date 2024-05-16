@@ -7,20 +7,34 @@ export interface CustomButtonProps extends ButtonProps {
   width?: number | string;
   height?: number;
   type?: 'button' | 'submit' | 'reset';
-  hoverColor?: string;
   variant?: 'text' | 'outlined' | 'contained';
+  backgroundColor?: string;
+  hoverColor?: string;
 }
 
 const CustomButton = ({
   children,
-  color = 'primary',
   onClick,
   type = 'button',
   variant = 'contained',
+  backgroundColor,
+  hoverColor,
   ...props
 }: CustomButtonProps) => {
   return (
-    <Button color={color} variant={variant} onClick={onClick} type={type} {...props}>
+    <Button
+      variant={variant}
+      onClick={onClick}
+      type={type}
+      {...props}
+      sx={{
+        height: '56px',
+        backgroundColor: backgroundColor,
+        ':hover': {
+          bgcolor: hoverColor,
+        },
+      }}
+    >
       {children}
     </Button>
   );

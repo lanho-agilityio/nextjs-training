@@ -16,7 +16,7 @@ const STYLE_DEFAULT_INPUT = {
   paddingRight: '16px',
   border: '2px solid #d4d4d4',
   borderRadius: '6px',
-}
+};
 
 const Input = (
   { type = 'string', name, errorMessage, placeholder, ...props }: CustomInputProps,
@@ -39,7 +39,6 @@ const Input = (
               border: '2px solid #DC2626 ',
               borderRadius: '6px',
             },
-            
           },
         }}
         inputProps={{
@@ -49,7 +48,7 @@ const Input = (
               opacity: 1,
             },
             height: '24px',
-            ...(!props.multiline && { ...STYLE_DEFAULT_INPUT })
+            ...(!props.multiline && { ...STYLE_DEFAULT_INPUT }),
           },
         }}
         {...props}
