@@ -5,6 +5,7 @@ export default function CreatePage() {
     <main>
       <Heading title="Create" description="Create a post here." />
       <Input name="Title" placeholder="Title" />
+      <Input name="Content" placeholder="Content" multiline rows={7} />
     </main>
   );
 }

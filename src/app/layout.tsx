@@ -35,6 +35,7 @@ export default function RootLayout({
                 xs: '32px',
                 lg: '20px',
               }}
+              maxWidth="1024px"
             >
               <NavBar />
               <div>{children}</div>

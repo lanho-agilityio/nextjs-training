@@ -1,22 +1,31 @@
-import { Box, TextField, Typography } from '@mui/material';
+import { Box, TextField, TextFieldProps, Typography } from '@mui/material';
 import { ForwardedRef, forwardRef } from 'react';
 
-export interface InputProps {
+export type CustomInputProps = {
   name: string;
   placeholder?: string;
   errorMessage?: string;
   labelName?: string;
   type?: string;
+} & TextFieldProps;
+
+const STYLE_DEFAULT_INPUT = {
+  paddingTop: '12px',
+  paddingBottom: '12px',
+  paddingLeft: '16px',
+  paddingRight: '16px',
+  border: '2px solid #d4d4d4',
+  borderRadius: '6px',
 }
 
 const Input = (
-  { type = 'string', name, errorMessage, placeholder, ...props }: InputProps,
-  ref: ForwardedRef<HTMLInputElement>,
-) => {
+  { type = 'string', name, errorMessage, placeholder, ...props }: CustomInputProps,
+  ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>,
+): JSX.Element => {
   return (
     <Box display="flex" flexDirection="column">
       <TextField
-        ref={ref}
+        inputRef={ref}
         variant="outlined"
         name={name}
         placeholder={placeholder}
@@ -30,6 +39,7 @@ const Input = (
               border: '2px solid #DC2626 ',
               borderRadius: '6px',
             },
+            
           },
         }}
         inputProps={{
@@ -39,12 +49,7 @@ const Input = (
               opacity: 1,
             },
             height: '24px',
-            paddingTop: '12px',
-            paddingBottom: '12px',
-            paddingLeft: '16px',
-            paddingRight: '16px',
-            border: '2px solid #d4d4d4',
-            borderRadius: '6px',
+            ...(!props.multiline && { ...STYLE_DEFAULT_INPUT })
           },
         }}
         {...props}
