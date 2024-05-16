@@ -6,16 +6,17 @@ export interface PostCardImageProps {
   src: string;
   alt: string;
   to: string;
+  isRecentPost?: boolean;
 }
 
-const PostCardImage = ({ alt, src, to }: PostCardImageProps): JSX.Element => {
+const PostCardImage = ({ alt, src, to, isRecentPost=false }: PostCardImageProps): JSX.Element => {
   return (
     <Box
       sx={{
         position: 'relative',
         width: '100%',
         height: { xs: '30vh', sm: '30vh', md: '33vh' },
-        maxHeight: { lg: '266px', md: '259px', sm: '332px', xs: '366px' },
+        maxHeight: { lg: isRecentPost? '265px': '301px', md: isRecentPost? '265px': '460px', sm: isRecentPost? '203px': '361px', xs: '500px' },
       }}
       id="post-image"
     >

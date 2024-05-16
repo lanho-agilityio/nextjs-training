@@ -14,14 +14,16 @@ const PostCardDescription = ({ author, updatedAt }: PostCardDescriptionProps): J
 
   return (
     <Box
-      display="flex"
-      flexDirection="row"
-      alignContent="center"
-      alignItems="center"
-      gap="12px"
-      fontSize="14px"
-      marginTop="12px"
-      color={COLORS.DESCRIPTION}
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignContent: 'center',
+        alignItems: 'center',
+        gap: '12px',
+        fontSize: '14px',
+        marginTop: '12px',
+        color: COLORS.DESCRIPTION,
+      }}
     >
       <Avatar alt="name" src={profilePicture} sx={{ height: 20, width: 20 }} />
       <Typography variant="caption">{name}</Typography>
