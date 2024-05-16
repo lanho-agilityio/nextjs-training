@@ -16,3 +16,7 @@ a#post-title:hover {
   transition-duration: 0.15s;
   transition-property: all;
 }
+
+a#view-all-posts:hover {
+  background: #fafafa;
+}

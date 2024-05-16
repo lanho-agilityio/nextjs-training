@@ -1,5 +1,9 @@
 import { Navigation } from '@/models';
 
+export const ROUTES = {
+  ARCHIVE: '/archive',
+}
+
 export const NAVIGATION_LIST: Navigation[] = [
   {
     to: '/',
