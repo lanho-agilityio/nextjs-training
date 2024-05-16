@@ -48,6 +48,7 @@ const Input = (
               opacity: 1,
             },
             height: '24px',
+
             ...(!props.multiline && { ...STYLE_DEFAULT_INPUT }),
           },
         }}

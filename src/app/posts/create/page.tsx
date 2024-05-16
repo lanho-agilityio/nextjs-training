@@ -1,12 +1,13 @@
-import { FilePicker, Heading, Input } from '@/components';
+import { Heading, PostForm } from '@/components';
+import { Container } from '@mui/material';
 
 export default function CreatePage() {
   return (
     <main>
       <Heading title="Create" description="Create a post here." />
-      <Input name="Title" placeholder="Title" />
-      <Input name="Content" placeholder="Content" multiline rows={7} />
-      <FilePicker accept="image/png, image/gif, image/jpeg">Upload Image</FilePicker>
+      <Container sx={{ marginTop: '40px' }}>
+        <PostForm />
+      </Container>
     </main>
   );
 }
