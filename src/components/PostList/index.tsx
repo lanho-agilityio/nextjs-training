@@ -16,13 +16,13 @@ const PostList = ({ posts }: PostListProps): JSX.Element => {
           if (isRecentPost) {
             return (
               <Grid key={`post-${index}`} item xs={12} sm={6} md={6} lg={6}>
-                <PostCard content={post} isRecentPost={isRecentPost}/>
+                <PostCard content={post} isRecentPost={isRecentPost} />
               </Grid>
             );
           } else {
             return (
               <Grid key={`post-${index}`} item xs={12} sm={6} md={6} lg={4}>
-                <PostCard content={post} isRecentPost={isRecentPost}/>
+                <PostCard content={post} isRecentPost={isRecentPost} />
               </Grid>
             );
           }
