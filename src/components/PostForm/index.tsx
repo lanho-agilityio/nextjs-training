@@ -9,7 +9,6 @@ const PostForm = (): JSX.Element => {
 
   const { name: fileName } = image || {};
 
-
   const handleSelectImage = (event: ChangeEvent<HTMLInputElement>) => {
     setImage(event.target.files && event.target.files[0]);
   };
