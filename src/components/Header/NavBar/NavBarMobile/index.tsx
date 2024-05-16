@@ -16,7 +16,7 @@ const NavBarMobile = (): JSX.Element => {
   };
 
   return (
-    <Box paddingX="32px" paddingY="20px">
+    <Box paddingY="20px">
       <Box
         display={{
           xs: 'flex',

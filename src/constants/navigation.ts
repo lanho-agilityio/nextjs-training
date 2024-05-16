@@ -6,7 +6,7 @@ export const NAVIGATION_LIST: Navigation[] = [
     title: 'Home',
   },
   {
-    to: '/',
+    to: '/about',
     title: 'About',
   },
   {
