@@ -9,8 +9,8 @@ const NavBarDesktop = (): JSX.Element => {
 
   return (
     <Box
-      paddingX="32px"
-      paddingY="20px"
+      paddingX="20px"
+      paddingY="32px"
       display={{
         xs: 'none',
         sm: 'none',

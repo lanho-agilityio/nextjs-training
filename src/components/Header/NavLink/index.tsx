@@ -11,6 +11,7 @@ export interface NavLinkStyledProps {
 const NavLink = ({ title, to, _style }: NavLinkStyledProps): JSX.Element => {
   return (
     <Link
+      id="nav-link"
       href={to}
       style={{
         paddingTop: '8px',

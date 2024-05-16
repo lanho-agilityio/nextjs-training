@@ -4,7 +4,7 @@ a#post-title:hover {
   background: #bbf7d0;
 }
 
-a#post-image:hover {
+#post-image:hover {
   transform: scale(104%);
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 0.15s;

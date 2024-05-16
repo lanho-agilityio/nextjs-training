@@ -5,7 +5,6 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from '../theme';
 import './globals.css';
 import { Footer, NavBar } from '@/components';
-import { Box } from '@mui/material';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,11 +24,9 @@ export default function RootLayout({
         <AppRouterCacheProvider options={{ key: 'css' }}>
           {' '}
           <ThemeProvider theme={theme}>
-            <Box display="flex" flexDirection="column">
-              <NavBar />
-              <div>{children}</div>
-              <Footer />
-            </Box>
+            <NavBar />
+            <div>{children}</div>
+            <Footer />
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
