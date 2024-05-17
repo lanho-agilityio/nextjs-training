@@ -41,7 +41,7 @@ export default function RootLayout({
               }}
             >
               <NavBar />
-              <div>{children}</div>
+              <Box>{children}</Box>
               <Footer />
             </Box>
           </ThemeProvider>

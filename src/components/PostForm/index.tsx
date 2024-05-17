@@ -59,96 +59,94 @@ const PostForm = (): JSX.Element => {
   const handleRemoveImage = () => {
     setImage(null);
   };
-  
+
   const isDisableSubmit = !isValid;
 
   return (
-    <Box sx={{ marginTop: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Box sx={{ marginTop: '40px', width: { xs: '100%', sm: '100%', md: '70%' } }}>
-        <Stack spacing={1}>
-          <Controller
-            name="title"
-            control={control}
-            rules={{
-              validate: validations.title,
-            }}
-            render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
-              <Input
-                sx={{ marginBottom: error?.message ? '0px ' : '24px' }}
-                placeholder="Title"
-                fullWidth
-                value={value}
-                onChange={(event) => {
-                  onChange(event);
-                }}
-                errorMessage={error?.message}
-                {...rest}
-              />
-            )}
-          ></Controller>
-          <Controller
-            name="content"
-            control={control}
-            rules={{
-              validate: validations.content,
-            }}
-            render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
-              <Input
-                sx={{ marginBottom: error?.message ? '0px ' : '24px' }}
-                placeholder="Content"
-                multiline
-                rows={7}
-                fullWidth
-                value={value}
-                onChange={(event) => {
-                  onChange(event);
-                }}
-                errorMessage={error?.message}
-                {...rest}
-              />
-            )}
-          ></Controller>
-          <Controller
-            name="tag"
-            control={control}
-            rules={{
-              validate: validations.tag,
-            }}
-            render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
-              <TagSelect
-                options={MOCK_TAG_LIST}
-                value={value}
-                errorMessage={error?.message}
-                onChange={(event) => {
-                  onChange(event);
-                }}
-                {...rest}
-              />
-            )}
-          ></Controller>
-          <Box sx={{ paddingBottom: image ? '0px ' : '45px' }}>
-            <FilePicker
-              accept="image/png, image/gif, image/jpeg"
-              handleSelectFile={handleSelectImage}
-              hanldeRemoveFile={handleRemoveImage}
-              fileName={imageName}
-            >
-              Upload Image
-            </FilePicker>
-          </Box>
-
-          <Button
-            type="submit"
-            backgroundColor="black"
-            hoverColor={COLORS.HEADING}
-            fullWidth
-            disabled={isDisableSubmit}
-            onClick={() => console.log('Submit')}
+    <Box sx={{ marginTop: '40px', width: { xs: '100%', sm: '100%', md: '70%' } }}>
+      <Stack spacing={1}>
+        <Controller
+          name="title"
+          control={control}
+          rules={{
+            validate: validations.title,
+          }}
+          render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
+            <Input
+              sx={{ marginBottom: error?.message ? '0px ' : '24px' }}
+              placeholder="Title"
+              fullWidth
+              value={value}
+              onChange={(event) => {
+                onChange(event);
+              }}
+              errorMessage={error?.message}
+              {...rest}
+            />
+          )}
+        ></Controller>
+        <Controller
+          name="content"
+          control={control}
+          rules={{
+            validate: validations.content,
+          }}
+          render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
+            <Input
+              sx={{ marginBottom: error?.message ? '0px ' : '24px' }}
+              placeholder="Content"
+              multiline
+              rows={7}
+              fullWidth
+              value={value}
+              onChange={(event) => {
+                onChange(event);
+              }}
+              errorMessage={error?.message}
+              {...rest}
+            />
+          )}
+        ></Controller>
+        <Controller
+          name="tag"
+          control={control}
+          rules={{
+            validate: validations.tag,
+          }}
+          render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
+            <TagSelect
+              options={MOCK_TAG_LIST}
+              value={value}
+              errorMessage={error?.message}
+              onChange={(event) => {
+                onChange(event);
+              }}
+              {...rest}
+            />
+          )}
+        ></Controller>
+        <Box sx={{ paddingBottom: image ? '0px ' : '45px' }}>
+          <FilePicker
+            accept="image/png, image/gif, image/jpeg"
+            handleSelectFile={handleSelectImage}
+            hanldeRemoveFile={handleRemoveImage}
+            fileName={imageName}
           >
-            Submit Post
-          </Button>
-        </Stack>
-      </Box>
+            Upload Image
+          </FilePicker>
+        </Box>
+
+        <Button
+          type="submit"
+          backgroundColor="black"
+          hoverColor={COLORS.HEADING}
+          fullWidth
+          disabled={isDisableSubmit}
+          onClick={() => console.log('Submit')}
+        >
+          Submit Post
+        </Button>
+      </Stack>
     </Box>
   );
 };

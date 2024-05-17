@@ -1,4 +1,4 @@
-import { Container, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 export interface HeadingProps {
   title: string;
@@ -7,7 +7,7 @@ export interface HeadingProps {
 
 const Heading = ({ title, description }: HeadingProps): JSX.Element => {
   return (
-    <Container>
+    <Box sx={{ padding: 0 }}>
       <Typography
         variant="h1"
         sx={{
@@ -27,6 +27,7 @@ const Heading = ({ title, description }: HeadingProps): JSX.Element => {
           },
           fontWeight: 600,
           textAlign: 'center',
+          letterSpacing: '-4px',
         }}
       >
         {title}
@@ -36,7 +37,7 @@ const Heading = ({ title, description }: HeadingProps): JSX.Element => {
           {description}
         </Typography>
       )}
-    </Container>
+    </Box>
   );
 };
 

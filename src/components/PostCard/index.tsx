@@ -1,5 +1,7 @@
 import { Post } from '@/models';
 import { Box } from '@mui/material';
+
+// Components
 import PostCardContent from './PostCardContent';
 import PostCardImage from './PostCardImage';
 
@@ -14,7 +16,7 @@ const PostCard = ({ content, isRecentPost }: PostCardProps): JSX.Element => {
     <Box
       sx={{ width: 'full', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
     >
-      <PostCardImage src={pictureSrc} alt={title} to={id} isRecentPost={isRecentPost} />
+      <PostCardImage src={pictureSrc} alt={title} to={`posts/${id}`} isRecentPost={isRecentPost} />
       <PostCardContent id={id} title={title} tag={tag} author={author} updatedAt={updatedAt} />
     </Box>
   );

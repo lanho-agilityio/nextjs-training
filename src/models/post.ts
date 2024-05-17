@@ -16,5 +16,6 @@ export type Post = {
   author: Author;
   pictureName?: string;
   pictureSrc: string;
+  content: string;
   updatedAt: Date | string;
 };

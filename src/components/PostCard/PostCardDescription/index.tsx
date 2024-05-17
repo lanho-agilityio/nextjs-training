@@ -7,9 +7,10 @@ import { COLORS } from '@/constants';
 export interface PostCardDescriptionProps {
   author: Author;
   updatedAt: Date | string;
+  isDetailed?: boolean;
 }
 
-const PostCardDescription = ({ author, updatedAt }: PostCardDescriptionProps): JSX.Element => {
+const PostCardDescription = ({ author, updatedAt, isDetailed = false }: PostCardDescriptionProps): JSX.Element => {
   const { name } = author;
 
   return (
@@ -25,10 +26,24 @@ const PostCardDescription = ({ author, updatedAt }: PostCardDescriptionProps): J
         color: COLORS.DESCRIPTION,
       }}
     >
-      <Avatar alt="name" src={''} sx={{ height: 20, width: 20 }} />
-      <Typography variant="caption">{name}</Typography>
-      <CircleIcon sx={{ height: 5, width: 5, color: COLORS.DESCRIPTION_ICON }} />
-      <Typography variant="caption">{updatedAt.toString()}</Typography>
+      <Avatar alt="name" src={''} sx={{ height: isDetailed ? 40 : 20, width: isDetailed ? 40 : 20 }} />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: isDetailed ? 'column' : 'row',
+
+          gap: isDetailed ? '0px' : '12px',
+        }}
+      >
+        <Typography
+          variant="caption"
+          sx={{ color: isDetailed ? 'black' : 'unset', fontSize: isDetailed ? '16px' : 'unset' }}
+        >
+          {name}
+        </Typography>
+        {!isDetailed && <CircleIcon sx={{ height: 5, width: 5, color: COLORS.DESCRIPTION_ICON }} />}
+        <Typography variant="caption">{updatedAt.toString()}</Typography>
+      </Box>
     </Box>
   );
 };

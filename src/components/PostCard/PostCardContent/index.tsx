@@ -20,7 +20,7 @@ const PostCardContent = ({ id, title, tag, author, updatedAt }: PostCardContentP
         <Link
           id="post-title"
           title={title}
-          href={`/${id}`}
+          href={`/posts/${id}`}
           style={{
             marginTop: '8px',
             fontSize: '18px',

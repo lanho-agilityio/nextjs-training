@@ -1,91 +1,16 @@
-import { PostList } from '../components';
-import { Post } from '@/models';
-import { Box } from '@mui/material';
-import { COLORS, ROUTES } from '@/constants';
 import Link from 'next/link';
+import { Box } from '@mui/material';
 
-const posts: Post[] = [
-  {
-    id: 'post1',
-    title: 'Architectural Engineering Wonders of the modern era for your Inspiration',
-    tag: {
-      id: '1',
-      title: 'TECHNOLOGY',
-      color: 'blue',
-    },
-    author: {
-      id: '1',
-      name: 'Mario Sanchez 1',
-    },
-    pictureSrc: '/post.png',
-    updatedAt: 'October 21, 2022',
-  },
-  {
-    id: 'post2',
-    title: 'Architectural Engineering Wonders of the modern era for your Inspiration',
-    tag: {
-      id: '1',
-      title: 'TECHNOLOGY',
-      color: 'blue',
-    },
-    author: {
-      id: '1',
-      name: 'Mario Sanchez 2',
-    },
-    pictureSrc: '/post.png',
-    updatedAt: 'October 21, 2022',
-  },
-  {
-    id: 'post3',
-    title: 'Architectural Engineering Wonders of the modern era for your Inspiration',
-    tag: {
-      id: '1',
-      title: 'TECHNOLOGY',
-      color: 'blue',
-    },
-    author: {
-      id: '1',
-      name: 'Mario Sanchez 3',
-    },
-    pictureSrc: '/post.png',
-    updatedAt: 'October 21, 2022',
-  },
-  {
-    id: 'post4',
-    title: 'Architectural Engineering Wonders of the modern era for your Inspiration',
-    tag: {
-      id: '1',
-      title: 'TECHNOLOGY',
-      color: 'blue',
-    },
-    author: {
-      id: '1',
-      name: 'Mario Sanchez 4',
-    },
-    pictureSrc: '/post.png',
-    updatedAt: 'October 21, 2022',
-  },
-  {
-    id: 'post5',
-    title: 'Architectural Engineering Wonders of the modern era for your Inspiration',
-    tag: {
-      id: '1',
-      title: 'TECHNOLOGY',
-      color: 'blue',
-    },
-    author: {
-      id: '1',
-      name: 'Mario Sanchez 5',
-    },
-    pictureSrc: '/post.png',
-    updatedAt: 'October 21, 2022',
-  },
-];
+// Constants
+import { COLORS, MOCK_POSTS_LIST, ROUTES } from '@/constants';
+
+// Components
+import { PostList } from '@/components';
 
 export default function Home() {
   return (
     <main>
-      <PostList posts={posts} />
+      <PostList posts={MOCK_POSTS_LIST} />
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
         <Link
           id="view-all-posts"
