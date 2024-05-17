@@ -4,10 +4,10 @@ import { Controller, useForm } from 'react-hook-form';
 import { Box, Stack } from '@mui/material';
 
 // Constants
-import { MOCK_TAG_LIST } from '@/constants/mock';
+import { MOCK_TAG_LIST, COLORS } from '@/constants';
 
 // Components
-import { Input } from '../Common';
+import { Button, Input } from '../Common';
 import FilePicker from '../FilePicker';
 import TagSelect from '../TagSelect';
 
@@ -35,19 +35,22 @@ interface PostFormValues {
 const PostForm = (): JSX.Element => {
   const [image, setImage] = useState<File | null>(null);
 
+  const { name: imageName } = image || {};
+
   const postFormInitValues = {
     title: '',
     content: '',
     tag: '',
   };
 
-  const { control } = useForm<PostFormValues>({
+  const {
+    control,
+    formState: { isValid },
+  } = useForm<PostFormValues>({
     mode: 'onBlur',
     reValidateMode: 'onBlur',
     values: postFormInitValues,
   });
-
-  const { name: fileName } = image || {};
 
   const handleSelectImage = (event: ChangeEvent<HTMLInputElement>) => {
     setImage(event.target.files && event.target.files[0]);
@@ -56,6 +59,8 @@ const PostForm = (): JSX.Element => {
   const handleRemoveImage = () => {
     setImage(null);
   };
+  
+  const isDisableSubmit = !isValid;
 
   return (
     <Box sx={{ marginTop: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -121,14 +126,27 @@ const PostForm = (): JSX.Element => {
               />
             )}
           ></Controller>
-          <FilePicker
-            accept="image/png, image/gif, image/jpeg"
-            handleSelectFile={handleSelectImage}
-            hanldeRemoveFile={handleRemoveImage}
-            fileName={fileName}
+          <Box sx={{ paddingBottom: image ? '0px ' : '45px' }}>
+            <FilePicker
+              accept="image/png, image/gif, image/jpeg"
+              handleSelectFile={handleSelectImage}
+              hanldeRemoveFile={handleRemoveImage}
+              fileName={imageName}
+            >
+              Upload Image
+            </FilePicker>
+          </Box>
+
+          <Button
+            type="submit"
+            backgroundColor="black"
+            hoverColor={COLORS.HEADING}
+            fullWidth
+            disabled={isDisableSubmit}
+            onClick={() => console.log('Submit')}
           >
-            Upload Image
-          </FilePicker>
+            Submit Post
+          </Button>
         </Stack>
       </Box>
     </Box>

@@ -63,7 +63,11 @@ const TagSelect = (
             return option.title;
           }
         }}
-        renderOption={(props, option) => <Typography {...props} key={option.title} >{option.title}</Typography>}
+        renderOption={(props, option) => (
+          <Typography {...props} key={option.title}>
+            {option.title}
+          </Typography>
+        )}
         freeSolo
         renderInput={(params) => (
           <Input
