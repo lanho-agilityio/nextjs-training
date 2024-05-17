@@ -4,7 +4,7 @@ import Link from '../Link';
 // Models
 import { PostTag } from '@/models';
 
-export interface PostTagProps {
+interface PostTagProps {
   tag: PostTag;
 }
 
@@ -23,7 +23,7 @@ const Tag = ({ tag }: PostTagProps): JSX.Element => {
         fontWeight: 500,
         textTransform: 'uppercase',
         color: `${color}`,
-        textDecoration: 'none'
+        textDecoration: 'none',
       }}
     >
       {title}

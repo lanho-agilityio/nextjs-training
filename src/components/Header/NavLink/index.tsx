@@ -6,7 +6,7 @@ import { COLORS } from '@/constants';
 // Components
 import { Link } from '../../Common';
 
-export interface NavLinkStyledProps {
+interface NavLinkStyledProps {
   title: string;
   to: string;
   _style?: CSSProperties | undefined;

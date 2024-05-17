@@ -6,7 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '../Common';
 import { COLORS } from '@/constants';
 
-export interface ImagePickerProps extends InputHTMLAttributes<HTMLInputElement> {
+interface ImagePickerProps extends InputHTMLAttributes<HTMLInputElement> {
   children: React.ReactNode;
   fileName?: string;
   handleSelectFile?: (event: ChangeEvent<HTMLInputElement>) => void;

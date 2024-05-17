@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 import { MOCK_POST, ROUTES } from '@/constants';
 
 // Components
-import { Heading, Link, Paragraph, PostCardDescription, Tag } from '@/components';
+import { AuthorCard, Heading, Link, Paragraph, PostCardDescription, Tag } from '@/components';
 
 export default function DetailPostPage({ params }: { params: { id: string } }) {
   const post = MOCK_POST;
@@ -53,9 +53,8 @@ export default function DetailPostPage({ params }: { params: { id: string } }) {
           />
         </Box>
         <Paragraph content={content} />
-        <Link href={ROUTES.HOME}>
-          ← View all post
-        </Link>
+        <Link href={ROUTES.HOME}>← View all post</Link>
+        <AuthorCard author={author} />
       </Box>
     </main>
   );

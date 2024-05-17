@@ -3,7 +3,7 @@ import { Box, Grid } from '@mui/material';
 import PostCard from '../PostCard';
 import { LASTEST_POST_INDEX } from '@/constants';
 
-export interface PostListProps {
+interface PostListProps {
   posts: Post[];
 }
 

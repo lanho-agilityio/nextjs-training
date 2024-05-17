@@ -7,7 +7,7 @@ import { ROUTES } from '@/constants';
 // Components
 import { Link } from '../../Common';
 
-export interface PostCardImageProps {
+interface PostCardImageProps {
   src: string;
   alt: string;
   to: string;

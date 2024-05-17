@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 
-export interface HeadingProps {
+interface HeadingProps {
   title: string;
   description?: string;
 }

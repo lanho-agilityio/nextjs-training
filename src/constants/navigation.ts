@@ -3,12 +3,13 @@ import { Navigation } from '@/models';
 export const ROUTES = {
   HOME: '/',
   POSTS: '/posts',
-  POST_DETAIL: (id: string) => `/posts/${id}` 
+  CREATE: '/posts/create',
+  POST_DETAIL: (id: string) => `/posts/${id}`,
 };
 
 export const NAVIGATION_LIST: Navigation[] = [
   {
-    to: '/',
+    to: ROUTES.HOME,
     title: 'Home',
   },
   {
@@ -16,7 +17,7 @@ export const NAVIGATION_LIST: Navigation[] = [
     title: 'About',
   },
   {
-    to: '/posts/create',
+    to: ROUTES.CREATE,
     title: 'Create',
   },
   {

@@ -12,7 +12,7 @@ const Paragraph = ({ content }: ParagraphProps): JSX.Element => {
           maxWidth: '762px',
         }}
       >
-        <Typography sx={{ marginX: {md: '59px'}, marginY: {md: '12px'} }} variant="body1">
+        <Typography sx={{ marginX: { md: '59px' }, marginY: { md: '12px' } }} variant="body1">
           {content}
         </Typography>
       </Box>

@@ -22,7 +22,7 @@ export default function Home() {
             paddingBottom: '8px',
             paddingLeft: '16px',
             paddingRight: '12px',
-            textDecoration: 'none'
+            textDecoration: 'none',
           }}
         >
           View All Posts

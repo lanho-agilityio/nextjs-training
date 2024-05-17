@@ -1,7 +1,7 @@
 'use client';
 import { Button, ButtonProps } from '@mui/material';
 
-export interface CustomButtonProps extends ButtonProps {
+interface CustomButtonProps extends ButtonProps {
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   width?: number | string;

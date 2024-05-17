@@ -9,7 +9,7 @@ import Input from '../Common/Input';
 // Models
 import { PostTag } from '@/models';
 
-export interface TagSelectProps {
+interface TagSelectProps {
   options: PostTag[];
   value?: string;
   errorMessage?: string;

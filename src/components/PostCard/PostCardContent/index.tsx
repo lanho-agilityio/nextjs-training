@@ -10,7 +10,7 @@ import PostCardDescription from '../PostCardDescription';
 // Models
 import { Author, PostTag } from '@/models';
 
-export interface PostCardContentProps {
+interface PostCardContentProps {
   id: string;
   title: string;
   tag: PostTag;

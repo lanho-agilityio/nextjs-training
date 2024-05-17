@@ -4,7 +4,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 import { Author } from '@/models';
 import { COLORS } from '@/constants';
 
-export interface PostCardDescriptionProps {
+interface PostCardDescriptionProps {
   author: Author;
   updatedAt: Date | string;
   isDetailed?: boolean;

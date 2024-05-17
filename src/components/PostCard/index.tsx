@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 import PostCardContent from './PostCardContent';
 import PostCardImage from './PostCardImage';
 
-export interface PostCardProps {
+interface PostCardProps {
   content: Post;
   isRecentPost?: boolean;
 }
