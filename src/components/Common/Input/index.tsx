@@ -5,12 +5,11 @@ export type CustomInputProps = {
   name: string;
   placeholder?: string;
   errorMessage?: string;
-  labelName?: string;
   type?: string;
 } & TextFieldProps;
 
 const Input = (
-  { type = 'string', name, errorMessage, placeholder, ...props }: CustomInputProps,
+  { name, type = 'string', errorMessage, placeholder, ...props }: CustomInputProps,
   ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>,
 ): JSX.Element => {
   return (

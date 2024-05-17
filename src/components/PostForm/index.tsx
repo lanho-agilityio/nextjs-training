@@ -1,8 +1,14 @@
 'use client';
 import { ChangeEvent, useState } from 'react';
 import { Box, Stack } from '@mui/material';
+
+// Constants
+import { MOCK_TAG_LIST } from '@/constants/mock';
+
+// Components
 import { Input } from '../Common';
 import FilePicker from '../FilePicker';
+import TagSelect from '../TagSelect';
 
 const PostForm = (): JSX.Element => {
   const [image, setImage] = useState<File | null>(null);
@@ -23,6 +29,7 @@ const PostForm = (): JSX.Element => {
         <Stack spacing={2}>
           <Input name="Title" placeholder="Title" fullWidth />
           <Input name="Content" placeholder="Content" multiline rows={7} fullWidth />
+          <TagSelect options={MOCK_TAG_LIST}/>
           <FilePicker
             accept="image/png, image/gif, image/jpeg"
             handleSelectFile={handleSelectImage}
