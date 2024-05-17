@@ -111,11 +111,10 @@ const PostForm = (): JSX.Element => {
             }}
             render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
               <TagSelect
-                options={MOCK_TAG_LIST.map((element) => element.title)}
+                options={MOCK_TAG_LIST}
                 value={value}
                 errorMessage={error?.message}
                 onChange={(event) => {
-                  console.log(event);
                   onChange(event);
                 }}
                 {...rest}

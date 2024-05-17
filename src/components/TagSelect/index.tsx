@@ -1,4 +1,5 @@
 'use client';
+import { ForwardedRef, forwardRef } from 'react';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import { Box, Typography } from '@mui/material';
 
@@ -9,31 +10,43 @@ import Input from '../Common/Input';
 import { PostTag } from '@/models';
 
 export interface TagSelectProps {
-  options: string[];
+  options: PostTag[];
   value?: string;
   errorMessage?: string;
-  onChange?: (value: string | PostTag | null) => void;
+  onChange: (value: string | PostTag | null) => void;
   onBlur?: () => void;
 }
 
-const filter = createFilterOptions<string>();
+const filter = createFilterOptions<PostTag>();
 
-const TagSelect = ({ value, options, errorMessage, onChange, onBlur }: TagSelectProps): JSX.Element => {
+const TagSelect = (
+  { value, options, errorMessage, onChange, onBlur }: TagSelectProps,
+  ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>,
+): JSX.Element => {
   return (
     <Box display="flex" flexDirection="column">
       <Autocomplete
+        ref={ref}
         value={value}
         onChange={(event, newValue) => {
-          onChange && onChange(newValue);
+          if (typeof newValue === 'string' || newValue === null) {
+            onChange(newValue);
+          } else {
+            onChange(newValue?.title);
+          }
         }}
         filterOptions={(options, params) => {
           const filtered = filter(options, params);
 
           const { inputValue } = params;
           // Suggest the creation of a new value
-          const isExisting = options.some((option) => inputValue === option);
+          const isExisting = options.some((option) => inputValue === option.title);
           if (inputValue !== '' && !isExisting) {
-            filtered.push(inputValue);
+            filtered.push({
+              id: inputValue,
+              title: inputValue,
+              color: 'black',
+            });
           }
 
           return filtered;
@@ -46,11 +59,11 @@ const TagSelect = ({ value, options, errorMessage, onChange, onBlur }: TagSelect
           // Value selected with enter, right from the input
           if (typeof option === 'string') {
             return option;
+          } else {
+            return option.title;
           }
-
-          return option;
         }}
-        renderOption={(props, option) => <Typography {...props}>{option}</Typography>}
+        renderOption={(props, option) => <Typography {...props} key={option.title} >{option.title}</Typography>}
         freeSolo
         renderInput={(params) => (
           <Input
@@ -67,4 +80,4 @@ const TagSelect = ({ value, options, errorMessage, onChange, onBlur }: TagSelect
   );
 };
 
-export default TagSelect;
+export default forwardRef(TagSelect);
