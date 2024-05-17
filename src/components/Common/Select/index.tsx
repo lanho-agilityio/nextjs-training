@@ -1,3 +1,4 @@
+'use client';
 const Select = (): JSX.Element => {
   return <></>;
 };

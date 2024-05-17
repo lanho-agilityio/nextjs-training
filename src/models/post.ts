@@ -1,11 +1,12 @@
 export type PostTag = {
+  id: string;
   title: string;
   color: string;
 };
 
 export type Author = {
+  id: string;
   name: string;
-  profilePicture: string;
 };
 
 export type Post = {

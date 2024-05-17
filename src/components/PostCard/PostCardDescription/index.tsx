@@ -10,7 +10,7 @@ export interface PostCardDescriptionProps {
 }
 
 const PostCardDescription = ({ author, updatedAt }: PostCardDescriptionProps): JSX.Element => {
-  const { name, profilePicture } = author;
+  const { name } = author;
 
   return (
     <Box
@@ -25,7 +25,7 @@ const PostCardDescription = ({ author, updatedAt }: PostCardDescriptionProps): J
         color: COLORS.DESCRIPTION,
       }}
     >
-      <Avatar alt="name" src={profilePicture} sx={{ height: 20, width: 20 }} />
+      <Avatar alt="name" src={''} sx={{ height: 20, width: 20 }} />
       <Typography variant="caption">{name}</Typography>
       <CircleIcon sx={{ height: 5, width: 5, color: COLORS.DESCRIPTION_ICON }} />
       <Typography variant="caption">{updatedAt.toString()}</Typography>

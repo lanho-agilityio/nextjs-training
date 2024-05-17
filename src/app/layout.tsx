@@ -26,18 +26,21 @@ export default function RootLayout({
           {' '}
           <ThemeProvider theme={theme}>
             <Box
-              paddingBottom={{
-                xs: '20px',
-                sm: '20px',
-                lg: '32px',
+              sx={{
+                paddingBottom:{
+                  xs: '20px',
+                  sm: '20px',
+                  lg: '32px',
+                },
+                paddingX:{
+                  xs: '32px',
+                  lg: '20px',
+                },
+               
+                maxWidth:"1024px",
+                flex: '1'
               }}
-              paddingX={{
-                xs: '32px',
-                lg: '20px',
-              }}
-              marginLeft="auto"
-              marginRight="auto"
-              maxWidth="1024px"
+              
             >
               <NavBar />
               <div>{children}</div>
