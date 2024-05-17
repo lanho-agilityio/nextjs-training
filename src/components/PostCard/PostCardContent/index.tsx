@@ -1,8 +1,14 @@
-import Link from 'next/link';
-import { Author, PostTag } from '@/models';
 import { Box } from '@mui/material';
-import { Tag } from '../..';
+
+// Constants
+import { ROUTES } from '@/constants';
+
+// Components
+import { Link, Tag } from '../..';
 import PostCardDescription from '../PostCardDescription';
+
+// Models
+import { Author, PostTag } from '@/models';
 
 export interface PostCardContentProps {
   id: string;
@@ -20,7 +26,7 @@ const PostCardContent = ({ id, title, tag, author, updatedAt }: PostCardContentP
         <Link
           id="post-title"
           title={title}
-          href={`/posts/${id}`}
+          href={ROUTES.POST_DETAIL(id)}
           style={{
             marginTop: '8px',
             fontSize: '18px',

@@ -1,11 +1,11 @@
+import Image from 'next/image';
 import { Box } from '@mui/material';
 
 // Constants
-import { MOCK_POST } from '@/constants';
+import { MOCK_POST, ROUTES } from '@/constants';
 
 // Components
-import { Heading, Paragraph, PostCardDescription, Tag } from '@/components';
-import Image from 'next/image';
+import { Heading, Link, Paragraph, PostCardDescription, Tag } from '@/components';
 
 export default function DetailPostPage({ params }: { params: { id: string } }) {
   const post = MOCK_POST;
@@ -53,6 +53,9 @@ export default function DetailPostPage({ params }: { params: { id: string } }) {
           />
         </Box>
         <Paragraph content={content} />
+        <Link href={ROUTES.HOME}>
+          ← View all post
+        </Link>
       </Box>
     </main>
   );

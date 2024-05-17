@@ -1,6 +1,10 @@
 import { CSSProperties } from 'react';
-import Link from 'next/link';
+
+// Constants
 import { COLORS } from '@/constants';
+
+// Components
+import { Link } from '../../Common';
 
 export interface NavLinkStyledProps {
   title: string;
@@ -22,8 +26,8 @@ const NavLink = ({ title, to, _style }: NavLinkStyledProps): JSX.Element => {
         fontSize: '14px',
         lineHeight: '20px',
         fontWeight: 500,
-        textDecoration: 'none',
         color: COLORS.LINK,
+        textDecoration: 'none',
         ..._style,
       }}
     >

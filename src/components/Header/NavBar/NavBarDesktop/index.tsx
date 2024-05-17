@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { Box } from '@mui/material';
-import { NAVIGATION_LIST } from '@/constants';
+import { NAVIGATION_LIST, ROUTES } from '@/constants';
 import NavLink from '../../NavLink';
-import Link from 'next/link';
+import { Link } from '../../../Common';
 
 const NavBarDesktop = (): JSX.Element => {
   const HALF = Math.ceil(NAVIGATION_LIST.length / 2);
@@ -28,7 +28,7 @@ const NavBarDesktop = (): JSX.Element => {
           return <NavLink key={i} to={e.to} title={e.title} />;
         })}
       </Box>
-      <Link href="/" style={{ width: '112px' }}>
+      <Link href={ROUTES.HOME} style={{ width: '112px' }}>
         <Image
           src={'/logo.svg'}
           alt="Logo"

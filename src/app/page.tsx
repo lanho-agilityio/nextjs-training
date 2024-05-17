@@ -1,11 +1,10 @@
-import Link from 'next/link';
 import { Box } from '@mui/material';
 
 // Constants
 import { COLORS, MOCK_POSTS_LIST, ROUTES } from '@/constants';
 
 // Components
-import { PostList } from '@/components';
+import { PostList, Link } from '@/components';
 
 export default function Home() {
   return (
@@ -23,7 +22,7 @@ export default function Home() {
             paddingBottom: '8px',
             paddingLeft: '16px',
             paddingRight: '12px',
-            textDecoration: 'none',
+            textDecoration: 'none'
           }}
         >
           View All Posts

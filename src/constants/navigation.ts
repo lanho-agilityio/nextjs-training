@@ -1,6 +1,7 @@
 import { Navigation } from '@/models';
 
 export const ROUTES = {
+  HOME: '/'
   POSTS: '/posts',
 };
 

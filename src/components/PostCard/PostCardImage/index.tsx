@@ -1,6 +1,11 @@
-import { Box } from '@mui/material';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Box } from '@mui/material';
+
+// Constants
+import { ROUTES } from '@/constants';
+
+// Components
+import { Link } from '../../Common';
 
 export interface PostCardImageProps {
   src: string;
@@ -25,7 +30,7 @@ const PostCardImage = ({ alt, src, to, isRecentPost = false }: PostCardImageProp
       }}
       id="post-image"
     >
-      <Link href={`/${to}`}>
+      <Link href={ROUTES.POST_DETAIL(to)}>
         <Image alt={alt} src={src} fill style={{ borderRadius: '6px' }} sizes="(max-width: 768px) 30vw, 33vw" />
       </Link>
     </Box>

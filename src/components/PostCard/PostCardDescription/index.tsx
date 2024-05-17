@@ -31,7 +31,8 @@ const PostCardDescription = ({ author, updatedAt, isDetailed = false }: PostCard
         sx={{
           display: 'flex',
           flexDirection: isDetailed ? 'column' : 'row',
-
+          alignContent: 'center',
+          alignItems: 'center',
           gap: isDetailed ? '0px' : '12px',
         }}
       >

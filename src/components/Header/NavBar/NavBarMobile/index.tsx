@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, IconButton } from '@mui/material';
 
-import { COLORS, NAVIGATION_LIST } from '@/constants';
+import { COLORS, NAVIGATION_LIST, ROUTES } from '@/constants';
 import { NavLink } from '@/components';
 
 const NavBarMobile = (): JSX.Element => {
@@ -37,7 +37,7 @@ const NavBarMobile = (): JSX.Element => {
           width: '100%',
         }}
       >
-        <a href="/" style={{ width: '112px' }}>
+        <a href={ROUTES.HOME} style={{ width: '112px' }}>
           <Image
             src={'/logo.svg'}
             alt="Logo"
