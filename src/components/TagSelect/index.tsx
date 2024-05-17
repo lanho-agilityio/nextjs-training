@@ -2,9 +2,6 @@
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import { Box, Typography } from '@mui/material';
 
-// Constants
-import { MOCK_TAG_LIST } from '@/constants';
-
 // Components
 import Input from '../Common/Input';
 
@@ -12,49 +9,31 @@ import Input from '../Common/Input';
 import { PostTag } from '@/models';
 
 export interface TagSelectProps {
-  options: PostTag[];
-  value?: PostTag;
+  options: string[];
+  value?: string;
   errorMessage?: string;
   onChange?: (value: string | PostTag | null) => void;
+  onBlur?: () => void;
 }
 
-const filter = createFilterOptions<PostTag>();
+const filter = createFilterOptions<string>();
 
-const TagSelect = ({ value, options, errorMessage, onChange }: TagSelectProps): JSX.Element => {
+const TagSelect = ({ value, options, errorMessage, onChange, onBlur }: TagSelectProps): JSX.Element => {
   return (
     <Box display="flex" flexDirection="column">
       <Autocomplete
         value={value}
         onChange={(event, newValue) => {
-          if (onChange) {
-            if (typeof newValue !== 'string' && newValue !== null) {
-              const isExisting = MOCK_TAG_LIST.some((option) => newValue?.title === option.title);
-              if (isExisting) {
-                onChange(newValue);
-              } else {
-                onChange({
-                  id: '4',
-                  title: newValue.title,
-                  color: 'black',
-                });
-              }
-            } else {
-              onChange(null);
-            }
-          }
+          onChange && onChange(newValue);
         }}
         filterOptions={(options, params) => {
           const filtered = filter(options, params);
 
           const { inputValue } = params;
           // Suggest the creation of a new value
-          const isExisting = options.some((option) => inputValue === option.title);
+          const isExisting = options.some((option) => inputValue === option);
           if (inputValue !== '' && !isExisting) {
-            filtered.push({
-              id: '4',
-              title: inputValue,
-              color: 'black',
-            });
+            filtered.push(inputValue);
           }
 
           return filtered;
@@ -68,26 +47,22 @@ const TagSelect = ({ value, options, errorMessage, onChange }: TagSelectProps): 
           if (typeof option === 'string') {
             return option;
           }
-          // Add "xxx" option created dynamically
-          if (option.title) {
-            return option.title;
-          }
-          // Regular option
-          return option.title;
+
+          return option;
         }}
-        renderOption={(props, option) => (
-          <Typography {...props} sx={{ color: option.color }}>
-            {option.title}
-          </Typography>
-        )}
+        renderOption={(props, option) => <Typography {...props}>{option}</Typography>}
         freeSolo
-        renderInput={(params) => <Input name="Tag" placeholder="Select Tag" {...params} />}
+        renderInput={(params) => (
+          <Input
+            name="tag"
+            placeholder="Select Tag"
+            {...params}
+            errorMessage={errorMessage}
+            sx={{ marginBottom: errorMessage ? '0px ' : '24px' }}
+          />
+        )}
+        onBlur={onBlur}
       />
-      {errorMessage && (
-        <Typography variant="caption" sx={{ marginTop: '4px', color: '#DC2626' }}>
-          {errorMessage}
-        </Typography>
-      )}
     </Box>
   );
 };
