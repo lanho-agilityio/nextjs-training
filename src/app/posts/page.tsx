@@ -10,7 +10,8 @@ export default function ArchivePage() {
   return (
     <main>
       <Heading title="Archive" description="See all posts we have ever written." />
-      <PostList posts={MOCK_POSTS_LIST} isArchived={true}/>
+      <Box sx={{paddingTop: '40px'}}>
+      <PostList posts={MOCK_POSTS_LIST} isArchived={true} />
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
         <Link
           id="view-all-posts"
@@ -29,6 +30,8 @@ export default function ArchivePage() {
           View All Posts
         </Link>
       </Box>
+      </Box>
+      
     </main>
   );
 }

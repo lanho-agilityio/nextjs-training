@@ -1,7 +1,14 @@
-import { Post } from '@/models';
 import { Box, Grid } from '@mui/material';
-import PostCard from '../PostCard';
+
+// Constants
 import { LASTEST_POST_INDEX } from '@/constants';
+
+// Components
+import PostCard from '../PostCard';
+
+// Models
+import { Post } from '@/models';
+
 
 interface PostListProps {
   posts: Post[];

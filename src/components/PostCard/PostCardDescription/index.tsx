@@ -32,7 +32,7 @@ const PostCardDescription = ({ author, updatedAt, isDetailed = false }: PostCard
           display: 'flex',
           flexDirection: isDetailed ? 'column' : 'row',
           alignContent: 'center',
-          alignItems: 'center',
+          alignItems: isDetailed ? 'unset' : 'center',
           gap: isDetailed ? '0px' : '12px',
         }}
       >

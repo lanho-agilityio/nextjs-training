@@ -12,6 +12,7 @@ export default function CreatePage() {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
+          paddingTop: '40px'
         }}
       >
         <PostForm />
