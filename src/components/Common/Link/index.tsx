@@ -1,15 +1,19 @@
 import { AnchorHTMLAttributes, ReactNode } from 'react';
 import Link from 'next/link';
+import { Box, SxProps, Theme } from '@mui/material';
 
 interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   children: ReactNode;
+  _style?: SxProps<Theme> | undefined;
 }
 
-const CustomLink = ({ href, children, ...rest }: LinkProps): JSX.Element => {
+const CustomLink = ({ href, children, _style, ...rest }: LinkProps): JSX.Element => {
   return (
-    <Link href={href} style={{ textDecoration: 'none', color: '#2563eb', fontSize: '14px' }} {...rest}>
-      {children}
+    <Link href={href} style={{ textDecoration: 'none' }} {...rest}>
+      <Box sx={{ ..._style }} component="span">
+        {children}
+      </Box>
     </Link>
   );
 };

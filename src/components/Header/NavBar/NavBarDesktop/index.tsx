@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 import { NAVIGATION_LIST, ROUTES } from '@/constants';
 
 // Components
-import { Link,  NavLink } from '@/components';
+import { Link, NavLink } from '@/components';
 
 const NavBarDesktop = (): JSX.Element => {
   const HALF = Math.ceil(NAVIGATION_LIST.length / 2);

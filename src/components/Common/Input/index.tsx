@@ -1,6 +1,9 @@
 import { Box, TextField, TextFieldProps, Typography } from '@mui/material';
 import { ForwardedRef, forwardRef } from 'react';
 
+// Constants
+import { COLORS } from '@/constants';
+
 export type CustomInputProps = {
   name: string;
   placeholder?: string;
@@ -23,7 +26,7 @@ const Input = (
         sx={{
           '& .MuiOutlinedInput-root': {
             '&.Mui-focused fieldset': {
-              borderColor: 'black',
+              borderColor:  COLORS.HEADING,
             },
             '&.Mui-error fieldset': {
               border: '2px solid #DC2626 ',
@@ -31,7 +34,7 @@ const Input = (
             },
           },
           '&::placeholder': {
-            color: 'black',
+            color:  COLORS.HEADING,
             opacity: 1,
           },
           borderRadius: '6px',
@@ -39,7 +42,7 @@ const Input = (
         inputProps={{
           sx: {
             '&::placeholder': {
-              color: 'black',
+              color:  COLORS.HEADING,
               opacity: 1,
             },
           },

@@ -1,5 +1,8 @@
 import { Box, Typography } from '@mui/material';
 
+// Constants
+import { COLORS } from '@/constants';
+
 interface HeadingProps {
   title: string;
   description?: string;
@@ -27,7 +30,7 @@ const Heading = ({ title, description }: HeadingProps): JSX.Element => {
           },
           fontWeight: 600,
           textAlign: 'center',
-          color: '#262626'
+          color: COLORS.HEADING,
         }}
       >
         {title}

@@ -14,7 +14,7 @@ export default function Home() {
         <Link
           id="view-all-posts"
           href={ROUTES.POSTS}
-          style={{
+          _style={{
             color: COLORS.DESCRIPTION,
             border: `1px solid ${COLORS.DESCRIPTION}`,
             borderRadius: '6px',

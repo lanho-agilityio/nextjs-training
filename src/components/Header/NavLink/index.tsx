@@ -17,7 +17,7 @@ const NavLink = ({ title, to, _style }: NavLinkStyledProps): JSX.Element => {
     <Link
       id="nav-link"
       href={to}
-      style={{
+      _style={{
         paddingTop: '8px',
         paddingBottom: '8px',
         paddingLeft: '20px',
@@ -26,8 +26,10 @@ const NavLink = ({ title, to, _style }: NavLinkStyledProps): JSX.Element => {
         fontSize: '14px',
         lineHeight: '20px',
         fontWeight: 500,
-        color: COLORS.LINK,
-        textDecoration: 'none',
+        color: COLORS.NAV_LINK_PRIMARY,
+        ':hover': {
+          color: COLORS.NAV_LINK_HOVER,
+        },
         ..._style,
       }}
     >

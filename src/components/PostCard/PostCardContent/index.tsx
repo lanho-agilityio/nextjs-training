@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 
 // Constants
-import { ROUTES } from '@/constants';
+import { COLORS, ROUTES } from '@/constants';
 
 // Components
 import { Link, Tag } from '../..';
@@ -27,13 +27,12 @@ const PostCardContent = ({ id, title, tag, author, updatedAt }: PostCardContentP
           id="post-title"
           title={title}
           href={ROUTES.POST_DETAIL(id)}
-          style={{
+          _style={{
             marginTop: '8px',
             fontSize: '18px',
             lineHeight: '28px',
             fontWeight: 600,
-            color: '#262626',
-            textDecoration: 'none',
+            color:  COLORS.HEADING,
           }}
         >
           {title}
