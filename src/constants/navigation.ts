@@ -1,10 +1,12 @@
 import { Navigation } from '@/models';
 
 export const ROUTES = {
+  ABOUT: '/about',
+  CREATE: '/posts/create',
   HOME: '/',
   POSTS: '/posts',
-  CREATE: '/posts/create',
   POST_DETAIL: (id: string) => `/posts/${id}`,
+  VERSION: '/version',
 };
 
 export const NAVIGATION_LIST: Navigation[] = [
@@ -13,7 +15,7 @@ export const NAVIGATION_LIST: Navigation[] = [
     title: 'Home',
   },
   {
-    to: '/about',
+    to: ROUTES.ABOUT,
     title: 'About',
   },
   {
@@ -25,7 +27,7 @@ export const NAVIGATION_LIST: Navigation[] = [
     title: 'Archive',
   },
   {
-    to: '/',
+    to: ROUTES.VERSION,
     title: 'Version',
   },
   {

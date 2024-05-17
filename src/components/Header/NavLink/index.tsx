@@ -4,7 +4,7 @@ import { CSSProperties } from 'react';
 import { COLORS } from '@/constants';
 
 // Components
-import { Link } from '../../Common';
+import { Link } from '@/components';
 
 interface NavLinkStyledProps {
   title: string;

@@ -1,5 +1,7 @@
-import { Heading, PostForm } from '@/components';
 import { Box } from '@mui/material';
+
+// Components
+import { Heading, PostForm } from '@/components';
 
 export default function CreatePage() {
   return (

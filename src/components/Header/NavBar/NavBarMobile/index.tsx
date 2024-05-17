@@ -5,7 +5,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, IconButton } from '@mui/material';
 
+// Constants
 import { COLORS, NAVIGATION_LIST, ROUTES } from '@/constants';
+
+// Components
 import { NavLink } from '@/components';
 
 const NavBarMobile = (): JSX.Element => {

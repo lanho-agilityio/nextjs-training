@@ -3,7 +3,11 @@ import { ChangeEvent, InputHTMLAttributes } from 'react';
 import { Box, IconButton, Typography } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
+
+// Components
 import { Button } from '../Common';
+
+// Constants
 import { COLORS } from '@/constants';
 
 interface ImagePickerProps extends InputHTMLAttributes<HTMLInputElement> {

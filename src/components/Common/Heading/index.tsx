@@ -27,7 +27,6 @@ const Heading = ({ title, description }: HeadingProps): JSX.Element => {
           },
           fontWeight: 600,
           textAlign: 'center',
-          letterSpacing: '-4px',
           color: '#262626'
         }}
       >

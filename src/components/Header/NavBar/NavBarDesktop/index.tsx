@@ -1,8 +1,11 @@
 import Image from 'next/image';
 import { Box } from '@mui/material';
+
+// Constants
 import { NAVIGATION_LIST, ROUTES } from '@/constants';
-import NavLink from '../../NavLink';
-import { Link } from '../../../Common';
+
+// Components
+import { Link,  NavLink } from '@/components';
 
 const NavBarDesktop = (): JSX.Element => {
   const HALF = Math.ceil(NAVIGATION_LIST.length / 2);

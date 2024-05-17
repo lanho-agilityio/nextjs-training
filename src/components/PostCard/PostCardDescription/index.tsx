@@ -1,8 +1,11 @@
 import { Avatar, Box, Typography } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
 
-import { Author } from '@/models';
+// Constants
 import { COLORS } from '@/constants';
+
+// Models
+import { Author } from '@/models';
 
 interface PostCardDescriptionProps {
   author: Author;
