@@ -1,8 +1,9 @@
 import { Navigation } from '@/models';
 
 export const ROUTES = {
-  HOME: '/'
+  HOME: '/',
   POSTS: '/posts',
+  POST_DETAIL: (id: string) => `/posts/${id}` 
 };
 
 export const NAVIGATION_LIST: Navigation[] = [
