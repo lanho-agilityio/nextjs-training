@@ -12,9 +12,10 @@ interface PostCardImageProps {
   alt: string;
   to: string;
   isRecentPost?: boolean;
+  isArchived?: boolean;
 }
 
-const PostCardImage = ({ alt, src, to, isRecentPost = false }: PostCardImageProps): JSX.Element => {
+const PostCardImage = ({ alt, src, to, isRecentPost = false, isArchived = false }: PostCardImageProps): JSX.Element => {
   return (
     <Box
       sx={{
@@ -22,9 +23,9 @@ const PostCardImage = ({ alt, src, to, isRecentPost = false }: PostCardImageProp
         width: '100%',
         height: { xs: '30vh', sm: '30vh', md: '33vh' },
         maxHeight: {
-          lg: isRecentPost ? '265px' : '301px',
-          md: isRecentPost ? '265px' : '460px',
-          sm: isRecentPost ? '203px' : '361px',
+          lg: !isArchived && isRecentPost ? '265px' : '301px',
+          md: !isArchived && isRecentPost ? '265px' : '460px',
+          sm: !isArchived && isRecentPost ? '203px' : '361px',
           xs: '500px',
         },
       }}

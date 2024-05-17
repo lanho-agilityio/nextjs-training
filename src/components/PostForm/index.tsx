@@ -63,7 +63,7 @@ const PostForm = (): JSX.Element => {
   const isDisableSubmit = !isValid;
 
   return (
-    <Box sx={{ marginTop: '40px', width: { xs: '100%', sm: '100%', md: '70%' } }}>
+    <Box sx={{width: { xs: '100%', sm: '100%', md: '70%' } }}>
       <Stack spacing={1}>
         <Controller
           name="title"

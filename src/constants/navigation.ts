@@ -21,7 +21,7 @@ export const NAVIGATION_LIST: Navigation[] = [
     title: 'Create',
   },
   {
-    to: '/posts',
+    to: ROUTES.POSTS,
     title: 'Archive',
   },
   {

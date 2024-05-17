@@ -7,7 +7,7 @@ interface HeadingProps {
 
 const Heading = ({ title, description }: HeadingProps): JSX.Element => {
   return (
-    <Box sx={{ padding: 0 }}>
+    <Box sx={{ padding: 0, marginBottom: '40px' }}>
       <Typography
         variant="h1"
         sx={{
