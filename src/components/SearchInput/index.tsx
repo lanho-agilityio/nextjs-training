@@ -5,16 +5,16 @@ import { Input } from '../Common';
 
 const SearchInput = (): JSX.Element => {
   return (
-      <Input
-        name="search"
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon />
-            </InputAdornment>
-          ),
-        }}
-      />
+    <Input
+      name="search"
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <SearchIcon />
+          </InputAdornment>
+        ),
+      }}
+    />
   );
 };
 
