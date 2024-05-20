@@ -41,7 +41,7 @@ const PostCardDescription = ({ author, updatedAt, isDetailed = false }: PostCard
       >
         <Typography
           variant="caption"
-          sx={{ color: isDetailed ?  COLORS.HEADING : 'unset', fontSize: isDetailed ? '16px' : 'unset' }}
+          sx={{ color: isDetailed ? COLORS.HEADING : 'unset', fontSize: isDetailed ? '16px' : 'unset' }}
         >
           {name}
         </Typography>

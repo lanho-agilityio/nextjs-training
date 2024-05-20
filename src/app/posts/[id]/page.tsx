@@ -53,7 +53,9 @@ export default function DetailPostPage({ params }: { params: { id: string } }) {
           />
         </Box>
         <Paragraph content={content} />
-        <Link href={ROUTES.HOME} _style={{color: COLORS.POST_LINK}}>← View all post</Link>
+        <Link href={ROUTES.HOME} _style={{ color: COLORS.POST_LINK }}>
+          ← View all post
+        </Link>
         <AuthorCard author={author} />
       </Box>
     </main>

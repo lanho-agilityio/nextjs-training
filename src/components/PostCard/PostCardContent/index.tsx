@@ -32,7 +32,7 @@ const PostCardContent = ({ id, title, tag, author, updatedAt }: PostCardContentP
             fontSize: '18px',
             lineHeight: '28px',
             fontWeight: 600,
-            color:  COLORS.HEADING,
+            color: COLORS.HEADING,
           }}
         >
           {title}

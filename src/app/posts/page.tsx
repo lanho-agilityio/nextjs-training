@@ -4,13 +4,14 @@ import { Box } from '@mui/material';
 import { COLORS, MOCK_POSTS_LIST, ROUTES } from '@/constants';
 
 // Components
-import { PostList, Link, Heading } from '@/components';
+import { PostList, Link, Heading, PostFilter } from '@/components';
 
 export default function ArchivePage() {
   return (
     <main>
       <Heading title="Archive" description="See all posts we have ever written." />
       <Box sx={{ paddingTop: '40px' }}>
+        <PostFilter />
         <PostList posts={MOCK_POSTS_LIST} isArchived={true} />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
           <Link

@@ -26,7 +26,7 @@ const Input = (
         sx={{
           '& .MuiOutlinedInput-root': {
             '&.Mui-focused fieldset': {
-              borderColor:  COLORS.HEADING,
+              borderColor: COLORS.HEADING,
             },
             '&.Mui-error fieldset': {
               border: '2px solid #DC2626 ',
@@ -34,7 +34,7 @@ const Input = (
             },
           },
           '&::placeholder': {
-            color:  COLORS.HEADING,
+            color: COLORS.HEADING,
             opacity: 1,
           },
           borderRadius: '6px',
@@ -42,7 +42,7 @@ const Input = (
         inputProps={{
           sx: {
             '&::placeholder': {
-              color:  COLORS.HEADING,
+              color: COLORS.HEADING,
               opacity: 1,
             },
           },
