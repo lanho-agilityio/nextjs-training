@@ -8,5 +8,4 @@ export const COLORS = {
   DESCRIPTION_ICON: '#D4D4D4',
   AUTHOR_CARD_BACKGROUND: '#fafafa',
   ERROR: '#DC2626',
-  
 };

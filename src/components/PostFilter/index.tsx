@@ -1,5 +1,6 @@
 'use client';
 import { ChangeEvent } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Grid, SelectChangeEvent } from '@mui/material';
 
 // Constants
@@ -13,12 +14,11 @@ import TagSelect from '../TagSelect';
 // Utils
 import { isEmpty } from '@/utils';
 
-interface PostFilterProps {
-  searchParams: URLSearchParams;
-  updateSearchParams: (params: URLSearchParams) => void;
-}
+export const PostFilter = (): JSX.Element => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
 
-export const PostFilter = ({ searchParams, updateSearchParams }: PostFilterProps): JSX.Element => {
   const searchParamsByQuery = searchParams.get(FILTER_KEY.QUERY) || '';
   const searchParamsByTag = searchParams.get(FILTER_KEY.TAG) || [];
   const searchParamsByTime = searchParams.get(FILTER_KEY.TIME) || FILTER_TIME.ALL_TIME;
@@ -35,7 +35,7 @@ export const PostFilter = ({ searchParams, updateSearchParams }: PostFilterProps
       params.set(queryKey, encodeURIComponent(value));
     }
     params.set(FILTER_KEY.PAGE, '1');
-    updateSearchParams(params);
+    replace(`${pathname}?${params.toString()}`);
   };
 
   const handleSearchInput = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

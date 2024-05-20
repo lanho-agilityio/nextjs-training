@@ -1,5 +1,4 @@
-'use client';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import { Box } from '@mui/material';
 
 // Constants
@@ -8,23 +7,27 @@ import { MOCK_POSTS_LIST } from '@/constants';
 // Components
 import { PostList, Heading, PostFilter, Pagination } from '@/components';
 
-export default function ArchivePage() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const { replace } = useRouter();
+interface searchParamsProps {
+  query?: string;
+  tag?: string;
+  time?: string;
+  page?: string;
+}
 
-  const updateSearchParams = (params: URLSearchParams) => {
-    replace(`${pathname}?${params.toString()}`);
-  };
-
+export default function ArchivePage({ searchParams }: { searchParams?: searchParamsProps }) {
+  console.log(searchParams);
   return (
     <main>
       <Heading title="Archive" description="See all posts we have ever written." />
       <Box sx={{ marginTop: '40px' }}>
-        <PostFilter searchParams={searchParams} updateSearchParams={updateSearchParams} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <PostFilter />
+        </Suspense>
         <PostList posts={MOCK_POSTS_LIST} isArchived={true} />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
-          <Pagination hasNext={true} hasPrevious={true}/>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Pagination hasNext={true} hasPrevious={true} />
+          </Suspense>
         </Box>
       </Box>
     </main>

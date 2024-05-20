@@ -26,7 +26,7 @@ const DatePicker = ({ value, options, onSelectDate }: DatePickerProps): JSX.Elem
             <Radio
               checked={value === itemValue}
               sx={{
-                paddingY: 0,
+                paddingY: '5px',
                 color: COLORS.HEADING,
                 '&.Mui-checked': {
                   color: COLORS.HEADING,
