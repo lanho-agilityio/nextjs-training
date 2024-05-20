@@ -1,6 +1,6 @@
 export type PostTag = {
   id: string;
-  title: string;
+  value: string;
   color: string;
 };
 

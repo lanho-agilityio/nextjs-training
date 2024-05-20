@@ -7,10 +7,9 @@ import { FILTER_TIME, TRANSACTION_FILTER_TIME } from '@/constants';
 import { Radio } from '@mui/material';
 
 const DatePicker = (): JSX.Element => {
-  const transactionFilterTime = 
-    Object.keys(TRANSACTION_FILTER_TIME).map((key: string) => TRANSACTION_FILTER_TIME[key as FILTER_TIME])
-    
-  
+  const transactionFilterTime = Object.keys(TRANSACTION_FILTER_TIME).map(
+    (key: string) => TRANSACTION_FILTER_TIME[key as FILTER_TIME],
+  );
 
   const [date, setDate] = useState<FILTER_TIME>(FILTER_TIME.ALL_TIME);
 

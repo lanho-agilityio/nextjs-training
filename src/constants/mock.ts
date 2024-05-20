@@ -3,17 +3,17 @@ import { Post, PostTag } from '@/models';
 export const MOCK_TAG_LIST: PostTag[] = [
   {
     id: '1',
-    title: 'TECHNOLOGY',
+    value: 'TECHNOLOGY',
     color: 'blue',
   },
   {
     id: '2',
-    title: 'LIFESTYLE',
+    value: 'LIFESTYLE',
     color: 'red',
   },
   {
     id: '3',
-    title: 'TRAVEL',
+    value: 'TRAVEL',
     color: 'purple',
   },
 ];
@@ -24,7 +24,7 @@ export const MOCK_POSTS_LIST: Post[] = [
     title: 'Architectural Engineering Wonders of the modern era for your Inspiration',
     tag: {
       id: '1',
-      title: 'TECHNOLOGY',
+      value: 'TECHNOLOGY',
       color: 'blue',
     },
     author: {
@@ -41,7 +41,7 @@ export const MOCK_POSTS_LIST: Post[] = [
     title: 'Architectural Engineering Wonders of the modern era for your Inspiration',
     tag: {
       id: '1',
-      title: 'TECHNOLOGY',
+      value: 'TECHNOLOGY',
       color: 'blue',
     },
     author: {
@@ -57,7 +57,7 @@ export const MOCK_POSTS_LIST: Post[] = [
     title: 'Architectural Engineering Wonders of the modern era for your Inspiration',
     tag: {
       id: '1',
-      title: 'TECHNOLOGY',
+      value: 'TECHNOLOGY',
       color: 'blue',
     },
     author: {
@@ -73,7 +73,7 @@ export const MOCK_POSTS_LIST: Post[] = [
     title: 'Architectural Engineering Wonders of the modern era for your Inspiration',
     tag: {
       id: '1',
-      title: 'TECHNOLOGY',
+      value: 'TECHNOLOGY',
       color: 'blue',
     },
     author: {
@@ -89,7 +89,7 @@ export const MOCK_POSTS_LIST: Post[] = [
     title: 'Architectural Engineering Wonders of the modern era for your Inspiration',
     tag: {
       id: '1',
-      title: 'TECHNOLOGY',
+      value: 'TECHNOLOGY',
       color: 'blue',
     },
     author: {

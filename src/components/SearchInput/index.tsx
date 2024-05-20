@@ -1,6 +1,9 @@
 'use client';
-import { InputAdornment } from '@mui/material';
+import { IconButton, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import CloseIcon from '@mui/icons-material/Close';
+
+// Components
 import { Input } from '../Common';
 
 const SearchInput = (): JSX.Element => {
@@ -11,6 +14,13 @@ const SearchInput = (): JSX.Element => {
         startAdornment: (
           <InputAdornment position="start">
             <SearchIcon />
+          </InputAdornment>
+        ),
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton onClick={() => console.log('Close')}>
+              <CloseIcon />
+            </IconButton>
           </InputAdornment>
         ),
       }}

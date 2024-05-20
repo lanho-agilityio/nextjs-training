@@ -73,7 +73,7 @@ const PostForm = (): JSX.Element => {
           }}
           render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
             <Input
-              sx={{ marginBottom: error?.message ? '0px ' : '24px' }}
+              sx={{ paddingBottom: error?.message ? '0px ' : '24px' }}
               placeholder="Title"
               fullWidth
               value={value}
@@ -93,7 +93,7 @@ const PostForm = (): JSX.Element => {
           }}
           render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
             <Input
-              sx={{ marginBottom: error?.message ? '0px ' : '24px' }}
+              sx={{ paddingBottom: error?.message ? '0px ' : '24px' }}
               placeholder="Content"
               multiline
               rows={7}
@@ -114,15 +114,17 @@ const PostForm = (): JSX.Element => {
             validate: validations.tag,
           }}
           render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
-            <TagSelect
-              options={MOCK_TAG_LIST}
-              value={value}
-              errorMessage={error?.message}
-              onChange={(event) => {
-                onChange(event);
-              }}
-              {...rest}
-            />
+            <Box sx={{ paddingBottom: error?.message ? '0px ' : '24px' }}>
+              <TagSelect
+                options={MOCK_TAG_LIST}
+                value={value}
+                errorMessage={error?.message}
+                onChange={(event) => {
+                  onChange(event);
+                }}
+                {...rest}
+              />
+            </Box>
           )}
         ></Controller>
         <Box sx={{ paddingBottom: image ? '0px ' : '45px' }}>
