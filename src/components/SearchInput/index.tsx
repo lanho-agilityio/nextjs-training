@@ -16,6 +16,7 @@ interface SearchInputProps {
 const SearchInput = ({ value, onChange, onClearSearchInput }: SearchInputProps): JSX.Element => {
   return (
     <Input
+      value={value}
       name="search"
       InputProps={{
         startAdornment: (
@@ -25,13 +26,15 @@ const SearchInput = ({ value, onChange, onClearSearchInput }: SearchInputProps):
         ),
         endAdornment: (
           <InputAdornment position="end">
-            <IconButton onClick={onClearSearchInput}>
-              <CloseIcon />
-            </IconButton>
+            {value && (
+              <IconButton onClick={onClearSearchInput}>
+                <CloseIcon />
+              </IconButton>
+            )}
           </InputAdornment>
         ),
       }}
-      value={value}
+      autoComplete="off"
       onChange={onChange}
     />
   );

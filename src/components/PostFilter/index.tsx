@@ -70,9 +70,8 @@ export const PostFilter = ({ searchParams, updateSearchParams }: PostFilterProps
             typeof searchParamsByTag === 'string' ? decodeURIComponent(searchParamsByTag).split(',') : searchParamsByTag
           }
           isMultiple={true}
-          onChange={(value) => {
-            handleSelectTag(value);
-          }}
+          onChange={handleSelectTag}
+          placeholder="Select Tag(s)"
         />
       </Grid>
       <Grid item xs={6} md={3}>

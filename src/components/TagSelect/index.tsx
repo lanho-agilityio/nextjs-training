@@ -5,10 +5,12 @@ import { Typography, Box, MenuItem, Select, SelectChangeEvent, Checkbox, ListIte
 // Models
 import { PostTag } from '@/models';
 import React from 'react';
+import { isEmpty } from '../../utils';
 
 interface TagSelectProps {
   options: PostTag[];
   value: string | string[];
+  placeholder?: string;
   isMultiple?: boolean;
   errorMessage?: string;
   onChange: (value: string | string[]) => void;
@@ -16,7 +18,7 @@ interface TagSelectProps {
 }
 
 const TagSelect = (
-  { value, isMultiple = false, options, errorMessage, onChange, onBlur }: TagSelectProps,
+  { value, isMultiple = false, placeholder = 'Choose Tag', options, errorMessage, onChange, onBlur }: TagSelectProps,
   ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>,
 ): JSX.Element => {
   const handleChange = (event: SelectChangeEvent<typeof value>) => {
@@ -26,6 +28,7 @@ const TagSelect = (
   return (
     <Box display="flex" flexDirection="column">
       <Select
+        displayEmpty
         multiple={isMultiple}
         ref={ref}
         value={value}
@@ -33,7 +36,13 @@ const TagSelect = (
         fullWidth
         onChange={handleChange}
         onBlur={onBlur}
-        renderValue={(value) => (typeof value === 'string' ? value : value.join(', '))}
+        renderValue={(value) => {
+          if (isEmpty(value)) {
+            return <Typography>{placeholder}</Typography>;
+          } else {
+            return typeof value === 'string' ? value : value.join(', ');
+          }
+        }}
       >
         {options.map(({ value: optionValue }, index) => (
           <MenuItem key={`time-${index}`} value={optionValue}>
