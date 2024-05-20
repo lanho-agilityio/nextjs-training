@@ -20,7 +20,7 @@ export default function ArchivePage() {
   return (
     <main>
       <Heading title="Archive" description="See all posts we have ever written." />
-      <Box sx={{ paddingTop: '40px' }}>
+      <Box sx={{ marginTop: '40px' }}>
         <PostFilter searchParams={searchParams} updateSearchParams={updateSearchParams} />
         <PostList posts={MOCK_POSTS_LIST} isArchived={true} />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>

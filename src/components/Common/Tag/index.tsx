@@ -10,7 +10,7 @@ interface PostTagProps {
 }
 
 const Tag = ({ tag }: PostTagProps): JSX.Element => {
-  const { title, color } = tag;
+  const { value: title, color } = tag;
 
   return (
     <Link title={title} href={`/${title}`}>
