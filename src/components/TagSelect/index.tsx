@@ -37,7 +37,15 @@ const TagSelect = (
         multiple={isMultiple}
         ref={ref}
         value={value}
-        sx={{ height: '56px' }}
+        sx={{
+          height: '56px',
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: COLORS.HEADING,
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: COLORS.HEADING,
+          },      
+        }}
         fullWidth
         onChange={handleChange}
         onBlur={onBlur}

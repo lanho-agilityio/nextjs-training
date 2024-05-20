@@ -17,7 +17,16 @@ const DatePicker = ({ value, options, onSelectDate }: DatePickerProps): JSX.Elem
         value={value}
         onChange={onSelectDate}
         defaultValue={FILTER_TIME.ALL_TIME}
-        sx={{ height: '56px' }}
+        sx={{
+          height: '56px',
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: COLORS.HEADING,
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: COLORS.HEADING,
+          },
+          
+        }}
         fullWidth
         renderValue={(value) => POST_FILTER_TIME[value as FILTER_TIME].label}
       >
