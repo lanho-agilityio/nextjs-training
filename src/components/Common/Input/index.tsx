@@ -29,7 +29,7 @@ const Input = (
               borderColor: COLORS.HEADING,
             },
             '&.Mui-error fieldset': {
-              border: '2px solid #DC2626 ',
+              border: `2px solid ${COLORS.ERROR} `,
               borderRadius: '6px',
             },
           },
@@ -51,7 +51,7 @@ const Input = (
         error={!!errorMessage}
       />
       {errorMessage && (
-        <Typography variant="caption" sx={{ marginTop: '4px', color: '#DC2626' }}>
+        <Typography variant="caption" sx={{ marginTop: '4px', color: COLORS.ERROR }}>
           {errorMessage}
         </Typography>
       )}

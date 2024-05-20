@@ -1,11 +1,16 @@
 'use client';
+import React from 'react';
 import { ForwardedRef, forwardRef } from 'react';
 import { Typography, Box, MenuItem, Select, SelectChangeEvent, Checkbox, ListItemText } from '@mui/material';
 
+// Constants
+import { COLORS } from '@/constants';
+
 // Models
 import { PostTag } from '@/models';
-import React from 'react';
-import { isEmpty } from '../../utils';
+
+// Utils
+import { isEmpty } from '@/utils';
 
 interface TagSelectProps {
   options: PostTag[];
@@ -48,7 +53,15 @@ const TagSelect = (
           <MenuItem key={`time-${index}`} value={optionValue}>
             {isMultiple ? (
               <>
-                <Checkbox checked={value.indexOf(optionValue) > -1} />
+                <Checkbox
+                  checked={value.indexOf(optionValue) > -1}
+                  sx={{
+                    color: COLORS.HEADING,
+                    '&.Mui-checked': {
+                      color: COLORS.HEADING,
+                    },
+                  }}
+                />
                 <ListItemText primary={optionValue} />
               </>
             ) : (
@@ -58,7 +71,7 @@ const TagSelect = (
         ))}
       </Select>
       {errorMessage && (
-        <Typography variant="caption" sx={{ marginTop: '4px', color: '#DC2626' }}>
+        <Typography variant="caption" sx={{ marginTop: '4px', color: COLORS.ERROR }}>
           {errorMessage}
         </Typography>
       )}

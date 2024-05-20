@@ -34,6 +34,7 @@ export const PostFilter = ({ searchParams, updateSearchParams }: PostFilterProps
     } else {
       params.set(queryKey, encodeURIComponent(value));
     }
+    params.set(FILTER_KEY.PAGE, '1');
     updateSearchParams(params);
   };
 

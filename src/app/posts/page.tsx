@@ -3,10 +3,10 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Box } from '@mui/material';
 
 // Constants
-import { COLORS, MOCK_POSTS_LIST, ROUTES } from '@/constants';
+import { MOCK_POSTS_LIST } from '@/constants';
 
 // Components
-import { PostList, Link, Heading, PostFilter } from '@/components';
+import { PostList, Heading, PostFilter, Pagination } from '@/components';
 
 export default function ArchivePage() {
   const pathname = usePathname();
@@ -24,22 +24,7 @@ export default function ArchivePage() {
         <PostFilter searchParams={searchParams} updateSearchParams={updateSearchParams} />
         <PostList posts={MOCK_POSTS_LIST} isArchived={true} />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
-          <Link
-            id="view-all-posts"
-            href={ROUTES.POSTS}
-            _style={{
-              color: COLORS.DESCRIPTION,
-              border: `1px solid ${COLORS.DESCRIPTION}`,
-              borderRadius: '6px',
-              paddingTop: '8px',
-              paddingBottom: '8px',
-              paddingLeft: '16px',
-              paddingRight: '12px',
-              textDecoration: 'none',
-            }}
-          >
-            View All Posts
-          </Link>
+          <Pagination hasNext={true} hasPrevious={true}/>
         </Box>
       </Box>
     </main>

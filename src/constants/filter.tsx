@@ -30,4 +30,5 @@ export const FILTER_KEY = {
   QUERY: 'query',
   TAG: 'tag',
   TIME: 'time',
+  PAGE: 'page',
 };

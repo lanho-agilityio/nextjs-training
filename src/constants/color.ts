@@ -7,4 +7,6 @@ export const COLORS = {
   DESCRIPTION: '#737373',
   DESCRIPTION_ICON: '#D4D4D4',
   AUTHOR_CARD_BACKGROUND: '#fafafa',
+  ERROR: '#DC2626',
+  
 };

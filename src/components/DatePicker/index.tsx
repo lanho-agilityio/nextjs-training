@@ -1,9 +1,8 @@
 'use client';
-import Box from '@mui/material/Box';
-import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { FILTER_TIME, POST_FILTER_TIME } from '@/constants';
-import { Radio } from '@mui/material';
+import { Radio, Box, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+
+// Constants
+import { COLORS, FILTER_TIME, POST_FILTER_TIME } from '@/constants';
 
 interface DatePickerProps {
   value: string;
@@ -24,7 +23,16 @@ const DatePicker = ({ value, options, onSelectDate }: DatePickerProps): JSX.Elem
       >
         {options.map(({ label: itemLabel, value: itemValue }, index) => (
           <MenuItem key={`time-${index}`} value={itemValue}>
-            <Radio checked={value === itemValue} sx={{ paddingY: 0 }} />
+            <Radio
+              checked={value === itemValue}
+              sx={{
+                paddingY: 0,
+                color: COLORS.HEADING,
+                '&.Mui-checked': {
+                  color: COLORS.HEADING,
+                },
+              }}
+            />
             {itemLabel}
           </MenuItem>
         ))}
