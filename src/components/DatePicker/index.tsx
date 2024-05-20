@@ -1,35 +1,31 @@
 'use client';
-import { useState } from 'react';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { FILTER_TIME, TRANSACTION_FILTER_TIME } from '@/constants';
+import { FILTER_TIME, POST_FILTER_TIME } from '@/constants';
 import { Radio } from '@mui/material';
 
-const DatePicker = (): JSX.Element => {
-  const transactionFilterTime = Object.keys(TRANSACTION_FILTER_TIME).map(
-    (key: string) => TRANSACTION_FILTER_TIME[key as FILTER_TIME],
-  );
+interface DatePickerProps {
+  value: string;
+  options: { label: string; value: string }[];
+  onSelectDate: (event: SelectChangeEvent) => void;
+}
 
-  const [date, setDate] = useState<FILTER_TIME>(FILTER_TIME.ALL_TIME);
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setDate(event.target.value as FILTER_TIME);
-  };
-
+const DatePicker = ({ value, options, onSelectDate }: DatePickerProps): JSX.Element => {
   return (
     <Box>
       <Select
-        value={date}
-        onChange={handleChange}
+        value={value}
+        onChange={onSelectDate}
         defaultValue={FILTER_TIME.ALL_TIME}
         sx={{ height: '56px' }}
         fullWidth
+        renderValue={(value) => POST_FILTER_TIME[value as FILTER_TIME].label}
       >
-        {transactionFilterTime.map(({ label: labelItem, value }, index) => (
-          <MenuItem key={`time-${index}`} value={value}>
-            <Radio checked={date === value} sx={{ paddingY: 0 }} />
-            {labelItem}
+        {options.map(({ label: itemLabel, value: itemValue }, index) => (
+          <MenuItem key={`time-${index}`} value={itemValue}>
+            <Radio checked={value === itemValue} sx={{ paddingY: 0 }} />
+            {itemLabel}
           </MenuItem>
         ))}
       </Select>

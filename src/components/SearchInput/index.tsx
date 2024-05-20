@@ -1,4 +1,5 @@
 'use client';
+import { ChangeEvent } from 'react';
 import { IconButton, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
@@ -6,7 +7,13 @@ import CloseIcon from '@mui/icons-material/Close';
 // Components
 import { Input } from '../Common';
 
-const SearchInput = (): JSX.Element => {
+interface SearchInputProps {
+  value: string;
+  onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onClearSearchInput: () => void;
+}
+
+const SearchInput = ({ value, onChange, onClearSearchInput }: SearchInputProps): JSX.Element => {
   return (
     <Input
       name="search"
@@ -18,12 +25,14 @@ const SearchInput = (): JSX.Element => {
         ),
         endAdornment: (
           <InputAdornment position="end">
-            <IconButton onClick={() => console.log('Close')}>
+            <IconButton onClick={onClearSearchInput}>
               <CloseIcon />
             </IconButton>
           </InputAdornment>
         ),
       }}
+      value={value}
+      onChange={onChange}
     />
   );
 };

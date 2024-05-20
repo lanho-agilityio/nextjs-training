@@ -1,7 +1,7 @@
 export type PostTag = {
   id: string;
   value: string;
-  color: string;
+  color?: string;
 };
 
 export type Author = {
