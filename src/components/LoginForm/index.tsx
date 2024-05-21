@@ -10,9 +10,6 @@ import { COLORS } from '@/constants';
 // Components
 import { Button, Input } from '../Common';
 
-// Hooks
-import { useAuthContext } from '@/hooks';
-
 // Models
 import { UserLogin } from '@/models';
 
@@ -28,8 +25,11 @@ const validations = {
   },
 };
 
-const LoginForm = (): JSX.Element => {
-  const { login } = useAuthContext();
+interface LoginFormProps {
+  onSubmit: (values: UserLogin) => void;
+}
+
+const LoginForm = ({ onSubmit }: LoginFormProps): JSX.Element => {
   const [showPassword, setShowPassword] = useState(false);
 
   const loginFormInitValues: UserLogin = {
@@ -52,7 +52,7 @@ const LoginForm = (): JSX.Element => {
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleSubmit: SubmitHandler<UserLogin> = useCallback((values) => {
-    login(values);
+    onSubmit(values);
   }, []);
 
   return (

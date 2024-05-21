@@ -1,16 +1,24 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Box, Container, Popover, Typography } from '@mui/material';
 
 // Constants
-import { COLORS, ROUTES } from '@/constants';
+import { ROUTES } from '@/constants';
 
 // Components
 import LoginForm from '../../LoginForm';
-import NavLink from '../NavLink';
-import { Button } from '../../Common';
+import { LinkButton } from '../../Common/Button';
 
-const UserButton = (): JSX.Element => {
+// Models
+import { UserLogin } from '@/models';
+
+interface LoginButtonProps {
+  onSubmit: (values: UserLogin) => void;
+}
+
+const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
+  const { push } = useRouter();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -21,35 +29,17 @@ const UserButton = (): JSX.Element => {
     setAnchorEl(null);
   };
 
+  const handleRedirectSignup = () => {
+    push(ROUTES.SIGN_UP);
+    handleClose();
+  };
+
   const open = Boolean(anchorEl);
-  const id = open ? 'user-popover' : undefined;
+  const id = open ? 'login-popover' : undefined;
 
   return (
     <>
-      <Button
-        type="button"
-        variant="text"
-        aria-describedby={id}
-        onClick={handleClick}
-        backgroundColor="white"
-        hoverColor="unset"
-        sx={{
-          color: COLORS.NAV_LINK_PRIMARY,
-          fontFamily: 'inherit',
-          marginLeft: { xs: 0, md: '10px' },
-          padding: { xs: 0 },
-          fontSize: '14px',
-          fontWeight: 500,
-          textTransform: 'capitalize',
-          ':hover': {
-            bgcolor: 'unset',
-            color: COLORS.NAV_LINK_HOVER,
-          },
-          justifyContent: { xs: 'flex-start', md: 'center' },
-        }}
-      >
-        Login
-      </Button>
+      <LinkButton onClick={handleClick}>Sign in</LinkButton>
       <Popover
         id={id}
         open={open}
@@ -68,7 +58,7 @@ const UserButton = (): JSX.Element => {
           <Typography sx={{ textAlign: 'center', fontSize: '20px', paddingBottom: '10px' }} variant="h1">
             Sign in
           </Typography>
-          <LoginForm />
+          <LoginForm onSubmit={onSubmit} />
           <Box
             sx={{
               paddingTop: '15px',
@@ -80,7 +70,7 @@ const UserButton = (): JSX.Element => {
             }}
           >
             <Typography>Need an account?</Typography>
-            <NavLink to={ROUTES.SIGN_UP} title="Sign up" />
+            <LinkButton onClick={handleRedirectSignup}>Sign up</LinkButton>
           </Box>
         </Container>
       </Popover>
@@ -89,4 +79,4 @@ const UserButton = (): JSX.Element => {
   );
 };
 
-export default UserButton;
+export default LoginButton;

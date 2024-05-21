@@ -10,15 +10,25 @@ import { COLORS, NAVIGATION_LIST, ROUTES } from '@/constants';
 
 // Components
 import { Link, NavLink } from '@/components';
-import UserButton from '../UserButton';
+import LoginButton from './LoginButton';
+
+// Hooks
+import { useAuthContext } from '@/hooks';
+import UserProfile from './UserProfile';
 
 const NavBar = (): JSX.Element => {
-  const HALF = Math.ceil(NAVIGATION_LIST.length / 2);
+  const { user, login, logout } = useAuthContext();
 
   const [open, setOpen] = useState(false);
 
+  const HALF = Math.ceil(NAVIGATION_LIST.length / 2);
+
   const handleClick = () => {
     setOpen(!open);
+  };
+
+  const renderUserButton = () => {
+    return user ? <UserProfile onClick={logout} user={user} /> : <LoginButton onSubmit={login} />;
   };
 
   return (
@@ -26,8 +36,8 @@ const NavBar = (): JSX.Element => {
       <Box
         sx={{
           paddingX: { sm: 0, md: '20px' },
-          paddingTop:  {xs: '20px', sm: '20px', md: '32px'},
-          paddingBottom: {xs: '20px', sm: '20px', md: '32px'},
+          paddingTop: { xs: '20px', sm: '20px', md: '32px' },
+          paddingBottom: { xs: '20px', sm: '20px', md: '32px' },
           display: 'flex',
           flexWrap: 'nowrap',
           gap: '40px',
@@ -88,7 +98,7 @@ const NavBar = (): JSX.Element => {
           {NAVIGATION_LIST.slice(HALF).map((e, i) => {
             return <NavLink key={i} to={e.to} title={e.title} />;
           })}
-          <UserButton />
+          {renderUserButton()}
         </Box>
       </Box>
       {open && (
@@ -101,7 +111,7 @@ const NavBar = (): JSX.Element => {
             },
             flexDirection: 'column',
             gap: '16px',
-            paddingBottom: '20px'
+            paddingBottom: '20px',
           }}
         >
           {NAVIGATION_LIST.map((route, i) => {
@@ -116,7 +126,7 @@ const NavBar = (): JSX.Element => {
               />
             );
           })}
-          <UserButton />
+          {renderUserButton()}
         </Box>
       )}
     </nav>

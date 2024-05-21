@@ -8,7 +8,7 @@ import { Box } from '@mui/material';
 import { AuthProvider } from '../contexts';
 
 // Components
-import { Footer, NavBar } from '@/components';
+import { Footer, Header } from '@/components';
 
 // Styles
 import './globals.css';
@@ -47,7 +47,7 @@ export default function RootLayout({
                   flex: '1',
                 }}
               >
-                <NavBar />
+                <Header />
                 <Box>{children}</Box>
                 <Footer />
               </Box>

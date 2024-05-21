@@ -1,6 +1,9 @@
 'use client';
 import { Button, ButtonProps } from '@mui/material';
 
+// Constants
+import { COLORS } from '@/constants';
+
 interface CustomButtonProps extends ButtonProps {
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -40,5 +43,34 @@ const CustomButton = ({
     </Button>
   );
 };
+
+const LinkButton = ({ children, ...props }: CustomButtonProps) => {
+  return (
+    <CustomButton
+      type="button"
+      variant="text"
+      backgroundColor="white"
+      hoverColor="unset"
+      {...props}
+      sx={{
+        color: COLORS.NAV_LINK_PRIMARY,
+        fontFamily: 'inherit',
+        fontSize: '14px',
+        fontWeight: 500,
+        textTransform: 'capitalize',
+        ':hover': {
+          bgcolor: 'unset',
+          color: COLORS.NAV_LINK_HOVER,
+        },
+        justifyContent: { xs: 'flex-start', md: 'center' },
+        ...props.sx,
+      }}
+    >
+      {children}
+    </CustomButton>
+  );
+};
+
+export { LinkButton };
 
 export default CustomButton;

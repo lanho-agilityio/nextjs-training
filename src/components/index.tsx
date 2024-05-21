@@ -2,7 +2,7 @@ export { default as AuthorCard } from './AuthorCard';
 export { default as DatePicker } from './DatePicker';
 export { default as FilePicker } from './FilePicker';
 export { default as Footer } from './Footer';
-export { default as NavBar } from './Header/NavBar';
+export { default as Header } from './Header';
 export { default as NavLink } from './Header/NavLink';
 export { default as LoginForm } from './LoginForm';
 export { default as Pagination } from './Pagination';
