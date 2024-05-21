@@ -1,5 +1,7 @@
 'use client';
-import { Stack } from '@mui/material';
+import { useState } from 'react';
+import { IconButton, InputAdornment, Stack } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Controller, useForm } from 'react-hook-form';
 
 // Constants
@@ -26,6 +28,10 @@ const validations = {
 };
 
 const LoginForm = (): JSX.Element => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
   const loginFormInitValues: LoginFormValues = {
     username: '',
     password: '',
@@ -64,6 +70,7 @@ const LoginForm = (): JSX.Element => {
               sx: {
                 fontSize: '16px',
                 padding: '5px',
+                marginLeft: '10px',
               },
             }}
             {...rest}
@@ -80,7 +87,7 @@ const LoginForm = (): JSX.Element => {
           <Input
             sx={{ paddingBottom: error?.message ? '0px ' : '20px' }}
             placeholder="Password"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             fullWidth
             value={value}
             onChange={(event) => {
@@ -91,7 +98,22 @@ const LoginForm = (): JSX.Element => {
               sx: {
                 fontSize: '16px',
                 padding: '5px',
+                marginLeft: '10px',
               },
+            }}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    edge="end"
+                    size="small"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
             }}
             {...rest}
           />

@@ -12,6 +12,7 @@ export { default as PostCardDescription } from './PostCard/PostCardDescription';
 export { default as PostForm } from './PostForm';
 export { default as PostList } from './PostList';
 export { default as SearchInput } from './SearchInput';
+export { default as SignUpForm } from './SignUpForm';
 export { default as TagSelect } from './TagSelect';
 
 export * from './Common';

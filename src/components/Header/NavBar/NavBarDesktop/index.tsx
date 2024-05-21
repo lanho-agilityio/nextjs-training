@@ -42,10 +42,12 @@ const NavBarDesktop = (): JSX.Element => {
           style={{ maxWidth: '100%', height: 'auto' }}
         ></Image>
       </Link>
-      <Box sx={{
-         justifyContent: 'center',
-         alignItems: 'center',
-      }}>
+      <Box
+        sx={{
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
         {NAVIGATION_LIST.slice(HALF).map((e, i) => {
           return <NavLink key={i} to={e.to} title={e.title} />;
         })}

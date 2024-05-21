@@ -2,9 +2,10 @@ import { Navigation } from '@/models';
 
 export const ROUTES = {
   ABOUT: '/about',
-  CREATE: '/posts/create',
   HOME: '/',
   POSTS: '/posts',
+  CREATE: '/posts/create',
+  EDIT_POST: (id: string) => `/posts/edit/${id}`,
   POST_DETAIL: (id: string) => `/posts/${id}`,
   VERSION: '/version',
   SIGN_UP: '/sign-up',
