@@ -56,7 +56,7 @@ const SignUpForm = (): JSX.Element => {
   const isDisableSubmit = !isValid;
 
   return (
-    <Box sx={{ width: { xs: '100%', sm: '100%', md: '70%' } }}>
+    <Box sx={{ width: { xs: '100%', sm: '70%', md: '50%' } }}>
       <Stack rowGap="5px">
         <Controller
           name="username"
