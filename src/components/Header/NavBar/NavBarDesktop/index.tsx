@@ -34,7 +34,7 @@ const NavBarDesktop = (): JSX.Element => {
       </Box>
       <Link href={ROUTES.HOME} style={{ width: '112px' }}>
         <Image
-          src={'/logo.svg'}
+          src="/logo.svg"
           alt="Logo"
           width={132}
           height={52}
@@ -42,7 +42,10 @@ const NavBarDesktop = (): JSX.Element => {
           style={{ maxWidth: '100%', height: 'auto' }}
         ></Image>
       </Link>
-      <Box>
+      <Box sx={{
+         justifyContent: 'center',
+         alignItems: 'center',
+      }}>
         {NAVIGATION_LIST.slice(HALF).map((e, i) => {
           return <NavLink key={i} to={e.to} title={e.title} />;
         })}

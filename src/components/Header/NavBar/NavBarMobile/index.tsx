@@ -10,6 +10,7 @@ import { COLORS, NAVIGATION_LIST, ROUTES } from '@/constants';
 
 // Components
 import { NavLink } from '@/components';
+import UserButton from '../../UserButton';
 
 const NavBarMobile = (): JSX.Element => {
   const [open, setOpen] = useState(false);
@@ -42,7 +43,7 @@ const NavBarMobile = (): JSX.Element => {
       >
         <a href={ROUTES.HOME} style={{ width: '112px' }}>
           <Image
-            src={'/logo.svg'}
+            src="/logo.svg"
             alt="Logo"
             width={132}
             height={52}
@@ -73,6 +74,7 @@ const NavBarMobile = (): JSX.Element => {
               md: 'none',
             },
             flexDirection: 'column',
+            gap: '10px',
             marginTop: '10px',
           }}
         >
@@ -88,6 +90,7 @@ const NavBarMobile = (): JSX.Element => {
               />
             );
           })}
+          <UserButton />
         </Box>
       )}
     </Box>

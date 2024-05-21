@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Box, Container, Popover, Typography } from '@mui/material';
+import { Box, Container, Popover, Typography} from '@mui/material';
 
 // Constants
 import { COLORS, ROUTES } from '@/constants';
@@ -11,6 +11,8 @@ import NavLink from '../NavLink';
 import { Button } from '../../Common';
 
 const UserButton = (): JSX.Element => {
+ 
+
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -27,25 +29,26 @@ const UserButton = (): JSX.Element => {
   return (
     <>
       <Button
-        type='button'
-        variant='text'
+        type="button"
+        variant="text"
         aria-describedby={id}
         onClick={handleClick}
-        backgroundColor='white'
-        hoverColor='unset'
+        backgroundColor="white"
+        hoverColor="unset"
         sx={{
           color: COLORS.NAV_LINK_PRIMARY,
           fontFamily: 'inherit',
-          marginLeft: '10px',
+          marginLeft: {xs: 0, md: '10px'},
+          padding: {xs: 0},
           fontSize: '14px',
           fontWeight: 500,
           textTransform: 'capitalize',
           ':hover': {
             bgcolor: 'unset',
-            color: COLORS.NAV_LINK_HOVER
+            color: COLORS.NAV_LINK_HOVER,
           },
+          justifyContent: {xs: 'flex-start', md: 'center'},
         }}
-        
       >
         Login
       </Button>
@@ -55,9 +58,13 @@ const UserButton = (): JSX.Element => {
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
       >
         <Container sx={{ minHeight: '200px', paddingY: '25px' }}>
           <LoginForm />

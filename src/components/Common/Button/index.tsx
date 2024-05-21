@@ -21,8 +21,6 @@ const CustomButton = ({
   height = '56px',
   ...props
 }: CustomButtonProps) => {
-
-
   return (
     <Button
       variant={variant}
