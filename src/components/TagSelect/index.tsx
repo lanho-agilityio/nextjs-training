@@ -43,12 +43,11 @@ const TagSelect = (
             borderColor: errorMessage && COLORS.ERROR,
           },
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: errorMessage? COLORS.ERROR : COLORS.HEADING,
+            borderColor: errorMessage ? COLORS.ERROR : COLORS.HEADING,
           },
           '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: errorMessage? COLORS.ERROR : COLORS.HEADING,
-          },      
-          
+            borderColor: errorMessage ? COLORS.ERROR : COLORS.HEADING,
+          },
         }}
         fullWidth
         onChange={handleChange}

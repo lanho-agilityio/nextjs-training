@@ -37,7 +37,6 @@ const Input = (
             color: COLORS.HEADING,
             opacity: 1,
           },
-          borderRadius: '6px',
         }}
         inputProps={{
           sx: {

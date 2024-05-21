@@ -1,6 +1,6 @@
-import { FILTER_TIME } from "@/constants"
+import { FILTER_TIME } from '@/constants';
 
 export const generateFilterDate = (value: FILTER_TIME): string => {
-    console.log(value)
-    return ''
-}
+  console.log(value);
+  return '';
+};

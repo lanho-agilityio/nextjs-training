@@ -7,6 +7,7 @@ export const ROUTES = {
   POSTS: '/posts',
   POST_DETAIL: (id: string) => `/posts/${id}`,
   VERSION: '/version',
+  SIGN_UP: '/sign-up',
 };
 
 export const NAVIGATION_LIST: Navigation[] = [
@@ -29,9 +30,5 @@ export const NAVIGATION_LIST: Navigation[] = [
   {
     to: ROUTES.VERSION,
     title: 'Version',
-  },
-  {
-    to: '/',
-    title: 'Login',
   },
 ];

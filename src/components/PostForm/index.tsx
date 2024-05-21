@@ -37,7 +37,7 @@ const PostForm = (): JSX.Element => {
 
   const { name: imageName } = image || {};
 
-  const postFormInitValues = {
+  const postFormInitValues: PostFormValues = {
     title: '',
     content: '',
     tag: '',
@@ -140,7 +140,7 @@ const PostForm = (): JSX.Element => {
 
         <Button
           type="submit"
-          backgroundColor="black"
+          backgroundColor={COLORS.HEADING}
           hoverColor={COLORS.HEADING}
           fullWidth
           disabled={isDisableSubmit}

@@ -6,6 +6,7 @@ import { NAVIGATION_LIST, ROUTES } from '@/constants';
 
 // Components
 import { Link, NavLink } from '@/components';
+import UserButton from '../../UserButton';
 
 const NavBarDesktop = (): JSX.Element => {
   const HALF = Math.ceil(NAVIGATION_LIST.length / 2);
@@ -45,6 +46,7 @@ const NavBarDesktop = (): JSX.Element => {
         {NAVIGATION_LIST.slice(HALF).map((e, i) => {
           return <NavLink key={i} to={e.to} title={e.title} />;
         })}
+        <UserButton />
       </Box>
     </Box>
   );
