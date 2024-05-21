@@ -1,9 +1,9 @@
 //Models
-import { UserSession } from "@/models";
+import { UserSession } from '@/models';
 
 export enum USER_ACTION {
   SET_USER = 'SET_USER',
-  REMOVE_USER = 'REMOVE_USER'
+  REMOVE_USER = 'REMOVE_USER',
 }
 
 interface SetUser {
@@ -22,7 +22,7 @@ const authReducer = (state: UserSession | null, action: UserAction) => {
     case USER_ACTION.SET_USER:
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
       };
     case USER_ACTION.REMOVE_USER:
       return null;

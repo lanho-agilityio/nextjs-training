@@ -65,7 +65,9 @@ const UserButton = (): JSX.Element => {
         }}
       >
         <Container sx={{ minHeight: '200px', paddingY: '25px' }}>
-          <Typography sx={{textAlign: 'center', fontSize: '20px', paddingBottom: '10px'}} variant='h1'>Sign in</Typography>
+          <Typography sx={{ textAlign: 'center', fontSize: '20px', paddingBottom: '10px' }} variant="h1">
+            Sign in
+          </Typography>
           <LoginForm />
           <Box
             sx={{

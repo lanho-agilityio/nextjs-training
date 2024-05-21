@@ -1,11 +1,5 @@
 'use client';
-import {
-  createContext,
-  ReactNode,
-  useCallback,
-  useMemo,
-  useReducer
-} from 'react';
+import { createContext, ReactNode, useCallback, useMemo, useReducer } from 'react';
 //Contexts
 import authReducer, { USER_ACTION } from './authReducer';
 
@@ -13,56 +7,35 @@ import authReducer, { USER_ACTION } from './authReducer';
 import { UserLogin, UserRegister, UserSession } from '@/models';
 
 export interface AuthContextType {
-  login: (
-    values: UserLogin,
-    handleSuccess: (response: UserSession) => void,
-    handleError: (e: unknown) => void
-  ) => void;
+  login: (values: UserLogin, handleSuccess: (response: UserSession) => void, handleError: (e: unknown) => void) => void;
   logout: () => void;
   user: UserSession | null;
   register: (
     values: UserRegister,
     handleSuccess: (response: UserSession) => void,
-    handleError: (e: unknown) => void
+    handleError: (e: unknown) => void,
   ) => void;
 }
-
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, dispatch] = useReducer(
     authReducer,
-    typeof window !== 'undefined'
-      ? JSON.parse(window.sessionStorage.getItem('user') || 'null')
-      : null
+    typeof window !== 'undefined' ? JSON.parse(window.sessionStorage.getItem('user') || 'null') : null,
   );
 
+  const onLogin = useCallback(async (values: UserLogin) => {
+    console.log(values);
+  }, []);
 
-
-  const onLogin = useCallback(
-    async (
-      values: UserLogin,
-     
-    ) => {
-      console.log(values)
-    },
-    []
-  );
-
-  const onRegister = useCallback(
-    async (
-      values: UserRegister,
-     
-    ) => {
-      console.log(values)
-    },
-    []
-  );
+  const onRegister = useCallback(async (values: UserRegister) => {
+    console.log(values);
+  }, []);
 
   const logout = useCallback(() => {
     dispatch({
-      type: USER_ACTION.REMOVE_USER
+      type: USER_ACTION.REMOVE_USER,
     });
 
     sessionStorage.removeItem('user');
@@ -73,9 +46,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       user,
       login: onLogin,
       logout,
-      register: onRegister
+      register: onRegister,
     }),
-    [user, logout, onLogin, onRegister]
+    [user, logout, onLogin, onRegister],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

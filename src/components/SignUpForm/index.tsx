@@ -28,7 +28,8 @@ const validations = {
   },
   reEnterPassword: {
     required: validateRequired,
-    validateMatched: (value: string | null | undefined, compared: string) => validateMatched(value, compared, 'password'),
+    validateMatched: (value: string | null | undefined, compared: string) =>
+      validateMatched(value, compared, 'password'),
   },
 };
 
@@ -118,10 +119,9 @@ const SignUpForm = (): JSX.Element => {
           control={control}
           rules={{
             validate: {
-                ...validations.reEnterPassword,
-                validateMatched: (value) => 
-                   validations.reEnterPassword.validateMatched(value, watch('password'))
-               },
+              ...validations.reEnterPassword,
+              validateMatched: (value) => validations.reEnterPassword.validateMatched(value, watch('password')),
+            },
           }}
           render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
             <Input
