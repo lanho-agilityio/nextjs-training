@@ -53,6 +53,9 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
           vertical: 'top',
           horizontal: 'center',
         }}
+        sx={{
+          borderRadius: '6px'
+        }}
       >
         <Container sx={{ minHeight: '200px', paddingY: '25px' }}>
           <Typography sx={{ textAlign: 'center', fontSize: '20px', paddingBottom: '10px' }} variant="h1">

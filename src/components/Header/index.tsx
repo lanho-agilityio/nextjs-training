@@ -41,7 +41,6 @@ const NavBar = (): JSX.Element => {
           display: 'flex',
           flexWrap: 'nowrap',
           gap: '40px',
-          width: '100%',
           justifyContent: { xs: 'space-between', sm: 'space-between', md: 'center' },
           alignItems: 'center',
         }}

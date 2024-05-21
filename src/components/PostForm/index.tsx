@@ -1,6 +1,6 @@
 'use client';
-import { ChangeEvent, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { ChangeEvent, useCallback, useState } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Stack } from '@mui/material';
 
 // Constants
@@ -45,6 +45,7 @@ const PostForm = (): JSX.Element => {
 
   const {
     control,
+    handleSubmit: submitConfirm,
     formState: { isValid },
   } = useForm<PostFormValues>({
     mode: 'onBlur',
@@ -61,6 +62,13 @@ const PostForm = (): JSX.Element => {
   };
 
   const isDisableSubmit = !isValid;
+
+  const handleSubmit: SubmitHandler<PostFormValues> = useCallback(
+    (values) => {
+      console.log(values);
+    },
+    [],
+  );
 
   return (
     <Box sx={{ width: { xs: '100%', sm: '100%', md: '70%' } }}>
@@ -144,7 +152,7 @@ const PostForm = (): JSX.Element => {
           hoverColor={COLORS.HEADING}
           fullWidth
           disabled={isDisableSubmit}
-          onClick={() => console.log('Submit')}
+          onClick={submitConfirm(handleSubmit)}
         >
           Submit Post
         </Button>

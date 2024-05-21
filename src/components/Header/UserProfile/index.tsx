@@ -39,6 +39,9 @@ const UserProfile = ({ user, onClick }: UserProfileProps): JSX.Element => {
           vertical: 'bottom',
           horizontal: 'left',
         }}
+        sx={{
+          borderRadius: '6px'
+        }}
       >
         <LinkButton onClick={onClick}>Logout</LinkButton>
       </Popover>
