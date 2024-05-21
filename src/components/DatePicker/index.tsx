@@ -25,7 +25,6 @@ const DatePicker = ({ value, options, onSelectDate }: DatePickerProps): JSX.Elem
           '&:hover .MuiOutlinedInput-notchedOutline': {
             borderColor: COLORS.HEADING,
           },
-          
         }}
         fullWidth
         renderValue={(value) => POST_FILTER_TIME[value as FILTER_TIME].label}

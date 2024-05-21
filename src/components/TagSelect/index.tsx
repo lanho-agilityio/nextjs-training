@@ -39,12 +39,16 @@ const TagSelect = (
         value={value}
         sx={{
           height: '56px',
+          '.MuiOutlinedInput-notchedOutline': {
+            borderColor: errorMessage && COLORS.ERROR,
+          },
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: COLORS.HEADING,
+            borderColor: errorMessage? COLORS.ERROR : COLORS.HEADING,
           },
           '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: COLORS.HEADING,
+            borderColor: errorMessage? COLORS.ERROR : COLORS.HEADING,
           },      
+          
         }}
         fullWidth
         onChange={handleChange}

@@ -1,7 +1,8 @@
 'use client';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@mui/material';
-
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 // Constants
 import { COLORS } from '@/constants';
 
@@ -48,6 +49,7 @@ const Pagination = ({ hasPrevious, hasNext }: PaginationProps): JSX.Element => {
         }}
         disabled={!hasPrevious}
         onClick={handleClickPrevious}
+        startIcon={<KeyboardArrowLeftIcon />}
       >
         Previous
       </Button>
@@ -67,6 +69,7 @@ const Pagination = ({ hasPrevious, hasNext }: PaginationProps): JSX.Element => {
         }}
         disabled={!hasNext}
         onClick={handleClickNext}
+        endIcon={<KeyboardArrowRightIcon />}
       >
         Next
       </Button>
