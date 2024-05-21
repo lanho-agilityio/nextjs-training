@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Box } from '@mui/material';
 
 // Components
@@ -7,7 +8,6 @@ export default function SignUpPage() {
   return (
     <main>
       <Heading title="Sign up" description="Create your account here." />
-
       <Box
         sx={{
           display: 'flex',
@@ -17,7 +17,9 @@ export default function SignUpPage() {
           paddingTop: '40px',
         }}
       >
-        <SignUpForm />
+        <Suspense fallback={<>Loading</>}>
+          <SignUpForm />
+        </Suspense>
       </Box>
     </main>
   );

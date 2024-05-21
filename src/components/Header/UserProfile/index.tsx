@@ -29,7 +29,7 @@ const UserProfile = ({ user, onClick }: UserProfileProps): JSX.Element => {
 
   return (
     <>
-      <LinkButton onClick={handleClick}>Hello {name}!</LinkButton>
+      <LinkButton onClick={handleClick} sx={{padding: 0, paddingTop: '4px'}}>Hello {name}!</LinkButton>
       <Popover
         id={id}
         open={open}

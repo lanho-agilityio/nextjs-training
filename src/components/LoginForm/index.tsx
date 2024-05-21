@@ -51,9 +51,12 @@ const LoginForm = ({ onSubmit }: LoginFormProps): JSX.Element => {
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleSubmit: SubmitHandler<UserLogin> = useCallback((values) => {
-    onSubmit(values);
-  }, []);
+  const handleSubmit: SubmitHandler<UserLogin> = useCallback(
+    (values) => {
+      onSubmit(values);
+    },
+    [onSubmit],
+  );
 
   return (
     <Stack rowGap="5px">
