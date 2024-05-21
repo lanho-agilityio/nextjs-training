@@ -7,13 +7,17 @@ import authReducer, { USER_ACTION } from './authReducer';
 import { UserLogin, UserRegister, UserSession } from '@/models';
 
 export interface AuthContextType {
-  login: (values: UserLogin, handleSuccess: (response: UserSession) => void, handleError: (e: unknown) => void) => void;
+  login: (
+    values: UserLogin,
+    // handleSuccess: (response: UserSession) => void,
+    // handleError: (e: unknown) => void
+  ) => void;
   logout: () => void;
   user: UserSession | null;
   register: (
     values: UserRegister,
-    handleSuccess: (response: UserSession) => void,
-    handleError: (e: unknown) => void,
+    // handleSuccess: (response: UserSession) => void,
+    // handleError: (e: unknown) => void,
   ) => void;
 }
 
@@ -26,7 +30,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 
   const onLogin = useCallback(async (values: UserLogin) => {
-    console.log(values);
+    const response = {
+      id: 'test',
+      username: values.username,
+    };
+    dispatch({ type: USER_ACTION.SET_USER, payload: response });
+    sessionStorage.setItem('user', JSON.stringify(response));
   }, []);
 
   const onRegister = useCallback(async (values: UserRegister) => {

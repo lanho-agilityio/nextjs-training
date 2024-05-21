@@ -1,8 +1,8 @@
 'use client';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { IconButton, InputAdornment, Stack } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 // Constants
 import { COLORS } from '@/constants';
@@ -10,13 +10,14 @@ import { COLORS } from '@/constants';
 // Components
 import { Button, Input } from '../Common';
 
+// Hooks
+import { useAuthContext } from '@/hooks';
+
+// Models
+import { UserLogin } from '@/models';
+
 // Utils
 import { validateRequired } from '@/utils';
-
-interface LoginFormValues {
-  username: string;
-  password: string;
-}
 
 const validations = {
   username: {
@@ -28,25 +29,31 @@ const validations = {
 };
 
 const LoginForm = (): JSX.Element => {
+  const { login } = useAuthContext();
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const loginFormInitValues: LoginFormValues = {
+  const loginFormInitValues: UserLogin = {
     username: '',
     password: '',
   };
 
   const {
     control,
+    handleSubmit: submitConfirm,
     formState: { isValid },
-  } = useForm<LoginFormValues>({
+  } = useForm<UserLogin>({
     mode: 'onBlur',
     reValidateMode: 'onBlur',
     values: loginFormInitValues,
   });
 
   const isDisableSubmit = !isValid;
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleSubmit: SubmitHandler<UserLogin> = useCallback((values) => {
+    login(values);
+  }, []);
 
   return (
     <Stack rowGap="5px">
@@ -62,14 +69,12 @@ const LoginForm = (): JSX.Element => {
             placeholder="Username"
             fullWidth
             value={value}
-            onChange={(event) => {
-              onChange(event);
-            }}
+            onChange={onChange}
             errorMessage={error?.message}
             inputProps={{
               sx: {
                 fontSize: '16px',
-                padding: '5px',
+                padding: '7px',
                 marginLeft: '10px',
               },
             }}
@@ -90,14 +95,12 @@ const LoginForm = (): JSX.Element => {
             type={showPassword ? 'text' : 'password'}
             fullWidth
             value={value}
-            onChange={(event) => {
-              onChange(event);
-            }}
+            onChange={onChange}
             errorMessage={error?.message}
             inputProps={{
               sx: {
                 fontSize: '16px',
-                padding: '5px',
+                padding: '7px',
                 marginLeft: '10px',
               },
             }}
@@ -126,7 +129,7 @@ const LoginForm = (): JSX.Element => {
         height="40px"
         fullWidth
         disabled={isDisableSubmit}
-        onClick={() => console.log('Submit')}
+        onClick={submitConfirm(handleSubmit)}
       >
         Login
       </Button>
