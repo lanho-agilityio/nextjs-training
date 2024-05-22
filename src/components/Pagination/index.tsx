@@ -7,7 +7,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { COLORS, PER_PAGE } from '@/constants';
 
 interface PaginationProps {
-  totalPosts: number
+  totalPosts: number;
 }
 
 const Pagination = ({ totalPosts }: PaginationProps): JSX.Element => {

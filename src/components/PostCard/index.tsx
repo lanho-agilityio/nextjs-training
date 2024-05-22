@@ -13,6 +13,7 @@ interface PostCardProps {
 
 const PostCard = ({ content, isRecentPost, isArchived = false }: PostCardProps): JSX.Element => {
   const { id, title, tag, user, updatedAt, imageBase64 } = content;
+
   return (
     <Box sx={{ width: 'full', display: 'flex', flexDirection: 'column' }}>
       <PostCardImage src={imageBase64} alt={title} to={id} isRecentPost={isRecentPost} isArchived={isArchived} />

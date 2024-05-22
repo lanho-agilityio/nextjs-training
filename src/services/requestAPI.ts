@@ -3,7 +3,7 @@ import { unstable_noStore as noStore } from 'next/cache';
 import { API_BASE_URL } from '@/constants';
 
 class API {
-  async get<T>(path: string, tag: string, time?: number): Promise<{data: T, total: number}> {
+  async get<T>(path: string, tag: string, time?: number): Promise<{ data: T; total: number }> {
     const response = await fetch(`${API_BASE_URL}${path}`, {
       method: 'GET',
       next: {
@@ -16,12 +16,12 @@ class API {
       throw new Error(error);
     });
 
-    const data = await response.json()
-   
+    const data = await response.json();
+
     return {
       data: data,
-      total: Number(response.headers.get('x-total-count')) || 0
-    }
+      total: Number(response.headers.get('x-total-count')) || 0,
+    };
   }
 
   async post<T>(

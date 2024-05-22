@@ -14,7 +14,7 @@ export const queryAllPosts = async (params?: SearchParams) => {
   let errorMessage = '';
   let total = 0;
   let data: Post[] = [];
-  const searchParams = params && generateSearchParams(params);
+  const searchParams = (params && generateSearchParams(params)) || '';
   const url = `${API_ROUTES.POSTS}?${SORTED}${USER_INCLUDED}${searchParams}`;
   await APIs.get<Post[]>(url, VALIDATE_TAGS.POSTS)
     .then((results) => {
@@ -28,7 +28,7 @@ export const queryAllPosts = async (params?: SearchParams) => {
   return {
     errorMessage,
     data,
-    total
+    total,
   };
 };
 
