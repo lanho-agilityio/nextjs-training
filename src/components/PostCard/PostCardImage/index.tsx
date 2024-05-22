@@ -35,7 +35,7 @@ const PostCardImage = ({ alt, src, to, isRecentPost = false, isArchived = false 
         {src ? (
           <Image alt={alt} src={src} fill style={{ borderRadius: '6px' }} sizes="(max-width: 768px) 30vw, 33vw" />
         ) : (
-          <Box sx={{ background: COLORS.DESCRIPTION_ICON, width: '100%', height: '100%', borderRadius: '6px'  }}></Box>
+          <Box sx={{ background: COLORS.DESCRIPTION_ICON, width: '100%', height: '100%', borderRadius: '6px' }}></Box>
         )}
       </Link>
     </Box>

@@ -36,7 +36,7 @@ const AuthorCard = ({ author }: AuthorCardProps): JSX.Element => {
         }}
       >
         <Typography variant="h2" sx={{ fontSize: '18px', fontWeight: 500, color: COLORS.HEADING }}>
-          About {author.name}
+          About {author.username}
         </Typography>
         <Typography sx={{ color: COLORS.HEADING }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor ullamcorper sollicitudin. Vivamus
