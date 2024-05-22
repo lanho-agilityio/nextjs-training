@@ -10,7 +10,7 @@ import { AuthorCard, Heading, Link, Paragraph, PostCardDescription, Tag } from '
 export default function DetailPostPage({ params }: { params: { id: string } }) {
   const post = MOCK_POST;
 
-  const { title, tag, author, pictureSrc, content, updatedAt } = post;
+  const { title, tag, author, imageBase64, content, updatedAt } = post;
 
   return (
     <main>
@@ -46,7 +46,7 @@ export default function DetailPostPage({ params }: { params: { id: string } }) {
         >
           <Image
             alt={title}
-            src={pictureSrc}
+            src={imageBase64}
             fill
             style={{ borderRadius: '6px' }}
             sizes="(max-width: 768px) 30vw, 33vw"
