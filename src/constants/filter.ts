@@ -32,6 +32,3 @@ export const FILTER_KEY = {
   TIME: 'time',
   PAGE: 'page',
 };
-
-// Default
-export const PER_PAGE = 10;

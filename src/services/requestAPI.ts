@@ -17,7 +17,6 @@ class API {
     });
 
     const data = await response.json();
-
     return {
       data: data,
       total: Number(response.headers.get('x-total-count')) || 0,

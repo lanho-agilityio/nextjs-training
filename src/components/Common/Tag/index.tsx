@@ -1,5 +1,9 @@
-// Components
 import { Box } from '@mui/material';
+
+// Constants
+import { ROUTES } from '@/constants';
+
+// Components
 import Link from '../Link';
 
 // Models
@@ -13,7 +17,7 @@ const Tag = ({ tag }: PostTagProps): JSX.Element => {
   const { value: title, color } = tag;
 
   return (
-    <Link title={title} href={`/${title}`}>
+    <Link title={title} href={ROUTES.CATEGORY(title)}>
       <Box
         sx={{
           display: 'inline-block',

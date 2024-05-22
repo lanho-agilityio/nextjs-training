@@ -3,6 +3,7 @@ import { Navigation } from '@/models';
 export const ROUTES = {
   ABOUT: '/about',
   HOME: '/',
+  CATEGORY: (tag: string) => `/category/${tag}`,
   POSTS: '/posts',
   CREATE: '/posts/create',
   EDIT_POST: (id: string) => `/posts/edit/${id}`,

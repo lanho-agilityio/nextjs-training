@@ -61,7 +61,7 @@ export default async function DetailPostPage({ params }: { params: { id: string 
           </Box>
         )}
         <Paragraph content={content} />
-        <Link href={ROUTES.HOME} _style={{ color: COLORS.POST_LINK }}>
+        <Link href={ROUTES.POSTS} _style={{ color: COLORS.POST_LINK }}>
           ← View all post
         </Link>
         <AuthorCard author={user || ({} as Author)} />
