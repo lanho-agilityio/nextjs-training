@@ -4,18 +4,20 @@ import { Button } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 // Constants
-import { COLORS } from '@/constants';
+import { COLORS, PER_PAGE } from '@/constants';
 
 interface PaginationProps {
-  hasPrevious: boolean;
-  hasNext: boolean;
+  totalPosts: number
 }
 
-const Pagination = ({ hasPrevious, hasNext }: PaginationProps): JSX.Element => {
+const Pagination = ({ totalPosts }: PaginationProps): JSX.Element => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
   const currentPage = Number(searchParams.get('page')) || 1;
+
+  const hasPrevious = currentPage > 1;
+  const hasNext = currentPage * PER_PAGE < totalPosts;
 
   const createPageURL = (pageNumber: number | string) => {
     const params = new URLSearchParams(searchParams);

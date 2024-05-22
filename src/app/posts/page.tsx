@@ -1,32 +1,31 @@
 import { Suspense } from 'react';
 import { Box } from '@mui/material';
 
-// Constants
-import { MOCK_POSTS_LIST } from '@/constants';
+// APIs
+import { queryAllPosts, queryAllTags } from '@/services';
 
 // Components
 import { PostList, Heading, PostFilter, Pagination } from '@/components';
 
-interface searchParamsProps {
-  query?: string;
-  tag?: string;
-  time?: string;
-  page?: string;
-}
+// Models
+import { SearchParams } from '@/models';
 
-export default function ArchivePage({ searchParams }: { searchParams?: searchParamsProps }) {
-  console.log(searchParams);
+export default async function ArchivePage({ searchParams }: { searchParams?: SearchParams }) {
+  const [postsQuery, tagsQuery] = await Promise.all([queryAllPosts(searchParams), queryAllTags()]);
+  const { data: posts, total: totalPosts } = postsQuery;
+  const { data: tags } = tagsQuery;
+
   return (
     <main>
       <Heading title="Archive" description="See all posts we have ever written." />
       <Box sx={{ marginTop: '40px' }}>
         <Suspense fallback={<div>Loading...</div>}>
-          <PostFilter />
+          <PostFilter tags={tags} />
         </Suspense>
-        <PostList posts={MOCK_POSTS_LIST} isArchived={true} />
+        <PostList posts={posts} isArchived={true} />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
           <Suspense fallback={<div>Loading...</div>}>
-            <Pagination hasNext={true} hasPrevious={true} />
+            <Pagination totalPosts={totalPosts} />
           </Suspense>
         </Box>
       </Box>

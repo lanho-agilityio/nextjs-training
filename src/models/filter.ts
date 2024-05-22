@@ -6,3 +6,10 @@ export type PostTime = {
     value: FILTER_TIME;
   };
 };
+
+export type SearchParams = {
+  query?: string;
+  tag?: string;
+  time?: string;
+  page?: string;
+};

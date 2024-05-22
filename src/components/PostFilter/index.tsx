@@ -5,17 +5,24 @@ import { Grid, SelectChangeEvent } from '@mui/material';
 import { useDebouncedCallback } from 'use-debounce';
 
 // Constants
-import { DEBOUNCE_TIME, FILTER_KEY, FILTER_TIME, MOCK_TAG_LIST, POST_FILTER_TIME } from '@/constants';
+import { DEBOUNCE_TIME, FILTER_KEY, FILTER_TIME, POST_FILTER_TIME } from '@/constants';
 
 // Components
 import SearchInput from '../SearchInput';
 import DatePicker from '../DatePicker';
 import TagSelect from '../TagSelect';
 
+// Models
+import { PostTag } from '@/models';
+
 // Utils
 import { isEmpty } from '@/utils';
 
-export const PostFilter = (): JSX.Element => {
+interface PostFilterProps {
+  tags: PostTag[];
+}
+
+export const PostFilter = ({ tags }: PostFilterProps): JSX.Element => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
@@ -25,8 +32,6 @@ export const PostFilter = (): JSX.Element => {
   const searchParamsByTime = searchParams.get(FILTER_KEY.TIME) || FILTER_TIME.ALL_TIME;
 
   const postFilterTime = Object.keys(POST_FILTER_TIME).map((key: string) => POST_FILTER_TIME[key as FILTER_TIME]);
-
-  const postSelectOptions = [...MOCK_TAG_LIST];
 
   const generateSearchParams = useDebouncedCallback((queryKey: string, value: string) => {
     const params = new URLSearchParams(searchParams);
@@ -67,7 +72,7 @@ export const PostFilter = (): JSX.Element => {
       </Grid>
       <Grid item xs={6} md={3}>
         <TagSelect
-          options={postSelectOptions}
+          options={tags}
           value={
             typeof searchParamsByTag === 'string' ? decodeURIComponent(searchParamsByTag).split(',') : searchParamsByTag
           }

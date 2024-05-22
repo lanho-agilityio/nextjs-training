@@ -3,7 +3,7 @@ import { PostTime } from '@/models';
 export enum FILTER_TIME {
   TODAY = 'today',
   LAST_7_DAYS = '7d',
-  LAST_MONTH = '1m',
+  LAST_30_DAYS = '1m',
   ALL_TIME = 'all',
 }
 
@@ -20,9 +20,9 @@ export const POST_FILTER_TIME: PostTime = {
     label: 'Last 7 Days',
     value: FILTER_TIME.LAST_7_DAYS,
   },
-  [FILTER_TIME.LAST_MONTH]: {
-    label: 'Last Month',
-    value: FILTER_TIME.LAST_MONTH,
+  [FILTER_TIME.LAST_30_DAYS]: {
+    label: 'Last 30 Days',
+    value: FILTER_TIME.LAST_30_DAYS,
   },
 };
 
@@ -32,3 +32,6 @@ export const FILTER_KEY = {
   TIME: 'time',
   PAGE: 'page',
 };
+
+// Default
+export const PER_PAGE = 10;

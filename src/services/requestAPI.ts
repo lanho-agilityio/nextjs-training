@@ -1,10 +1,9 @@
-import { revalidateTag } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { unstable_noStore as noStore } from 'next/cache';
 import { API_BASE_URL } from '@/constants';
-class API {
-  async get<T>(path: string, tag: string, time?: number): Promise<T> {
-    console.log(`${API_BASE_URL}${path}`);
 
+class API {
+  async get<T>(path: string, tag: string, time?: number): Promise<{data: T, total: number}> {
     const response = await fetch(`${API_BASE_URL}${path}`, {
       method: 'GET',
       next: {
@@ -17,10 +16,19 @@ class API {
       throw new Error(error);
     });
 
-    return response.json();
+    const data = await response.json()
+   
+    return {
+      data: data,
+      total: Number(response.headers.get('x-total-count')) || 0
+    }
   }
 
-  async post<T>(path: string, payload: object = {}, tag?: string): Promise<T> {
+  async post<T>(
+    path: string,
+    payload: object = {},
+    relvalidateOptions: { tag?: string; path?: string } = { tag: '', path: '' },
+  ): Promise<T> {
     noStore();
 
     const response = await fetch(`${API_BASE_URL}${path}`, {
@@ -35,11 +43,16 @@ class API {
       throw new Error(error);
     });
 
-    tag && revalidateTag(tag);
+    relvalidateOptions.tag && revalidateTag(relvalidateOptions.tag);
+    relvalidateOptions.path && revalidatePath(relvalidateOptions.path);
     return response.json();
   }
 
-  async put<T>(path: string, payload: object = {}, tag?: string): Promise<T> {
+  async put<T>(
+    path: string,
+    payload: object = {},
+    relvalidateOptions: { tag?: string; path?: string } = { tag: '', path: '' },
+  ): Promise<T> {
     noStore();
 
     const response = await fetch(`${API_BASE_URL}${path}`, {
@@ -52,11 +65,15 @@ class API {
       throw new Error(error);
     });
 
-    tag && revalidateTag(tag);
+    relvalidateOptions?.tag && revalidateTag(relvalidateOptions?.tag);
+    relvalidateOptions?.path && revalidatePath(relvalidateOptions?.path);
     return response.json();
   }
 
-  async delete<T>(path: string, tag?: string): Promise<T> {
+  async delete<T>(
+    path: string,
+    relvalidateOptions: { tag?: string; path?: string } = { tag: '', path: '' },
+  ): Promise<T> {
     noStore();
 
     const response = await fetch(`${API_BASE_URL}${path}`, {
@@ -68,7 +85,8 @@ class API {
       throw new Error(error);
     });
 
-    tag && revalidateTag(tag);
+    relvalidateOptions?.tag && revalidateTag(relvalidateOptions?.tag);
+    relvalidateOptions?.path && revalidatePath(relvalidateOptions?.path);
     return response.json();
   }
 }
