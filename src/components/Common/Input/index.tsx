@@ -23,6 +23,7 @@ const Input = (
         name={name}
         placeholder={placeholder}
         type={type}
+        {...props}
         sx={{
           '& .MuiOutlinedInput-root': {
             '&.Mui-focused fieldset': {
@@ -37,6 +38,7 @@ const Input = (
             color: COLORS.HEADING,
             opacity: 1,
           },
+          ...props.sx,
         }}
         inputProps={{
           sx: {
@@ -44,9 +46,9 @@ const Input = (
               color: COLORS.HEADING,
               opacity: 1,
             },
+          ...props?.inputProps?.sx,
           },
         }}
-        {...props}
         error={!!errorMessage}
       />
       {errorMessage && (
