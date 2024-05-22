@@ -39,7 +39,9 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
 
   return (
     <>
-      <LinkButton onClick={handleClick} sx={{padding: 0, paddingTop: '4px'}}>Sign in</LinkButton>
+      <LinkButton onClick={handleClick} sx={{ padding: 0, paddingTop: '4px' }}>
+        Sign in
+      </LinkButton>
       <Popover
         id={id}
         open={open}
@@ -54,7 +56,7 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
           horizontal: 'center',
         }}
         sx={{
-          borderRadius: '6px'
+          borderRadius: '6px',
         }}
       >
         <Container sx={{ minHeight: '200px', paddingY: '25px' }}>

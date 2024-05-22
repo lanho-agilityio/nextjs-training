@@ -27,7 +27,8 @@ export const MOCK_POSTS_LIST: Post[] = [
       value: 'TECHNOLOGY',
       color: 'blue',
     },
-    author: {
+    userId: '1',
+    user: {
       id: '1',
       username: 'Mario Sanchez 1',
     },
@@ -44,7 +45,8 @@ export const MOCK_POSTS_LIST: Post[] = [
       value: 'TECHNOLOGY',
       color: 'blue',
     },
-    author: {
+    userId: '1',
+    user: {
       id: '1',
       username: 'Mario Sanchez 2',
     },
@@ -60,7 +62,8 @@ export const MOCK_POSTS_LIST: Post[] = [
       value: 'TECHNOLOGY',
       color: 'blue',
     },
-    author: {
+    userId: '1',
+    user: {
       id: '1',
       username: 'Mario Sanchez 3',
     },
@@ -76,7 +79,8 @@ export const MOCK_POSTS_LIST: Post[] = [
       value: 'TECHNOLOGY',
       color: 'blue',
     },
-    author: {
+    userId: '1',
+    user: {
       id: '1',
       username: 'Mario Sanchez 4',
     },
@@ -92,7 +96,8 @@ export const MOCK_POSTS_LIST: Post[] = [
       value: 'TECHNOLOGY',
       color: 'blue',
     },
-    author: {
+    userId: '1',
+    user: {
       id: '1',
       username: 'Mario Sanchez 5',
     },

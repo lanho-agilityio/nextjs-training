@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Box } from '@mui/material';
 
 // Constants
-import { ROUTES } from '@/constants';
+import { COLORS, ROUTES } from '@/constants';
 
 // Components
 import { Link } from '../../Common';
@@ -32,7 +32,11 @@ const PostCardImage = ({ alt, src, to, isRecentPost = false, isArchived = false 
       id="post-image"
     >
       <Link href={ROUTES.POST_DETAIL(to)}>
-        <Image alt={alt} src={src} fill style={{ borderRadius: '6px' }} sizes="(max-width: 768px) 30vw, 33vw" />
+        {src ? (
+          <Image alt={alt} src={src} fill style={{ borderRadius: '6px' }} sizes="(max-width: 768px) 30vw, 33vw" />
+        ) : (
+          <Box sx={{ background: COLORS.DESCRIPTION_ICON, width: '100%', height: '100%', borderRadius: '6px'  }}></Box>
+        )}
       </Link>
     </Box>
   );

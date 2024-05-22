@@ -29,7 +29,9 @@ const UserProfile = ({ user, onClick }: UserProfileProps): JSX.Element => {
 
   return (
     <>
-      <LinkButton onClick={handleClick} sx={{padding: 0, paddingTop: '4px'}}>Hello {name}!</LinkButton>
+      <LinkButton onClick={handleClick} sx={{ padding: 0, paddingTop: '4px' }}>
+        Hello {name}!
+      </LinkButton>
       <Popover
         id={id}
         open={open}
@@ -40,7 +42,7 @@ const UserProfile = ({ user, onClick }: UserProfileProps): JSX.Element => {
           horizontal: 'left',
         }}
         sx={{
-          borderRadius: '6px'
+          borderRadius: '6px',
         }}
       >
         <LinkButton onClick={onClick}>Logout</LinkButton>

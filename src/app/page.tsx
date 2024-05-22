@@ -1,15 +1,20 @@
 import { Box } from '@mui/material';
 
+// APIs
+import { queryAllPosts } from '@/services';
+
 // Constants
-import { COLORS, MOCK_POSTS_LIST, ROUTES } from '@/constants';
+import { COLORS, ROUTES } from '@/constants';
 
 // Components
 import { PostList, Link } from '@/components';
 
-export default function Home() {
+export default async function Home() {
+  const { data } = await queryAllPosts();
+
   return (
     <main>
-      <PostList posts={MOCK_POSTS_LIST} />
+      <PostList posts={data} />
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
         <Link
           id="view-all-posts"

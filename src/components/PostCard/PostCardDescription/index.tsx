@@ -14,7 +14,7 @@ interface PostCardDescriptionProps {
 }
 
 const PostCardDescription = ({ author, updatedAt, isDetailed = false }: PostCardDescriptionProps): JSX.Element => {
-  const { username: name } = author;
+  const { username: name } = author || {};
 
   return (
     <Box

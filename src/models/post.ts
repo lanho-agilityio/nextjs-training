@@ -1,4 +1,4 @@
-import { User } from "./user";
+import { User } from './user';
 
 export type PostTag = {
   id: string;
@@ -6,7 +6,7 @@ export type PostTag = {
   color?: string;
 };
 
-export type Author =  Pick<User, 'id' | 'username'>;
+export type Author = Pick<User, 'id' | 'username'>;
 
 export type Post = {
   id: string;
@@ -16,7 +16,6 @@ export type Post = {
   imageBase64: string;
   content: string;
   updatedAt: Date | string;
-  authorId?: string;
-  author?: Author;
-
+  userId: string;
+  user?: Author;
 };

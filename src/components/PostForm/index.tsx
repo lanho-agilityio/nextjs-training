@@ -63,12 +63,9 @@ const PostForm = (): JSX.Element => {
 
   const isDisableSubmit = !isValid;
 
-  const handleSubmit: SubmitHandler<PostFormValues> = useCallback(
-    (values) => {
-      console.log(values);
-    },
-    [],
-  );
+  const handleSubmit: SubmitHandler<PostFormValues> = useCallback((values) => {
+    console.log(values);
+  }, []);
 
   return (
     <Box sx={{ width: { xs: '100%', sm: '100%', md: '70%' } }}>

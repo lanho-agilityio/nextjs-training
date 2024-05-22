@@ -1,17 +1,19 @@
-import { revalidateTag } from "next/cache";
-import { unstable_noStore as noStore } from "next/cache";
-import { VALIDATE_TAG, API_BASE_URL } from "@/constants";
+import { revalidateTag } from 'next/cache';
+import { unstable_noStore as noStore } from 'next/cache';
+import { API_BASE_URL } from '@/constants';
 class API {
-  async get<T>(path: string, time?: number): Promise<T> {
+  async get<T>(path: string, tag: string, time?: number): Promise<T> {
+    console.log(`${API_BASE_URL}${path}`);
+
     const response = await fetch(`${API_BASE_URL}${path}`, {
-      method: "GET",
+      method: 'GET',
       next: {
-        tags: [VALIDATE_TAG.POST_LIST],
+        tags: [tag],
 
         // Re-validate every minute
         revalidate: time || 60,
       },
-    }).catch(error => {
+    }).catch((error) => {
       throw new Error(error);
     });
 
@@ -22,14 +24,14 @@ class API {
     noStore();
 
     const response = await fetch(`${API_BASE_URL}${path}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         ...payload,
       }),
-    }).catch(error => {
+    }).catch((error) => {
       throw new Error(error);
     });
 
@@ -41,12 +43,12 @@ class API {
     noStore();
 
     const response = await fetch(`${API_BASE_URL}${path}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ ...payload }),
-    }).catch(error => {
+    }).catch((error) => {
       throw new Error(error);
     });
 
@@ -58,11 +60,11 @@ class API {
     noStore();
 
     const response = await fetch(`${API_BASE_URL}${path}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-    }).catch(error => {
+    }).catch((error) => {
       throw new Error(error);
     });
 

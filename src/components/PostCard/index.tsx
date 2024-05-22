@@ -1,4 +1,4 @@
-import { Post } from '@/models';
+import { Author, Post } from '@/models';
 import { Box } from '@mui/material';
 
 // Components
@@ -12,13 +12,13 @@ interface PostCardProps {
 }
 
 const PostCard = ({ content, isRecentPost, isArchived = false }: PostCardProps): JSX.Element => {
-  const { id, title, tag, author, updatedAt, imageBase64 } = content;
+  const { id, title, tag, user, updatedAt, imageBase64 } = content;
   return (
     <Box
-      sx={{ width: 'full', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
+      sx={{ width: 'full', display: 'flex', flexDirection: 'column' }}
     >
       <PostCardImage src={imageBase64} alt={title} to={id} isRecentPost={isRecentPost} isArchived={isArchived} />
-      <PostCardContent id={id} title={title} tag={tag} author={author} updatedAt={updatedAt} />
+      <PostCardContent id={id} title={title} tag={tag} author={user || ({} as Author)} updatedAt={updatedAt} />
     </Box>
   );
 };

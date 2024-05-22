@@ -7,10 +7,13 @@ import { COLORS, MOCK_POST, ROUTES } from '@/constants';
 // Components
 import { AuthorCard, Heading, Link, Paragraph, PostCardDescription, Tag } from '@/components';
 
+// Models
+import { Author } from '@/models';
+
 export default function DetailPostPage({ params }: { params: { id: string } }) {
   const post = MOCK_POST;
 
-  const { title, tag, author, imageBase64, content, updatedAt } = post;
+  const { title, tag, user, imageBase64, content, updatedAt } = post;
 
   return (
     <main>
@@ -33,8 +36,8 @@ export default function DetailPostPage({ params }: { params: { id: string } }) {
           }}
         >
           <Tag tag={tag} />
-          <Heading title={`${title} - ${params.id}`} />
-          <PostCardDescription author={author} updatedAt={updatedAt} isDetailed={true} />
+          <Heading title={title} />
+          <PostCardDescription author={user || {} as Author} updatedAt={updatedAt} isDetailed={true} />
         </Box>
         <Box
           sx={{
@@ -56,7 +59,7 @@ export default function DetailPostPage({ params }: { params: { id: string } }) {
         <Link href={ROUTES.HOME} _style={{ color: COLORS.POST_LINK }}>
           ← View all post
         </Link>
-        <AuthorCard author={author} />
+        <AuthorCard author={user || {} as Author} />
       </Box>
     </main>
   );
