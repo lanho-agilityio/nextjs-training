@@ -1,6 +1,9 @@
 import { Suspense } from 'react';
 import { Box } from '@mui/material';
 
+// Constants
+import { HOST } from '@/constants';
+
 // Components
 import { PostList, Heading, PostFilter, Pagination } from '@/components';
 
@@ -13,12 +16,14 @@ import { generateSearchParams } from '@/utils';
 export default async function ArchivePage({ searchParams }: { searchParams: SearchParams }) {
   const filter = generateSearchParams(searchParams);
 
-  const postRes = await fetch(`http://localhost:3000/posts/apis?${filter}`);
+  const postRes = await fetch(`${HOST}/posts/apis?${filter}`);
   const postResults = await postRes.json();
   const posts = postResults.data || [];
   const totalPosts = Number(postResults.total) || 0;
 
-  const tagRes = await fetch(`http://localhost:3000/category/apis`);
+  console.log(process.env.NEXT_PUBLIC_API_END_POINTS);
+
+  const tagRes = await fetch(`${HOST}/category/apis`);
   const tagResults = await tagRes.json();
   const tags = tagResults.data || [];
 

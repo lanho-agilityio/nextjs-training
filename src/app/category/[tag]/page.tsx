@@ -1,6 +1,9 @@
 import { Suspense } from 'react';
 import { Box } from '@mui/material';
 
+// Constants
+import { HOST } from '@/constants';
+
 // Components
 import { PostList, Heading, Pagination } from '@/components';
 
@@ -10,7 +13,7 @@ import { generateSearchParams } from '@/utils';
 export default async function CategoryPage({ params }: { params: { tag: string } }) {
   const filter = generateSearchParams({ tag: params.tag });
 
-  const postRes = await fetch(`http://localhost:3000/posts/apis?${filter}`);
+  const postRes = await fetch(`${HOST}posts/apis?${filter}`);
   const postResults = await postRes.json();
   const posts = postResults.data || [];
   const totalPosts = Number(postResults.total) || 0;

@@ -2,10 +2,9 @@
 import { ChangeEvent } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Grid, SelectChangeEvent } from '@mui/material';
-import { useDebouncedCallback } from 'use-debounce';
 
 // Constants
-import { DEBOUNCE_TIME, FILTER_KEY, FILTER_TIME, POST_FILTER_TIME } from '@/constants';
+import { FILTER_KEY, FILTER_TIME, POST_FILTER_TIME } from '@/constants';
 
 // Components
 import SearchInput from '../SearchInput';
@@ -33,7 +32,7 @@ export const PostFilter = ({ tags }: PostFilterProps): JSX.Element => {
 
   const postFilterTime = Object.keys(POST_FILTER_TIME).map((key: string) => POST_FILTER_TIME[key as FILTER_TIME]);
 
-  const generateSearchParams = useDebouncedCallback((queryKey: string, value: string) => {
+  const generateSearchParams = (queryKey: string, value: string) => {
     const params = new URLSearchParams(searchParams);
     if (isEmpty(value)) {
       params.delete(queryKey);
@@ -42,7 +41,7 @@ export const PostFilter = ({ tags }: PostFilterProps): JSX.Element => {
     }
     params.set(FILTER_KEY.PAGE, '1');
     replace(`${pathname}?${params.toString()}`);
-  }, DEBOUNCE_TIME);
+  };
 
   const handleSearchInput = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     generateSearchParams(FILTER_KEY.QUERY, event.target.value);

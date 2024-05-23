@@ -17,8 +17,7 @@ export async function GET(request: NextRequest) {
     throw new Error(error);
   });
 
-
   const data = await response.json();
 
-  return Response.json({data: data, total: response.headers.get('x-total-count')});
+  return Response.json({ data: data, total: response.headers.get('x-total-count') });
 }
