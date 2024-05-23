@@ -1,19 +1,23 @@
 import { NextRequest } from 'next/server';
 
 // Constants
-import { API_BASE_URL, API_ROUTES, VALIDATE_TAGS } from '@/constants';
+import { API_BASE_URL, API_ROUTES, VALIDATE_TAGS, LIMIT, SORTED, USER_INCLUDED } from '@/constants';
 
 export async function GET(request: NextRequest) {
-  const response = await fetch(`${API_BASE_URL}${API_ROUTES.POSTS}?${request.nextUrl.searchParams}`, {
-    method: 'GET',
-    next: {
-      tags: [VALIDATE_TAGS.POSTS],
+  const response = await fetch(
+    `${API_BASE_URL}${API_ROUTES.POSTS}?${SORTED}${USER_INCLUDED}${LIMIT}&${request.nextUrl.searchParams}`,
 
-      revalidate: 60,
+    {
+      next: {
+        tags: [VALIDATE_TAGS.POSTS],
+        revalidate: 60,
+      },
     },
-  }).catch((error) => {
+  ).catch((error) => {
     throw new Error(error);
   });
+
+  console.log(response.headers.get('x-total-count'));
 
   const data = await response.json();
 

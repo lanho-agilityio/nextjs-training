@@ -1,23 +1,32 @@
 import { Suspense } from 'react';
-import { Box } from '@mui/material';
+import { Avatar, Box } from '@mui/material';
 
 // Components
 import { PostList, Heading, Pagination } from '@/components';
 
+// Models
+import { Author } from '@/models';
+
 // Utils
 import { generateSearchParams } from '@/utils';
 
-export default async function CategoryPage({ params }: { params: { tag: string } }) {
-  const filter = generateSearchParams({ tag: params.tag });
+export default async function AuthorPage({ params }: { params: { id: string } }) {
+  const filter = generateSearchParams({ authorId: params.id });
 
   const postRes = await fetch(`http://localhost:3000/posts/apis?${filter}`);
   const postResults = await postRes.json();
   const posts = postResults || [];
   const totalPosts = Number(postRes.headers.get('x-total-count')) || 0;
 
+  const author: Author = posts.length > 0 ? posts[0].user : {};
+
   return (
     <main>
-      <Heading title={decodeURIComponent(params.tag)} description={`${totalPosts} Articles`} />
+      <Box sx={{ flexDirection: 'column', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Avatar src="" alt="avatar" sx={{ width: 80, height: 80 }} />
+        <Heading title={author.username} />
+      </Box>
+
       <Box sx={{ marginTop: '40px' }}>
         <PostList posts={posts} isArchived={true} />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>

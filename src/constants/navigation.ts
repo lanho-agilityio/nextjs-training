@@ -2,6 +2,7 @@ import { Navigation } from '@/models';
 
 export const ROUTES = {
   ABOUT: '/about',
+  AUTHOR: (id: string) => `/author/${id}`,
   HOME: '/',
   CATEGORY: (tag: string) => `/category/${tag}`,
   POSTS: '/posts',

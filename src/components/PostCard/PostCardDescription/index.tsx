@@ -2,7 +2,10 @@ import { Avatar, Box, Typography } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
 
 // Constants
-import { COLORS } from '@/constants';
+import { COLORS, ROUTES } from '@/constants';
+
+// Componenst
+import { Link } from '../../Common';
 
 // Models
 import { Author } from '@/models';
@@ -14,7 +17,7 @@ interface PostCardDescriptionProps {
 }
 
 const PostCardDescription = ({ author, updatedAt, isDetailed = false }: PostCardDescriptionProps): JSX.Element => {
-  const { username: name } = author || {};
+  const { username: name, id } = author;
 
   return (
     <Box
@@ -39,12 +42,15 @@ const PostCardDescription = ({ author, updatedAt, isDetailed = false }: PostCard
           gap: isDetailed ? '0px' : '12px',
         }}
       >
-        <Typography
-          variant="caption"
-          sx={{ color: isDetailed ? COLORS.HEADING : 'unset', fontSize: isDetailed ? '16px' : 'unset' }}
-        >
-          {name}
-        </Typography>
+        <Link href={ROUTES.AUTHOR(id)} _style={{ color: COLORS.DESCRIPTION }}>
+          <Typography
+            variant="caption"
+            sx={{ color: isDetailed ? COLORS.HEADING : 'unset', fontSize: isDetailed ? '16px' : 'unset' }}
+          >
+            {name}
+          </Typography>
+        </Link>
+
         {!isDetailed && <CircleIcon sx={{ height: 5, width: 5, color: COLORS.DESCRIPTION_ICON }} />}
         <Typography variant="caption">{updatedAt.toString()}</Typography>
       </Box>

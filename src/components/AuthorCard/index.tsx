@@ -26,7 +26,7 @@ const AuthorCard = ({ author }: AuthorCardProps): JSX.Element => {
         padding: '32px',
       }}
     >
-      <Avatar alt="Author's Picture" sx={{ width: 96, height: 96 }} />
+      <Avatar alt="Avatar" sx={{ width: 96, height: 96 }} />
       <Box
         sx={{
           display: 'flex',
@@ -44,7 +44,7 @@ const AuthorCard = ({ author }: AuthorCardProps): JSX.Element => {
           sagittis gravida quam ipsum eget ex. Vivamus mattis velit nec dolor sodales facilisis. Proin laoreet orci sed
           purus semper hendrerit. Morbi dictum ultrices dolor sit amet tincidunt.
         </Typography>
-        <Link href={ROUTES.HOME} _style={{ color: COLORS.POST_LINK }}>
+        <Link href={ROUTES.AUTHOR(author.id)} _style={{ color: COLORS.POST_LINK }}>
           View profile
         </Link>
       </Box>

@@ -12,4 +12,5 @@ export type SearchParams = {
   tag?: string;
   time?: string;
   page?: string;
+  authorId?: string;
 };

@@ -31,4 +31,5 @@ export const FILTER_KEY = {
   TAG: 'tag',
   TIME: 'time',
   PAGE: 'page',
+  AUTHOR_ID: 'authorId',
 };

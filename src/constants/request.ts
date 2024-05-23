@@ -12,6 +12,7 @@ export const API_ROUTES = {
 export const VALIDATE_TAGS = {
   POSTS: 'posts',
   TAGS: 'tags',
+  USERS: 'users',
 };
 
 export const SORTED = '&_sort=updatedAt&_order=desc';
@@ -23,4 +24,5 @@ export const SEARCH_PARAMS = {
   TIME: (startDate: string, endDate: string) => `&updatedAt_gte=${startDate}&updatedAt_lte=${endDate}`,
   TAG: (tag: string) => `&tag.value=${tag}`,
   PAGE: (pageNumber: string) => `&_page=${pageNumber}`,
+  AUTHOR: (id: string) => `&userId=${id}`,
 };
