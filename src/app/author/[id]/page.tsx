@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { Avatar, Box } from '@mui/material';
 
-// Constants
-import { HOST } from '@/constants';
+// APIs
+import { queryAllPosts } from '@/services';
 
 // Components
 import { PostList, Heading, Pagination } from '@/components';
@@ -10,18 +10,11 @@ import { PostList, Heading, Pagination } from '@/components';
 // Models
 import { Author } from '@/models';
 
-// Utils
-import { generateSearchParams } from '@/utils';
-
 export default async function AuthorPage({ params }: { params: { id: string } }) {
-  const filter = generateSearchParams({ authorId: params.id });
+  const postsResult = await queryAllPosts({ authorId: params.id });
+  const { data: posts, total: totalPosts } = postsResult;
 
-  const postRes = await fetch(`${HOST}posts/apis?${filter}`);
-  const postResults = await postRes.json();
-  const posts = postResults.data || [];
-  const totalPosts = Number(postResults.total) || 0;
-
-  const author: Author = posts.length > 0 ? posts[0].user : {};
+  const author: Author = (posts.length > 0 && posts[0].user) || { id: '', username: '' };
 
   return (
     <main>

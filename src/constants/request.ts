@@ -1,6 +1,7 @@
 export const API_BASE_URL = 'https://mock-server-fawn.vercel.app/';
 export const HOST = process.env.NEXT_PUBLIC_API_END_POINTS;
 
+
 // Default
 export const PER_PAGE = 10;
 
