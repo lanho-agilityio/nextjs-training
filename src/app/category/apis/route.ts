@@ -15,5 +15,5 @@ export async function GET() {
 
   const data = await response.json();
 
-  return Response.json(data);
+  return Response.json({data: data, total: response.headers.get('x-total-count')});
 }

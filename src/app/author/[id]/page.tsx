@@ -15,8 +15,8 @@ export default async function AuthorPage({ params }: { params: { id: string } })
 
   const postRes = await fetch(`http://localhost:3000/posts/apis?${filter}`);
   const postResults = await postRes.json();
-  const posts = postResults || [];
-  const totalPosts = Number(postRes.headers.get('x-total-count')) || 0;
+  const posts = postResults.data || [];
+  const totalPosts = Number(postResults.total) || 0;
 
   const author: Author = posts.length > 0 ? posts[0].user : {};
 

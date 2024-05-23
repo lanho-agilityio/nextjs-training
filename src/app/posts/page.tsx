@@ -15,8 +15,8 @@ export default async function ArchivePage({ searchParams }: { searchParams: Sear
 
   const postRes = await fetch(`http://localhost:3000/posts/apis?${filter}`);
   const postResults = await postRes.json();
-  const posts = postResults || [];
-  const totalPosts = Number(postRes.headers.get('x-total-count')) || 0;
+  const posts = postResults.data || [];
+  const totalPosts = Number(postResults.total) || 0;
 
   const tagRes = await fetch(`http://localhost:3000/category/apis`);
   const tagResults = await tagRes.json();
