@@ -20,7 +20,7 @@ export default async function ArchivePage({ searchParams }: { searchParams: Sear
 
   const tagRes = await fetch(`http://localhost:3000/category/apis`);
   const tagResults = await tagRes.json();
-  const tags = tagResults || [];
+  const tags = tagResults.data || [];
 
   return (
     <main>
