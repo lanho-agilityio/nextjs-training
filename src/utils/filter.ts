@@ -15,7 +15,7 @@ export const generateSearchParams = (params: SearchParams): string => {
       return SEARCH_PARAMS.PAGE(value);
     }
     if (value && key === 'tag') {
-      return generateTagParams(decodeURIComponent(value).split(','));
+      return generateCategoryParams(decodeURIComponent(value).split(','));
     }
     if (value && key === 'time') {
       return generateDateParams(value as FILTER_TIME);
@@ -24,7 +24,7 @@ export const generateSearchParams = (params: SearchParams): string => {
   return search.join('');
 };
 
-export const generateTagParams = (tags: string[]): string => {
+export const generateCategoryParams = (tags: string[]): string => {
   return tags.map((value) => SEARCH_PARAMS.TAG(value)).join('');
 };
 

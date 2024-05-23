@@ -7,13 +7,13 @@ import { Typography, Box, MenuItem, Select, SelectChangeEvent, Checkbox, ListIte
 import { COLORS } from '@/constants';
 
 // Models
-import { PostTag } from '@/models';
+import { PostCategory } from '@/models';
 
 // Utils
 import { isEmpty } from '@/utils';
 
-interface TagSelectProps {
-  options: PostTag[];
+interface CategorySelectProps {
+  options: PostCategory[];
   value: string | string[];
   placeholder?: string;
   isMultiple?: boolean;
@@ -22,8 +22,16 @@ interface TagSelectProps {
   onBlur?: () => void;
 }
 
-const TagSelect = (
-  { value, isMultiple = false, placeholder = 'Choose Tag', options, errorMessage, onChange, onBlur }: TagSelectProps,
+const CategorySelect = (
+  {
+    value,
+    isMultiple = false,
+    placeholder = 'Choose Category',
+    options,
+    errorMessage,
+    onChange,
+    onBlur,
+  }: CategorySelectProps,
   ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>,
 ): JSX.Element => {
   const handleChange = (event: SelectChangeEvent<typeof value>) => {
@@ -90,4 +98,4 @@ const TagSelect = (
   );
 };
 
-export default forwardRef(TagSelect);
+export default forwardRef(CategorySelect);

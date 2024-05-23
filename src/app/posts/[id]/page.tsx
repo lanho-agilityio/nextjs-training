@@ -8,7 +8,7 @@ import { queryPostDetail } from '@/services';
 import { COLORS, ROUTES } from '@/constants';
 
 // Components
-import { AuthorCard, Heading, Link, Paragraph, PostCardDescription, Tag } from '@/components';
+import { AuthorCard, Heading, Link, Paragraph, PostCardDescription, Category } from '@/components';
 
 export default async function DetailPostPage({ params }: { params: { id: string } }) {
   const { data } = await queryPostDetail(params.id);
@@ -35,7 +35,7 @@ export default async function DetailPostPage({ params }: { params: { id: string 
             maxWidth: '762px',
           }}
         >
-          <Tag tag={tag} />
+          <Category tag={tag} />
           <Heading title={title} />
           <PostCardDescription author={user} updatedAt={updatedAt} isDetailed={true} />
         </Box>

@@ -10,8 +10,6 @@ import { PostList, Heading, Pagination } from '@/components';
 export default async function CategoryPage({ params }: { params: { tag: string } }) {
   const { data: posts, total: totalPosts } = await queryAllPosts({ tag: params.tag });
 
-  console.log(totalPosts);
-
   return (
     <main>
       <Heading title={params.tag} description={`${totalPosts} Articles`} />

@@ -1,6 +1,6 @@
-import { Post, PostTag } from '@/models';
+import { Post, PostCategory } from '@/models';
 
-export const MOCK_TAG_LIST: PostTag[] = [
+export const MOCK_TAG_LIST: PostCategory[] = [
   {
     id: '1',
     value: 'TECHNOLOGY',

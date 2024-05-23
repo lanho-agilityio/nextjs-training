@@ -10,16 +10,16 @@ import { DEBOUNCE_TIME, FILTER_KEY, FILTER_TIME, POST_FILTER_TIME } from '@/cons
 // Components
 import SearchInput from '../SearchInput';
 import DatePicker from '../DatePicker';
-import TagSelect from '../TagSelect';
+import CategorySelect from '../CategorySelect';
 
 // Models
-import { PostTag } from '@/models';
+import { PostCategory } from '@/models';
 
 // Utils
 import { isEmpty } from '@/utils';
 
 interface PostFilterProps {
-  tags: PostTag[];
+  tags: PostCategory[];
 }
 
 export const PostFilter = ({ tags }: PostFilterProps): JSX.Element => {
@@ -28,7 +28,7 @@ export const PostFilter = ({ tags }: PostFilterProps): JSX.Element => {
   const { replace } = useRouter();
 
   const searchParamsByQuery = searchParams.get(FILTER_KEY.QUERY) || '';
-  const searchParamsByTag = searchParams.get(FILTER_KEY.TAG) || [];
+  const searchParamsByCategory = searchParams.get(FILTER_KEY.TAG) || [];
   const searchParamsByTime = searchParams.get(FILTER_KEY.TIME) || FILTER_TIME.ALL_TIME;
 
   const postFilterTime = Object.keys(POST_FILTER_TIME).map((key: string) => POST_FILTER_TIME[key as FILTER_TIME]);
@@ -52,7 +52,7 @@ export const PostFilter = ({ tags }: PostFilterProps): JSX.Element => {
     generateSearchParams(FILTER_KEY.QUERY, '');
   };
 
-  const handleSelectTag = (value: string | string[]) => {
+  const handleSelectCategory = (value: string | string[]) => {
     const search = typeof value === 'string' ? value.split(',') : value;
     generateSearchParams(FILTER_KEY.TAG, search.join(','));
   };
@@ -71,14 +71,16 @@ export const PostFilter = ({ tags }: PostFilterProps): JSX.Element => {
         />
       </Grid>
       <Grid item xs={6} md={3}>
-        <TagSelect
+        <CategorySelect
           options={tags}
           value={
-            typeof searchParamsByTag === 'string' ? decodeURIComponent(searchParamsByTag).split(',') : searchParamsByTag
+            typeof searchParamsByCategory === 'string'
+              ? decodeURIComponent(searchParamsByCategory).split(',')
+              : searchParamsByCategory
           }
           isMultiple={true}
-          onChange={handleSelectTag}
-          placeholder="Select Tag(s)"
+          onChange={handleSelectCategory}
+          placeholder="Select Category(s)"
         />
       </Grid>
       <Grid item xs={6} md={3}>

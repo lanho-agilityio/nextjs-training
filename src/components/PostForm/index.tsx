@@ -9,7 +9,7 @@ import { MOCK_TAG_LIST, COLORS } from '@/constants';
 // Components
 import { Button, Input } from '../Common';
 import FilePicker from '../FilePicker';
-import TagSelect from '../TagSelect';
+import CategorySelect from '../CategorySelect';
 
 // Utils
 import { validateRequired } from '@/utils';
@@ -120,7 +120,7 @@ const PostForm = (): JSX.Element => {
           }}
           render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
             <Box sx={{ paddingBottom: error?.message ? '0px ' : '24px' }}>
-              <TagSelect
+              <CategorySelect
                 options={MOCK_TAG_LIST}
                 value={value}
                 errorMessage={error?.message}

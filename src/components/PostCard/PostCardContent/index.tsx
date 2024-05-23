@@ -4,16 +4,16 @@ import { Box } from '@mui/material';
 import { COLORS, ROUTES } from '@/constants';
 
 // Components
-import { Link, Tag } from '../..';
+import { Link, Category } from '../..';
 import PostCardDescription from '../PostCardDescription';
 
 // Models
-import { Author, PostTag } from '@/models';
+import { Author, PostCategory } from '@/models';
 
 interface PostCardContentProps {
   id: string;
   title: string;
-  tag: PostTag;
+  tag: PostCategory;
   author: Author;
   updatedAt: Date | string;
 }
@@ -21,7 +21,7 @@ interface PostCardContentProps {
 const PostCardContent = ({ id, title, tag, author, updatedAt }: PostCardContentProps): JSX.Element => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-      <Tag tag={tag} />
+      <Category tag={tag} />
       <Box sx={{ marginTop: '8px' }}>
         <Link
           id="post-title"

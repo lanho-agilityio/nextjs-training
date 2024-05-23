@@ -13,6 +13,6 @@ export { default as PostForm } from './PostForm';
 export { default as PostList } from './PostList';
 export { default as SearchInput } from './SearchInput';
 export { default as SignUpForm } from './SignUpForm';
-export { default as TagSelect } from './TagSelect';
+export { default as CategorySelect } from './CategorySelect';
 
 export * from './Common';

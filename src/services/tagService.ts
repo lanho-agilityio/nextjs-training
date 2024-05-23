@@ -5,14 +5,14 @@ import { APIs } from './requestAPI';
 import { API_ROUTES, ERROR_MESSAGES, VALIDATE_TAGS } from '@/constants';
 
 // Models
-import { PostTag } from '@/models';
+import { PostCategory } from '@/models';
 
-export const queryAllTags = async () => {
+export const queryAllCategorys = async () => {
   let errorMessage = '';
-  let data: PostTag[] = [];
+  let data: PostCategory[] = [];
 
   const url = `${API_ROUTES.TAGS}`;
-  await APIs.get<PostTag[]>(url, VALIDATE_TAGS.TAGS)
+  await APIs.get<PostCategory[]>(url, VALIDATE_TAGS.TAGS)
     .then((results) => {
       data = results.data;
     })

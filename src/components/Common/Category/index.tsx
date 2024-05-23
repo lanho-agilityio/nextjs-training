@@ -7,13 +7,13 @@ import { ROUTES } from '@/constants';
 import Link from '../Link';
 
 // Models
-import { PostTag } from '@/models';
+import { PostCategory } from '@/models';
 
-interface PostTagProps {
-  tag: PostTag;
+interface PostCategoryProps {
+  tag: PostCategory;
 }
 
-const Tag = ({ tag }: PostTagProps): JSX.Element => {
+const Category = ({ tag }: PostCategoryProps): JSX.Element => {
   const { value: title, color } = tag;
 
   return (
@@ -36,4 +36,4 @@ const Tag = ({ tag }: PostTagProps): JSX.Element => {
   );
 };
 
-export default Tag;
+export default Category;
