@@ -10,9 +10,6 @@ import { COLORS, ROUTES } from '@/constants';
 // Components
 import { AuthorCard, Heading, Link, Paragraph, PostCardDescription, Tag } from '@/components';
 
-// Models
-import { Author } from '@/models';
-
 export default async function DetailPostPage({ params }: { params: { id: string } }) {
   const { data } = await queryPostDetail(params.id);
 
@@ -40,7 +37,7 @@ export default async function DetailPostPage({ params }: { params: { id: string 
         >
           <Tag tag={tag} />
           <Heading title={title} />
-          <PostCardDescription author={user || ({} as Author)} updatedAt={updatedAt} isDetailed={true} />
+          <PostCardDescription author={user} updatedAt={updatedAt} isDetailed={true} />
         </Box>
         {imageBase64 && (
           <Box
@@ -64,7 +61,7 @@ export default async function DetailPostPage({ params }: { params: { id: string 
         <Link href={ROUTES.POSTS} _style={{ color: COLORS.POST_LINK }}>
           ← View all post
         </Link>
-        <AuthorCard author={user || ({} as Author)} />
+        <AuthorCard author={user} />
       </Box>
     </main>
   );

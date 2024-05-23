@@ -1,4 +1,4 @@
-import { Author, Post } from '@/models';
+import { Post } from '@/models';
 import { Box } from '@mui/material';
 
 // Components
@@ -17,7 +17,7 @@ const PostCard = ({ content, isRecentPost, isArchived = false }: PostCardProps):
   return (
     <Box sx={{ width: 'full', display: 'flex', flexDirection: 'column' }}>
       <PostCardImage src={imageBase64} alt={title} to={id} isRecentPost={isRecentPost} isArchived={isArchived} />
-      <PostCardContent id={id} title={title} tag={tag} author={user || ({} as Author)} updatedAt={updatedAt} />
+      <PostCardContent id={id} title={title} tag={tag} author={user} updatedAt={updatedAt} />
     </Box>
   );
 };

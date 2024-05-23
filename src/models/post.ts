@@ -17,5 +17,5 @@ export type Post = {
   content: string;
   updatedAt: Date | string;
   userId: string;
-  user?: Author;
+  user: Author;
 };

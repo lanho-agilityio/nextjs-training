@@ -46,7 +46,7 @@ const Input = (
               color: COLORS.HEADING,
               opacity: 1,
             },
-          ...props?.inputProps?.sx,
+            ...props?.inputProps?.sx,
           },
         }}
         error={!!errorMessage}
