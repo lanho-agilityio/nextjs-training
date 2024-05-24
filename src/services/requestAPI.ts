@@ -24,10 +24,7 @@ class API {
     };
   }
 
-  async post<T>(
-    path: string,
-    payload: object = {},
-  ): Promise<T> {
+  async post<T>(path: string, payload: object = {}): Promise<T> {
     noStore();
     const response = await fetch(`${API_BASE_URL}${path}`, {
       method: 'POST',
@@ -43,10 +40,7 @@ class API {
     return response.json();
   }
 
-  async put<T>(
-    path: string,
-    payload: object = {},
-  ): Promise<T> {
+  async put<T>(path: string, payload: object = {}): Promise<T> {
     noStore();
 
     const response = await fetch(`${API_BASE_URL}${path}`, {
@@ -61,9 +55,7 @@ class API {
     return response.json();
   }
 
-  async delete<T>(
-    path: string,
-  ): Promise<T> {
+  async delete<T>(path: string): Promise<T> {
     noStore();
 
     const response = await fetch(`${API_BASE_URL}${path}`, {

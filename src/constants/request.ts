@@ -1,7 +1,9 @@
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_END_POINTS;
 
 // Default
-export const PER_PAGE = 10;
+export const PER_PAGE = 8;
+export const PER_PAGE_ARCHIVE = 9;
+
 
 export const API_ROUTES = {
   USER: '/users',
@@ -17,7 +19,7 @@ export const VALIDATE_TAGS = {
 
 export const SORTED = '&_sort=updatedAt&_order=desc';
 export const USER_INCLUDED = '&_expand=user';
-export const LIMIT = `&_limit=${PER_PAGE}`;
+export const LIMIT = (perPage: number) => `&_limit=${perPage}`;
 
 export const SEARCH_PARAMS = {
   QUERY: (query: string) => `&q=${query}`,

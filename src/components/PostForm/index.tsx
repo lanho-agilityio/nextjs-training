@@ -2,7 +2,7 @@
 import { ChangeEvent, useCallback, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { Box, Stack } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 
 // APIs
 import { createPost } from '@/services';
@@ -84,9 +84,9 @@ const PostForm = ({ tags }: PostFormProps): JSX.Element => {
   };
 
   const handleSuccess = useCallback(() => {
-    toast.success(SUCCESS_MESSAGES.POST_CREATED)
-    router.push(ROUTES.HOME)
-  },[toast, router])
+    toast.success(SUCCESS_MESSAGES.POST_CREATED);
+    router.push(ROUTES.HOME);
+  }, [toast, router]);
 
   const handleError = useCallback(
     (errorMessage: string) => {
@@ -98,9 +98,8 @@ const PostForm = ({ tags }: PostFormProps): JSX.Element => {
   const handleSubmit: SubmitHandler<PostFormValues> = useCallback(
     async (values) => {
       if (user && user.id) {
-        console.log(1)
-        const imageBase64 = image && await fileToBase64(image) || undefined;
-        if(typeof imageBase64 === 'string' || imageBase64 === undefined){
+        const imageBase64 = (image && (await fileToBase64(image))) || undefined;
+        if (typeof imageBase64 === 'string' || imageBase64 === undefined) {
           const data: PostCreate = {
             ...values,
             imageName,
@@ -110,8 +109,8 @@ const PostForm = ({ tags }: PostFormProps): JSX.Element => {
             updatedAt: new Date().toISOString(),
           };
           const response = await createPost(data);
-          response.data && handleSuccess()
-          response.errorMessage && handleError(response.errorMessage)
+          response.data && handleSuccess();
+          response.errorMessage && handleError(response.errorMessage);
         }
       }
     },
@@ -193,7 +192,6 @@ const PostForm = ({ tags }: PostFormProps): JSX.Element => {
             Upload Image
           </FilePicker>
         </Box>
-
         <Button
           type="submit"
           backgroundColor={COLORS.HEADING}
@@ -204,6 +202,7 @@ const PostForm = ({ tags }: PostFormProps): JSX.Element => {
         >
           Submit Post
         </Button>
+        <Typography>{!user?.id && '**Please sign in to create a post'}</Typography>
       </Stack>
     </Box>
   );

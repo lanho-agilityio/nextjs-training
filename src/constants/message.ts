@@ -7,5 +7,5 @@ export const ERROR_MESSAGES = {
 };
 
 export const SUCCESS_MESSAGES = {
-  POST_CREATED: 'New post is created. Returning to Homepage'
-}
+  POST_CREATED: 'New post is created. Returning to Homepage',
+};

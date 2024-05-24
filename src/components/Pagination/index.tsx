@@ -8,16 +8,17 @@ import { COLORS, PER_PAGE } from '@/constants';
 
 interface PaginationProps {
   totalPosts: number;
+  perPage?: number;
 }
 
-const Pagination = ({ totalPosts }: PaginationProps): JSX.Element => {
+const Pagination = ({ totalPosts, perPage = PER_PAGE }: PaginationProps): JSX.Element => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
   const currentPage = Number(searchParams.get('page')) || 1;
 
   const hasPrevious = currentPage > 1;
-  const hasNext = currentPage * PER_PAGE < totalPosts;
+  const hasNext = currentPage * perPage < totalPosts;
 
   const createPageURL = (pageNumber: number | string) => {
     const params = new URLSearchParams(searchParams);
