@@ -8,9 +8,9 @@ import { COLORS, ROUTES } from '@/constants';
 import { Link } from '../../Common';
 
 interface PostCardImageProps {
-  src: string;
   alt: string;
   to: string;
+  src?: string;
   isRecentPost?: boolean;
   isArchived?: boolean;
 }

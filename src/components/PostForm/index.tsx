@@ -82,19 +82,18 @@ const PostForm = ({ tags }: PostFormProps): JSX.Element => {
   const handleSubmit: SubmitHandler<PostFormValues> = useCallback(
     async (values) => {
       if (user && user.id) {
-        let imageBase64;
-        if (image) {
-          imageBase64 = await fileToBase64(image);
+        const imageBase64 = image && await fileToBase64(image);
+        if(!(imageBase64 instanceof ArrayBuffer) && imageBase64 !== null){
+          const data: PostCreate = {
+            ...values,
+            imageName,
+            imageBase64,
+            tag: selectedTag,
+            userId: user.id,
+            updatedAt: new Date().toISOString(),
+          };
+          await createPost(data);
         }
-        const data: PostCreate = {
-          ...values,
-          imageName,
-          imageBase64,
-          tag: selectedTag,
-          userId: user.id,
-          updatedAt: new Date().toISOString(),
-        };
-        await createPost(data);
       }
     },
     [image, selectedTag, imageName, user],

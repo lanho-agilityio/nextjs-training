@@ -13,7 +13,7 @@ export type Post = {
   title: string;
   tag: PostCategory;
   imageName?: string;
-  imageBase64?: string | ArrayBuffer | null;
+  imageBase64?: string;
   content: string;
   updatedAt: Date | string;
   userId: string;
