@@ -1,5 +1,4 @@
-// export const API_BASE_URL = 'https://mock-server-fawn.vercel.app/';
-export const API_BASE_URL = 'http:localhost:8000';
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_END_POINTS;
 
 // Default
 export const PER_PAGE = 10;
