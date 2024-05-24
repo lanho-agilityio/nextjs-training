@@ -33,7 +33,7 @@ export const queryPostDetail = async (id: string) => {
   });
 
   return {
-    errorMessage,
     data: response?.data || null,
+    errorMessage,
   };
 };
