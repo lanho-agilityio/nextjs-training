@@ -1,3 +1,4 @@
+'use server'
 // APIs
 import { APIs } from './requestAPI';
 
@@ -5,7 +6,7 @@ import { APIs } from './requestAPI';
 import { API_ROUTES, ERROR_MESSAGES, LIMIT, SORTED, USER_INCLUDED, VALIDATE_TAGS } from '@/constants';
 
 // Models
-import { Post, SearchParams } from '@/models';
+import { Post, PostCreate, SearchParams } from '@/models';
 
 // Utils
 import { generateSearchParams } from '@/utils';
@@ -37,3 +38,12 @@ export const queryPostDetail = async (id: string) => {
     errorMessage,
   };
 };
+
+export const createPost = async (values: PostCreate) => {
+  await APIs.post(API_ROUTES.POSTS, values, {tag: VALIDATE_TAGS.POSTS});
+};
+
+export const editPost = async (values: Post) => {
+  await APIs.put(API_ROUTES.POSTS, values, {tag: VALIDATE_TAGS.POSTS});
+};
+

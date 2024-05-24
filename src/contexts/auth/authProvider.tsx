@@ -20,9 +20,10 @@ export interface AuthContextType {
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, dispatch] = useReducer(authReducer,  typeof window !== 'undefined'
-  ? JSON.parse(window.sessionStorage.getItem('user') || 'null')
-  : null);
+  const [user, dispatch] = useReducer(
+    authReducer,
+    typeof window !== 'undefined' ? JSON.parse(window.sessionStorage.getItem('user') || 'null') : null,
+  );
 
   const onLogin = useCallback(
     async (values: UserLogin, handleSuccess?: () => void, handleError?: (errorMessage: string) => void) => {

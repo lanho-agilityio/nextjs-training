@@ -1,9 +1,14 @@
 import { Box } from '@mui/material';
 
+// APIs
+import { queryAllCategory } from '@/services';
+
 // Components
 import { Heading, PostForm } from '@/components';
 
-export default function CreatePage() {
+export default async function CreatePage() {
+  const { data: tags } = await queryAllCategory();
+
   return (
     <main>
       <Heading title="Create" description="Create a post here." />
@@ -17,7 +22,7 @@ export default function CreatePage() {
           paddingTop: '40px',
         }}
       >
-        <PostForm />
+        <PostForm tags={tags} />
       </Box>
     </main>
   );

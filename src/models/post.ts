@@ -13,9 +13,11 @@ export type Post = {
   title: string;
   tag: PostCategory;
   imageName?: string;
-  imageBase64: string;
+  imageBase64?: string | ArrayBuffer | null;
   content: string;
   updatedAt: Date | string;
   userId: string;
   user: Author;
 };
+
+export type PostCreate = Omit<Post, 'id' | 'user'>;

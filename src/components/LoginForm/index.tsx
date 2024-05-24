@@ -147,9 +147,9 @@ const LoginForm = ({ onSubmit }: LoginFormProps): JSX.Element => {
       </Button>
       <Typography
         sx={{
-          paddingTop: errorMessage? 0: '18px',
+          paddingTop: errorMessage ? 0 : '18px',
           fontSize: '12px',
-          color: COLORS.ERROR
+          color: COLORS.ERROR,
         }}
       >
         {errorMessage}

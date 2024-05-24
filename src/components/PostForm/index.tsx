@@ -3,16 +3,29 @@ import { ChangeEvent, useCallback, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Stack } from '@mui/material';
 
+// APIs
+import { createPost } from '@/services';
+
 // Constants
-import { MOCK_TAG_LIST, COLORS } from '@/constants';
+import { COLORS } from '@/constants';
 
 // Components
 import { Button, Input } from '../Common';
 import FilePicker from '../FilePicker';
 import CategorySelect from '../CategorySelect';
 
+// Hooks
+import { useAuthContext } from '@/hooks';
+
+// Models
+import { PostCategory, PostCreate } from '@/models';
+
 // Utils
-import { validateRequired } from '@/utils';
+import { fileToBase64, validateRequired } from '@/utils';
+
+interface PostFormProps {
+  tags: PostCategory[];
+}
 
 const validations = {
   title: {
@@ -32,9 +45,9 @@ interface PostFormValues {
   tag: string;
 }
 
-const PostForm = (): JSX.Element => {
+const PostForm = ({ tags }: PostFormProps): JSX.Element => {
+  const { user } = useAuthContext();
   const [image, setImage] = useState<File | null>(null);
-
   const { name: imageName } = image || {};
 
   const postFormInitValues: PostFormValues = {
@@ -46,12 +59,17 @@ const PostForm = (): JSX.Element => {
   const {
     control,
     handleSubmit: submitConfirm,
+    watch,
     formState: { isValid },
   } = useForm<PostFormValues>({
     mode: 'onBlur',
     reValidateMode: 'onBlur',
     values: postFormInitValues,
   });
+
+  const isDisableSubmit = !isValid || user?.id === undefined;
+
+  const selectedTag = tags.filter((tag) => tag.value === watch('tag'))[0];
 
   const handleSelectImage = (event: ChangeEvent<HTMLInputElement>) => {
     setImage(event.target.files && event.target.files[0]);
@@ -61,11 +79,26 @@ const PostForm = (): JSX.Element => {
     setImage(null);
   };
 
-  const isDisableSubmit = !isValid;
-
-  const handleSubmit: SubmitHandler<PostFormValues> = useCallback((values) => {
-    console.log(values);
-  }, []);
+  const handleSubmit: SubmitHandler<PostFormValues> = useCallback(
+    async (values) => {
+      if (user && user.id) {
+        let imageBase64;
+        if (image) {
+          imageBase64 = await fileToBase64(image);
+        }
+        const data: PostCreate = {
+          ...values,
+          imageName,
+          imageBase64,
+          tag: selectedTag,
+          userId: user.id,
+          updatedAt: new Date().toISOString(),
+        };
+        await createPost(data);
+      }
+    },
+    [image, selectedTag, imageName, user],
+  );
 
   return (
     <Box sx={{ width: { xs: '100%', sm: '100%', md: '70%' } }}>
@@ -121,7 +154,7 @@ const PostForm = (): JSX.Element => {
           render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
             <Box sx={{ paddingBottom: error?.message ? '0px ' : '24px' }}>
               <CategorySelect
-                options={MOCK_TAG_LIST}
+                options={tags}
                 value={value}
                 errorMessage={error?.message}
                 onChange={(event) => {

@@ -13,8 +13,8 @@ import { AuthorCard, Heading, Link, Paragraph, PostCardDescription, Category } f
 export default async function DetailPostPage({ params }: { params: { id: string } }) {
   const { data } = await queryPostDetail(params.id);
 
-  if(!data){
-    return <main>Post Not Found</main>
+  if (!data) {
+    return <main>Post Not Found</main>;
   }
   const { title, tag, user, imageBase64, content, updatedAt } = data;
 
