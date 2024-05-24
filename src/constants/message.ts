@@ -5,3 +5,7 @@ export const ERROR_MESSAGES = {
   USER_EXISTED: 'This user already exists. Please log in or create another account',
   USER_NOT_FOUND: 'This user does not exist. Please sign up.',
 };
+
+export const SUCCESS_MESSAGES = {
+  POST_CREATED: 'New post is created. Returning to Homepage'
+}

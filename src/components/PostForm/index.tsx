@@ -1,13 +1,14 @@
 'use client';
 import { ChangeEvent, useCallback, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import { Box, Stack } from '@mui/material';
 
 // APIs
 import { createPost } from '@/services';
 
 // Constants
-import { COLORS } from '@/constants';
+import { COLORS, ROUTES, SUCCESS_MESSAGES } from '@/constants';
 
 // Components
 import { Button, Input } from '../Common';
@@ -16,6 +17,7 @@ import CategorySelect from '../CategorySelect';
 
 // Hooks
 import { useAuthContext } from '@/hooks';
+import { useToast } from '../Toast';
 
 // Models
 import { PostCategory, PostCreate } from '@/models';
@@ -46,6 +48,8 @@ interface PostFormValues {
 }
 
 const PostForm = ({ tags }: PostFormProps): JSX.Element => {
+  const router = useRouter();
+  const toast = useToast();
   const { user } = useAuthContext();
   const [image, setImage] = useState<File | null>(null);
   const { name: imageName } = image || {};
@@ -79,11 +83,24 @@ const PostForm = ({ tags }: PostFormProps): JSX.Element => {
     setImage(null);
   };
 
+  const handleSuccess = useCallback(() => {
+    toast.success(SUCCESS_MESSAGES.POST_CREATED)
+    router.push(ROUTES.HOME)
+  },[toast, router])
+
+  const handleError = useCallback(
+    (errorMessage: string) => {
+      toast.error(errorMessage);
+    },
+    [toast],
+  );
+
   const handleSubmit: SubmitHandler<PostFormValues> = useCallback(
     async (values) => {
       if (user && user.id) {
-        const imageBase64 = image && await fileToBase64(image);
-        if(!(imageBase64 instanceof ArrayBuffer) && imageBase64 !== null){
+        console.log(1)
+        const imageBase64 = image && await fileToBase64(image) || undefined;
+        if(typeof imageBase64 === 'string' || imageBase64 === undefined){
           const data: PostCreate = {
             ...values,
             imageName,
@@ -92,11 +109,13 @@ const PostForm = ({ tags }: PostFormProps): JSX.Element => {
             userId: user.id,
             updatedAt: new Date().toISOString(),
           };
-          await createPost(data);
+          const response = await createPost(data);
+          response.data && handleSuccess()
+          response.errorMessage && handleError(response.errorMessage)
         }
       }
     },
-    [image, selectedTag, imageName, user],
+    [image, selectedTag, imageName, user, handleSuccess, handleError],
   );
 
   return (

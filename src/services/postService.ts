@@ -10,6 +10,7 @@ import { Post, PostCreate, SearchParams } from '@/models';
 
 // Utils
 import { generateSearchParams } from '@/utils';
+import { revalidateTag } from 'next/cache';
 
 export const queryAllPosts = async (params?: SearchParams) => {
   let errorMessage = '';
@@ -40,10 +41,26 @@ export const queryPostDetail = async (id: string) => {
 };
 
 export const createPost = async (values: PostCreate) => {
-  await APIs.post(API_ROUTES.POSTS, values, {tag: VALIDATE_TAGS.POSTS});
+  let errorMessage = ''
+  const response = await APIs.post<Post>(API_ROUTES.POSTS, values).catch((error) => {
+    errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
+  });
+  if(!errorMessage){
+    revalidateTag(VALIDATE_TAGS.POSTS)
+    return {
+      data: response,
+      errorMessage
+    }
+  }
+  return {
+    data: null,
+    errorMessage
+  }
 };
 
 export const editPost = async (values: Post) => {
-  await APIs.put(API_ROUTES.POSTS, values, {tag: VALIDATE_TAGS.POSTS});
+  await APIs.put(API_ROUTES.POSTS, values);
+  revalidateTag(VALIDATE_TAGS.POSTS)
+
 };
 

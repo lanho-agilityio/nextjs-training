@@ -1,4 +1,3 @@
-import { revalidatePath, revalidateTag } from 'next/cache';
 import { unstable_noStore as noStore } from 'next/cache';
 import { API_BASE_URL } from '@/constants';
 
@@ -28,7 +27,6 @@ class API {
   async post<T>(
     path: string,
     payload: object = {},
-    relvalidateOptions: { tag?: string; path?: string } = { tag: '', path: '' },
   ): Promise<T> {
     noStore();
     const response = await fetch(`${API_BASE_URL}${path}`, {
@@ -42,16 +40,12 @@ class API {
     }).catch((error) => {
       throw new Error(error);
     });
-
-    relvalidateOptions.tag && revalidateTag(relvalidateOptions.tag);
-    relvalidateOptions.path && revalidatePath(relvalidateOptions.path);
     return response.json();
   }
 
   async put<T>(
     path: string,
     payload: object = {},
-    relvalidateOptions: { tag?: string; path?: string } = { tag: '', path: '' },
   ): Promise<T> {
     noStore();
 
@@ -64,15 +58,11 @@ class API {
     }).catch((error) => {
       throw new Error(error);
     });
-
-    relvalidateOptions?.tag && revalidateTag(relvalidateOptions?.tag);
-    relvalidateOptions?.path && revalidatePath(relvalidateOptions?.path);
     return response.json();
   }
 
   async delete<T>(
     path: string,
-    relvalidateOptions: { tag?: string; path?: string } = { tag: '', path: '' },
   ): Promise<T> {
     noStore();
 
@@ -84,9 +74,6 @@ class API {
     }).catch((error) => {
       throw new Error(error);
     });
-
-    relvalidateOptions?.tag && revalidateTag(relvalidateOptions?.tag);
-    relvalidateOptions?.path && revalidatePath(relvalidateOptions?.path);
     return response.json();
   }
 }

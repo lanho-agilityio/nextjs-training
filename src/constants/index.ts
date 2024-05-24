@@ -1,6 +1,6 @@
 export * from './color';
 export * from './debounce';
-export * from './error';
+export * from './message';
 export * from './filter';
 export * from './mock';
 export * from './navigation';
