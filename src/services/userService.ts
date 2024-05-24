@@ -1,4 +1,5 @@
 'use server';
+import { revalidateTag } from 'next/cache';
 import { v4 as uuidv4 } from 'uuid';
 import sha256 from 'crypto-js/sha256';
 
@@ -69,10 +70,9 @@ export const registerUser = async (arg: UserRegister) => {
           username: arg.username,
           password: hashPassword(arg.password),
         },
-        {
-          tag: VALIDATE_TAGS.USERS,
-        },
       );
+
+      revalidateTag(VALIDATE_TAGS.USERS)
 
       return {
         data: response,
