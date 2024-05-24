@@ -1,23 +1,27 @@
 'use client';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Box, IconButton, InputAdornment, Stack } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+
+// APIs
 
 // Constants
-import { COLORS } from '@/constants';
+import { COLORS, ROUTES } from '@/constants';
 
 // Components
 import { Button, Input } from '../Common';
 
+// Hooks
+import { useAuthContext } from '@/hooks';
+import { useToast } from '../Toast';
+
+// Models
+import { UserRegister } from '@/models';
+
 // Utils
 import { validateMatched, validateRequired } from '@/utils';
-
-interface LoginFormValues {
-  username: string;
-  password: string;
-  reEnterPassword: string;
-}
+import { useRouter } from 'next/navigation';
 
 const validations = {
   username: {
@@ -26,7 +30,7 @@ const validations = {
   password: {
     required: validateRequired,
   },
-  reEnterPassword: {
+  confirmPassword: {
     required: validateRequired,
     validateMatched: (value: string | null | undefined, compared: string) =>
       validateMatched(value, compared, 'password'),
@@ -34,27 +38,53 @@ const validations = {
 };
 
 const SignUpForm = (): JSX.Element => {
+  const toast = useToast();
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const { register, user } = useAuthContext();
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const loginFormInitValues: LoginFormValues = {
+  const loginFormInitValues: UserRegister = {
     username: '',
     password: '',
-    reEnterPassword: '',
+    confirmPassword: '',
   };
 
   const {
     control,
     watch,
+    handleSubmit: submitConfirm,
     formState: { isValid },
-  } = useForm<LoginFormValues>({
+  } = useForm<UserRegister>({
     mode: 'onBlur',
     reValidateMode: 'onBlur',
     values: loginFormInitValues,
   });
 
   const isDisableSubmit = !isValid;
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleSuccess = useCallback(() => {
+    router.push(ROUTES.HOME);
+  }, [router]);
+
+  const handleError = useCallback(
+    (errorMessage: string) => {
+      toast.error(errorMessage);
+    },
+    [toast],
+  );
+
+  const handleSubmit: SubmitHandler<UserRegister> = useCallback(
+    (values) => {
+      register(values, handleSuccess, handleError);
+    },
+    [handleSuccess, handleError, register],
+  );
+
+  useEffect(() => {
+    user && router.push(ROUTES.HOME);
+  }, [user, router]);
 
   return (
     <Box sx={{ width: { xs: '100%', sm: '70%', md: '50%' } }}>
@@ -115,12 +145,12 @@ const SignUpForm = (): JSX.Element => {
           )}
         ></Controller>
         <Controller
-          name="reEnterPassword"
+          name="confirmPassword"
           control={control}
           rules={{
             validate: {
-              ...validations.reEnterPassword,
-              validateMatched: (value) => validations.reEnterPassword.validateMatched(value, watch('password')),
+              ...validations.confirmPassword,
+              validateMatched: (value) => validations.confirmPassword.validateMatched(value, watch('password')),
             },
           }}
           render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
@@ -158,7 +188,7 @@ const SignUpForm = (): JSX.Element => {
           hoverColor={COLORS.HEADING}
           fullWidth
           disabled={isDisableSubmit}
-          onClick={() => console.log('Submit')}
+          onClick={submitConfirm(handleSubmit)}
         >
           Sign up
         </Button>

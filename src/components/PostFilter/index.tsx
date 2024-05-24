@@ -44,7 +44,6 @@ export const PostFilter = ({ tags }: PostFilterProps): JSX.Element => {
   };
 
   const handleSearchInput = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    console.log(event.target.value);
     generateSearchParams(FILTER_KEY.QUERY, event.target.value);
   };
 

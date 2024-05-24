@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { Box } from '@mui/material';
 
 // APIs
-import { queryAllCategorys, queryAllPosts } from '@/services';
+import { queryAllCategory, queryAllPosts } from '@/services';
 
 // Components
 import { PostList, Heading, PostFilter, Pagination } from '@/components';
@@ -11,7 +11,7 @@ import { PostList, Heading, PostFilter, Pagination } from '@/components';
 import { SearchParams } from '@/models';
 
 export default async function ArchivePage({ searchParams }: { searchParams: SearchParams }) {
-  const [postsResult, tagsResults] = await Promise.all([queryAllPosts(searchParams), queryAllCategorys()]);
+  const [postsResult, tagsResults] = await Promise.all([queryAllPosts(searchParams), queryAllCategory()]);
 
   const { data: posts, total: totalPosts } = postsResult;
   const { data: tags } = tagsResults;

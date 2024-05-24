@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { Box, Container, Popover, Typography } from '@mui/material';
 
 // Constants
-import { ROUTES } from '@/constants';
+import { COLORS, ROUTES } from '@/constants';
 
 // Components
 import LoginForm from '../../LoginForm';
@@ -75,7 +75,9 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
             }}
           >
             <Typography>Need an account?</Typography>
-            <LinkButton onClick={handleRedirectSignup}>Sign up</LinkButton>
+            <LinkButton onClick={handleRedirectSignup} sx={{ color: COLORS.NAV_LINK_HOVER }}>
+              Sign up
+            </LinkButton>
           </Box>
         </Container>
       </Popover>

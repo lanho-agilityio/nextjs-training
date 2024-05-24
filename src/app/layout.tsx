@@ -8,7 +8,7 @@ import { Box } from '@mui/material';
 import { AuthProvider } from '../contexts';
 
 // Components
-import { Footer, Header } from '@/components';
+import { Footer, Header, ToastProvider } from '@/components';
 
 // Styles
 import './globals.css';
@@ -30,29 +30,31 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AuthProvider>
-          <AppRouterCacheProvider options={{ key: 'css' }}>
-            <ThemeProvider theme={theme}>
-              <Box
-                sx={{
-                  paddingBottom: {
-                    xs: '20px',
-                    sm: '20px',
-                    lg: '32px',
-                  },
-                  paddingX: {
-                    xs: '32px',
-                    lg: '20px',
-                  },
-                  maxWidth: '1024px',
-                  flex: '1',
-                }}
-              >
-                <Header />
-                <Box>{children}</Box>
-                <Footer />
-              </Box>
-            </ThemeProvider>
-          </AppRouterCacheProvider>
+          <ToastProvider>
+            <AppRouterCacheProvider options={{ key: 'css' }}>
+              <ThemeProvider theme={theme}>
+                <Box
+                  sx={{
+                    paddingBottom: {
+                      xs: '20px',
+                      sm: '20px',
+                      lg: '32px',
+                    },
+                    paddingX: {
+                      xs: '32px',
+                      lg: '20px',
+                    },
+                    maxWidth: '1024px',
+                    flex: '1',
+                  }}
+                >
+                  <Header />
+                  <Box>{children}</Box>
+                  <Footer />
+                </Box>
+              </ThemeProvider>
+            </AppRouterCacheProvider>
+          </ToastProvider>
         </AuthProvider>
       </body>
     </html>

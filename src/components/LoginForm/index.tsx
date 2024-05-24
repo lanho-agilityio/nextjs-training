@@ -1,6 +1,6 @@
 'use client';
 import { useCallback, useState } from 'react';
-import { IconButton, InputAdornment, Stack } from '@mui/material';
+import { IconButton, InputAdornment, Stack, Typography } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
@@ -26,11 +26,12 @@ const validations = {
 };
 
 interface LoginFormProps {
-  onSubmit: (values: UserLogin) => void;
+  onSubmit: (values: UserLogin, handleSuccess?: () => void, handleError?: (errorMessage: string) => void) => void;
 }
 
 const LoginForm = ({ onSubmit }: LoginFormProps): JSX.Element => {
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const loginFormInitValues: UserLogin = {
     username: '',
@@ -51,11 +52,19 @@ const LoginForm = ({ onSubmit }: LoginFormProps): JSX.Element => {
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
+  const handleSuccess = useCallback(() => {
+    setErrorMessage('');
+  }, []);
+
+  const handleError = useCallback((errorMessage: string) => {
+    setErrorMessage(errorMessage);
+  }, []);
+
   const handleSubmit: SubmitHandler<UserLogin> = useCallback(
     (values) => {
-      onSubmit(values);
+      onSubmit(values, handleSuccess, handleError);
     },
-    [onSubmit],
+    [onSubmit, handleSuccess, handleError],
   );
 
   return (
@@ -136,6 +145,15 @@ const LoginForm = ({ onSubmit }: LoginFormProps): JSX.Element => {
       >
         Login
       </Button>
+      <Typography
+        sx={{
+          paddingTop: errorMessage? 0: '18px',
+          fontSize: '12px',
+          color: COLORS.ERROR
+        }}
+      >
+        {errorMessage}
+      </Typography>
     </Stack>
   );
 };

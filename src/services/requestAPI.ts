@@ -3,11 +3,11 @@ import { unstable_noStore as noStore } from 'next/cache';
 import { API_BASE_URL } from '@/constants';
 
 class API {
-  async get<T>(path: string, tag: string, time?: number): Promise<{ data: T; total: number }> {
+  async get<T>(path: string, tag?: string, time?: number): Promise<{ data: T; total: number }> {
     const response = await fetch(`${API_BASE_URL}${path}`, {
       method: 'GET',
       next: {
-        tags: [tag],
+        tags: tag ? [tag] : [],
 
         // Re-validate every minute
         revalidate: time || 60,
@@ -15,11 +15,13 @@ class API {
     }).catch((error) => {
       throw new Error(error);
     });
-
     const data = await response.json();
+
+    const total = Number(response.headers.get('x-total-count')) || data.length || 0;
+
     return {
-      data: data,
-      total: Number(response.headers.get('x-total-count')) || 0,
+      data,
+      total,
     };
   }
 
@@ -29,7 +31,6 @@ class API {
     relvalidateOptions: { tag?: string; path?: string } = { tag: '', path: '' },
   ): Promise<T> {
     noStore();
-
     const response = await fetch(`${API_BASE_URL}${path}`, {
       method: 'POST',
       headers: {
