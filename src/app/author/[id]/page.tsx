@@ -1,4 +1,4 @@
-import { Suspense, useMemo } from 'react';
+import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { Avatar, Box } from '@mui/material';
 
@@ -11,13 +11,13 @@ import { PostList, Heading, FailToLoad } from '@/components';
 // Models
 import { Author } from '@/models';
 
-const Pagination = dynamic(() => import('../../../components/Pagination'), { ssr: false });
+const Pagination = dynamic(() => import('../../../components/Pagination'));
 
 export default async function AuthorPage({ params }: { params: { id: string } }) {
   const postsResult = await queryAllPosts({ authorId: params.id });
   const { data: posts, total: totalPosts, errorMessage } = postsResult;
 
-  const author: Author = useMemo(() => (posts.length > 0 && posts[0].user) || { id: '', username: '' }, [posts]);
+  const author: Author = posts.length > 0 && posts[0].user || { id: '', username: '' };
 
   if (errorMessage) {
     return <FailToLoad error={errorMessage} />;
