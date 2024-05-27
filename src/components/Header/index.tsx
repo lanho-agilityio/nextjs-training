@@ -15,8 +15,8 @@ import { Link, NavLink } from '@/components';
 // Hooks
 import { useAuthContext } from '@/hooks';
 
-const LoginButton = dynamic(() => import('./LoginButton'), { ssr: false });
-const UserProfile = dynamic(() => import('./UserProfile'), { ssr: false });
+const LoginButton = dynamic(() => import('./LoginButton'));
+const UserProfile = dynamic(() => import('./UserProfile'));
 
 const NavBar = (): JSX.Element => {
   const { user, login, logout } = useAuthContext();

@@ -17,7 +17,10 @@ import theme from '../theme';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: {
+    template: '%s | Stablo',
+    default: 'Stablo',
+  },
   description: 'Post Management',
 };
 

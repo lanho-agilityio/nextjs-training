@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { Box } from '@mui/material';
 
 // APIs
@@ -8,6 +9,11 @@ import { COLORS, ROUTES } from '@/constants';
 
 // Components
 import { PostList, Link, FailToLoad } from '@/components';
+
+export const metadata: Metadata = {
+  title: 'Home',
+  description: 'Homepage',
+};
 
 export default async function Home() {
   const { data, errorMessage } = await queryAllPosts();

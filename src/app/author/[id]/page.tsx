@@ -6,12 +6,14 @@ import { Avatar, Box } from '@mui/material';
 import { queryAllPosts } from '@/services';
 
 // Components
-import { PostList, Heading, FailToLoad } from '@/components';
+import { PostList, Heading, FailToLoad, PaginationSkeleton } from '@/components';
 
 // Models
 import { Author } from '@/models';
 
-const Pagination = dynamic(() => import('../../../components/Pagination'));
+const Pagination = dynamic(() => import('../../../components/Pagination'), {
+  loading: () => <PaginationSkeleton />,
+});
 
 export default async function AuthorPage({ params }: { params: { id: string } }) {
   const postsResult = await queryAllPosts({ authorId: params.id });

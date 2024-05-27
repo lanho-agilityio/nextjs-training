@@ -9,6 +9,7 @@ import PostCard from '../PostCard';
 
 // Models
 import { Post } from '@/models';
+import { PostCardSkeleton } from '../Skeletons';
 
 interface PostListProps {
   posts: Post[];
