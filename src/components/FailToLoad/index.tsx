@@ -22,7 +22,7 @@ const FailToLoad = ({ error }: FailToLoadProps) => {
         gap: 4,
       }}
     >
-      <Heading title="Fail to load" description="Please try again later." />
+      <Heading title="Fail to load" description="We're really really sorry, something has gone wrong." />
       <Typography
         variant="subtitle1"
         sx={{ textAlign: 'center', color: COLORS.ERROR, fontSize: '18px', lineHeight: '28px', paddingTop: '15px' }}
