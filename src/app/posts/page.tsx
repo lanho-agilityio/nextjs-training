@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { Box } from '@mui/material';
 
@@ -15,11 +14,9 @@ import { PostList, Heading, FailToLoad, PostFilterSkeleton, PaginationSkeleton }
 import { SearchParams } from '@/models';
 
 const PostFilter = dynamic(() => import('../../components/PostFilter'), {
-  ssr: false,
   loading: () => <PostFilterSkeleton />,
 });
 const Pagination = dynamic(() => import('../../components/Pagination'), {
-  ssr: false,
   loading: () => <PaginationSkeleton />,
 });
 
