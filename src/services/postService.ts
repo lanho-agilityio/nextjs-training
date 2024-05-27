@@ -1,4 +1,6 @@
 'use server';
+import { revalidatePath, revalidateTag } from 'next/cache';
+
 // APIs
 import { APIs } from './requestAPI';
 
@@ -10,7 +12,6 @@ import { Post, PostCreate, SearchParams } from '@/models';
 
 // Utils
 import { generateSearchParams } from '@/utils';
-import { revalidatePath, revalidateTag } from 'next/cache';
 
 export const queryAllPosts = async (params?: SearchParams, limit: number = PER_PAGE) => {
   let errorMessage = '';
@@ -58,9 +59,10 @@ export const createPost = async (values: PostCreate) => {
   };
 };
 
-export const editPost = async (values: Post) => {
+export const editPost = async (id: string, values: Post) => {
   let errorMessage = '';
-  const response = await APIs.post<Post>(API_ROUTES.POSTS, values).catch((error) => {
+  const url = `${API_ROUTES.POSTS}/${id}`;
+  const response = await APIs.put<Post>(url, values).catch((error) => {
     errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
   });
   if (!errorMessage) {

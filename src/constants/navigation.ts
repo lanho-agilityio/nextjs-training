@@ -19,19 +19,15 @@ export const NAVIGATION_LIST: Navigation[] = [
     title: 'Home',
   },
   {
+    to: ROUTES.POSTS,
+    title: 'Archive',
+  },
+  {
     to: ROUTES.ABOUT,
     title: 'About',
   },
   {
     to: ROUTES.CREATE,
     title: 'Create',
-  },
-  {
-    to: ROUTES.POSTS,
-    title: 'Archive',
-  },
-  {
-    to: ROUTES.VERSION,
-    title: 'Version',
   },
 ];

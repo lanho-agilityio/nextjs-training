@@ -16,7 +16,7 @@ export default async function DetailPostPage({ params }: { params: { id: string 
   if (!data) {
     return <main>Post Not Found</main>;
   }
-  const { title, tag, user, imageBase64, content, updatedAt } = data;
+  const { title, tag, user, imageBase64, content, updatedAt, id } = data;
 
   return (
     <main>
@@ -40,7 +40,7 @@ export default async function DetailPostPage({ params }: { params: { id: string 
         >
           <Category tag={tag} />
           <Heading title={title} />
-          <PostCardDescription author={user} updatedAt={updatedAt} isDetailed={true} />
+          <PostCardDescription postId={id} author={user} updatedAt={updatedAt} isDetailed={true} />
         </Box>
         {imageBase64 && (
           <Box

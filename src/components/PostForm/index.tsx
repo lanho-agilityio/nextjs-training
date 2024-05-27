@@ -1,14 +1,14 @@
 'use client';
-import { ChangeEvent, useCallback, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { Box, Stack, Typography } from '@mui/material';
 
 // APIs
-import { createPost } from '@/services';
+import { createPost, editPost } from '@/services';
 
 // Constants
-import { COLORS, ROUTES, SUCCESS_MESSAGES } from '@/constants';
+import { COLORS, FORM_TYPE, ROUTES, SUCCESS_MESSAGES } from '@/constants';
 
 // Components
 import { Button, Input } from '../Common';
@@ -20,13 +20,14 @@ import { useAuthContext } from '@/hooks';
 import { useToast } from '../Toast';
 
 // Models
-import { PostCategory, PostCreate } from '@/models';
+import { Post, PostCategory, PostCreate } from '@/models';
 
 // Utils
 import { fileToBase64, validateRequired } from '@/utils';
 
 interface PostFormProps {
   tags: PostCategory[];
+  data?: Post;
 }
 
 const validations = {
@@ -45,25 +46,35 @@ interface PostFormValues {
   title: string;
   content: string;
   tag: string;
+  imageName?: string;
 }
 
-const PostForm = ({ tags }: PostFormProps): JSX.Element => {
+const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
   const router = useRouter();
   const toast = useToast();
   const { user } = useAuthContext();
   const [image, setImage] = useState<File | null>(null);
-  const { name: imageName } = image || {};
 
-  const postFormInitValues: PostFormValues = {
-    title: '',
-    content: '',
-    tag: '',
-  };
+  const { title, tag, imageName, content } = data || {};
+
+  const formType = data ? FORM_TYPE.EDIT : FORM_TYPE.CREATE;
+
+  const postFormInitValues: PostFormValues = useMemo(
+    () => ({
+      title: title || '',
+      content: content || '',
+      tag: tag?.value || '',
+      imageName: imageName || undefined,
+    }),
+    [title, tag, content, imageName],
+  );
 
   const {
     control,
     handleSubmit: submitConfirm,
     watch,
+    reset,
+    setValue,
     formState: { isValid },
   } = useForm<PostFormValues>({
     mode: 'onBlur',
@@ -73,20 +84,26 @@ const PostForm = ({ tags }: PostFormProps): JSX.Element => {
 
   const isDisableSubmit = !isValid || user?.id === undefined;
 
-  const selectedTag = tags.filter((tag) => tag.value === watch('tag'))[0];
+  const selectedTagValue = watch('tag');
+  const selectedTag = useMemo(() => tags.filter((tag) => tag.value === selectedTagValue)[0], [tags, selectedTagValue]);
 
   const handleSelectImage = (event: ChangeEvent<HTMLInputElement>) => {
-    setImage(event.target.files && event.target.files[0]);
+    if (event.target.files) {
+      setImage(event.target.files[0]);
+      setValue('imageName', event.target.files[0].name);
+    }
   };
 
   const handleRemoveImage = () => {
+    setValue('imageName', undefined);
     setImage(null);
   };
 
   const handleSuccess = useCallback(() => {
-    toast.success(SUCCESS_MESSAGES.POST_CREATED);
+    const message = formType === FORM_TYPE.CREATE ? SUCCESS_MESSAGES.POST_CREATED : SUCCESS_MESSAGES.POST_EDITED;
+    toast.success(message);
     router.push(ROUTES.HOME);
-  }, [toast, router]);
+  }, [toast, router, formType]);
 
   const handleError = useCallback(
     (errorMessage: string) => {
@@ -95,27 +112,57 @@ const PostForm = ({ tags }: PostFormProps): JSX.Element => {
     [toast],
   );
 
-  const handleSubmit: SubmitHandler<PostFormValues> = useCallback(
-    async (values) => {
+  const handleCreatePost = useCallback(
+    async (values: PostFormValues) => {
       if (user && user.id) {
-        const imageBase64 = (image && (await fileToBase64(image))) || undefined;
-        if (typeof imageBase64 === 'string' || imageBase64 === undefined) {
-          const data: PostCreate = {
-            ...values,
-            imageName,
-            imageBase64,
-            tag: selectedTag,
-            userId: user.id,
-            updatedAt: new Date().toISOString(),
-          };
-          const response = await createPost(data);
-          response.data && handleSuccess();
-          response.errorMessage && handleError(response.errorMessage);
-        }
+        const imageBase64 = image ? await fileToBase64(image) : undefined;
+        const createData: PostCreate = {
+          ...values,
+          imageBase64,
+          tag: selectedTag,
+          userId: user.id,
+          updatedAt: new Date().toISOString(),
+        };
+        const response = await createPost(createData);
+        response.data && handleSuccess();
+        response.errorMessage && handleError(response.errorMessage);
       }
     },
-    [image, selectedTag, imageName, user, handleSuccess, handleError],
+    [image, selectedTag, user, handleSuccess, handleError],
   );
+
+  const handleEditPost = useCallback(
+    async (values: PostFormValues) => {
+      if (user && user.id && data) {
+        const imageBase64 = image ? await fileToBase64(image) : data.imageBase64;
+        const editData: Post = {
+          ...data,
+          ...values,
+          imageBase64,
+          tag: selectedTag,
+          userId: user.id,
+          updatedAt: new Date().toISOString(),
+        };
+        const response = await editPost(data.id, editData);
+        response.data && handleSuccess();
+        response.errorMessage && handleError(response.errorMessage);
+      }
+    },
+    [image, selectedTag, user, data, handleSuccess, handleError],
+  );
+
+  const handleSubmit: SubmitHandler<PostFormValues> = useCallback(
+    async (values) => {
+      formType === FORM_TYPE.CREATE ? await handleCreatePost(values) : await handleEditPost(values);
+    },
+    [handleCreatePost, handleEditPost, formType],
+  );
+
+  useEffect(() => {
+    if (data) {
+      reset(postFormInitValues);
+    }
+  }, [postFormInitValues, data, reset]);
 
   return (
     <Box sx={{ width: { xs: '100%', sm: '100%', md: '70%' } }}>
@@ -182,12 +229,12 @@ const PostForm = ({ tags }: PostFormProps): JSX.Element => {
             </Box>
           )}
         ></Controller>
-        <Box sx={{ paddingBottom: image ? '0px ' : '45px' }}>
+        <Box sx={{ paddingBottom: watch('imageName') ? '0px ' : '45px' }}>
           <FilePicker
             accept="image/png, image/gif, image/jpeg"
             handleSelectFile={handleSelectImage}
             hanldeRemoveFile={handleRemoveImage}
-            fileName={imageName}
+            fileName={watch('imageName')}
           >
             Upload Image
           </FilePicker>
@@ -202,7 +249,7 @@ const PostForm = ({ tags }: PostFormProps): JSX.Element => {
         >
           Submit Post
         </Button>
-        <Typography>{!user?.id && '**Please sign in to create a post'}</Typography>
+        <Typography>{!user?.id && `**Please sign in to ${formType} a post`}</Typography>
       </Stack>
     </Box>
   );

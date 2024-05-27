@@ -1,13 +1,13 @@
-export const fileToBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
+export const fileToBase64 = (file: File): Promise<string | undefined> =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
+    reader.onload = () => {
+      if (typeof reader.result === 'string') {
+        resolve(reader.result);
+      } else {
+        return undefined;
+      }
+    };
     reader.onerror = reject;
   });
-
-export const base64ToFile = async (dataUrl: string, fileName: string): Promise<File> => {
-  const res: Response = await fetch(dataUrl);
-  const blob: Blob = await res.blob();
-  return new File([blob], fileName, { type: 'image/png' });
-};

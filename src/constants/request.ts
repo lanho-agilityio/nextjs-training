@@ -4,7 +4,6 @@ export const API_BASE_URL = process.env.NEXT_PUBLIC_API_END_POINTS;
 export const PER_PAGE = 8;
 export const PER_PAGE_ARCHIVE = 9;
 
-
 export const API_ROUTES = {
   USER: '/users',
   POSTS: '/posts',

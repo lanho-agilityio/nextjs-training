@@ -49,6 +49,7 @@ const CategorySelect = (
           height: '56px',
           '.MuiOutlinedInput-notchedOutline': {
             borderColor: errorMessage && COLORS.ERROR,
+            borderWidth: '2px',
           },
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: errorMessage ? COLORS.ERROR : COLORS.HEADING,

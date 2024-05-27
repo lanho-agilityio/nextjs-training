@@ -63,16 +63,13 @@ export const registerUser = async (arg: UserRegister) => {
   try {
     const existed = await checkUserExisted(arg.username);
     if (!existed) {
-      const response = await APIs.post<UserSession>(
-        API_ROUTES.USER,
-        {
-          id: uuidv4(),
-          username: arg.username,
-          password: hashPassword(arg.password),
-        },
-      );
+      const response = await APIs.post<UserSession>(API_ROUTES.USER, {
+        id: uuidv4(),
+        username: arg.username,
+        password: hashPassword(arg.password),
+      });
 
-      revalidateTag(VALIDATE_TAGS.USERS)
+      revalidateTag(VALIDATE_TAGS.USERS);
 
       return {
         data: response,

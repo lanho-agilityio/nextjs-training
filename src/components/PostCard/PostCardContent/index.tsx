@@ -38,7 +38,7 @@ const PostCardContent = ({ id, title, tag, author, updatedAt }: PostCardContentP
           {title}
         </Link>
       </Box>
-      <PostCardDescription author={author} updatedAt={updatedAt} />
+      <PostCardDescription postId={id} author={author} updatedAt={updatedAt} />
     </Box>
   );
 };
