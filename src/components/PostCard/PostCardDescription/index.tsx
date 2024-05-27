@@ -77,7 +77,7 @@ const PostCardDescription = ({
           </Link>
 
           {!isDetailed && <CircleIcon sx={{ height: 5, width: 5, color: COLORS.DESCRIPTION_ICON }} />}
-          <Typography variant="caption">{dayjs(new Date(updatedAt)).format("YYYY-MM-DD")}</Typography>
+          <Typography variant="caption">{dayjs(new Date(updatedAt)).format('YYYY-MM-DD')}</Typography>
         </Box>
       </Box>
       <Box>

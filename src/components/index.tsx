@@ -1,5 +1,6 @@
 export { default as AuthorCard } from './AuthorCard';
 export { default as DatePicker } from './DatePicker';
+export { default as ErrorBoundary } from './ErrorBoundary';
 export { default as FilePicker } from './FilePicker';
 export { default as Footer } from './Footer';
 export { default as Header } from './Header';

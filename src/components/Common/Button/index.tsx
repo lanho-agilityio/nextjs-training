@@ -29,15 +29,16 @@ const CustomButton = ({
       variant={variant}
       onClick={onClick}
       type={type}
+      {...props}
       sx={{
+        ...props.sx,
         height: height,
         backgroundColor: backgroundColor,
         ':hover': {
           bgcolor: hoverColor,
         },
-        ...props.sx,
+       
       }}
-      {...props}
     >
       {children}
     </Button>

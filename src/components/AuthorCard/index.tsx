@@ -20,7 +20,7 @@ const AuthorCard = ({ author }: AuthorCardProps): JSX.Element => {
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'column', md: 'row' },
         alignItems: 'flex-start',
-        gap: { sm: '0px', md: '24px' },
+        gap: { sm: 0, md: '24px' },
         backgroundColor: COLORS.AUTHOR_CARD_BACKGROUND,
         borderRadius: '16px',
         padding: '32px',
@@ -35,7 +35,10 @@ const AuthorCard = ({ author }: AuthorCardProps): JSX.Element => {
           gap: '12px',
         }}
       >
-        <Typography variant="h2" sx={{ fontSize: '18px', fontWeight: 500, color: COLORS.HEADING }}>
+        <Typography
+          variant="h2"
+          sx={{ fontSize: '18px', fontWeight: 500, color: COLORS.HEADING, marginTop: { xs: '10px' } }}
+        >
           About {author.username}
         </Typography>
         <Typography sx={{ color: COLORS.HEADING }}>
