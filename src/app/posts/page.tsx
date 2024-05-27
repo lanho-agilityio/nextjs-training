@@ -9,13 +9,19 @@ import { queryAllCategory, queryAllPosts } from '@/services';
 import { PER_PAGE_ARCHIVE } from '@/constants';
 
 // Components
-import { PostList, Heading, FailToLoad } from '@/components';
+import { PostList, Heading, FailToLoad, PostFilterSkeleton, PaginationSkeleton } from '@/components';
 
 // Models
 import { SearchParams } from '@/models';
 
-const PostFilter = dynamic(() => import('../../components/PostFilter'), { ssr: false });
-const Pagination = dynamic(() => import('../../components/Pagination'), { ssr: false });
+const PostFilter = dynamic(() => import('../../components/PostFilter'), {
+  ssr: false,
+  loading: () => <PostFilterSkeleton />,
+});
+const Pagination = dynamic(() => import('../../components/Pagination'), {
+  ssr: false,
+  loading: () => <PaginationSkeleton />,
+});
 
 export default async function ArchivePage({ searchParams }: { searchParams: SearchParams }) {
   const [postsResult, tagsResults] = await Promise.all([
@@ -34,14 +40,10 @@ export default async function ArchivePage({ searchParams }: { searchParams: Sear
     <main>
       <Heading title="Archive" description="See all posts we have ever written." />
       <Box sx={{ marginTop: '40px' }}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <PostFilter tags={tags} />
-        </Suspense>
+        <PostFilter tags={tags} />
         <PostList posts={posts} isArchived={true} />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Pagination totalPosts={totalPosts} perPage={PER_PAGE_ARCHIVE} />
-          </Suspense>
+          <Pagination totalPosts={totalPosts} perPage={PER_PAGE_ARCHIVE} />
         </Box>
       </Box>
     </main>

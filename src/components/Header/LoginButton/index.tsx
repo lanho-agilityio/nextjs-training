@@ -16,7 +16,7 @@ import { UserLogin } from '@/models';
 
 const LoginForm = dynamic(() => import('../../LoginForm'), {
   ssr: false,
-  loading: () => <LoginSkeleton/>,
+  loading: () => <LoginSkeleton />,
 });
 
 interface LoginButtonProps {
@@ -69,7 +69,7 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
           <Typography sx={{ textAlign: 'center', fontSize: '20px', paddingBottom: '10px' }} variant="h1">
             Sign in
           </Typography>
-            <LoginForm onSubmit={onSubmit} />
+          <LoginForm onSubmit={onSubmit} />
           <Box
             sx={{
               paddingTop: '15px',

@@ -18,5 +18,5 @@ export { default as SignUpForm } from './SignUpForm';
 export { default as CategorySelect } from './CategorySelect';
 
 export * from './Toast';
-export * from './Skeletons'
+export * from './Skeletons';
 export * from './Common';
