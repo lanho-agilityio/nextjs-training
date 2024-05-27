@@ -5,10 +5,13 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 // Constants
-import { COLORS } from '@/constants';
+import { COLORS, SUCCESS_MESSAGES } from '@/constants';
 
 // Components
 import { Button, Input } from '../Common';
+
+// Hooks
+import { useToast } from '../Toast';
 
 // Models
 import { UserLogin } from '@/models';
@@ -30,6 +33,7 @@ interface LoginFormProps {
 }
 
 const LoginForm = ({ onSubmit }: LoginFormProps): JSX.Element => {
+  const toast = useToast();
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -53,8 +57,9 @@ const LoginForm = ({ onSubmit }: LoginFormProps): JSX.Element => {
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleSuccess = useCallback(() => {
+    toast.success(SUCCESS_MESSAGES.LOGIN_SUCCESS);
     setErrorMessage('');
-  }, []);
+  }, [toast]);
 
   const handleError = useCallback((errorMessage: string) => {
     setErrorMessage(errorMessage);

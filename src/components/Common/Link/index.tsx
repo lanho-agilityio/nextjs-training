@@ -1,4 +1,4 @@
-import { AnchorHTMLAttributes, ReactNode } from 'react';
+import { AnchorHTMLAttributes, ReactNode, memo } from 'react';
 import Link from 'next/link';
 import { Box, SxProps, Theme } from '@mui/material';
 
@@ -18,4 +18,4 @@ const CustomLink = ({ href, children, _style, ...rest }: LinkProps): JSX.Element
   );
 };
 
-export default CustomLink;
+export default memo(CustomLink);

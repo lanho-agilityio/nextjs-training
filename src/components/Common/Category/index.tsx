@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Box } from '@mui/material';
 
 // Constants
@@ -36,4 +37,4 @@ const Category = ({ tag }: PostCategoryProps): JSX.Element => {
   );
 };
 
-export default Category;
+export default memo(Category);

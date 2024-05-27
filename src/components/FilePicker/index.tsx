@@ -1,5 +1,5 @@
 'use client';
-import { ChangeEvent, InputHTMLAttributes } from 'react';
+import { ChangeEvent, InputHTMLAttributes, memo } from 'react';
 import { Box, IconButton, Typography } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -76,4 +76,4 @@ const FilePicker = ({
   );
 };
 
-export default FilePicker;
+export default memo(FilePicker);

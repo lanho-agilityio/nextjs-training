@@ -1,8 +1,11 @@
 import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import { Box } from '@mui/material';
 
 // Components
-import { Heading, SignUpForm } from '@/components';
+import { Heading } from '@/components';
+
+const SignUpForm = dynamic(() => import('../../components/SignUpForm'), { ssr: false });
 
 export default function SignUpPage() {
   return (

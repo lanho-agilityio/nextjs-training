@@ -1,5 +1,6 @@
 'use client';
-import { useState } from 'react';
+import { memo, useCallback, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { Box, Container, Popover, Typography } from '@mui/material';
 
@@ -7,11 +8,12 @@ import { Box, Container, Popover, Typography } from '@mui/material';
 import { COLORS, ROUTES } from '@/constants';
 
 // Components
-import LoginForm from '../../LoginForm';
 import { LinkButton } from '../../Common/Button';
 
 // Models
 import { UserLogin } from '@/models';
+
+const LoginForm = dynamic(() => import('../../LoginForm'), { ssr: false });
 
 interface LoginButtonProps {
   onSubmit: (values: UserLogin) => void;
@@ -21,18 +23,18 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
   const { push } = useRouter();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
-  };
+  }, []);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setAnchorEl(null);
-  };
+  }, []);
 
-  const handleRedirectSignup = () => {
+  const handleRedirectSignup = useCallback(() => {
     push(ROUTES.SIGN_UP);
     handleClose();
-  };
+  }, [handleClose, push]);
 
   const open = Boolean(anchorEl);
   const id = open ? 'login-popover' : undefined;
@@ -86,4 +88,4 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
   );
 };
 
-export default LoginButton;
+export default memo(LoginButton);

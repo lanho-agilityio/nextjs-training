@@ -1,9 +1,11 @@
 'use client';
+import { memo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
 import { Avatar, Box, IconButton, Tooltip, Typography } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
 import EditIcon from '@mui/icons-material/Edit';
+
 // Constants
 import { COLORS, ROUTES } from '@/constants';
 
@@ -33,9 +35,9 @@ const PostCardDescription = ({
   const { user } = useAuthContext();
   const { username: name, id } = author;
 
-  const handleNavigation = () => {
+  const handleNavigation = useCallback(() => {
     push(ROUTES.EDIT_POST(postId));
-  };
+  }, [push, postId]);
 
   return (
     <Box
@@ -93,4 +95,4 @@ const PostCardDescription = ({
   );
 };
 
-export default PostCardDescription;
+export default memo(PostCardDescription);

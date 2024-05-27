@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Box } from '@mui/material';
 
 // Constants
@@ -43,4 +44,4 @@ const PostCardContent = ({ id, title, tag, author, updatedAt }: PostCardContentP
   );
 };
 
-export default PostCardContent;
+export default memo(PostCardContent);

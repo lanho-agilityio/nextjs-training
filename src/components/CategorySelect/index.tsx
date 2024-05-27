@@ -1,6 +1,5 @@
 'use client';
-import React from 'react';
-import { ForwardedRef, forwardRef } from 'react';
+import React, { useCallback, ForwardedRef, forwardRef, memo } from 'react';
 import { Typography, Box, MenuItem, Select, SelectChangeEvent, Checkbox, ListItemText } from '@mui/material';
 
 // Constants
@@ -34,9 +33,12 @@ const CategorySelect = (
   }: CategorySelectProps,
   ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>,
 ): JSX.Element => {
-  const handleChange = (event: SelectChangeEvent<typeof value>) => {
-    onChange(event.target.value);
-  };
+  const handleChange = useCallback(
+    (event: SelectChangeEvent<typeof value>) => {
+      onChange(event.target.value);
+    },
+    [onChange],
+  );
 
   return (
     <Box display="flex" flexDirection="column">
@@ -99,4 +101,4 @@ const CategorySelect = (
   );
 };
 
-export default forwardRef(CategorySelect);
+export default memo(forwardRef(CategorySelect));

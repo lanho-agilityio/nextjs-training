@@ -1,5 +1,5 @@
 'use client';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 import { IconButton, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
@@ -40,4 +40,4 @@ const SearchInput = ({ value, onChange, onClearSearchInput }: SearchInputProps):
   );
 };
 
-export default SearchInput;
+export default memo(SearchInput);

@@ -1,4 +1,5 @@
 'use client';
+import { memo } from 'react';
 import { Radio, Box, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 // Constants
@@ -49,4 +50,4 @@ const DatePicker = ({ value, options, onSelectDate }: DatePickerProps): JSX.Elem
   );
 };
 
-export default DatePicker;
+export default memo(DatePicker);

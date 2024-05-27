@@ -1,5 +1,6 @@
 'use client';
-import { useState } from 'react';
+import { memo, useCallback, useState } from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { Box, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -10,11 +11,12 @@ import { COLORS, NAVIGATION_LIST, ROUTES } from '@/constants';
 
 // Components
 import { Link, NavLink } from '@/components';
-import LoginButton from './LoginButton';
 
 // Hooks
 import { useAuthContext } from '@/hooks';
-import UserProfile from './UserProfile';
+
+const LoginButton = dynamic(() => import('./LoginButton'), { ssr: false });
+const UserProfile = dynamic(() => import('./UserProfile'), { ssr: false });
 
 const NavBar = (): JSX.Element => {
   const { user, login, logout } = useAuthContext();
@@ -23,9 +25,9 @@ const NavBar = (): JSX.Element => {
 
   const HALF = Math.ceil(NAVIGATION_LIST.length / 2);
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     setOpen(!open);
-  };
+  }, [open]);
 
   const renderUserButton = () => {
     return user ? <UserProfile onClick={logout} user={user} /> : <LoginButton onSubmit={login} />;
@@ -132,4 +134,4 @@ const NavBar = (): JSX.Element => {
   );
 };
 
-export default NavBar;
+export default memo(NavBar);

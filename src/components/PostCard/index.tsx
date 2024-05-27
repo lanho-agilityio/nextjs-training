@@ -1,9 +1,12 @@
-import { Post } from '@/models';
+import { memo } from 'react';
 import { Box } from '@mui/material';
 
 // Components
 import PostCardContent from './PostCardContent';
 import PostCardImage from './PostCardImage';
+
+// Models
+import { Post } from '@/models';
 
 interface PostCardProps {
   content: Post;
@@ -22,4 +25,4 @@ const PostCard = ({ content, isRecentPost, isArchived = false }: PostCardProps):
   );
 };
 
-export default PostCard;
+export default memo(PostCard);

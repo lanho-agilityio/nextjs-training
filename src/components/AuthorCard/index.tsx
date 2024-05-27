@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Avatar, Box, Typography } from '@mui/material';
 
 // Constants
@@ -55,4 +56,4 @@ const AuthorCard = ({ author }: AuthorCardProps): JSX.Element => {
   );
 };
 
-export default AuthorCard;
+export default memo(AuthorCard);

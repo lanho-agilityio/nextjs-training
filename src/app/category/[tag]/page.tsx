@@ -1,11 +1,14 @@
 import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import { Box } from '@mui/material';
 
 // APIs
 import { queryAllPosts } from '@/services';
 
 // Components
-import { PostList, Heading, Pagination, FailToLoad } from '@/components';
+import { PostList, Heading, FailToLoad } from '@/components';
+
+const Pagination = dynamic(() => import('../../../components/Pagination'), { ssr: false });
 
 export default async function CategoryPage({ params }: { params: { tag: string } }) {
   const postsResult = await queryAllPosts({ tag: params.tag });

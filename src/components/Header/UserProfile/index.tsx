@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { Popover } from '@mui/material';
 
 // Components
@@ -13,19 +13,19 @@ interface UserProfileProps {
 }
 
 const UserProfile = ({ user, onClick }: UserProfileProps): JSX.Element => {
+  const { username: name } = user;
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
-  };
+  }, []);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setAnchorEl(null);
-  };
+  }, []);
 
   const open = Boolean(anchorEl);
   const id = open ? 'user-profile-popover' : undefined;
-  const { username: name } = user;
 
   return (
     <>
@@ -51,4 +51,4 @@ const UserProfile = ({ user, onClick }: UserProfileProps): JSX.Element => {
   );
 };
 
-export default UserProfile;
+export default memo(UserProfile);

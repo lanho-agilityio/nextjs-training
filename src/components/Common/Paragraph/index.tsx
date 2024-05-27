@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Box, Typography, TypographyProps } from '@mui/material';
 
 interface ParagraphProps extends TypographyProps {
@@ -20,4 +21,4 @@ const Paragraph = ({ content }: ParagraphProps): JSX.Element => {
   );
 };
 
-export default Paragraph;
+export default memo(Paragraph);

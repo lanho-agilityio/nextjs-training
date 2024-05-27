@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Box, Typography } from '@mui/material';
 
 // Constants
@@ -44,4 +45,4 @@ const Heading = ({ title, description }: HeadingProps): JSX.Element => {
   );
 };
 
-export default Heading;
+export default memo(Heading);

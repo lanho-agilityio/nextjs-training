@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import { Box } from '@mui/material';
 
 // APIs
@@ -8,10 +9,13 @@ import { queryAllCategory, queryAllPosts } from '@/services';
 import { PER_PAGE_ARCHIVE } from '@/constants';
 
 // Components
-import { PostList, Heading, PostFilter, Pagination, FailToLoad } from '@/components';
+import { PostList, Heading, FailToLoad } from '@/components';
 
 // Models
 import { SearchParams } from '@/models';
+
+const PostFilter = dynamic(() => import('../../components/PostFilter'), { ssr: false });
+const Pagination = dynamic(() => import('../../components/Pagination'), { ssr: false });
 
 export default async function ArchivePage({ searchParams }: { searchParams: SearchParams }) {
   const [postsResult, tagsResults] = await Promise.all([

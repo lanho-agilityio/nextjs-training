@@ -1,5 +1,5 @@
 'use client';
-import { useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { Box } from '@mui/material';
 
 // Constants
@@ -15,9 +15,9 @@ interface ErrorProps {
 
 const ErrorBoundary = ({ error, reset }: ErrorProps) => {
   // Attempt to recover by trying to re-render the segment
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     reset();
-  };
+  }, [reset]);
 
   useEffect(() => {
     // Log the error to an error reporting service
@@ -34,4 +34,4 @@ const ErrorBoundary = ({ error, reset }: ErrorProps) => {
   );
 };
 
-export default ErrorBoundary;
+export default memo(ErrorBoundary);

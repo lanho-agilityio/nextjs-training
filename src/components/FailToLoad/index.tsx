@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Box, Typography } from '@mui/material';
 
 // Constants
@@ -35,4 +36,4 @@ const FailToLoad = ({ error }: FailToLoadProps) => {
   );
 };
 
-export default FailToLoad;
+export default memo(FailToLoad);

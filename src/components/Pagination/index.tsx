@@ -3,8 +3,10 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+
 // Constants
 import { COLORS, PER_PAGE } from '@/constants';
+import { memo, useCallback } from 'react';
 
 interface PaginationProps {
   totalPosts: number;
@@ -15,24 +17,28 @@ const Pagination = ({ totalPosts, perPage = PER_PAGE }: PaginationProps): JSX.El
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
-  const currentPage = Number(searchParams.get('page')) || 1;
 
+  // Pagination
+  const currentPage = Number(searchParams.get('page')) || 1;
   const hasPrevious = currentPage > 1;
   const hasNext = currentPage * perPage < totalPosts;
 
-  const createPageURL = (pageNumber: number | string) => {
-    const params = new URLSearchParams(searchParams);
-    params.set('page', pageNumber.toString());
-    replace(`${pathname}?${params.toString()}`);
-  };
+  const createPageURL = useCallback(
+    (pageNumber: number | string) => {
+      const params = new URLSearchParams(searchParams);
+      params.set('page', pageNumber.toString());
+      replace(`${pathname}?${params.toString()}`);
+    },
+    [pathname, searchParams, replace],
+  );
 
-  const handleClickPrevious = () => {
+  const handleClickPrevious = useCallback(() => {
     createPageURL(Number(currentPage) - 1);
-  };
+  }, [createPageURL, currentPage]);
 
-  const handleClickNext = () => {
+  const handleClickNext = useCallback(() => {
     createPageURL(Number(currentPage) + 1);
-  };
+  }, [createPageURL, currentPage]);
 
   return (
     <>
@@ -80,4 +86,4 @@ const Pagination = ({ totalPosts, perPage = PER_PAGE }: PaginationProps): JSX.El
   );
 };
 
-export default Pagination;
+export default memo(Pagination);

@@ -1,5 +1,6 @@
 'use client';
-import { useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Box, IconButton, InputAdornment, Stack } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
@@ -21,7 +22,6 @@ import { UserRegister } from '@/models';
 
 // Utils
 import { validateMatched, validateRequired } from '@/utils';
-import { useRouter } from 'next/navigation';
 
 const validations = {
   username: {
@@ -62,7 +62,7 @@ const SignUpForm = (): JSX.Element => {
 
   const isDisableSubmit = !isValid;
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = useCallback(() => setShowPassword((show) => !show), []);
 
   const handleSuccess = useCallback(() => {
     router.push(ROUTES.HOME);
@@ -197,4 +197,4 @@ const SignUpForm = (): JSX.Element => {
   );
 };
 
-export default SignUpForm;
+export default memo(SignUpForm);

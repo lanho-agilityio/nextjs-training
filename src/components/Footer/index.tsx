@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Box, Typography } from '@mui/material';
 
 const Footer = (): JSX.Element => {
@@ -15,4 +16,4 @@ const Footer = (): JSX.Element => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

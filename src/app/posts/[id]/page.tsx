@@ -1,22 +1,29 @@
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { Box } from '@mui/material';
 
 // APIs
 import { queryPostDetail } from '@/services';
 
 // Constants
-import { COLORS, ROUTES } from '@/constants';
+import { COLORS, ERROR_MESSAGES, ROUTES } from '@/constants';
 
 // Components
-import { AuthorCard, Heading, Link, Paragraph, PostCardDescription, Category } from '@/components';
+import { AuthorCard, Heading, Link, Paragraph, Category, FailToLoad } from '@/components';
+
+const PostCardDescription = dynamic(() => import('../../../components/PostCard/PostCardDescription'), { ssr: false });
 
 export default async function DetailPostPage({ params }: { params: { id: string } }) {
-  const { data } = await queryPostDetail(params.id);
+  const { data, errorMessage } = await queryPostDetail(params.id);
 
   if (!data) {
-    return <main>Post Not Found</main>;
+    return <FailToLoad error={ERROR_MESSAGES.POST_NOT_FOUND} />;
   }
   const { title, tag, user, imageBase64, content, updatedAt, id } = data;
+
+  if (errorMessage) {
+    return <FailToLoad error={errorMessage} />;
+  }
 
   return (
     <main>

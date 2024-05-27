@@ -1,5 +1,5 @@
 'use client';
-import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import { ChangeEvent, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { Box, Stack, Typography } from '@mui/material';
@@ -87,17 +87,20 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
   const selectedTagValue = watch('tag');
   const selectedTag = useMemo(() => tags.filter((tag) => tag.value === selectedTagValue)[0], [tags, selectedTagValue]);
 
-  const handleSelectImage = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      setImage(event.target.files[0]);
-      setValue('imageName', event.target.files[0].name);
-    }
-  };
+  const handleSelectImage = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      if (event.target.files) {
+        setImage(event.target.files[0]);
+        setValue('imageName', event.target.files[0].name);
+      }
+    },
+    [setValue],
+  );
 
-  const handleRemoveImage = () => {
+  const handleRemoveImage = useCallback(() => {
     setValue('imageName', undefined);
     setImage(null);
-  };
+  }, [setValue]);
 
   const handleSuccess = useCallback(() => {
     const message = formType === FORM_TYPE.CREATE ? SUCCESS_MESSAGES.POST_CREATED : SUCCESS_MESSAGES.POST_EDITED;
@@ -255,4 +258,4 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
   );
 };
 
-export default PostForm;
+export default memo(PostForm);

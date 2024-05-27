@@ -1,5 +1,5 @@
 'use client';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo, useCallback } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Grid, SelectChangeEvent } from '@mui/material';
 
@@ -32,33 +32,45 @@ export const PostFilter = ({ tags }: PostFilterProps): JSX.Element => {
 
   const postFilterTime = Object.keys(POST_FILTER_TIME).map((key: string) => POST_FILTER_TIME[key as FILTER_TIME]);
 
-  const generateSearchParams = (queryKey: string, value: string) => {
-    const params = new URLSearchParams(searchParams);
-    if (isEmpty(value)) {
-      params.delete(queryKey);
-    } else {
-      params.set(queryKey, encodeURIComponent(value));
-    }
-    params.set(FILTER_KEY.PAGE, '1');
-    replace(`${pathname}?${params.toString()}`);
-  };
+  const generateSearchParams = useCallback(
+    (queryKey: string, value: string) => {
+      const params = new URLSearchParams(searchParams);
+      if (isEmpty(value)) {
+        params.delete(queryKey);
+      } else {
+        params.set(queryKey, encodeURIComponent(value));
+      }
+      params.set(FILTER_KEY.PAGE, '1');
+      replace(`${pathname}?${params.toString()}`);
+    },
+    [replace, pathname, searchParams],
+  );
 
-  const handleSearchInput = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    generateSearchParams(FILTER_KEY.QUERY, event.target.value);
-  };
+  const handleSearchInput = useCallback(
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      generateSearchParams(FILTER_KEY.QUERY, event.target.value);
+    },
+    [generateSearchParams],
+  );
 
-  const handleClearSearchInput = () => {
+  const handleClearSearchInput = useCallback(() => {
     generateSearchParams(FILTER_KEY.QUERY, '');
-  };
+  }, [generateSearchParams]);
 
-  const handleSelectCategory = (value: string | string[]) => {
-    const search = typeof value === 'string' ? value.split(',') : value;
-    generateSearchParams(FILTER_KEY.TAG, search.join(','));
-  };
+  const handleSelectCategory = useCallback(
+    (value: string | string[]) => {
+      const search = typeof value === 'string' ? value.split(',') : value;
+      generateSearchParams(FILTER_KEY.TAG, search.join(','));
+    },
+    [generateSearchParams],
+  );
 
-  const handlSelectTime = (event: SelectChangeEvent) => {
-    generateSearchParams(FILTER_KEY.TIME, event.target.value);
-  };
+  const handlSelectTime = useCallback(
+    (event: SelectChangeEvent) => {
+      generateSearchParams(FILTER_KEY.TIME, event.target.value);
+    },
+    [generateSearchParams],
+  );
 
   return (
     <Grid container sx={{ marginBottom: '40px' }} spacing={2}>
@@ -89,4 +101,4 @@ export const PostFilter = ({ tags }: PostFilterProps): JSX.Element => {
   );
 };
 
-export default PostFilter;
+export default memo(PostFilter);

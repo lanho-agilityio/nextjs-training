@@ -1,10 +1,13 @@
 import { Box } from '@mui/material';
+import dynamic from 'next/dynamic';
 
 // APIs
 import { queryAllCategory } from '@/services';
 
 // Components
-import { Heading, PostForm } from '@/components';
+import { Heading } from '@/components';
+
+const PostForm = dynamic(() => import('../../../components/PostForm'), { ssr: false });
 
 export default async function CreatePage() {
   const { data: tags } = await queryAllCategory();

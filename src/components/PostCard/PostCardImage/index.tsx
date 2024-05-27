@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Image from 'next/image';
 import { Box } from '@mui/material';
 
@@ -42,4 +43,4 @@ const PostCardImage = ({ alt, src, to, isRecentPost = false, isArchived = false 
   );
 };
 
-export default PostCardImage;
+export default memo(PostCardImage);

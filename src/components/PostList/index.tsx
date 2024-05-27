@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Box, Grid } from '@mui/material';
 
 // Constants
@@ -39,4 +40,4 @@ const PostList = ({ posts, isArchived = false }: PostListProps): JSX.Element => 
   );
 };
 
-export default PostList;
+export default memo(PostList);

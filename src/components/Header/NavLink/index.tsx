@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, memo } from 'react';
 
 // Constants
 import { COLORS } from '@/constants';
@@ -38,4 +38,4 @@ const NavLink = ({ title, to, _style }: NavLinkStyledProps): JSX.Element => {
   );
 };
 
-export default NavLink;
+export default memo(NavLink);
