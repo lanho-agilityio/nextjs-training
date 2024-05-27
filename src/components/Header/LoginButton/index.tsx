@@ -9,11 +9,15 @@ import { COLORS, ROUTES } from '@/constants';
 
 // Components
 import { LinkButton } from '../../Common/Button';
+import { LoginSkeleton } from '../../Skeletons';
 
 // Models
 import { UserLogin } from '@/models';
 
-const LoginForm = dynamic(() => import('../../LoginForm'), { ssr: false });
+const LoginForm = dynamic(() => import('../../LoginForm'), {
+  ssr: false,
+  loading: () => <LoginSkeleton/>,
+});
 
 interface LoginButtonProps {
   onSubmit: (values: UserLogin) => void;
@@ -65,7 +69,7 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
           <Typography sx={{ textAlign: 'center', fontSize: '20px', paddingBottom: '10px' }} variant="h1">
             Sign in
           </Typography>
-          <LoginForm onSubmit={onSubmit} />
+            <LoginForm onSubmit={onSubmit} />
           <Box
             sx={{
               paddingTop: '15px',

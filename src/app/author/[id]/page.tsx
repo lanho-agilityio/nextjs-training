@@ -17,7 +17,7 @@ export default async function AuthorPage({ params }: { params: { id: string } })
   const postsResult = await queryAllPosts({ authorId: params.id });
   const { data: posts, total: totalPosts, errorMessage } = postsResult;
 
-  const author: Author = posts.length > 0 && posts[0].user || { id: '', username: '' };
+  const author: Author = (posts.length > 0 && posts[0].user) || { id: '', username: '' };
 
   if (errorMessage) {
     return <FailToLoad error={errorMessage} />;

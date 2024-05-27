@@ -43,14 +43,8 @@ export const useToast = () => {
 
   return {
     show,
-    info(message: string) {
-      show(message, { severity: 'info' });
-    },
     success(message: string) {
       show(message, { severity: 'success' });
-    },
-    warning(message: string) {
-      show(message, { severity: 'warning' });
     },
     error(message: string) {
       show(message, { severity: 'error' });

@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, forwardRef, memo } from 'react';
 import { Box, TextField, TextFieldProps, Typography } from '@mui/material';
 
 // Constants
@@ -60,4 +60,4 @@ const Input = (
   );
 };
 
-export default forwardRef(Input);
+export default memo(forwardRef(Input));
