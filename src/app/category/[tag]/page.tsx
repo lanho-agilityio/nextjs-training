@@ -5,11 +5,15 @@ import { Box } from '@mui/material';
 import { queryAllPosts } from '@/services';
 
 // Components
-import { PostList, Heading, Pagination } from '@/components';
+import { PostList, Heading, Pagination, FailToLoad } from '@/components';
 
 export default async function CategoryPage({ params }: { params: { tag: string } }) {
   const postsResult = await queryAllPosts({ tag: params.tag });
-  const { data: posts, total: totalPosts } = postsResult;
+  const { data: posts, total: totalPosts, errorMessage } = postsResult;
+
+  if (errorMessage) {
+    return <FailToLoad error={errorMessage} />;
+  }
 
   return (
     <main>

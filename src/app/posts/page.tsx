@@ -8,7 +8,7 @@ import { queryAllCategory, queryAllPosts } from '@/services';
 import { PER_PAGE_ARCHIVE } from '@/constants';
 
 // Components
-import { PostList, Heading, PostFilter, Pagination } from '@/components';
+import { PostList, Heading, PostFilter, Pagination, FailToLoad } from '@/components';
 
 // Models
 import { SearchParams } from '@/models';
@@ -19,8 +19,12 @@ export default async function ArchivePage({ searchParams }: { searchParams: Sear
     queryAllCategory(),
   ]);
 
-  const { data: posts, total: totalPosts } = postsResult;
-  const { data: tags } = tagsResults;
+  const { data: posts, total: totalPosts, errorMessage: errorPost } = postsResult;
+  const { data: tags, errorMessage: errorTag } = tagsResults;
+
+  if (errorPost || errorTag) {
+    return <FailToLoad error={errorPost || errorTag} />;
+  }
 
   return (
     <main>

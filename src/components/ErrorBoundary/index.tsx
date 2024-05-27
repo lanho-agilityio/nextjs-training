@@ -27,7 +27,7 @@ const ErrorBoundary = ({ error, reset }: ErrorProps) => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '50px' }}>
       <Heading title="Something went wrong!" />
-      <Button onClick={handleReset} backgroundColor={COLORS.HEADING} hoverColor={COLORS.HEADING} sx={{width: '70%'}} >
+      <Button onClick={handleReset} backgroundColor={COLORS.HEADING} hoverColor={COLORS.HEADING} sx={{ width: '70%' }}>
         Try again
       </Button>
     </Box>

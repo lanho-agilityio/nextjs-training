@@ -7,10 +7,14 @@ import { queryAllPosts } from '@/services';
 import { COLORS, ROUTES } from '@/constants';
 
 // Components
-import { PostList, Link } from '@/components';
+import { PostList, Link, FailToLoad } from '@/components';
 
 export default async function Home() {
-  const { data } = await queryAllPosts();
+  const { data, errorMessage } = await queryAllPosts();
+
+  if (errorMessage) {
+    return <FailToLoad error={errorMessage} />;
+  }
 
   return (
     <main>
