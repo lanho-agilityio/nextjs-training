@@ -1,5 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
+import dayjs from 'dayjs';
 import { Avatar, Box, IconButton, Tooltip, Typography } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
 import EditIcon from '@mui/icons-material/Edit';
@@ -76,7 +77,7 @@ const PostCardDescription = ({
           </Link>
 
           {!isDetailed && <CircleIcon sx={{ height: 5, width: 5, color: COLORS.DESCRIPTION_ICON }} />}
-          <Typography variant="caption">{updatedAt.toString()}</Typography>
+          <Typography variant="caption">{dayjs(new Date(updatedAt)).format("YYYY-MM-DD")}</Typography>
         </Box>
       </Box>
       <Box>
