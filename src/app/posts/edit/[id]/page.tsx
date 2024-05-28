@@ -7,9 +7,12 @@ import { Box } from '@mui/material';
 import { queryAllCategory, queryPostDetail } from '@/services';
 
 // Components
-import { FailToLoad, Heading } from '@/components';
+import { FailToLoad, Heading, PostFormSkeleton } from '@/components';
 
-const PostForm = dynamic(() => import('../../../../components/PostForm'));
+const PostForm = dynamic(() => import('../../../../components/PostForm'), {
+  loading: () => <PostFormSkeleton />,
+  ssr: false,
+});
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const id = params.id;

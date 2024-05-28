@@ -10,6 +10,7 @@ import { Heading, PostFormSkeleton } from '@/components';
 
 const PostForm = dynamic(() => import('../../../components/PostForm'), {
   loading: () => <PostFormSkeleton />,
+  ssr: false,
 });
 
 export const metadata: Metadata = {
