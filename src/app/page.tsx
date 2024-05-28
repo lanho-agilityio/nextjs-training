@@ -32,7 +32,7 @@ export default async function Home() {
           alignItems: 'center',
           justifyContent: 'center',
           marginTop: '40px',
-          gap: '40px'
+          gap: '40px',
         }}
       >
         <PostList posts={data} />

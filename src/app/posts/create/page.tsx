@@ -5,9 +5,11 @@ import dynamic from 'next/dynamic';
 import { queryAllCategory } from '@/services';
 
 // Components
-import { Heading } from '@/components';
+import { Heading, PostFormSkeleton } from '@/components';
 
-const PostForm = dynamic(() => import('../../../components/PostForm'));
+const PostForm = dynamic(() => import('../../../components/PostForm'), {
+  loading: () => <PostFormSkeleton />,
+});
 
 export default async function CreatePage() {
   const { data: tags } = await queryAllCategory();

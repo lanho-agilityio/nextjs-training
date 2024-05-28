@@ -11,7 +11,7 @@ import { API_ROUTES, ERROR_MESSAGES, LIMIT, PER_PAGE, ROUTES, SORTED, USER_INCLU
 import { Post, PostCreate, SearchParams } from '@/models';
 
 // Utils
-import { generateSearchParams } from '@/utils';
+import { generateSearchParams, isEmpty } from '@/utils';
 
 export const queryAllPosts = async (params?: SearchParams, limit: number = PER_PAGE) => {
   let errorMessage = '';
@@ -36,8 +36,10 @@ export const queryPostDetail = async (id: string) => {
     errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
   });
 
+  const postDetail = isEmpty(response?.data) ? null : response?.data;
+
   return {
-    data: response?.data || null,
+    data: postDetail,
     errorMessage,
   };
 };

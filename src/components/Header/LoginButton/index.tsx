@@ -71,7 +71,6 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
           <LoginForm onSubmit={onSubmit} />
           <Box
             sx={{
-              paddingTop: '15px',
               fontSize: '12px',
               display: 'flex',
               flexDirection: 'row',

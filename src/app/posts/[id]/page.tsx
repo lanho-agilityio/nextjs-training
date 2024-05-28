@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import { notFound } from 'next/navigation';
 import { Box } from '@mui/material';
 
 // APIs
 import { queryPostDetail } from '@/services';
 
 // Constants
-import { COLORS, ERROR_MESSAGES, ROUTES } from '@/constants';
+import { COLORS, ROUTES } from '@/constants';
 
 // Components
 import { AuthorCard, Heading, Link, Paragraph, Category, FailToLoad } from '@/components';
@@ -17,8 +18,9 @@ export default async function DetailPostPage({ params }: { params: { id: string 
   const { data, errorMessage } = await queryPostDetail(params.id);
 
   if (!data) {
-    return <FailToLoad error={ERROR_MESSAGES.POST_NOT_FOUND} />;
+    notFound();
   }
+
   const { title, tag, user, imageBase64, content, updatedAt, id } = data;
 
   if (errorMessage) {
