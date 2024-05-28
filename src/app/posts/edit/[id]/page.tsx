@@ -12,11 +12,11 @@ import { FailToLoad, Heading } from '@/components';
 const PostForm = dynamic(() => import('../../../../components/PostForm'));
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const id = params.id
-  const response = await queryPostDetail(id)
+  const id = params.id;
+  const response = await queryPostDetail(id);
 
-  if(response.data){
-    const {title} = response.data
+  if (response.data) {
+    const { title } = response.data;
     return {
       title: `Post: ${title}`,
       description: `Edit post ${title}`,
@@ -26,7 +26,6 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     title: `PostId: ${id}`,
     description: `Edit post with id: ${id}`,
   };
- 
 }
 
 export default async function EditPage({ params }: { params: { id: string } }) {

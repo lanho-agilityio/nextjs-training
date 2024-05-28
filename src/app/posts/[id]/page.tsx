@@ -16,11 +16,11 @@ import { AuthorCard, Heading, Link, Paragraph, Category, FailToLoad } from '@/co
 const PostCardDescription = dynamic(() => import('../../../components/PostCard/PostCardDescription'), { ssr: false });
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const id = params.id
-  const response = await queryPostDetail(id)
+  const id = params.id;
+  const response = await queryPostDetail(id);
 
-  if(response.data){
-    const {title} = response.data
+  if (response.data) {
+    const { title } = response.data;
     return {
       title: `Post: ${title}`,
       description: `View detail about ${title}`,
@@ -30,9 +30,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     title: `PostId: ${id}`,
     description: `View detail about post with id ${id}`,
   };
- 
 }
-
 
 export default async function DetailPostPage({ params }: { params: { id: string } }) {
   const { data, errorMessage } = await queryPostDetail(params.id);

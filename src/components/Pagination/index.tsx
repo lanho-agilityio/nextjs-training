@@ -1,4 +1,5 @@
 'use client';
+import { useCallback } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
@@ -6,7 +7,6 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 // Constants
 import { COLORS, PER_PAGE } from '@/constants';
-import { memo, useCallback } from 'react';
 
 interface PaginationProps {
   totalPosts: number;
@@ -86,4 +86,4 @@ const Pagination = ({ totalPosts, perPage = PER_PAGE }: PaginationProps): JSX.El
   );
 };
 
-export default memo(Pagination);
+export default Pagination;

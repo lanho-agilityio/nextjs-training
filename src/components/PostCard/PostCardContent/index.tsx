@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import dynamic from 'next/dynamic';
 import { Box } from '@mui/material';
 
 // Constants
@@ -6,10 +7,11 @@ import { COLORS, ROUTES } from '@/constants';
 
 // Components
 import { Link, Category } from '../..';
-import PostCardDescription from '../PostCardDescription';
 
 // Models
 import { Author, PostCategory } from '@/models';
+
+const PostCardDescription = dynamic(() => import('../PostCardDescription'), {ssr: false});
 
 interface PostCardContentProps {
   id: string;
