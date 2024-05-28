@@ -31,7 +31,6 @@ const CustomButton = ({
       type={type}
       {...props}
       sx={{
-        ...props.sx,
         height: height,
         backgroundColor: backgroundColor,
         ':hover': {

@@ -3,7 +3,7 @@ import { memo, useCallback, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Box, IconButton } from '@mui/material';
+import { Box, IconButton, Skeleton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -16,8 +16,14 @@ import { Link, NavLink } from '@/components';
 // Hooks
 import { useAuthContext } from '@/hooks';
 
-const LoginButton = dynamic(() => import('./LoginButton'), { ssr: false });
-const UserProfile = dynamic(() => import('./UserProfile'), { ssr: false });
+const LoginButton = dynamic(() => import('./LoginButton'), {
+  ssr: false,
+  loading: () => <Skeleton variant="rectangular" height={18} width={56} />,
+});
+const UserProfile = dynamic(() => import('./UserProfile'), {
+  ssr: false,
+  loading: () => <Skeleton variant="rectangular" height={18} width={56} />,
+});
 
 const NavBar = (): JSX.Element => {
   const { push } = useRouter();
@@ -97,15 +103,26 @@ const NavBar = (): JSX.Element => {
             display: {
               xs: 'none',
               md: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
             },
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           {NAVIGATION_LIST.slice(HALF).map((e, i) => {
             return <NavLink key={i} to={e.to} title={e.title} />;
           })}
-          <Box sx={{ paddingX: { md: '20px' }, width: '64px', height: '56px' }}>{renderUserButton()}</Box>
+          <Box
+            sx={{
+              paddingX: { md: '20px' },
+              width: '64px',
+              height: '56px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {renderUserButton()}
+          </Box>
         </Box>
       </Box>
       {open && (
