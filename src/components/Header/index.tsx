@@ -105,7 +105,7 @@ const NavBar = (): JSX.Element => {
           {NAVIGATION_LIST.slice(HALF).map((e, i) => {
             return <NavLink key={i} to={e.to} title={e.title} />;
           })}
-          <Box sx={{ paddingX: { md: '20px' } }}>{renderUserButton()}</Box>
+          <Box sx={{ paddingX: { md: '20px' }, width: '64px', height: '56px' }}>{renderUserButton()}</Box>
         </Box>
       </Box>
       {open && (
@@ -133,7 +133,7 @@ const NavBar = (): JSX.Element => {
               />
             );
           })}
-          <Box sx={{ paddingX: { md: '20px' } }}>{renderUserButton()}</Box>
+          <Box>{renderUserButton()}</Box>
         </Box>
       )}
     </nav>
