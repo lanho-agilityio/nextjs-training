@@ -11,7 +11,7 @@ import { Link, Category } from '../..';
 // Models
 import { Author, PostCategory } from '@/models';
 
-const PostCardDescription = dynamic(() => import('../PostCardDescription'), {ssr: false});
+const PostCardDescription = dynamic(() => import('../PostCardDescription'), { ssr: false });
 
 interface PostCardContentProps {
   id: string;

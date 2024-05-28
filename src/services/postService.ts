@@ -50,7 +50,7 @@ export const createPost = async (values: PostCreate) => {
   });
   if (!errorMessage) {
     revalidateTag(VALIDATE_TAGS.POSTS);
-    revalidatePath(ROUTES.HOME)
+    revalidatePath(ROUTES.HOME);
     return {
       data: response,
       errorMessage,
