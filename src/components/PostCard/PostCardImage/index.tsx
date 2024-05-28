@@ -19,6 +19,7 @@ interface PostCardImageProps {
 const PostCardImage = ({ alt, src, to, isRecentPost = false, isArchived = false }: PostCardImageProps): JSX.Element => {
   return (
     <Box
+      id="post-image"
       sx={{
         position: 'relative',
         width: '100%',
@@ -30,7 +31,6 @@ const PostCardImage = ({ alt, src, to, isRecentPost = false, isArchived = false 
           xs: '500px',
         },
       }}
-      id="post-image"
     >
       <Link href={ROUTES.POST_DETAIL(to)}>
         {src ? (

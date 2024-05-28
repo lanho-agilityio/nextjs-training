@@ -27,7 +27,6 @@ const PostCardContent = ({ id, title, tag, author, updatedAt }: PostCardContentP
       <Category tag={tag} />
       <Box sx={{ marginTop: '8px' }}>
         <Link
-          id="post-title"
           title={title}
           href={ROUTES.POST_DETAIL(id)}
           _style={{
@@ -36,6 +35,11 @@ const PostCardContent = ({ id, title, tag, author, updatedAt }: PostCardContentP
             lineHeight: '28px',
             fontWeight: 600,
             color: COLORS.HEADING,
+            ':hover': {
+              backgroundSize: ' 100% 3px',
+              transitionDuration: '0.5s',
+              background: COLORS.POST_TITLE_HOVER,
+            },
           }}
         >
           {title}
