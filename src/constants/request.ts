@@ -25,5 +25,5 @@ export const SEARCH_PARAMS = {
   TIME: (startDate: string, endDate: string) => `&updatedAt_gte=${startDate}&updatedAt_lte=${endDate}`,
   TAG: (tag: string) => `&tag.value=${tag}`,
   PAGE: (pageNumber: string) => `&_page=${pageNumber}`,
-  AUTHOR: (id: string) => `&userId=${id}`,
+  AUTHOR_ID: (id: string) => `&userId=${id}`,
 };

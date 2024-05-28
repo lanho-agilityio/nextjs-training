@@ -22,7 +22,7 @@ export const generateSearchParams = (params: SearchParams): string => {
         return generateDateParams(value as FILTER_TIME);
       }
       if (key === FILTER_KEY.AUTHOR_ID) {
-        return SEARCH_PARAMS.AUTHOR(value);
+        return SEARCH_PARAMS.AUTHOR_ID(value);
       }
     }
   });
