@@ -15,7 +15,11 @@ const Heading = ({ title, description }: HeadingProps): JSX.Element => {
       <Typography
         variant="h1"
         sx={{
-          marginTop: '8px',
+          paddingTop: {
+            xs: '20px',
+            sm: '20px',
+            md: '32px',
+          },
           marginBottom: '12px',
           fontSize: {
             xs: '30px',
