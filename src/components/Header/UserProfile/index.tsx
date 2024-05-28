@@ -1,3 +1,4 @@
+'use client'
 import { memo, useCallback, useState } from 'react';
 import { NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { Divider, Popover, Stack } from '@mui/material';

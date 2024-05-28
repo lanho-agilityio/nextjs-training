@@ -85,7 +85,6 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
           </Box>
         </Container>
       </Popover>
-      {/* <Backdrop open={open} onClick={handleClose} sx={{ zIndex: 3 }} /> */}
     </>
   );
 };
