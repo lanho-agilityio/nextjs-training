@@ -252,7 +252,9 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
         >
           Submit Post
         </Button>
-        <Typography>{!user?.id && `**Please sign in to ${formType} a post`}</Typography>
+        <Typography sx={{ color: COLORS.ERROR, fontWeight: 400 }}>
+          {!user?.id && `**Please sign in to ${formType} a post`}
+        </Typography>
       </Stack>
     </Box>
   );

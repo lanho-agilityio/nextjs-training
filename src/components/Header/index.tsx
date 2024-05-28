@@ -2,6 +2,7 @@
 import { memo, useCallback, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Box, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -19,6 +20,7 @@ const LoginButton = dynamic(() => import('./LoginButton'));
 const UserProfile = dynamic(() => import('./UserProfile'));
 
 const NavBar = (): JSX.Element => {
+  const { push } = useRouter();
   const { user, login, logout } = useAuthContext();
 
   const [open, setOpen] = useState(false);
@@ -30,7 +32,11 @@ const NavBar = (): JSX.Element => {
   }, [open]);
 
   const renderUserButton = () => {
-    return user ? <UserProfile onClick={logout} user={user} /> : <LoginButton onSubmit={login} />;
+    return user ? (
+      <UserProfile onLogoutClick={logout} onCreatePostClick={push} user={user} />
+    ) : (
+      <LoginButton onSubmit={login} />
+    );
   };
 
   return (
@@ -99,7 +105,7 @@ const NavBar = (): JSX.Element => {
           {NAVIGATION_LIST.slice(HALF).map((e, i) => {
             return <NavLink key={i} to={e.to} title={e.title} />;
           })}
-          {renderUserButton()}
+          <Box sx={{ paddingX: { md: '20px' } }}>{renderUserButton()}</Box>
         </Box>
       </Box>
       {open && (
@@ -127,7 +133,7 @@ const NavBar = (): JSX.Element => {
               />
             );
           })}
-          {renderUserButton()}
+          <Box sx={{ paddingX: { md: '20px' } }}>{renderUserButton()}</Box>
         </Box>
       )}
     </nav>

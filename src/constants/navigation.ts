@@ -25,8 +25,4 @@ export const NAVIGATION_LIST: Navigation[] = [
     to: ROUTES.ABOUT,
     title: 'About',
   },
-  {
-    to: ROUTES.CREATE,
-    title: 'Create',
-  },
 ];

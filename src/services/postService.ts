@@ -20,7 +20,6 @@ export const queryAllPosts = async (params?: SearchParams, limit: number = PER_P
   const response = await APIs.get<Post[]>(url, VALIDATE_TAGS.POSTS).catch((error) => {
     errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
   });
-  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   return {
     errorMessage,

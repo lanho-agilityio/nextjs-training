@@ -1,5 +1,9 @@
 import { memo, useCallback, useState } from 'react';
-import { Popover } from '@mui/material';
+import { NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { Divider, Popover, Stack } from '@mui/material';
+
+// Constants
+import { ROUTES } from '@/constants';
 
 // Components
 import { LinkButton } from '../../Common/Button';
@@ -9,12 +13,16 @@ import { UserSession } from '@/models';
 
 interface UserProfileProps {
   user: UserSession;
-  onClick: () => void;
+  onCreatePostClick: (href: string, options?: NavigateOptions | undefined) => void;
+  onLogoutClick: () => void;
 }
 
-const UserProfile = ({ user, onClick }: UserProfileProps): JSX.Element => {
+const UserProfile = ({ user, onLogoutClick, onCreatePostClick }: UserProfileProps): JSX.Element => {
   const { username: name } = user;
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'user-profile-popover' : undefined;
 
   const handleClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -24,8 +32,9 @@ const UserProfile = ({ user, onClick }: UserProfileProps): JSX.Element => {
     setAnchorEl(null);
   }, []);
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'user-profile-popover' : undefined;
+  const handleCreatePostClick = useCallback(() => {
+    onCreatePostClick(ROUTES.CREATE);
+  }, [onCreatePostClick]);
 
   return (
     <>
@@ -43,9 +52,13 @@ const UserProfile = ({ user, onClick }: UserProfileProps): JSX.Element => {
         }}
         sx={{
           borderRadius: '6px',
+          padding: '10px',
         }}
       >
-        <LinkButton onClick={onClick}>Logout</LinkButton>
+        <Stack gap="5x" divider={<Divider orientation="horizontal" flexItem />} sx={{ paddingX: '10px' }}>
+          <LinkButton onClick={handleCreatePostClick}>Create a post</LinkButton>
+          <LinkButton onClick={onLogoutClick}>Logout</LinkButton>
+        </Stack>
       </Popover>
     </>
   );
