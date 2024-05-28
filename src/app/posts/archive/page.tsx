@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { Box } from '@mui/material';
 
@@ -19,6 +20,11 @@ const PostFilter = dynamic(() => import('../../../components/PostFilter'), {
 const Pagination = dynamic(() => import('../../../components/Pagination'), {
   loading: () => <PaginationSkeleton />,
 });
+
+export const metadata: Metadata = {
+  title: 'Archive',
+  description: 'See all posts we have ever written',
+};
 
 export default async function ArchivePage({ searchParams }: { searchParams: SearchParams }) {
   const [postsResult, tagsResults] = await Promise.all([

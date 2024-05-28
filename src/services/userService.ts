@@ -12,6 +12,9 @@ import { API_ROUTES, ERROR_MESSAGES, VALIDATE_TAGS } from '@/constants';
 // Models
 import { User, UserLogin, UserRegister, UserSession } from '@/models';
 
+// Utils
+import { isEmpty } from '@/utils';
+
 const hashPassword = (password: string) => {
   return sha256(password).toString();
 };
@@ -84,4 +87,19 @@ export const registerUser = async (arg: UserRegister) => {
       errorMessage,
     };
   }
+};
+
+export const getAuthor = async (id: string) => {
+  let errorMessage = '';
+  const url = `${API_ROUTES.USER}/${id}`;
+  const response = await APIs.get<UserLogin>(url, VALIDATE_TAGS.POSTS).catch((error) => {
+    errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
+  });
+
+  const userInfo = isEmpty(response?.data) ? null : response?.data;
+
+  return {
+    data: userInfo,
+    errorMessage,
+  };
 };

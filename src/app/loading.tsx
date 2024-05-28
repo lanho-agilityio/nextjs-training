@@ -6,7 +6,6 @@ import { HeadingSkeleton, PaginationSkeleton, PostCardSkeleton } from '@/compone
 export default function Loading() {
   const skeleton = Array(9).fill(0);
 
-
   return (
     <>
       <HeadingSkeleton />
@@ -18,7 +17,6 @@ export default function Loading() {
             </Grid>
           ))}
         </Grid>
-
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
           <PaginationSkeleton />
         </Box>

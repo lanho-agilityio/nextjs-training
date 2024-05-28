@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { Box } from '@mui/material';
 
@@ -6,6 +6,11 @@ import { Box } from '@mui/material';
 import { Heading } from '@/components';
 
 const SignUpForm = dynamic(() => import('../../components/SignUpForm'));
+
+export const metadata: Metadata = {
+  title: 'Sign up',
+  description: 'Create your account',
+};
 
 export default function SignUpPage() {
   return (
@@ -20,9 +25,7 @@ export default function SignUpPage() {
           paddingTop: '40px',
         }}
       >
-        <Suspense fallback={<>Loading</>}>
-          <SignUpForm />
-        </Suspense>
+        <SignUpForm />
       </Box>
     </main>
   );

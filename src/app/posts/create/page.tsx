@@ -1,5 +1,6 @@
-import { Box } from '@mui/material';
 import dynamic from 'next/dynamic';
+import { Metadata } from 'next';
+import { Box } from '@mui/material';
 
 // APIs
 import { queryAllCategory } from '@/services';
@@ -10,6 +11,11 @@ import { Heading, PostFormSkeleton } from '@/components';
 const PostForm = dynamic(() => import('../../../components/PostForm'), {
   loading: () => <PostFormSkeleton />,
 });
+
+export const metadata: Metadata = {
+  title: 'Create',
+  description: 'Create a post',
+};
 
 export default async function CreatePage() {
   const { data: tags } = await queryAllCategory();

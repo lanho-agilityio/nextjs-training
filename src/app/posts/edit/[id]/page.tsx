@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
 import { Box } from '@mui/material';
@@ -9,6 +10,24 @@ import { queryAllCategory, queryPostDetail } from '@/services';
 import { FailToLoad, Heading } from '@/components';
 
 const PostForm = dynamic(() => import('../../../../components/PostForm'));
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const id = params.id
+  const response = await queryPostDetail(id)
+
+  if(response.data){
+    const {title} = response.data
+    return {
+      title: `Post: ${title}`,
+      description: `Edit post ${title}`,
+    };
+  }
+  return {
+    title: `PostId: ${id}`,
+    description: `Edit post with id: ${id}`,
+  };
+ 
+}
 
 export default async function EditPage({ params }: { params: { id: string } }) {
   const { data, errorMessage } = await queryPostDetail(params.id);

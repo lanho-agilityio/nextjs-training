@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { Box } from '@mui/material';
 
@@ -11,6 +11,16 @@ import { PostList, Heading, FailToLoad, PaginationSkeleton } from '@/components'
 const Pagination = dynamic(() => import('../../../components/Pagination'), {
   loading: () => <PaginationSkeleton />,
 });
+
+export async function generateMetadata({ params }: { params: { tag: string } }): Promise<Metadata> {
+  const tag = params.tag;
+
+  return {
+    title: `Category: ${tag}`,
+    description: `See all posts about ${tag}`,
+  };
+}
+
 export default async function CategoryPage({ params }: { params: { tag: string } }) {
   const postsResult = await queryAllPosts({ tag: params.tag });
   const { data: posts, total: totalPosts, errorMessage } = postsResult;
@@ -25,9 +35,7 @@ export default async function CategoryPage({ params }: { params: { tag: string }
       <Box sx={{ marginTop: '40px' }}>
         <PostList posts={posts} isArchived={true} />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Pagination totalPosts={totalPosts} />
-          </Suspense>
+          <Pagination totalPosts={totalPosts} />
         </Box>
       </Box>
     </main>

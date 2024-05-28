@@ -1,9 +1,9 @@
-import { Suspense } from 'react';
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { Avatar, Box } from '@mui/material';
 
 // APIs
-import { queryAllPosts } from '@/services';
+import { getAuthor, queryAllPosts } from '@/services';
 
 // Components
 import { PostList, Heading, FailToLoad, PaginationSkeleton } from '@/components';
@@ -14,6 +14,23 @@ import { Author } from '@/models';
 const Pagination = dynamic(() => import('../../../components/Pagination'), {
   loading: () => <PaginationSkeleton />,
 });
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const id = params.id;
+  const response = await getAuthor(id);
+
+  if (response.data) {
+    const { username } = response.data;
+    return {
+      title: `Author: ${username}`,
+      description: `See all posts written by ${username}`,
+    };
+  }
+  return {
+    title: `AuthorId: ${id}`,
+    description: `See all posts written by id: ${id}`,
+  };
+}
 
 export default async function AuthorPage({ params }: { params: { id: string } }) {
   const postsResult = await queryAllPosts({ authorId: params.id });
@@ -31,13 +48,10 @@ export default async function AuthorPage({ params }: { params: { id: string } })
         <Avatar src="" alt="avatar" sx={{ width: 80, height: 80 }} />
         <Heading title={author.username} />
       </Box>
-
       <Box sx={{ marginTop: '40px' }}>
         <PostList posts={posts} isArchived={true} />
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Pagination totalPosts={totalPosts} />
-          </Suspense>
+          <Pagination totalPosts={totalPosts} />
         </Box>
       </Box>
     </main>

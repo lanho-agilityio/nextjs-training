@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
@@ -13,6 +14,25 @@ import { COLORS, ROUTES } from '@/constants';
 import { AuthorCard, Heading, Link, Paragraph, Category, FailToLoad } from '@/components';
 
 const PostCardDescription = dynamic(() => import('../../../components/PostCard/PostCardDescription'), { ssr: false });
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const id = params.id
+  const response = await queryPostDetail(id)
+
+  if(response.data){
+    const {title} = response.data
+    return {
+      title: `Post: ${title}`,
+      description: `View detail about ${title}`,
+    };
+  }
+  return {
+    title: `PostId: ${id}`,
+    description: `View detail about post with id ${id}`,
+  };
+ 
+}
+
 
 export default async function DetailPostPage({ params }: { params: { id: string } }) {
   const { data, errorMessage } = await queryPostDetail(params.id);

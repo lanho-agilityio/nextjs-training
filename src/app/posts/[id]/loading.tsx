@@ -7,7 +7,16 @@ export default function Loading() {
   return (
     <>
       <HeadingSkeleton />
-      <Box sx={{ marginTop: '40px' }}>
+      <Box
+        sx={{
+          marginTop: '40px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 4,
+        }}
+      >
         <Box
           sx={{
             position: 'relative',
@@ -18,7 +27,7 @@ export default function Loading() {
         >
           <Skeleton variant="rectangular" sx={{ width: ' 100%', height: ' 100%', borderRadius: '6px' }} />
         </Box>
-        <Skeleton variant="rectangular" sx={{ maxWidth: '762px', height: '100px' }} />
+        <Skeleton variant="rectangular" sx={{ maxWidth: '762px', height: '300px' }} />
       </Box>
     </>
   );

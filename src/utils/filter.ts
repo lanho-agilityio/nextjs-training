@@ -8,20 +8,22 @@ import { SearchParams } from '@/models';
 export const generateSearchParams = (params: SearchParams): string => {
   const search = Object.keys(params).map((key) => {
     const value = params[key as keyof SearchParams];
-    if (value && key === FILTER_KEY.QUERY) {
-      return SEARCH_PARAMS.QUERY(value);
-    }
-    if (value && key === FILTER_KEY.PAGE) {
-      return SEARCH_PARAMS.PAGE(value);
-    }
-    if (value && key === FILTER_KEY.TAG) {
-      return generateCategoryParams(decodeURIComponent(value).split(','));
-    }
-    if (value && key === FILTER_KEY.TIME) {
-      return generateDateParams(value as FILTER_TIME);
-    }
-    if (value && key === FILTER_KEY.AUTHOR_ID) {
-      return SEARCH_PARAMS.AUTHOR(value);
+    if (value) {
+      if (key === FILTER_KEY.QUERY) {
+        return SEARCH_PARAMS.QUERY(value);
+      }
+      if (key === FILTER_KEY.PAGE) {
+        return SEARCH_PARAMS.PAGE(value);
+      }
+      if (key === FILTER_KEY.TAG) {
+        return generateCategoryParams(decodeURIComponent(value).split(','));
+      }
+      if (key === FILTER_KEY.TIME) {
+        return generateDateParams(value as FILTER_TIME);
+      }
+      if (key === FILTER_KEY.AUTHOR_ID) {
+        return SEARCH_PARAMS.AUTHOR(value);
+      }
     }
   });
   return search.join('');

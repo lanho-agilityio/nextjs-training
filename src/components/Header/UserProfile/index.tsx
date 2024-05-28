@@ -52,11 +52,10 @@ const UserProfile = ({ user, onLogoutClick, onCreatePostClick }: UserProfileProp
         }}
         sx={{
           borderRadius: '6px',
-          padding: '10px',
         }}
       >
-        <Stack gap="5x" divider={<Divider orientation="horizontal" flexItem />} sx={{ paddingX: '10px' }}>
-          <LinkButton onClick={handleCreatePostClick}>Create a post</LinkButton>
+        <Stack gap="5x" divider={<Divider orientation="horizontal" flexItem />} sx={{ margin: '10px' }}>
+          <LinkButton onClick={handleCreatePostClick}>Write a post</LinkButton>
           <LinkButton onClick={onLogoutClick}>Logout</LinkButton>
         </Stack>
       </Popover>
