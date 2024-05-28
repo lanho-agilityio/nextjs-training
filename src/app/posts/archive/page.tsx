@@ -13,10 +13,10 @@ import { PostList, Heading, FailToLoad, PostFilterSkeleton, PaginationSkeleton }
 // Models
 import { SearchParams } from '@/models';
 
-const PostFilter = dynamic(() => import('../../components/PostFilter'), {
+const PostFilter = dynamic(() => import('../../../components/PostFilter'), {
   loading: () => <PostFilterSkeleton />,
 });
-const Pagination = dynamic(() => import('../../components/Pagination'), {
+const Pagination = dynamic(() => import('../../../components/Pagination'), {
   loading: () => <PaginationSkeleton />,
 });
 

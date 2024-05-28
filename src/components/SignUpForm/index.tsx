@@ -1,5 +1,5 @@
 'use client';
-import { memo, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Box, IconButton, InputAdornment, Stack } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -197,4 +197,4 @@ const SignUpForm = (): JSX.Element => {
   );
 };
 
-export default memo(SignUpForm);
+export default SignUpForm;

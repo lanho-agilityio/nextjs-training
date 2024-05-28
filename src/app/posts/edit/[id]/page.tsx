@@ -10,7 +10,7 @@ import { ERROR_MESSAGES } from '@/constants';
 // Components
 import { FailToLoad, Heading } from '@/components';
 
-const PostForm = dynamic(() => import('../../../../components/PostForm'), { ssr: false });
+const PostForm = dynamic(() => import('../../../../components/PostForm'));
 
 export default async function EditPage({ params }: { params: { id: string } }) {
   const { data, errorMessage } = await queryPostDetail(params.id);

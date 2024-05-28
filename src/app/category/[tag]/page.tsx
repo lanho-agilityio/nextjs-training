@@ -6,10 +6,11 @@ import { Box } from '@mui/material';
 import { queryAllPosts } from '@/services';
 
 // Components
-import { PostList, Heading, FailToLoad } from '@/components';
+import { PostList, Heading, FailToLoad, PaginationSkeleton } from '@/components';
 
-const Pagination = dynamic(() => import('../../../components/Pagination'), { ssr: false });
-
+const Pagination = dynamic(() => import('../../../components/Pagination'), {
+  loading: () => <PaginationSkeleton />,
+});
 export default async function CategoryPage({ params }: { params: { tag: string } }) {
   const postsResult = await queryAllPosts({ tag: params.tag });
   const { data: posts, total: totalPosts, errorMessage } = postsResult;

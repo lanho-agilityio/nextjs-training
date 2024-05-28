@@ -7,7 +7,7 @@ import { queryAllCategory } from '@/services';
 // Components
 import { Heading } from '@/components';
 
-const PostForm = dynamic(() => import('../../../components/PostForm'), { ssr: false });
+const PostForm = dynamic(() => import('../../../components/PostForm'));
 
 export default async function CreatePage() {
   const { data: tags } = await queryAllCategory();
@@ -15,7 +15,6 @@ export default async function CreatePage() {
   return (
     <main>
       <Heading title="Create" description="Create a post here." />
-
       <Box
         sx={{
           display: 'flex',

@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 // Components
 import { Heading } from '@/components';
 
-const SignUpForm = dynamic(() => import('../../components/SignUpForm'), { ssr: false });
+const SignUpForm = dynamic(() => import('../../components/SignUpForm'));
 
 export default function SignUpPage() {
   return (

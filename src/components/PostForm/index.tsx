@@ -1,5 +1,5 @@
 'use client';
-import { ChangeEvent, memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { Box, Stack, Typography } from '@mui/material';
@@ -258,4 +258,4 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
   );
 };
 
-export default memo(PostForm);
+export default PostForm;

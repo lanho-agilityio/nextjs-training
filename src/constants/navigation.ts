@@ -5,7 +5,7 @@ export const ROUTES = {
   AUTHOR: (id: string) => `/author/${id}`,
   HOME: '/',
   CATEGORY: (tag: string) => `/category/${tag}`,
-  POSTS: '/posts',
+  ARCHIVE: '/posts/archive',
   CREATE: '/posts/create',
   EDIT_POST: (id: string) => `/posts/edit/${id}`,
   POST_DETAIL: (id: string) => `/posts/${id}`,
@@ -18,7 +18,7 @@ export const NAVIGATION_LIST: Navigation[] = [
     title: 'Home',
   },
   {
-    to: ROUTES.POSTS,
+    to: ROUTES.ARCHIVE,
     title: 'Archive',
   },
   {

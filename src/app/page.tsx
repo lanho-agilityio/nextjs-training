@@ -8,7 +8,7 @@ import { queryAllPosts } from '@/services';
 import { COLORS, ROUTES } from '@/constants';
 
 // Components
-import { PostList, Link, FailToLoad } from '@/components';
+import { PostList, Link, FailToLoad, Heading } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -24,11 +24,22 @@ export default async function Home() {
 
   return (
     <main>
-      <PostList posts={data} />
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
+      <Heading title="Our Blog" description="This is where we talk things & speak our mind." />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: '40px',
+          gap: '40px'
+        }}
+      >
+        <PostList posts={data} />
+
         <Link
           id="view-all-posts"
-          href={ROUTES.POSTS}
+          href={ROUTES.ARCHIVE}
           _style={{
             color: COLORS.DESCRIPTION,
             border: `1px solid ${COLORS.DESCRIPTION}`,

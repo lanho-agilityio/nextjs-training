@@ -1,5 +1,5 @@
 'use client';
-import { ChangeEvent, memo, useCallback } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Grid, SelectChangeEvent } from '@mui/material';
 
@@ -101,4 +101,4 @@ export const PostFilter = ({ tags }: PostFilterProps): JSX.Element => {
   );
 };
 
-export default memo(PostFilter);
+export default PostFilter;

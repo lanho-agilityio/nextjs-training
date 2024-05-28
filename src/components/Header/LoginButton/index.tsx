@@ -15,7 +15,6 @@ import { LoginSkeleton } from '../../Skeletons';
 import { UserLogin } from '@/models';
 
 const LoginForm = dynamic(() => import('../../LoginForm'), {
-  ssr: false,
   loading: () => <LoginSkeleton />,
 });
 
