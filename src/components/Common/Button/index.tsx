@@ -37,6 +37,7 @@ const CustomButton = ({
         ':hover': {
           bgcolor: hoverColor,
         },
+        ...props.sx,
       }}
     >
       {children}

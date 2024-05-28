@@ -44,7 +44,8 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
 
   return (
     <>
-      <LinkButton onClick={handleClick} sx={{ padding: 0, paddingTop: '4px' }}>
+      <LinkButton onClick={handleClick} sx={{ padding: 0, paddingTop: '4px'}}>
+      
         Sign in
       </LinkButton>
       <Popover
