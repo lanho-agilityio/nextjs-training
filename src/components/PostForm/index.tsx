@@ -137,7 +137,7 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
   const handleEditPost = useCallback(
     async (values: PostFormValues) => {
       if (user && user.id && data) {
-        const imageBase64 = image ? await fileToBase64(image) : data.imageBase64;
+        const imageBase64 = image ? await fileToBase64(image) : values.imageName ? data.imageBase64: undefined;
         const editData: Post = {
           ...data,
           ...values,
