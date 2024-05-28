@@ -8,7 +8,7 @@ import { queryAllCategory, queryAllPosts } from '@/services';
 import { PER_PAGE_ARCHIVE } from '@/constants';
 
 // Components
-import { PostList, Heading, FailToLoad, PostFilterSkeleton, PaginationSkeleton } from '@/components';
+import { PostList, Heading, FailToLoad, PostFilterSkeleton, PaginationSkeleton, PostNotFound } from '@/components';
 
 // Models
 import { SearchParams } from '@/models';
@@ -38,7 +38,7 @@ export default async function ArchivePage({ searchParams }: { searchParams: Sear
       <Heading title="Archive" description="See all posts we have ever written." />
       <Box sx={{ marginTop: '40px' }}>
         <PostFilter tags={tags} />
-        <PostList posts={posts} isArchived={true} />
+        {posts.length > 0 ? <PostList posts={posts} isArchived={true} /> : <PostNotFound />}
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
           <Pagination totalPosts={totalPosts} perPage={PER_PAGE_ARCHIVE} />
         </Box>
