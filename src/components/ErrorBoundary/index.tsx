@@ -27,7 +27,7 @@ const ErrorBoundary = ({ error, reset }: ErrorProps) => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '50px', marginTop: '100px' }}>
       <Heading title="Something went wrong!" />
-      <Typography sx={{color: COLORS.ERROR, fontSize: '20px'}}>Error: {error?.message}</Typography>
+      <Typography sx={{ color: COLORS.ERROR, fontSize: '20px' }}>Error: {error?.message}</Typography>
       <Button onClick={handleReset} backgroundColor={COLORS.HEADING} hoverColor={COLORS.HEADING} sx={{ width: '70%' }}>
         Try again
       </Button>
