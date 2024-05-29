@@ -34,7 +34,7 @@ const UserProfile = ({ user, onLogoutClick, onCreatePostClick }: UserProfileProp
   }, []);
 
   const handleCreatePostClick = useCallback(() => {
-    onCreatePostClick(ROUTES.CREATE);
+    onCreatePostClick(ROUTES.CREATE_POST);
   }, [onCreatePostClick]);
 
   return (

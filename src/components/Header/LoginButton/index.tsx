@@ -1,11 +1,7 @@
 'use client';
 import { memo, useCallback, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/navigation';
-import { Box, Container, Popover, Typography } from '@mui/material';
-
-// Constants
-import { COLORS, ROUTES } from '@/constants';
+import { Popover } from '@mui/material';
 
 // Components
 import { LinkButton } from '../../Common/Button';
@@ -23,7 +19,6 @@ interface LoginButtonProps {
 }
 
 const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
-  const { push } = useRouter();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const handleOpenLogin = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
@@ -33,11 +28,6 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
   const handleCloseLogin = useCallback(() => {
     setAnchorEl(null);
   }, []);
-
-  const handleRedirectSignup = useCallback(() => {
-    push(ROUTES.SIGN_UP);
-    handleCloseLogin();
-  }, [handleCloseLogin, push]);
 
   const open = Boolean(anchorEl);
   const id = open ? 'login-popover' : undefined;
@@ -67,26 +57,7 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
           borderRadius: '6px',
         }}
       >
-        <Container sx={{ minHeight: '200px', paddingY: '25px' }}>
-          <Typography sx={{ textAlign: 'center', fontSize: '20px', paddingBottom: '10px' }} variant="h1">
-            Sign in
-          </Typography>
-          <LoginForm onSubmit={onSubmit} />
-          <Box
-            sx={{
-              fontSize: '12px',
-              display: 'flex',
-              flexDirection: 'row',
-              alignContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Typography>Need an account?</Typography>
-            <LinkButton onClick={handleRedirectSignup} sx={{ color: COLORS.NAV_LINK_HOVER }}>
-              Sign up
-            </LinkButton>
-          </Box>
-        </Container>
+        <LoginForm onSubmit={onSubmit} onRedirectSignup={handleCloseLogin} />
       </Popover>
     </>
   );

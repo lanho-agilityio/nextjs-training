@@ -32,8 +32,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          <ToastProvider>
+        <ToastProvider>
+          <AuthProvider>
             <AppRouterCacheProvider options={{ key: 'css' }}>
               <ThemeProvider theme={theme}>
                 <Box
@@ -57,8 +57,8 @@ export default function RootLayout({
                 </Box>
               </ThemeProvider>
             </AppRouterCacheProvider>
-          </ToastProvider>
-        </AuthProvider>
+          </AuthProvider>
+        </ToastProvider>
       </body>
     </html>
   );

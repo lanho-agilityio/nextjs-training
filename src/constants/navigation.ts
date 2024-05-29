@@ -6,8 +6,8 @@ export const ROUTES = {
   HOME: '/',
   CATEGORY: (tag: string) => `/category/${tag}`,
   ARCHIVE: '/posts/archive',
-  CREATE: '/posts/create',
-  EDIT_POST: (id: string) => `/posts/edit/${id}`,
+  CREATE_POST: '/posts/create',
+  EDIT_POST: (id: string = '') => `/posts/edit/${id}`,
   POST_DETAIL: (id: string) => `/posts/${id}`,
   SIGN_UP: '/sign-up',
 };

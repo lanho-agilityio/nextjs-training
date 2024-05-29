@@ -18,7 +18,11 @@ const PostNotFound = (): JSX.Element => {
     <Box sx={{ textAlign: 'center', paddingY: '100px' }}>
       <Heading title={ERROR_MESSAGES.POST_NOT_FOUND} />
       {user ? (
-        <NavLink title="Create a post?" to={ROUTES.CREATE} _style={{ color: COLORS.POST_LINK, fontSize: '18px' }} />
+        <NavLink
+          title="Create a post?"
+          to={ROUTES.CREATE_POST}
+          _style={{ color: COLORS.POST_LINK, fontSize: '18px' }}
+        />
       ) : (
         <Typography>Please sign in or sign up to create your post.</Typography>
       )}
