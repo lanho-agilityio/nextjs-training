@@ -41,10 +41,7 @@ const UserProfile = ({ onLogoutClick, onCreatePostClick }: UserProfileProps): JS
           padding: 0,
           paddingTop: '4px',
           height: { xs: '18px', sm: '18px', md: 'inherit' },
-          width: '100px',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
+          
         }}
         startIcon={<AccountCircleIcon sx={{ height: 25, width: 25 }} />}
         endIcon={<ArrowDropDownIcon />}
