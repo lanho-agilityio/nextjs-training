@@ -96,16 +96,16 @@ const PostCardDescription = ({
           </Typography>
         </Box>
       </Box>
-      <Box>
-        {!isDetailed && user?.id === id && (
-          <Tooltip title="Edit">
-            <IconButton aria-label="more" size="small" sx={{ padding: 0 }} onClick={handleNavigation}>
-              <EditIcon sx={{ height: 20, width: 20 }} />
-            </IconButton>
-          </Tooltip>
-        )}
-      </Box>
+      {user?.id === id && (
+        <Tooltip title="Edit">
+          <IconButton aria-label="more" size={isDetailed ? "small": 'large'} sx={{ padding: 0, marginLeft: isDetailed ? '50px': 0 }} onClick={handleNavigation}>
+            <EditIcon sx={{ height: isDetailed? 25: 20, width: isDetailed? 25: 20 }} />
+          </IconButton>
+        </Tooltip>
+      )}
     </Box>
+    
+    
   );
 };
 
