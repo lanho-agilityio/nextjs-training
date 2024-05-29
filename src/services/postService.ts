@@ -21,8 +21,6 @@ export const queryAllPosts = async (params?: SearchParams, limit: number = PER_P
     errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
   });
 
-  console.log(url);
-
   return {
     errorMessage,
     data: response?.data || [],

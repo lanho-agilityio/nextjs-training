@@ -17,9 +17,11 @@ import { Link, NavLink } from '@/components';
 import { useAuthContext } from '@/hooks';
 
 const LoginButton = dynamic(() => import('./LoginButton'), {
+  ssr: false,
   loading: () => <Skeleton variant="rectangular" height={18} width={56} />,
 });
 const UserProfile = dynamic(() => import('./UserProfile'), {
+  ssr: false,
   loading: () => <Skeleton variant="rectangular" height={18} width={56} />,
 });
 
