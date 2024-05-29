@@ -20,7 +20,7 @@ const Heading = ({ title, description }: HeadingProps): JSX.Element => {
             sm: '20px',
             md: '32px',
           },
-          marginBottom: '12px',
+          marginBottom: '8px',
           fontSize: {
             xs: '30px',
             sm: '30px',

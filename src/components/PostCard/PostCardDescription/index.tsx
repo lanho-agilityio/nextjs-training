@@ -57,7 +57,7 @@ const PostCardDescription = ({
           alignContent: 'center',
           alignItems: 'center',
           gap: '12px',
-          fontSize: '14px',
+
           color: COLORS.DESCRIPTION,
         }}
       >
@@ -69,17 +69,22 @@ const PostCardDescription = ({
             alignContent: 'center',
             alignItems: isDetailed ? 'unset' : 'center',
             gap: isDetailed ? '0px' : '12px',
-            fontSize: isDetailed ? '16px' : 'unset',
           }}
         >
           <Link aria-label={`${name}' page`} href={ROUTES.AUTHOR(id)} _style={{ color: COLORS.DESCRIPTION }}>
-            <Typography variant="caption" sx={{ color: isDetailed ? COLORS.HEADING : 'unset' }}>
+            <Typography sx={{ color: isDetailed ? COLORS.HEADING : 'unset', fontSize: isDetailed ? '16px' : '14px' }}>
               {name}
             </Typography>
           </Link>
 
-          {!isDetailed && <CircleIcon sx={{ height: 5, width: 5, color: COLORS.DESCRIPTION_ICON }} />}
-          <Typography variant="caption">{dayjs(new Date(updatedAt)).format('YYYY-MM-DD')}</Typography>
+          {!isDetailed && (
+            <CircleIcon
+              sx={{ height: 5, width: 5, color: COLORS.DESCRIPTION_ICON, fontSize: isDetailed ? '16px' : '14px' }}
+            />
+          )}
+          <Typography sx={{ fontSize: isDetailed ? '16px' : '14px' }}>
+            {dayjs(new Date(updatedAt)).format('MMMM DD, YYYY')}
+          </Typography>
         </Box>
       </Box>
       <Box>

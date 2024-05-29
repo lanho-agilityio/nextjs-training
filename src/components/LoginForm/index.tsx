@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Container, IconButton, InputAdornment, Stack, Typography } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -10,6 +10,7 @@ import { COLORS, ROUTES, SUCCESS_MESSAGES } from '@/constants';
 
 // Components
 import { Button, Input } from '../Common';
+import { LinkButton } from '../Common/Button';
 
 // Hooks
 import { useToast } from '../Toast';
@@ -19,7 +20,6 @@ import { UserLogin } from '@/models';
 
 // Utils
 import { validateRequired } from '@/utils';
-import { LinkButton } from '../Common/Button';
 
 const validations = {
   username: {
@@ -58,7 +58,7 @@ const LoginForm = ({ onSubmit, onRedirectSignup }: LoginFormProps): JSX.Element 
 
   const isDisableSubmit = !isValid;
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = useCallback(() => setShowPassword((show) => !show), []);
 
   const handleSuccess = useCallback(() => {
     toast.success(SUCCESS_MESSAGES.LOGIN_SUCCESS);
@@ -181,4 +181,4 @@ const LoginForm = ({ onSubmit, onRedirectSignup }: LoginFormProps): JSX.Element 
   );
 };
 
-export default LoginForm;
+export default memo(LoginForm);

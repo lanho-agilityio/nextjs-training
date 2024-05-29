@@ -37,7 +37,7 @@ const PostCardContent = ({ id, title, tag, author, updatedAt }: PostCardContentP
             fontWeight: 600,
             color: COLORS.HEADING,
             ':hover': {
-              backgroundSize: ' 100% 3px',
+              backgroundSize: '100% 3px',
               transitionDuration: '0.5s',
               background: COLORS.POST_TITLE_HOVER,
             },

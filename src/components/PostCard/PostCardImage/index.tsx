@@ -32,7 +32,7 @@ const PostCardImage = ({ alt, src, to, isRecentPost = false, isArchived = false 
         },
       }}
     >
-      <Link aria-label='post-detail-page' href={ROUTES.POST_DETAIL(to)}>
+      <Link aria-label="post-detail-page" href={ROUTES.POST_DETAIL(to)}>
         {src ? (
           <Image alt={alt} src={src} fill style={{ borderRadius: '6px' }} sizes="(max-width: 768px) 30vw, 33vw" />
         ) : (
