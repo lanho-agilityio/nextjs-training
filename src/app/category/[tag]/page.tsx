@@ -8,6 +8,9 @@ import { queryAllPosts } from '@/services';
 // Components
 import { PostList, Heading, FailToLoad, PaginationSkeleton } from '@/components';
 
+// Models
+import { SearchParams } from '@/models';
+
 const Pagination = dynamic(() => import('../../../components/Pagination'), {
   loading: () => <PaginationSkeleton />,
 });
@@ -21,8 +24,14 @@ export async function generateMetadata({ params }: { params: { tag: string } }):
   };
 }
 
-export default async function CategoryPage({ params }: { params: { tag: string } }) {
-  const postsResult = await queryAllPosts({ tag: params.tag });
+export default async function CategoryPage({
+  params,
+  searchParams,
+}: {
+  params: { tag: string };
+  searchParams: SearchParams;
+}) {
+  const postsResult = await queryAllPosts({ tag: params.tag, ...searchParams });
   const { data: posts, total: totalPosts, errorMessage } = postsResult;
 
   if (errorMessage) {

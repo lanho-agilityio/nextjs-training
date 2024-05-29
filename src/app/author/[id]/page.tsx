@@ -9,7 +9,7 @@ import { queryAuthor, queryAllPosts } from '@/services';
 import { PostList, Heading, FailToLoad, PaginationSkeleton } from '@/components';
 
 // Models
-import { Author } from '@/models';
+import { Author, SearchParams } from '@/models';
 
 const Pagination = dynamic(() => import('../../../components/Pagination'), {
   loading: () => <PaginationSkeleton />,
@@ -32,8 +32,14 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
-export default async function AuthorPage({ params }: { params: { id: string } }) {
-  const postsResult = await queryAllPosts({ authorId: params.id });
+export default async function AuthorPage({
+  params,
+  searchParams,
+}: {
+  params: { id: string };
+  searchParams: SearchParams;
+}) {
+  const postsResult = await queryAllPosts({ authorId: params.id, ...searchParams });
   const { data: posts, total: totalPosts, errorMessage } = postsResult;
 
   const author: Author = (posts.length > 0 && posts[0].user) || { id: '', username: '' };
