@@ -83,7 +83,7 @@ export default async function DetailPostPage({ params }: { params: { id: string 
               src={imageBase64}
               fill
               style={{ borderRadius: '6px' }}
-              sizes="(max-width: 768px) 30vw, 33vw"
+              sizes="(max-width: 984px) 30vw, 33vw"
             />
           </Box>
         )}
