@@ -39,6 +39,7 @@ export default async function Home() {
 
         <Link
           id="view-all-posts"
+          aria-label="View all posts"
           href={ROUTES.ARCHIVE}
           _style={{
             color: COLORS.DESCRIPTION,

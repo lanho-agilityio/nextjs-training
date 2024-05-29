@@ -48,7 +48,11 @@ const AuthorCard = ({ author }: AuthorCardProps): JSX.Element => {
           sagittis gravida quam ipsum eget ex. Vivamus mattis velit nec dolor sodales facilisis. Proin laoreet orci sed
           purus semper hendrerit. Morbi dictum ultrices dolor sit amet tincidunt.
         </Typography>
-        <Link href={ROUTES.AUTHOR(author.id)} _style={{ color: COLORS.POST_LINK }}>
+        <Link
+          aria-label={`${author.username}'s page`}
+          href={ROUTES.AUTHOR(author.id)}
+          _style={{ color: COLORS.POST_LINK }}
+        >
           View profile
         </Link>
       </Box>

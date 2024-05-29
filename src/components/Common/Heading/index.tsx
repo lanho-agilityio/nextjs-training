@@ -41,7 +41,7 @@ const Heading = ({ title, description }: HeadingProps): JSX.Element => {
         {title}
       </Typography>
       {description && (
-        <Typography variant="subtitle1" sx={{ fontSize: '18px', lineHeight: '28px', textAlign: 'center' }}>
+        <Typography variant="h2" sx={{ fontSize: '18px', lineHeight: '28px', textAlign: 'center' }}>
           {description}
         </Typography>
       )}

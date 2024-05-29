@@ -2,7 +2,7 @@
 import { memo, useCallback, useState } from 'react';
 import { NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { Divider, Popover, Stack } from '@mui/material';
-
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 // Constants
 import { ROUTES } from '@/constants';
 
@@ -42,6 +42,7 @@ const UserProfile = ({ user, onLogoutClick, onCreatePostClick }: UserProfileProp
       <LinkButton
         onClick={handleOpenPopover}
         sx={{ padding: 0, paddingTop: '4px', height: { xs: '18px', sm: '18px', md: 'inherit' } }}
+        endIcon={<ArrowDropDownIcon />}
       >
         Hello {name}!
       </LinkButton>

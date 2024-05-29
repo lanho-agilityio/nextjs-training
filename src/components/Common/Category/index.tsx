@@ -18,7 +18,7 @@ const Category = ({ tag }: PostCategoryProps): JSX.Element => {
   const { value: title, color } = tag;
 
   return (
-    <Link title={title} href={ROUTES.CATEGORY(title)}>
+    <Link aria-label={title} title={title} href={ROUTES.CATEGORY(title)}>
       <Box
         sx={{
           display: 'inline-block',

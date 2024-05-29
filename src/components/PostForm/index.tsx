@@ -2,7 +2,7 @@
 import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 
 // APIs
 import { createPost, editPost } from '@/services';
@@ -252,9 +252,6 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
         >
           Submit Post
         </Button>
-        <Typography sx={{ color: COLORS.ERROR, fontWeight: 400 }}>
-          {!user?.id && `**Please sign in to ${formType} a post`}
-        </Typography>
       </Stack>
     </Box>
   );

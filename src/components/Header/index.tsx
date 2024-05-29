@@ -71,7 +71,7 @@ const NavBar = (): JSX.Element => {
             return <NavLink key={i} to={e.to} title={e.title} />;
           })}
         </Box>
-        <Link href={ROUTES.HOME} style={{ width: '112px' }}>
+        <Link aria-label="Homepage" href={ROUTES.HOME} style={{ width: '112px' }}>
           <Image
             src="/logo.svg"
             alt="Logo"
@@ -114,7 +114,7 @@ const NavBar = (): JSX.Element => {
           <Box
             sx={{
               paddingX: { md: '20px' },
-              width: '64px',
+              width: '100px',
               height: '56px',
               display: 'flex',
               justifyContent: 'center',

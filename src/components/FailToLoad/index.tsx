@@ -29,7 +29,7 @@ const FailToLoad = ({ error }: FailToLoadProps) => {
       >
         Error: {error}
       </Typography>
-      <Link href={ROUTES.HOME} _style={{ color: COLORS.POST_LINK }}>
+      <Link aria-label="Homepage" href={ROUTES.HOME} _style={{ color: COLORS.POST_LINK }}>
         ← Go to Homepage
       </Link>
     </Box>

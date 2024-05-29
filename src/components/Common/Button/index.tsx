@@ -51,6 +51,7 @@ const LinkButton = ({ children, ...props }: CustomButtonProps) => {
       variant="text"
       backgroundColor="white"
       hoverColor="unset"
+      disableRipple
       {...props}
       sx={{
         color: COLORS.NAV_LINK_PRIMARY,

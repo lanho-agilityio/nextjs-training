@@ -27,6 +27,7 @@ const PostCardContent = ({ id, title, tag, author, updatedAt }: PostCardContentP
       <Category tag={tag} />
       <Box sx={{ marginTop: '8px' }}>
         <Link
+          aria-label={title}
           title={title}
           href={ROUTES.POST_DETAIL(id)}
           _style={{

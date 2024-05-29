@@ -72,7 +72,7 @@ const PostCardDescription = ({
             fontSize: isDetailed ? '16px' : 'unset',
           }}
         >
-          <Link href={ROUTES.AUTHOR(id)} _style={{ color: COLORS.DESCRIPTION }}>
+          <Link aria-label={`${name}' page`} href={ROUTES.AUTHOR(id)} _style={{ color: COLORS.DESCRIPTION }}>
             <Typography variant="caption" sx={{ color: isDetailed ? COLORS.HEADING : 'unset' }}>
               {name}
             </Typography>
