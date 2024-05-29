@@ -38,7 +38,16 @@ const AuthorCard = ({ author }: AuthorCardProps): JSX.Element => {
       >
         <Typography
           variant="h2"
-          sx={{ fontSize: '18px', fontWeight: 500, color: COLORS.HEADING, marginTop: { xs: '10px' } }}
+          sx={{
+            fontSize: '18px',
+            fontWeight: 500,
+            color: COLORS.HEADING,
+            marginTop: { xs: '10px' },
+            maxWidth: { xs: '300px', sm: '500px', md: '900px' },
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}
         >
           About {author.username}
         </Typography>

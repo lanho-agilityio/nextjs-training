@@ -6,7 +6,7 @@ import { Box } from '@mui/material';
 import { queryAllCategory, queryAllPosts } from '@/services';
 
 // Constants
-import { PER_PAGE_ARCHIVE } from '@/constants';
+import { PER_PAGE } from '@/constants';
 
 // Components
 import { PostList, Heading, FailToLoad, PostFilterSkeleton, PaginationSkeleton, PostNotFound } from '@/components';
@@ -27,10 +27,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ArchivePage({ searchParams }: { searchParams: SearchParams }) {
-  const [postsResult, tagsResults] = await Promise.all([
-    queryAllPosts(searchParams, PER_PAGE_ARCHIVE),
-    queryAllCategory(),
-  ]);
+  const [postsResult, tagsResults] = await Promise.all([queryAllPosts(searchParams), queryAllCategory()]);
 
   const { data: posts, total: totalPosts, errorMessage: errorPost } = postsResult;
   const { data: tags, errorMessage: errorTag } = tagsResults;
@@ -46,7 +43,7 @@ export default async function ArchivePage({ searchParams }: { searchParams: Sear
         <PostFilter tags={tags} />
         {posts.length > 0 ? <PostList posts={posts} isArchived={true} /> : <PostNotFound />}
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
-          <Pagination totalPosts={totalPosts} perPage={PER_PAGE_ARCHIVE} />
+          <Pagination totalPosts={totalPosts} perPage={PER_PAGE} />
         </Box>
       </Box>
     </main>

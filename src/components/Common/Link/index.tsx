@@ -11,9 +11,7 @@ interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 const CustomLink = ({ href, children, _style, ...rest }: LinkProps): JSX.Element => {
   return (
     <Link href={href} style={{ textDecoration: 'none' }} {...rest}>
-      <Box sx={{ ..._style }} component="span">
-        {children}
-      </Box>
+      <Box sx={{ ..._style }}>{children}</Box>
     </Link>
   );
 };

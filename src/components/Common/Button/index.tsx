@@ -5,7 +5,7 @@ import { Button, ButtonProps } from '@mui/material';
 import { COLORS } from '@/constants';
 
 interface CustomButtonProps extends ButtonProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   height?: number | string;
   type?: 'button' | 'submit' | 'reset';

@@ -72,7 +72,16 @@ const PostCardDescription = ({
           }}
         >
           <Link aria-label={`${name}' page`} href={ROUTES.AUTHOR(id)} _style={{ color: COLORS.DESCRIPTION }}>
-            <Typography sx={{ color: isDetailed ? COLORS.HEADING : 'unset', fontSize: isDetailed ? '16px' : '14px' }}>
+            <Typography
+              sx={{
+                color: isDetailed ? COLORS.HEADING : 'unset',
+                fontSize: isDetailed ? '16px' : '14px',
+                maxWidth: isDetailed ? '300px' : '140px',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}
+            >
               {name}
             </Typography>
           </Link>

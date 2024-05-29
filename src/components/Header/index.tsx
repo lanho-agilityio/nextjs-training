@@ -17,11 +17,9 @@ import { Link, NavLink } from '@/components';
 import { useAuthContext } from '@/hooks';
 
 const LoginButton = dynamic(() => import('./LoginButton'), {
-  ssr: false,
   loading: () => <Skeleton variant="rectangular" height={18} width={56} />,
 });
 const UserProfile = dynamic(() => import('./UserProfile'), {
-  ssr: false,
   loading: () => <Skeleton variant="rectangular" height={18} width={56} />,
 });
 
@@ -38,11 +36,7 @@ const NavBar = (): JSX.Element => {
   }, [open]);
 
   const renderUserButton = () => {
-    return user ? (
-      <UserProfile onLogoutClick={logout} onCreatePostClick={push} user={user} />
-    ) : (
-      <LoginButton onSubmit={login} />
-    );
+    return user ? <UserProfile onLogoutClick={logout} onCreatePostClick={push} /> : <LoginButton onSubmit={login} />;
   };
 
   return (
@@ -119,6 +113,9 @@ const NavBar = (): JSX.Element => {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
             }}
           >
             {renderUserButton()}

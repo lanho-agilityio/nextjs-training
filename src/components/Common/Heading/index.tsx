@@ -36,6 +36,7 @@ const Heading = ({ title, description }: HeadingProps): JSX.Element => {
           fontWeight: 600,
           textAlign: 'center',
           color: COLORS.HEADING,
+          overflowWrap: 'anywhere',
         }}
       >
         {title}

@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 import { queryAllPosts } from '@/services';
 
 // Constants
-import { COLORS, ROUTES } from '@/constants';
+import { COLORS, PER_PAGE_HOME, ROUTES } from '@/constants';
 
 // Components
 import { PostList, Link, FailToLoad, Heading } from '@/components';
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const { data, errorMessage } = await queryAllPosts();
+  const { data, errorMessage } = await queryAllPosts(undefined, PER_PAGE_HOME);
 
   if (errorMessage) {
     return <FailToLoad error={errorMessage} />;

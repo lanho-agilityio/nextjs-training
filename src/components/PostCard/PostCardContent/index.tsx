@@ -41,6 +41,10 @@ const PostCardContent = ({ id, title, tag, author, updatedAt }: PostCardContentP
               transitionDuration: '0.5s',
               background: COLORS.POST_TITLE_HOVER,
             },
+            maxWidth: '300px',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
           }}
         >
           {title}

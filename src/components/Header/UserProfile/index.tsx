@@ -3,23 +3,19 @@ import { memo, useCallback, useState } from 'react';
 import { NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { Divider, Popover, Stack } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 // Constants
 import { ROUTES } from '@/constants';
 
 // Components
 import { LinkButton } from '../../Common/Button';
 
-// Models
-import { UserSession } from '@/models';
-
 interface UserProfileProps {
-  user: UserSession;
   onCreatePostClick: (href: string, options?: NavigateOptions | undefined) => void;
   onLogoutClick: () => void;
 }
 
-const UserProfile = ({ user, onLogoutClick, onCreatePostClick }: UserProfileProps): JSX.Element => {
-  const { username: name } = user;
+const UserProfile = ({ onLogoutClick, onCreatePostClick }: UserProfileProps): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const open = Boolean(anchorEl);
@@ -41,11 +37,18 @@ const UserProfile = ({ user, onLogoutClick, onCreatePostClick }: UserProfileProp
     <>
       <LinkButton
         onClick={handleOpenPopover}
-        sx={{ padding: 0, paddingTop: '4px', height: { xs: '18px', sm: '18px', md: 'inherit' } }}
+        sx={{
+          padding: 0,
+          paddingTop: '4px',
+          height: { xs: '18px', sm: '18px', md: 'inherit' },
+          width: '100px',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+        }}
+        startIcon={<AccountCircleIcon sx={{ height: 25, width: 25 }} />}
         endIcon={<ArrowDropDownIcon />}
-      >
-        Hello {name}!
-      </LinkButton>
+      />
       <Popover
         id={id}
         open={open}
