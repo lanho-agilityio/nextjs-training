@@ -39,6 +39,8 @@ export const generateDateParams = (value: FILTER_TIME): string => {
   let previous;
   if (value === FILTER_TIME.ALL_TIME) {
     return '';
+  } else if (value === FILTER_TIME.TODAY) {
+    previous = new Date();
   } else {
     const date = new Date();
     previous = new Date(date.getTime());
