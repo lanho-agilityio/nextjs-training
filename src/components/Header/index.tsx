@@ -111,7 +111,6 @@ const NavBar = (): JSX.Element => {
             sx={{
               paddingX: { md: '20px' },
               width: '100px',
-              height: '56px',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',

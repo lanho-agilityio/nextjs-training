@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import { Box } from '@mui/material';
 
 // APIs
@@ -10,33 +11,41 @@ import { COLORS, PER_PAGE_HOME, ROUTES } from '@/constants';
 // Components
 import { PostList, Link, FailToLoad, Heading } from '@/components';
 
+const PostNotFound = dynamic(() => import('../components/PostNotFound'), {
+  ssr: false,
+  loading: () => <Box sx={{ textAlign: 'center', height: '150px' }}></Box>,
+});
+
 export const metadata: Metadata = {
   title: 'Home',
   description: 'Homepage',
 };
 
 export default async function Home() {
-  const { data, errorMessage } = await queryAllPosts(undefined, PER_PAGE_HOME);
+  const { data, total, errorMessage } = await queryAllPosts(undefined, PER_PAGE_HOME);
 
   if (errorMessage) {
     return <FailToLoad error={errorMessage} />;
   }
 
+  if (total === 0) {
+    return <PostNotFound />;
+  }
+
   return (
     <main>
       <Heading title="Our Blog" description="This is where we talk things & speak our mind." />
+      <Box sx={{ marginTop: '40px' }}>
+        <PostList posts={data} />
+      </Box>
       <Box
         sx={{
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           marginTop: '40px',
-          gap: '40px',
         }}
       >
-        <PostList posts={data} />
-
         <Link
           id="view-all-posts"
           aria-label="View all posts"

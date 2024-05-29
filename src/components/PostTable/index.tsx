@@ -1,5 +1,6 @@
 'use client';
 import { ChangeEvent, useCallback } from 'react';
+import dynamic from 'next/dynamic';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Box, SelectChangeEvent } from '@mui/material';
 
@@ -7,13 +8,18 @@ import { Box, SelectChangeEvent } from '@mui/material';
 import { FILTER_KEY, PER_PAGE } from '@/constants';
 
 // Components
-import { PostFilter, PostList, PostNotFound, Pagination } from '@/components';
+import { PostFilter, PostList, Pagination } from '@/components';
 
 // Models
 import { Post, PostCategory } from '@/models';
 
 // Utils
 import { isEmpty } from '@/utils';
+
+const PostNotFound = dynamic(() => import('../PostNotFound'), {
+  ssr: false,
+  loading: () => <Box sx={{ textAlign: 'center', height: '150px' }}></Box>,
+});
 
 interface PostTableProps {
   posts: Post[];
