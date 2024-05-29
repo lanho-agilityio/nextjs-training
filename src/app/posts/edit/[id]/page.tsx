@@ -32,15 +32,17 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 export default async function EditPage({ params }: { params: { id: string } }) {
-  const { data, errorMessage } = await queryPostDetail(params.id);
-  const { data: tags } = await queryAllCategory();
+  const [postsResult, tagsResults] = await Promise.all([queryPostDetail(params.id), queryAllCategory()]);
 
-  if (!data) {
+  const { data: post, errorMessage: errorPost } = postsResult;
+  const { data: tags, errorMessage: errorTag } = tagsResults;
+
+  if (!post) {
     notFound();
   }
 
-  if (errorMessage) {
-    return <FailToLoad error={errorMessage} />;
+  if (errorPost || errorTag) {
+    return <FailToLoad error={errorPost || errorTag} />;
   }
 
   return (
@@ -55,7 +57,7 @@ export default async function EditPage({ params }: { params: { id: string } }) {
           paddingTop: '40px',
         }}
       >
-        <PostForm tags={tags} data={data} />
+        <PostForm tags={tags} data={post} />
       </Box>
     </main>
   );

@@ -10,7 +10,6 @@ Build a post management web application
 
 - Each blog post should have a title, content, optional images, and tags.
   Users should be able to edit their own blog posts, updating the title, content, images, and tags.
-- Save post in React context
 - Mock some posts to display when blog init
 
 2. Blog Display

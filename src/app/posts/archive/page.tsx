@@ -29,11 +29,11 @@ export const metadata: Metadata = {
 export default async function ArchivePage({ searchParams }: { searchParams: SearchParams }) {
   const [postsResult, tagsResults] = await Promise.all([queryAllPosts(searchParams), queryAllCategory()]);
 
-  const { data: posts, total: totalPosts, errorMessage: errorPost } = postsResult;
+  const { data: posts, total: totalPosts, errorMessage: errorPosts } = postsResult;
   const { data: tags, errorMessage: errorTag } = tagsResults;
 
-  if (errorPost || errorTag) {
-    return <FailToLoad error={errorPost || errorTag} />;
+  if (errorPosts || errorTag) {
+    return <FailToLoad error={errorPosts || errorTag} />;
   }
 
   return (
