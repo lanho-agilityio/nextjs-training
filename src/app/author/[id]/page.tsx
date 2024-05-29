@@ -6,13 +6,13 @@ import { Avatar, Box } from '@mui/material';
 import { queryAuthor, queryAllPosts } from '@/services';
 
 // Components
-import { PostList, Heading, FailToLoad, PaginationSkeleton } from '@/components';
+import { Heading, FailToLoad, PostTableSkeleton } from '@/components';
 
 // Models
 import { Author, SearchParams } from '@/models';
 
-const Pagination = dynamic(() => import('../../../components/Pagination'), {
-  loading: () => <PaginationSkeleton />,
+const PostTable = dynamic(() => import('../../../components/PostTable'), {
+  loading: () => <PostTableSkeleton />,
 });
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
@@ -54,12 +54,7 @@ export default async function AuthorPage({
         <Avatar src="" alt="avatar" sx={{ width: 80, height: 80 }} />
         <Heading title={author.username} />
       </Box>
-      <Box sx={{ marginTop: '40px' }}>
-        <PostList posts={posts} isArchived={true} />
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
-          <Pagination totalPosts={totalPosts} />
-        </Box>
-      </Box>
+      <PostTable posts={posts} totalPosts={totalPosts} isFiltered={false} />
     </main>
   );
 }

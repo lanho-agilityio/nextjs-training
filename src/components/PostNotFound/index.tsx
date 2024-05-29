@@ -5,8 +5,7 @@ import { Box, Typography } from '@mui/material';
 import { COLORS, ERROR_MESSAGES, ROUTES } from '@/constants';
 
 // Components
-import { Heading } from '../Common';
-import NavLink from '../Header/NavLink';
+import { Heading, NavLink } from '@/components';
 
 // Hooks
 import { useAuthContext } from '@/hooks';

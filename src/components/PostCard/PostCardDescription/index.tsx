@@ -10,7 +10,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { COLORS, ROUTES } from '@/constants';
 
 // Componenst
-import { Link } from '../../Common';
+import { Link } from '@/components';
 
 // Hooks
 import { useAuthContext } from '@/hooks';

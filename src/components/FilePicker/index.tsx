@@ -5,7 +5,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 // Components
-import { Button } from '../Common';
+import { Button } from '@/components';
 
 // Constants
 import { COLORS } from '@/constants';

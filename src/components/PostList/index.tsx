@@ -5,7 +5,7 @@ import { Box, Grid } from '@mui/material';
 import { LASTEST_POST_INDEX } from '@/constants';
 
 // Components
-import PostCard from '../PostCard';
+import { PostCard } from '@/components';
 
 // Models
 import { Post } from '@/models';

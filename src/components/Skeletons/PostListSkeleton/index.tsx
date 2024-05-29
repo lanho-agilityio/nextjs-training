@@ -1,5 +1,7 @@
 import { memo } from 'react';
 import { Grid } from '@mui/material';
+
+// Components
 import PostCardSkeleton from '../PostCardSkeleton';
 
 const PostListSkeleton = (): JSX.Element => {

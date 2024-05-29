@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 import { ROUTES } from '@/constants';
 
 // Components
-import Link from '../Link';
+import { Link } from '@/components';
 
 // Models
 import { PostCategory } from '@/models';

@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
 // Components
-import { Input } from '../Common';
+import { Input } from '@/components';
 
 interface SearchInputProps {
   value: string;

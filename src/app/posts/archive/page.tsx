@@ -5,20 +5,14 @@ import { Box } from '@mui/material';
 // APIs
 import { queryAllCategory, queryAllPosts } from '@/services';
 
-// Constants
-import { PER_PAGE } from '@/constants';
-
 // Components
-import { PostList, Heading, FailToLoad, PostFilterSkeleton, PaginationSkeleton, PostNotFound } from '@/components';
+import { Heading, FailToLoad, PostTableSkeleton } from '@/components';
 
 // Models
 import { SearchParams } from '@/models';
 
-const PostFilter = dynamic(() => import('../../../components/PostFilter'), {
-  loading: () => <PostFilterSkeleton />,
-});
-const Pagination = dynamic(() => import('../../../components/Pagination'), {
-  loading: () => <PaginationSkeleton />,
+const PostTable = dynamic(() => import('../../../components/PostTable'), {
+  loading: () => <PostTableSkeleton />,
 });
 
 export const metadata: Metadata = {
@@ -40,11 +34,7 @@ export default async function ArchivePage({ searchParams }: { searchParams: Sear
     <main>
       <Heading title="Archive" description="See all posts we have ever written." />
       <Box sx={{ marginTop: '40px' }}>
-        <PostFilter tags={tags} />
-        {posts.length > 0 ? <PostList posts={posts} isArchived={true} /> : <PostNotFound />}
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
-          <Pagination totalPosts={totalPosts} perPage={PER_PAGE} />
-        </Box>
+        <PostTable posts={posts} totalPosts={totalPosts} isFiltered={true} tags={tags} />
       </Box>
     </main>
   );

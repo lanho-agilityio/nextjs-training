@@ -6,7 +6,7 @@ import { Box } from '@mui/material';
 import { COLORS, ROUTES } from '@/constants';
 
 // Components
-import { Link } from '../../Common';
+import { Link } from '@/components';
 
 interface PostCardImageProps {
   alt: string;

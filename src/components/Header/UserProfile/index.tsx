@@ -8,7 +8,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { ROUTES } from '@/constants';
 
 // Components
-import { LinkButton } from '../../Common/Button';
+import { LinkButton } from '@/components';
 
 interface UserProfileProps {
   onCreatePostClick: (href: string, options?: NavigateOptions | undefined) => void;

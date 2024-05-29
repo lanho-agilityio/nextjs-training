@@ -5,7 +5,7 @@ import { Avatar, Box, Typography } from '@mui/material';
 import { COLORS, ROUTES } from '@/constants';
 
 // Components
-import { Link } from '../Common';
+import { Link } from '@/components';
 
 // Models
 import { Author } from '@/models';

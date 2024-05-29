@@ -11,9 +11,7 @@ import { createPost, editPost } from '@/services';
 import { COLORS, FORM_TYPE, ROUTES, SUCCESS_MESSAGES } from '@/constants';
 
 // Components
-import { Button, Input } from '../Common';
-import FilePicker from '../FilePicker';
-import CategorySelect from '../CategorySelect';
+import { Button, Input, FilePicker, CategorySelect } from '@/components';
 
 // Hooks
 import { useAuthContext } from '@/hooks';

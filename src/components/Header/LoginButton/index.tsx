@@ -4,8 +4,7 @@ import dynamic from 'next/dynamic';
 import { Popover } from '@mui/material';
 
 // Components
-import { LinkButton } from '../../Common/Button';
-import { LoginSkeleton } from '../../Skeletons';
+import { LinkButton, LoginSkeleton } from '@/components';
 
 // Models
 import { UserLogin } from '@/models';

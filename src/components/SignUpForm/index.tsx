@@ -9,7 +9,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { COLORS, ROUTES } from '@/constants';
 
 // Components
-import { Button, Input } from '../Common';
+import { Button, Input } from '@/components';
 
 // Hooks
 import { useAuthContext } from '@/hooks';

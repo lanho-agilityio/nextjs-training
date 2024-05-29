@@ -1,6 +1,4 @@
 'use client';
-import { useCallback } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -10,35 +8,22 @@ import { COLORS, PER_PAGE } from '@/constants';
 
 interface PaginationProps {
   totalPosts: number;
+  currentPage: number;
   perPage?: number;
+  onClickPrevious: () => void;
+  onClickNext: () => void;
 }
 
-const Pagination = ({ totalPosts, perPage = PER_PAGE }: PaginationProps): JSX.Element => {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const { replace } = useRouter();
-
+const Pagination = ({
+  totalPosts,
+  currentPage,
+  onClickPrevious,
+  onClickNext,
+  perPage = PER_PAGE,
+}: PaginationProps): JSX.Element => {
   // Pagination
-  const currentPage = Number(searchParams.get('page')) || 1;
   const hasPrevious = currentPage > 1;
   const hasNext = currentPage * perPage < totalPosts;
-
-  const createPageURL = useCallback(
-    (pageNumber: number | string) => {
-      const params = new URLSearchParams(searchParams);
-      params.set('page', pageNumber.toString());
-      replace(`${pathname}?${params.toString()}`);
-    },
-    [pathname, searchParams, replace],
-  );
-
-  const handleClickPrevious = useCallback(() => {
-    createPageURL(Number(currentPage) - 1);
-  }, [createPageURL, currentPage]);
-
-  const handleClickNext = useCallback(() => {
-    createPageURL(Number(currentPage) + 1);
-  }, [createPageURL, currentPage]);
 
   return (
     <>
@@ -57,7 +42,7 @@ const Pagination = ({ totalPosts, perPage = PER_PAGE }: PaginationProps): JSX.El
           fontSize: '16px',
         }}
         disabled={!hasPrevious}
-        onClick={handleClickPrevious}
+        onClick={onClickPrevious}
         startIcon={<KeyboardArrowLeftIcon />}
       >
         Previous
@@ -77,7 +62,7 @@ const Pagination = ({ totalPosts, perPage = PER_PAGE }: PaginationProps): JSX.El
           fontSize: '16px',
         }}
         disabled={!hasNext}
-        onClick={handleClickNext}
+        onClick={onClickNext}
         endIcon={<KeyboardArrowRightIcon />}
       >
         Next

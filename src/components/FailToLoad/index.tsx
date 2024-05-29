@@ -2,10 +2,10 @@ import { memo } from 'react';
 import { Box, Typography } from '@mui/material';
 
 // Constants
-import { COLORS, ROUTES } from '../../constants';
+import { COLORS, ROUTES } from '@/constants';
 
 // Components
-import { Heading, Link } from '../Common';
+import { Heading, Link } from '@/components';
 
 interface FailToLoadProps {
   error: string;

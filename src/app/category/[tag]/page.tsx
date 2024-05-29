@@ -1,18 +1,17 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import { Box } from '@mui/material';
 
 // APIs
 import { queryAllPosts } from '@/services';
 
 // Components
-import { PostList, Heading, FailToLoad, PaginationSkeleton } from '@/components';
+import { Heading, FailToLoad, PostTableSkeleton } from '@/components';
 
 // Models
 import { SearchParams } from '@/models';
 
-const Pagination = dynamic(() => import('../../../components/Pagination'), {
-  loading: () => <PaginationSkeleton />,
+const PostTable = dynamic(() => import('../../../components/PostTable'), {
+  loading: () => <PostTableSkeleton />,
 });
 
 export async function generateMetadata({ params }: { params: { tag: string } }): Promise<Metadata> {
@@ -41,12 +40,7 @@ export default async function CategoryPage({
   return (
     <main>
       <Heading title={decodeURIComponent(params.tag)} description={`${totalPosts} Articles`} />
-      <Box sx={{ marginTop: '40px' }}>
-        <PostList posts={posts} isArchived={true} />
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
-          <Pagination totalPosts={totalPosts} />
-        </Box>
-      </Box>
+      <PostTable posts={posts} totalPosts={totalPosts} isFiltered={false} />
     </main>
   );
 }

@@ -1,84 +1,46 @@
 'use client';
-import { ChangeEvent, useCallback } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { ChangeEvent } from 'react';
 import { Grid, SelectChangeEvent } from '@mui/material';
 
 // Constants
 import { FILTER_KEY, FILTER_TIME, POST_FILTER_TIME } from '@/constants';
 
 // Components
-import SearchInput from '../SearchInput';
-import DatePicker from '../DatePicker';
-import CategorySelect from '../CategorySelect';
+import { SearchInput, DatePicker, CategorySelect } from '@/components';
 
 // Models
 import { PostCategory } from '@/models';
 
-// Utils
-import { isEmpty } from '@/utils';
-
 interface PostFilterProps {
+  searchParams: URLSearchParams;
   tags: PostCategory[];
+  onEnterSearchInput: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onClearSearchInput: () => void;
+  onSelectCategory: (value: string | string[]) => void;
+  onSelectTime: (event: SelectChangeEvent) => void;
 }
 
-export const PostFilter = ({ tags }: PostFilterProps): JSX.Element => {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const { replace } = useRouter();
-
+const PostFilter = ({
+  searchParams,
+  tags,
+  onEnterSearchInput,
+  onClearSearchInput,
+  onSelectCategory,
+  onSelectTime,
+}: PostFilterProps): JSX.Element => {
   const searchParamsByQuery = searchParams.get(FILTER_KEY.QUERY) || '';
   const searchParamsByCategory = searchParams.get(FILTER_KEY.TAG) || [];
   const searchParamsByTime = searchParams.get(FILTER_KEY.TIME) || FILTER_TIME.ALL_TIME;
 
   const postFilterTime = Object.keys(POST_FILTER_TIME).map((key: string) => POST_FILTER_TIME[key as FILTER_TIME]);
 
-  const generateSearchParams = useCallback(
-    (queryKey: string, value: string) => {
-      const params = new URLSearchParams(searchParams);
-      if (isEmpty(value)) {
-        params.delete(queryKey);
-      } else {
-        params.set(queryKey, encodeURIComponent(value));
-      }
-      params.set(FILTER_KEY.PAGE, '1');
-      replace(`${pathname}?${params.toString()}`);
-    },
-    [replace, pathname, searchParams],
-  );
-
-  const handleSearchInput = useCallback(
-    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      generateSearchParams(FILTER_KEY.QUERY, event.target.value);
-    },
-    [generateSearchParams],
-  );
-
-  const handleClearSearchInput = useCallback(() => {
-    generateSearchParams(FILTER_KEY.QUERY, '');
-  }, [generateSearchParams]);
-
-  const handleSelectCategory = useCallback(
-    (value: string | string[]) => {
-      const search = typeof value === 'string' ? value.split(',') : value;
-      generateSearchParams(FILTER_KEY.TAG, search.join(','));
-    },
-    [generateSearchParams],
-  );
-
-  const handlSelectTime = useCallback(
-    (event: SelectChangeEvent) => {
-      generateSearchParams(FILTER_KEY.TIME, event.target.value);
-    },
-    [generateSearchParams],
-  );
-
   return (
     <Grid container sx={{ marginBottom: '40px' }} spacing={2}>
       <Grid item xs={12} md={6}>
         <SearchInput
           value={decodeURIComponent(searchParamsByQuery)}
-          onChange={handleSearchInput}
-          onClearSearchInput={handleClearSearchInput}
+          onChange={onEnterSearchInput}
+          onClearSearchInput={onClearSearchInput}
         />
       </Grid>
       <Grid item xs={6} md={3}>
@@ -90,12 +52,12 @@ export const PostFilter = ({ tags }: PostFilterProps): JSX.Element => {
               : searchParamsByCategory
           }
           isMultiple={true}
-          onChange={handleSelectCategory}
+          onChange={onSelectCategory}
           placeholder="Select Category(s)"
         />
       </Grid>
       <Grid item xs={6} md={3}>
-        <DatePicker value={searchParamsByTime} options={postFilterTime} onSelectDate={handlSelectTime} />
+        <DatePicker value={searchParamsByTime} options={postFilterTime} onSelectDate={onSelectTime} />
       </Grid>
     </Grid>
   );

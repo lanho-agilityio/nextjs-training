@@ -6,7 +6,7 @@ import { Box, Typography } from '@mui/material';
 import { COLORS } from '@/constants';
 
 // Components
-import { Button, Heading } from '../Common';
+import { Button, Heading } from '@/components';
 
 interface ErrorProps {
   error: Error & { digest?: string };
