@@ -1,5 +1,6 @@
 'use client';
 import { createContext, ReactNode, useCallback, useMemo, useReducer } from 'react';
+import { deleteCookie, setCookie } from 'cookies-next';
 
 // APIs
 import { loginUser, registerUser } from '@/services';
@@ -31,6 +32,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (response.data) {
         dispatch({ type: USER_ACTION.SET_USER, payload: response.data });
         sessionStorage.setItem('user', JSON.stringify(response.data));
+        setCookie('id', response.data.id);
         handleSuccess && handleSuccess();
       }
       if (response.errorMessage) {
@@ -46,6 +48,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (response.data) {
         dispatch({ type: USER_ACTION.SET_USER, payload: response.data });
         sessionStorage.setItem('user', JSON.stringify(response.data));
+        setCookie('id', response.data.id);
         handleSuccess && handleSuccess();
       }
       if (response.errorMessage) {
@@ -59,6 +62,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     dispatch({
       type: USER_ACTION.REMOVE_USER,
     });
+    deleteCookie('id');
 
     sessionStorage.removeItem('user');
   }, [dispatch]);

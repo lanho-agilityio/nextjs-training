@@ -26,18 +26,18 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
   const { push } = useRouter();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
-  const handleClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleOpenLogin = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   }, []);
 
-  const handleClose = useCallback(() => {
+  const handleCloseLogin = useCallback(() => {
     setAnchorEl(null);
   }, []);
 
   const handleRedirectSignup = useCallback(() => {
     push(ROUTES.SIGN_UP);
-    handleClose();
-  }, [handleClose, push]);
+    handleCloseLogin();
+  }, [handleCloseLogin, push]);
 
   const open = Boolean(anchorEl);
   const id = open ? 'login-popover' : undefined;
@@ -45,7 +45,7 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
   return (
     <>
       <LinkButton
-        onClick={handleClick}
+        onClick={handleOpenLogin}
         sx={{ padding: 0, paddingTop: '4px', height: { xs: '18px', sm: '18px', md: 'inherit' } }}
       >
         Sign in
@@ -54,7 +54,7 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
         id={id}
         open={open}
         anchorEl={anchorEl}
-        onClose={handleClose}
+        onClose={handleCloseLogin}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'center',

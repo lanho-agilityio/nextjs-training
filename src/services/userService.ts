@@ -89,7 +89,7 @@ export const registerUser = async (arg: UserRegister) => {
   }
 };
 
-export const getAuthor = async (id: string) => {
+export const queryAuthor = async (id: string) => {
   let errorMessage = '';
   const url = `${API_ROUTES.USER}/${id}`;
   const response = await APIs.get<UserLogin>(url, VALIDATE_TAGS.POSTS).catch((error) => {

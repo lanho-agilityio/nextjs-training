@@ -5,8 +5,6 @@ import { Box, IconButton, InputAdornment, Stack } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-// APIs
-
 // Constants
 import { COLORS, ROUTES } from '@/constants';
 

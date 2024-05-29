@@ -25,11 +25,11 @@ const UserProfile = ({ user, onLogoutClick, onCreatePostClick }: UserProfileProp
   const open = Boolean(anchorEl);
   const id = open ? 'user-profile-popover' : undefined;
 
-  const handleClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleOpenPopover = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   }, []);
 
-  const handleClose = useCallback(() => {
+  const handleClosePopover = useCallback(() => {
     setAnchorEl(null);
   }, []);
 
@@ -39,14 +39,17 @@ const UserProfile = ({ user, onLogoutClick, onCreatePostClick }: UserProfileProp
 
   return (
     <>
-      <LinkButton onClick={handleClick} sx={{ padding: 0, paddingTop: '4px', height: { xs: '18px', sm: '18px', md: 'inherit' }  }}>
+      <LinkButton
+        onClick={handleOpenPopover}
+        sx={{ padding: 0, paddingTop: '4px', height: { xs: '18px', sm: '18px', md: 'inherit' } }}
+      >
         Hello {name}!
       </LinkButton>
       <Popover
         id={id}
         open={open}
         anchorEl={anchorEl}
-        onClose={handleClose}
+        onClose={handleClosePopover}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'left',

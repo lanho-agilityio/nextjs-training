@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { Avatar, Box } from '@mui/material';
 
 // APIs
-import { getAuthor, queryAllPosts } from '@/services';
+import { queryAuthor, queryAllPosts } from '@/services';
 
 // Components
 import { PostList, Heading, FailToLoad, PaginationSkeleton } from '@/components';
@@ -17,7 +17,7 @@ const Pagination = dynamic(() => import('../../../components/Pagination'), {
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const id = params.id;
-  const response = await getAuthor(id);
+  const response = await queryAuthor(id);
 
   if (response.data) {
     const { username } = response.data;
