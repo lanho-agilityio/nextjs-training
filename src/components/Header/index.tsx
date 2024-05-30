@@ -72,6 +72,7 @@ const NavBar = (): JSX.Element => {
             alt="Logo"
             width={132}
             height={52}
+            unoptimized
             priority
             style={{ maxWidth: '100%', height: 'auto' }}
           ></Image>
