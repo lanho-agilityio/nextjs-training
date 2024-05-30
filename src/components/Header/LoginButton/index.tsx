@@ -33,10 +33,7 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
 
   return (
     <>
-      <LinkButton
-        onClick={handleOpenLogin}
-        sx={{ padding: 0, height: { xs: '18px', sm: '18px', md: 'inherit' } }}
-      >
+      <LinkButton onClick={handleOpenLogin} sx={{ padding: 0, height: { xs: '18px', sm: '18px', md: 'inherit' } }}>
         Sign in
       </LinkButton>
       <Popover

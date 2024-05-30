@@ -39,7 +39,6 @@ class API {
   }
 
   async put<T>(path: string, payload: object = {}): Promise<T> {
-
     const response = await fetch(`${API_BASE_URL}${path}`, {
       method: 'PUT',
       headers: {
@@ -53,7 +52,6 @@ class API {
   }
 
   async delete<T>(path: string): Promise<T> {
-
     const response = await fetch(`${API_BASE_URL}${path}`, {
       method: 'DELETE',
       headers: {

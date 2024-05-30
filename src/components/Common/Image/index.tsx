@@ -28,7 +28,7 @@ const CustomImage = ({ src, alt, fallbackSrc = '/not-found.svg', ...props }: Ima
       blurDataURL={BLUR_DATA_BASE64}
       fill={props.width || props.height ? false : true}
       style={{ borderRadius: '6px' }}
-      sizes="(max-width: 984px) 30vw, 33vw"
+      sizes="(max-width: 900px) 50vw, (max-width: 600px) 80vw, 33vw"
       onError={() => {
         set_imgSrc(fallbackSrc);
       }}
