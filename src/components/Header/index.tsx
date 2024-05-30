@@ -109,7 +109,7 @@ const NavBar = (): JSX.Element => {
           })}
           <Box
             sx={{
-              paddingX: { md: '20px' },
+              paddingRight: { md: '20px' },
               width: '100px',
               display: 'flex',
               justifyContent: 'center',

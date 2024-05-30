@@ -35,7 +35,7 @@ const LoginButton = ({ onSubmit }: LoginButtonProps): JSX.Element => {
     <>
       <LinkButton
         onClick={handleOpenLogin}
-        sx={{ padding: 0, paddingTop: '4px', height: { xs: '18px', sm: '18px', md: 'inherit' } }}
+        sx={{ padding: 0, height: { xs: '18px', sm: '18px', md: 'inherit' } }}
       >
         Sign in
       </LinkButton>
