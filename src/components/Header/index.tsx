@@ -1,7 +1,6 @@
 'use client';
 import { memo, useCallback, useState } from 'react';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Box, IconButton, Skeleton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -11,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { COLORS, NAVIGATION_LIST, ROUTES } from '@/constants';
 
 // Components
-import { Link, NavLink } from '@/components';
+import { Link, NavLink, Image } from '@/components';
 
 // Hooks
 import { useAuthContext } from '@/hooks';

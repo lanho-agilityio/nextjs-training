@@ -1,12 +1,11 @@
 import { memo } from 'react';
-import Image from 'next/image';
 import { Box } from '@mui/material';
 
 // Constants
 import { COLORS, ROUTES } from '@/constants';
 
 // Components
-import { Link } from '@/components';
+import { Link, Image } from '@/components';
 
 interface PostCardImageProps {
   alt: string;
@@ -35,9 +34,7 @@ const PostCardImage = ({ alt, src, to, isRecentPost = false, isArchived = false 
           borderRadius: '6px',
         }}
       >
-        {src && (
-          <Image alt={alt} src={src} fill style={{ borderRadius: '6px' }} sizes="(max-width: 984px) 30vw, 33vw" loading='lazy' />
-        )}
+        {src && <Image alt={alt} src={src} />}
       </Box>
     </Link>
   );

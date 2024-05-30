@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
 import { Box } from '@mui/material';
@@ -11,7 +10,7 @@ import { queryPostDetail } from '@/services';
 import { COLORS, ROUTES } from '@/constants';
 
 // Components
-import { AuthorCard, Heading, Link, Paragraph, Category, FailToLoad } from '@/components';
+import { AuthorCard, Heading, Link, Paragraph, Category, FailToLoad, Image } from '@/components';
 
 const PostCardDescription = dynamic(() => import('../../../components/PostCard/PostCardDescription'), { ssr: false });
 
@@ -78,13 +77,7 @@ export default async function DetailPostPage({ params }: { params: { id: string 
               height: { xs: '240px', sm: '432px', md: '576px' },
             }}
           >
-            <Image
-              alt={title}
-              src={imageBase64}
-              fill
-              style={{ borderRadius: '6px' }}
-              sizes="(max-width: 984px) 30vw, 33vw"
-            />
+            <Image alt={title} src={imageBase64} />
           </Box>
         )}
         <Paragraph content={content} />
