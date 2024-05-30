@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'Homepage',
     description: 'See most recent posts we have ever written',
-  }
+  },
 };
 
 export default async function Home() {

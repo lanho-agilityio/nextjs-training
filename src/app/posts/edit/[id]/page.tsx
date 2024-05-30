@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
         type: 'website',
         title: `Post: ${title}`,
         description: `Edit post ${title}`,
-      }
+      },
     };
   }
   return {
