@@ -20,6 +20,15 @@ export async function generateMetadata({ params }: { params: { tag: string } }):
   return {
     title: `Category: ${tag}`,
     description: `See all posts about ${tag}`,
+    keywords: [
+      'posts',
+      tag,
+    ],
+    openGraph: {
+      type: 'website',
+      title: `Category: ${tag}`,
+      description: `See all posts about ${tag}`,
+    }
   };
 }
 

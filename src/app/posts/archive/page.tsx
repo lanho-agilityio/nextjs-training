@@ -18,6 +18,14 @@ const PostTable = dynamic(() => import('../../../components/PostTable'), {
 export const metadata: Metadata = {
   title: 'Archive',
   description: 'See all posts we have ever written',
+  keywords: [
+    'posts',
+  ],
+  openGraph: {
+    type: 'website',
+    title: 'Archive',
+    description: 'See all posts we have ever written',
+  }
 };
 
 export default async function ArchivePage({ searchParams }: { searchParams: SearchParams }) {

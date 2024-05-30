@@ -23,6 +23,11 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     return {
       title: `Post: ${title}`,
       description: `Edit post ${title}`,
+      openGraph: {
+        type: 'website',
+        title: `Post: ${title}`,
+        description: `Edit post ${title}`,
+      }
     };
   }
   return {

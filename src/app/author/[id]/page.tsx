@@ -24,6 +24,15 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     return {
       title: `Author: ${username}`,
       description: `See all posts written by ${username}`,
+      keywords: [
+        'posts',
+        username
+      ],
+      openGraph: {
+        type: 'website',
+        title: `Author: ${username}`,
+        description: `See all posts written by ${username}`,
+      }
     };
   }
   return {

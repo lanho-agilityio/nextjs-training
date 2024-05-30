@@ -18,7 +18,12 @@ const PostNotFound = dynamic(() => import('../components/PostNotFound'), {
 
 export const metadata: Metadata = {
   title: 'Home',
-  description: 'Homepage',
+  description: 'See most recent posts we have ever written',
+  openGraph: {
+    type: 'website',
+    title: 'Homepage',
+    description: 'See most recent posts we have ever written',
+  }
 };
 
 export default async function Home() {

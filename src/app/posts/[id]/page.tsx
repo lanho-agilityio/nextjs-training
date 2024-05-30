@@ -19,10 +19,19 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   const response = await queryPostDetail(id);
 
   if (response.data) {
-    const { title } = response.data;
+    const { title, tag } = response.data;
     return {
       title: `Post: ${title}`,
       description: `View detail about ${title}`,
+      keywords: [
+        title,
+        tag.value,
+      ],
+      openGraph: {
+        type: 'article',
+        title: `Post: ${title}`,
+        description: `View detail about ${title}`,
+      }
     };
   }
   return {
