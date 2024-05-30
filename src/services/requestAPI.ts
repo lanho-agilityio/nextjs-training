@@ -1,4 +1,3 @@
-import { unstable_noStore as noStore } from 'next/cache';
 import { API_BASE_URL } from '@/constants';
 
 class API {
@@ -25,7 +24,6 @@ class API {
   }
 
   async post<T>(path: string, payload: object = {}): Promise<T> {
-    noStore();
     const response = await fetch(`${API_BASE_URL}${path}`, {
       method: 'POST',
       headers: {
@@ -41,7 +39,6 @@ class API {
   }
 
   async put<T>(path: string, payload: object = {}): Promise<T> {
-    noStore();
 
     const response = await fetch(`${API_BASE_URL}${path}`, {
       method: 'PUT',
@@ -56,7 +53,6 @@ class API {
   }
 
   async delete<T>(path: string): Promise<T> {
-    noStore();
 
     const response = await fetch(`${API_BASE_URL}${path}`, {
       method: 'DELETE',
