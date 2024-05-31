@@ -1,11 +1,14 @@
 import { memo } from 'react';
 import { Grid } from '@mui/material';
 
+// Constants
+import { PER_PAGE } from '@/constants';
+
 // Components
 import PostCardSkeleton from '../PostCardSkeleton';
 
 const PostListSkeleton = (): JSX.Element => {
-  const skeleton = Array(9).fill(0);
+  const skeleton = Array(PER_PAGE).fill(0);
 
   return (
     <Grid container rowSpacing={5} columnSpacing={5}>

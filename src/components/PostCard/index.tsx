@@ -10,14 +10,16 @@ import { Post } from '@/models';
 
 interface PostCardProps {
   content: Post;
+  isRecentPost?: boolean;
+  isArchived?: boolean;
 }
 
-const PostCard = ({ content }: PostCardProps): JSX.Element => {
+const PostCard = ({ content, isArchived, isRecentPost }: PostCardProps): JSX.Element => {
   const { id, title, tag, user, updatedAt, imageBase64 } = content;
 
   return (
     <Box sx={{ width: 'full', display: 'flex', flexDirection: 'column' }}>
-      <PostCardImage src={imageBase64} alt={title} to={id} />
+      <PostCardImage src={imageBase64} alt={title} to={id} isRecentPost={isRecentPost} isArchived={isArchived} />
       <PostCardContent id={id} title={title} tag={tag} author={user} updatedAt={updatedAt} />
     </Box>
   );
