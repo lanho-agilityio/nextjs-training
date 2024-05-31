@@ -71,8 +71,8 @@ const CategorySelect = (
           }
         }}
       >
-        {options.map(({ value: optionValue }, index) => (
-          <MenuItem key={`time-${index}`} value={optionValue}>
+        {options.map(({ id, value: optionValue }) => (
+          <MenuItem key={`time-${id}`} value={optionValue}>
             {isMultiple ? (
               <>
                 <Checkbox

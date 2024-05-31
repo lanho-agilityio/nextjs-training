@@ -62,8 +62,8 @@ const NavBar = (): JSX.Element => {
             },
           }}
         >
-          {NAVIGATION_LIST.slice(0, HALF).map((e, i) => {
-            return <NavLink key={i} to={e.to} title={e.title} />;
+          {NAVIGATION_LIST.slice(0, HALF).map((e) => {
+            return <NavLink key={e.to} to={e.to} title={e.title} />;
           })}
         </Box>
         <Link aria-label="Homepage" href={ROUTES.HOME} style={{ width: '112px' }}>
@@ -104,8 +104,8 @@ const NavBar = (): JSX.Element => {
             alignItems: 'center',
           }}
         >
-          {NAVIGATION_LIST.slice(HALF).map((e, i) => {
-            return <NavLink key={i} to={e.to} title={e.title} />;
+          {NAVIGATION_LIST.slice(HALF).map((e) => {
+            return <NavLink key={e.to} to={e.to} title={e.title} />;
           })}
           <Box
             sx={{
@@ -136,10 +136,10 @@ const NavBar = (): JSX.Element => {
             paddingBottom: '20px',
           }}
         >
-          {NAVIGATION_LIST.map((route, i) => {
+          {NAVIGATION_LIST.map((route) => {
             return (
               <NavLink
-                key={i}
+                key={route.to}
                 to={route.to}
                 title={route.title}
                 _style={{

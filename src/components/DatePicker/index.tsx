@@ -30,8 +30,8 @@ const DatePicker = ({ value, options, onSelectDate }: DatePickerProps): JSX.Elem
         fullWidth
         renderValue={(value) => POST_FILTER_TIME[value as FILTER_TIME].label}
       >
-        {options.map(({ label: itemLabel, value: itemValue }, index) => (
-          <MenuItem key={`time-${index}`} value={itemValue}>
+        {options.map(({ label: itemLabel, value: itemValue }) => (
+          <MenuItem key={`time-${value}`} value={itemValue}>
             <Radio
               checked={value === itemValue}
               sx={{

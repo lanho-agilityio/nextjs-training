@@ -22,7 +22,7 @@ const PostList = ({ posts, isArchived = false }: PostListProps): JSX.Element => 
         {posts.map((post, index) => {
           const isRecentPost = LASTEST_POST_INDEX.includes(index);
           return (
-            <Grid key={`post-${index}`} item xs={12} sm={6} md={6} lg={!isArchived && isRecentPost ? 6 : 4}>
+            <Grid key={`post-${post.id}`} item xs={12} sm={6} md={6} lg={!isArchived && isRecentPost ? 6 : 4}>
               <PostCard content={post} />
             </Grid>
           );
