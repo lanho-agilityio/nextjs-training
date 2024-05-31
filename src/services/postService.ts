@@ -17,25 +17,30 @@ export const queryAllPosts = async (params?: SearchParams, limit: number = PER_P
   let errorMessage = '';
   const searchParams = (params && generateSearchParams(params)) || '';
   const url = `${API_ROUTES.POSTS}?${SORTED}${USER_INCLUDED}${LIMIT(limit)}${searchParams}`;
-  const response = await APIs.get<Post[]>(url, VALIDATE_TAGS.POSTS).catch((error) => {
+  const response = await APIs.get(url, VALIDATE_TAGS.POSTS).catch((error) => {
     errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
   });
 
+  const data = (response && (await response.json())) || [];
+
+  const total = Number(response?.headers.get('x-total-count')) || 0;
+
   return {
     errorMessage,
-    data: response?.data || [],
-    total: response?.total || 0,
+    data,
+    total,
   };
 };
 
 export const queryPostDetail = async (id: string) => {
   let errorMessage = '';
   const url = `${API_ROUTES.POSTS}/${id}?${USER_INCLUDED}`;
-  const response = await APIs.get<Post>(url, VALIDATE_TAGS.POSTS).catch((error) => {
+  const response = await APIs.get(url, VALIDATE_TAGS.POSTS).catch((error) => {
     errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
   });
 
-  const postDetail = isEmpty(response?.data) ? null : response?.data;
+  const data = response && (await response.json());
+  const postDetail = isEmpty(data) ? null : data;
 
   return {
     data: postDetail,
