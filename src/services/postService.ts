@@ -22,7 +22,6 @@ export const queryAllPosts = async (params?: SearchParams, limit: number = PER_P
   });
 
   const data = (response && (await response.json())) || [];
-
   const total = Number(response?.headers.get('x-total-count')) || 0;
 
   return {
