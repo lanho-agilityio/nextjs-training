@@ -25,7 +25,7 @@ import { fileToBase64, validateRequired } from '@/utils';
 
 interface PostFormProps {
   tags: PostCategory[];
-  data?: Post;
+  data: Post | null;
 }
 
 const validations = {

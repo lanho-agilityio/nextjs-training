@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import { notFound } from 'next/navigation';
+import { cookies } from 'next/headers';
 import { Box } from '@mui/material';
 
 // APIs
@@ -37,14 +37,14 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 export default async function EditPage({ params }: { params: { id: string } }) {
+  const userId = cookies().get('id')?.value;
+
   const [postsResult, tagsResults] = await Promise.all([queryPostDetail(params.id), queryAllCategory()]);
 
   const { data: post, errorMessage: errorPost } = postsResult;
   const { data: tags, errorMessage: errorTag } = tagsResults;
 
-  if (!post) {
-    notFound();
-  }
+  const formData = userId === post?.userId ? post : null;
 
   if (errorPost || errorTag) {
     return <FailToLoad error={errorPost || errorTag} />;
@@ -52,7 +52,10 @@ export default async function EditPage({ params }: { params: { id: string } }) {
 
   return (
     <main>
-      <Heading title="Edit" description="Edit your post." />
+      <Heading
+        title={formData ? 'Edit' : 'Create'}
+        description={formData ? 'Edit your post.' : 'Create a post here.'}
+      />
       <Box
         sx={{
           display: 'flex',
@@ -62,7 +65,7 @@ export default async function EditPage({ params }: { params: { id: string } }) {
           paddingTop: '40px',
         }}
       >
-        <PostForm tags={tags} data={post} />
+        <PostForm tags={tags} data={formData} />
       </Box>
     </main>
   );

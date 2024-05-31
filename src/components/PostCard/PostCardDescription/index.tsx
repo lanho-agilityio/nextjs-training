@@ -36,7 +36,7 @@ const PostCardDescription = ({
   const { username: name, id } = author;
 
   const handleNavigation = useCallback(() => {
-    push(ROUTES.EDIT_POST(postId));
+    push(ROUTES.UPSERT_POST(postId));
   }, [push, postId]);
 
   return (

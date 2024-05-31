@@ -13,7 +13,10 @@ import { Post, PostCreate, SearchParams } from '@/models';
 // Utils
 import { generateSearchParams, isEmpty } from '@/utils';
 
-export const queryAllPosts = async (params?: SearchParams, limit: number = PER_PAGE) => {
+export const queryAllPosts = async (
+  params?: SearchParams,
+  limit: number = PER_PAGE,
+): Promise<{ errorMessage: string; data: Post[]; total: number }> => {
   let errorMessage = '';
   const searchParams = (params && generateSearchParams(params)) || '';
   const url = `${API_ROUTES.POSTS}?${SORTED}${USER_INCLUDED}${LIMIT(limit)}${searchParams}`;
@@ -31,7 +34,7 @@ export const queryAllPosts = async (params?: SearchParams, limit: number = PER_P
   };
 };
 
-export const queryPostDetail = async (id: string) => {
+export const queryPostDetail = async (id: string): Promise<{ errorMessage: string; data: Post | null }> => {
   let errorMessage = '';
   const url = `${API_ROUTES.POSTS}/${id}?${USER_INCLUDED}`;
   const response = await APIs.get(url, VALIDATE_TAGS.POSTS).catch((error) => {
