@@ -1,4 +1,5 @@
-import { CSSProperties, memo } from 'react';
+import { memo } from 'react';
+import { SxProps, Theme } from '@mui/material';
 
 // Constants
 import { COLORS } from '@/constants';
@@ -9,7 +10,7 @@ import { Link } from '@/components';
 interface NavLinkStyledProps {
   title: string;
   to: string;
-  linkStyle?: CSSProperties | undefined;
+  linkStyle?: SxProps<Theme> | undefined;
 }
 
 const NavLink = ({ title, to, linkStyle }: NavLinkStyledProps): JSX.Element => {
