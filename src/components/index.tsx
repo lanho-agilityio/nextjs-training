@@ -1,4 +1,5 @@
 export { default as AuthorCard } from './AuthorCard';
+export { default as CategorySelect } from './CategorySelect';
 export { default as DatePicker } from './DatePicker';
 export { default as ErrorBoundary } from './ErrorBoundary';
 export { default as FailToLoad } from './FailToLoad';
@@ -17,7 +18,8 @@ export { default as PostNotFound } from './PostNotFound';
 export { default as PostTable } from './PostTable';
 export { default as SearchInput } from './SearchInput';
 export { default as SignUpForm } from './SignUpForm';
-export { default as CategorySelect } from './CategorySelect';
+export { default as UserAuthorizationWrapper } from './UserAuthorizationWrapper';
+
 export { LinkButton } from './Common/Button';
 
 export * from './Toast';
