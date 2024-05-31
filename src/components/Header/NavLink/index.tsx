@@ -9,15 +9,15 @@ import { Link } from '@/components';
 interface NavLinkStyledProps {
   title: string;
   to: string;
-  _style?: CSSProperties | undefined;
+  linkStyle?: CSSProperties | undefined;
 }
 
-const NavLink = ({ title, to, _style }: NavLinkStyledProps): JSX.Element => {
+const NavLink = ({ title, to, linkStyle }: NavLinkStyledProps): JSX.Element => {
   return (
     <Link
       id="nav-link"
       href={to}
-      _style={{
+      linkStyle={{
         paddingTop: '8px',
         paddingBottom: '8px',
         paddingLeft: '20px',
@@ -30,7 +30,7 @@ const NavLink = ({ title, to, _style }: NavLinkStyledProps): JSX.Element => {
         ':hover': {
           color: COLORS.NAV_LINK_HOVER,
         },
-        ..._style,
+        ...linkStyle,
       }}
     >
       {title}

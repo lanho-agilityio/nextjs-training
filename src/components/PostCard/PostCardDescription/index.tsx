@@ -71,7 +71,7 @@ const PostCardDescription = ({
             gap: isDetailed ? '0px' : '12px',
           }}
         >
-          <Link aria-label={`${name}' page`} href={ROUTES.AUTHOR(id)} _style={{ color: COLORS.DESCRIPTION }}>
+          <Link aria-label={`${name}' page`} href={ROUTES.AUTHOR(id)} linkStyle={{ color: COLORS.DESCRIPTION }}>
             <Typography
               sx={{
                 color: isDetailed ? COLORS.HEADING : 'unset',

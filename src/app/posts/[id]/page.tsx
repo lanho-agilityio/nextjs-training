@@ -89,7 +89,7 @@ export default async function DetailPostPage({ params }: { params: { id: string 
           </Box>
         )}
         <Paragraph content={content} />
-        <Link aria-label="Archive" href={ROUTES.ARCHIVE} _style={{ color: COLORS.POST_LINK }}>
+        <Link aria-label="Archive" href={ROUTES.ARCHIVE} linkStyle={{ color: COLORS.POST_LINK }}>
           ← View all post
         </Link>
         <AuthorCard author={user} />
