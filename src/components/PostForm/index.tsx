@@ -212,9 +212,6 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
         <Controller
           name="imageName"
           control={control}
-          rules={{
-            validate: validations.tag,
-          }}
           render={({ field: { onChange, value, ...rest } }) => (
             <Input
               sx={{ paddingBottom: '24px' }}
