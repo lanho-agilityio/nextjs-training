@@ -3,13 +3,10 @@ import dynamic from 'next/dynamic';
 import { Avatar, Box } from '@mui/material';
 
 // APIs
-import { queryAuthor, queryAllPosts } from '@/services';
+import { queryAuthor } from '@/services';
 
 // Components
 import { Heading, FailToLoad, PostTableSkeleton } from '@/components';
-
-// Models
-import { Author, SearchParams } from '@/models';
 
 const PostTable = dynamic(() => import('../../../components/PostTable'), {
   loading: () => <PostTableSkeleton />,
@@ -38,17 +35,9 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
-export default async function AuthorPage({
-  params,
-  searchParams,
-}: {
-  params: { id: string };
-  searchParams: SearchParams;
-}) {
-  const postsResult = await queryAllPosts({ authorId: params.id, ...searchParams });
-  const { data: posts, total: totalPosts, errorMessage } = postsResult;
-
-  const author: Author = (posts.length > 0 && posts[0].user) || { id: '', username: '' };
+export default async function AuthorPage({ params }: { params: { id: string } }) {
+  const authorResult = await queryAuthor(params.id);
+  const { data: author, errorMessage } = authorResult;
 
   if (errorMessage) {
     return <FailToLoad error={errorMessage} />;
@@ -60,7 +49,7 @@ export default async function AuthorPage({
         <Avatar src="" alt="avatar" sx={{ width: 80, height: 80 }} />
         <Heading title={author.username} />
       </Box>
-      <PostTable posts={posts} totalPosts={totalPosts} isFiltered={false} />
+      <PostTable queryParams={{ authorId: params.id }} isFiltered={false} />
     </main>
   );
 }

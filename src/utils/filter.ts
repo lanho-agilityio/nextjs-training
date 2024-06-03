@@ -50,3 +50,10 @@ export const generateDateParams = (value: FILTER_TIME): string => {
   endDate = dayjs(new Date()).toISOString();
   return SEARCH_PARAMS.TIME(startDate, endDate);
 };
+
+export const getSearchParams = <T>(searchParams: URLSearchParams): T => {
+  const entries = searchParams && Array.from(searchParams.entries());
+  const queryParams: T = entries && entries.reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {} as T);
+
+  return queryParams;
+};

@@ -8,13 +8,16 @@ import { Box, SelectChangeEvent } from '@mui/material';
 import { FILTER_KEY, PER_PAGE } from '@/constants';
 
 // Components
-import { PostFilter, PostList, Pagination } from '@/components';
+import { PostFilter, PostList, Pagination, FailToLoad, PostListSkeleton } from '@/components';
+
+// Hooks
+import { useQueryPostList } from '@/hooks';
 
 // Models
-import { Post, PostCategory } from '@/models';
+import { PostCategory, SearchParams } from '@/models';
 
 // Utils
-import { isEmpty } from '@/utils';
+import { getSearchParams, isEmpty } from '@/utils';
 
 const PostNotFound = dynamic(() => import('../PostNotFound'), {
   ssr: false,
@@ -22,16 +25,19 @@ const PostNotFound = dynamic(() => import('../PostNotFound'), {
 });
 
 interface PostTableProps {
-  posts: Post[];
-  totalPosts: number;
+  queryParams?: SearchParams;
   tags?: PostCategory[];
   isFiltered?: boolean;
 }
 
-const PostTable = ({ posts, totalPosts, tags = [], isFiltered = false }: PostTableProps): JSX.Element => {
+const PostTable = ({ tags = [], isFiltered = false, queryParams = {} }: PostTableProps): JSX.Element => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
+
+  const query: SearchParams = getSearchParams(searchParams);
+
+  const { data, isLoading, error } = useQueryPostList({ ...queryParams, ...query });
 
   // Pagination
   const currentPage = Number(searchParams.get('page')) || 1;
@@ -84,6 +90,10 @@ const PostTable = ({ posts, totalPosts, tags = [], isFiltered = false }: PostTab
     [generateSearchParams],
   );
 
+  if (!isLoading && (!data || error)) {
+    return <FailToLoad error={error} />;
+  }
+
   return (
     <Box sx={{ marginTop: '40px' }}>
       {isFiltered && (
@@ -96,10 +106,14 @@ const PostTable = ({ posts, totalPosts, tags = [], isFiltered = false }: PostTab
           onSelectTime={handlSelectTime}
         />
       )}
-      {posts.length > 0 ? <PostList posts={posts} isArchived={true} /> : <PostNotFound />}
+      {isLoading ? (
+        <PostListSkeleton />
+      ) : (
+        <>{data.total > 0 ? <PostList posts={data.posts} isArchived={true} /> : <PostNotFound />}</>
+      )}
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
         <Pagination
-          totalPosts={totalPosts}
+          totalPosts={data.total}
           currentPage={currentPage}
           perPage={PER_PAGE}
           onClickNext={handleClickNext}

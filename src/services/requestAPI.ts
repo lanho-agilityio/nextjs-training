@@ -2,7 +2,8 @@ import { API_BASE_URL } from '@/constants';
 
 class API {
   async get(path: string, tag?: string, time?: number) {
-    const response = await fetch(`${API_BASE_URL}${path}`, {
+    const link = new URL(`${API_BASE_URL}${path}`);
+    const response = await fetch(link, {
       method: 'GET',
       next: {
         tags: tag ? [tag] : [],

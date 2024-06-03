@@ -3,13 +3,10 @@ import dynamic from 'next/dynamic';
 import { Box } from '@mui/material';
 
 // APIs
-import { queryAllCategory, queryAllPosts } from '@/services';
+import { queryAllCategory } from '@/services';
 
 // Components
 import { Heading, FailToLoad, PostTableSkeleton } from '@/components';
-
-// Models
-import { SearchParams } from '@/models';
 
 const PostTable = dynamic(() => import('../../../components/PostTable'), {
   loading: () => <PostTableSkeleton />,
@@ -26,21 +23,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function ArchivePage({ searchParams }: { searchParams: SearchParams }) {
-  const [postsResult, tagsResults] = await Promise.all([queryAllPosts(searchParams), queryAllCategory()]);
+export default async function ArchivePage() {
+  const { data: tags, errorMessage: errorTag } = await queryAllCategory();
 
-  const { data: posts, total: totalPosts, errorMessage: errorPosts } = postsResult;
-  const { data: tags, errorMessage: errorTag } = tagsResults;
-
-  if (errorPosts || errorTag) {
-    return <FailToLoad error={errorPosts || errorTag} />;
+  if (errorTag) {
+    return <FailToLoad error={errorTag} />;
   }
 
   return (
     <main>
       <Heading title="Archive" description="See all posts we have ever written." />
       <Box sx={{ marginTop: '40px' }}>
-        <PostTable posts={posts} totalPosts={totalPosts} isFiltered={true} tags={tags} />
+        <PostTable isFiltered={true} tags={tags} />
       </Box>
     </main>
   );
