@@ -1,5 +1,5 @@
 'use client';
-import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { Box, Stack } from '@mui/material';
@@ -11,7 +11,7 @@ import { createPost, editPost } from '@/services';
 import { COLORS, FORM_TYPE, ROUTES, SUCCESS_MESSAGES } from '@/constants';
 
 // Components
-import { Button, Input, FilePicker, CategorySelect } from '@/components';
+import { Button, Input, CategorySelect } from '@/components';
 
 // Hooks
 import { useAuthContext } from '@/hooks';
@@ -21,7 +21,7 @@ import { useToast } from '../Toast';
 import { Post, PostCategory, PostCreate } from '@/models';
 
 // Utils
-import { fileToBase64, validateRequired } from '@/utils';
+import { validateRequired } from '@/utils';
 
 interface PostFormProps {
   tags: PostCategory[];
@@ -51,7 +51,6 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
   const router = useRouter();
   const toast = useToast();
   const { user } = useAuthContext();
-  const [image, setImage] = useState<File | null>(null);
 
   const { title, tag, imageName, content } = data || {};
 
@@ -72,7 +71,6 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
     handleSubmit: submitConfirm,
     watch,
     reset,
-    setValue,
     formState: { isValid },
   } = useForm<PostFormValues>({
     mode: 'onBlur',
@@ -84,21 +82,6 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
 
   const selectedTagValue = watch('tag');
   const selectedTag = useMemo(() => tags.filter((tag) => tag.value === selectedTagValue)[0], [tags, selectedTagValue]);
-
-  const handleSelectImage = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      if (event.target.files) {
-        setImage(event.target.files[0]);
-        setValue('imageName', event.target.files[0].name);
-      }
-    },
-    [setValue],
-  );
-
-  const handleRemoveImage = useCallback(() => {
-    setValue('imageName', undefined);
-    setImage(null);
-  }, [setValue]);
 
   const handleSuccess = useCallback(() => {
     const message = formType === FORM_TYPE.CREATE ? SUCCESS_MESSAGES.POST_CREATED : SUCCESS_MESSAGES.POST_EDITED;
@@ -116,10 +99,8 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
   const handleCreatePost = useCallback(
     async (values: PostFormValues) => {
       if (user && user.id) {
-        const imageBase64 = image ? await fileToBase64(image) : undefined;
         const createData: PostCreate = {
           ...values,
-          imageBase64,
           tag: selectedTag,
           userId: user.id,
           updatedAt: new Date().toISOString(),
@@ -129,17 +110,15 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
         response.errorMessage && handleError(response.errorMessage);
       }
     },
-    [image, selectedTag, user, handleSuccess, handleError],
+    [selectedTag, user, handleSuccess, handleError],
   );
 
   const handleEditPost = useCallback(
     async (values: PostFormValues) => {
       if (user && user.id && data) {
-        const imageBase64 = image ? await fileToBase64(image) : values.imageName ? data.imageBase64 : undefined;
         const editData: Post = {
           ...data,
           ...values,
-          imageBase64,
           tag: selectedTag,
           userId: user.id,
           updatedAt: new Date().toISOString(),
@@ -149,7 +128,7 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
         response.errorMessage && handleError(response.errorMessage);
       }
     },
-    [image, selectedTag, user, data, handleSuccess, handleError],
+    [selectedTag, user, data, handleSuccess, handleError],
   );
 
   const handleSubmit: SubmitHandler<PostFormValues> = useCallback(
@@ -230,16 +209,25 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
             </Box>
           )}
         ></Controller>
-        <Box sx={{ paddingBottom: watch('imageName') ? '0px ' : '45px' }}>
-          <FilePicker
-            accept="image/png, image/gif, image/jpeg"
-            handleSelectFile={handleSelectImage}
-            hanldeRemoveFile={handleRemoveImage}
-            fileName={watch('imageName')}
-          >
-            Upload Image
-          </FilePicker>
-        </Box>
+        <Controller
+          name="imageName"
+          control={control}
+          rules={{
+            validate: validations.tag,
+          }}
+          render={({ field: { onChange, value, ...rest } }) => (
+            <Input
+              sx={{ paddingBottom: '24px' }}
+              placeholder="Image"
+              fullWidth
+              value={value}
+              onChange={(event) => {
+                onChange(event);
+              }}
+              {...rest}
+            />
+          )}
+        ></Controller>
         <Button
           type="submit"
           backgroundColor={COLORS.HEADING}

@@ -40,13 +40,11 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 export default async function DetailPostPage({ params }: { params: { id: string } }) {
   const { data, errorMessage } = await queryPostDetail(params.id);
 
-  console.log(data);
-
   if (!data) {
     notFound();
   }
 
-  const { title, tag, user, imageBase64, content, updatedAt, id } = data;
+  const { title, tag, user, imageBase64, content, updatedAt, id, imageName } = data;
 
   if (errorMessage) {
     return <FailToLoad error={errorMessage} />;
@@ -76,18 +74,19 @@ export default async function DetailPostPage({ params }: { params: { id: string 
           <Heading title={title} />
           <PostCardDescription postId={id} author={user} updatedAt={updatedAt} isDetailed={true} />
         </Box>
-        {imageBase64 && (
-          <Box
-            sx={{
-              position: 'relative',
-              width: '100%',
-              maxWidth: '1024px',
-              height: { xs: '240px', sm: '432px', md: '576px' },
-            }}
-          >
-            <Image alt={title} src={imageBase64} />
-          </Box>
-        )}
+        {imageBase64 ||
+          (imageName && (
+            <Box
+              sx={{
+                position: 'relative',
+                width: '100%',
+                maxWidth: '1024px',
+                height: { xs: '240px', sm: '432px', md: '576px' },
+              }}
+            >
+              <Image alt={title} src={imageBase64 || imageName} />
+            </Box>
+          ))}
         <Paragraph content={content} />
         <Link aria-label="Archive" href={ROUTES.ARCHIVE} linkStyle={{ color: COLORS.POST_LINK }}>
           ← View all post
