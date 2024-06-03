@@ -21,7 +21,7 @@ const hashPassword = (password: string) => {
 
 const checkUserExisted = async (username: string): Promise<boolean> => {
   const url = `${API_ROUTES.USER}?username=${username}`;
-  const response = await APIs.get(url, VALIDATE_TAGS.USERS).catch((error) => {
+  const response = await APIs.get(url, [VALIDATE_TAGS.USERS]).catch((error) => {
     throw new Error(error || ERROR_MESSAGES.DEFAULT_API_ERROR);
   });
 
@@ -96,7 +96,7 @@ export const registerUser = async (arg: UserRegister) => {
 export const queryAuthor = async (id: string) => {
   let errorMessage = '';
   const url = `${API_ROUTES.USER}/${id}`;
-  const response = await APIs.get(url, VALIDATE_TAGS.POSTS).catch((error) => {
+  const response = await APIs.get(url).catch((error) => {
     errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
   });
 
