@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const { data, total, errorMessage } = await queryAllPosts(undefined, PER_PAGE_HOME);
+  const { data, total, errorMessage } = await queryAllPosts(undefined, PER_PAGE_HOME, [ROUTES.HOME]);
 
   if (errorMessage) {
     return <FailToLoad error={errorMessage} />;

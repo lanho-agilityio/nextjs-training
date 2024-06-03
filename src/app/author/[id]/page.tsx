@@ -5,6 +5,9 @@ import { Avatar, Box } from '@mui/material';
 // APIs
 import { queryAuthor } from '@/services';
 
+// Constants
+import { ROUTES } from '@/constants';
+
 // Components
 import { Heading, FailToLoad, PostTableSkeleton } from '@/components';
 
@@ -49,7 +52,7 @@ export default async function AuthorPage({ params }: { params: { id: string } })
         <Avatar src="" alt="avatar" sx={{ width: 80, height: 80 }} />
         <Heading title={author.username} />
       </Box>
-      <PostTable queryParams={{ authorId: params.id }} isFiltered={false} />
+      <PostTable queryParams={{ authorId: params.id }} isFiltered={false} validateTags={[ROUTES.AUTHOR(params.id)]} />
     </main>
   );
 }

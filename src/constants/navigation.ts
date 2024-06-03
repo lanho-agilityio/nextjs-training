@@ -6,7 +6,7 @@ export const ROUTES = {
   HOME: '/',
   CATEGORY: (tag: string) => `/category/${tag}`,
   ARCHIVE: '/posts/archive',
-  UPSERT_POST: (id: string = '') => `/posts/upsert/${id}`,
+  UPSERT_POST: (id: string = '') => `/posts/upsert?id=${id}`,
   POST_DETAIL: (id: string) => `/posts/${id}`,
   SIGN_UP: '/sign-up',
 };

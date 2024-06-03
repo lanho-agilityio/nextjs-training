@@ -4,6 +4,9 @@ import dynamic from 'next/dynamic';
 // APIs
 import { queryAllPosts } from '@/services';
 
+// Constants
+import { ROUTES } from '@/constants';
+
 // Components
 import { Heading, FailToLoad, PostTableSkeleton } from '@/components';
 
@@ -46,7 +49,7 @@ export default async function CategoryPage({
   return (
     <main>
       <Heading title={decodeURIComponent(params.tag)} description={`${totalPosts} Articles`} />
-      <PostTable queryParams={{ tag: params.tag }} isFiltered={false} />
+      <PostTable queryParams={{ tag: params.tag }} isFiltered={false} validateTags={[ROUTES.CATEGORY(params.tag)]} />
     </main>
   );
 }

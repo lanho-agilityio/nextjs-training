@@ -13,19 +13,19 @@ import { Post, SearchParams } from '@/models';
 import { generateSearchParams } from '@/utils';
 
 // Custom hook for fetching data
-export function useQueryPostList(query?: SearchParams, limit: number = PER_PAGE) {
+export function useQueryPostList(query?: SearchParams, validateTags?: string[], limit: number = PER_PAGE) {
   const searchParams = (query && generateSearchParams(query)) || '';
   const url = `${API_ROUTES.POSTS}?${SORTED}${USER_INCLUDED}${LIMIT(limit)}${searchParams}`;
 
   const { data, isLoading, error } = useSWR(
     url,
     async (url) => {
-      const response = await APIs.get(url).catch(() => {
+      const response = await APIs.get(url, validateTags).catch(() => {
         throw new Error(ERROR_MESSAGES.DEFAULT_API_ERROR);
       });
       const posts: Post[] = (await response.json()) || [];
       const total: number = Number(response?.headers.get('x-total-count')) || 0;
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       return { posts, total };
     },
     {

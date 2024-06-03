@@ -25,19 +25,25 @@ const PostNotFound = dynamic(() => import('../PostNotFound'), {
 });
 
 interface PostTableProps {
+  validateTags?: string[];
   queryParams?: SearchParams;
   tags?: PostCategory[];
   isFiltered?: boolean;
 }
 
-const PostTable = ({ tags = [], isFiltered = false, queryParams = {} }: PostTableProps): JSX.Element => {
+const PostTable = ({
+  tags = [],
+  isFiltered = false,
+  queryParams = {},
+  validateTags = [],
+}: PostTableProps): JSX.Element => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
 
   const query: SearchParams = getSearchParams(searchParams);
 
-  const { data, isLoading, error } = useQueryPostList({ ...queryParams, ...query });
+  const { data, isLoading, error } = useQueryPostList({ ...queryParams, ...query }, validateTags);
 
   // Pagination
   const currentPage = Number(searchParams.get('page')) || 1;

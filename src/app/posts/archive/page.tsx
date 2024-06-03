@@ -5,6 +5,9 @@ import { Box } from '@mui/material';
 // APIs
 import { queryAllCategory } from '@/services';
 
+// Constants
+import { ROUTES } from '@/constants';
+
 // Components
 import { Heading, FailToLoad, PostTableSkeleton } from '@/components';
 
@@ -34,7 +37,7 @@ export default async function ArchivePage() {
     <main>
       <Heading title="Archive" description="See all posts we have ever written." />
       <Box sx={{ marginTop: '40px' }}>
-        <PostTable isFiltered={true} tags={tags} />
+        <PostTable isFiltered={true} tags={tags} validateTags={[ROUTES.ARCHIVE]} />
       </Box>
     </main>
   );
