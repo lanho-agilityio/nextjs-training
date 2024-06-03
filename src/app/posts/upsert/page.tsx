@@ -9,13 +9,13 @@ import { queryAllCategory, queryPostDetail } from '@/services';
 // Components
 import { FailToLoad, Heading, PostFormSkeleton } from '@/components';
 
-const PostForm = dynamic(() => import('../../../../components/PostForm'), {
+const PostForm = dynamic(() => import('../../../components/PostForm'), {
   loading: () => <PostFormSkeleton />,
   ssr: false,
 });
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const id = params.id;
+export async function generateMetadata({ searchParams }: { searchParams: { id: string } }): Promise<Metadata> {
+  const id = searchParams.id;
   const response = await queryPostDetail(id);
 
   if (response.data) {
@@ -36,18 +36,18 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
-export default async function EditPage({ params }: { params: { id: string } }) {
+export default async function UpsertPage({ searchParams }: { searchParams: { id: string } }) {
   const userId = cookies().get('id')?.value;
 
-  const [postsResult, tagsResults] = await Promise.all([queryPostDetail(params.id), queryAllCategory()]);
+  const [postsResult, tagsResults] = await Promise.all([queryPostDetail(searchParams.id), queryAllCategory()]);
 
-  const { data: post, errorMessage: errorPost } = postsResult;
+  const { data: post } = postsResult;
   const { data: tags, errorMessage: errorTag } = tagsResults;
 
   const formData = userId === post?.userId ? post : null;
 
-  if (errorPost || errorTag) {
-    return <FailToLoad error={errorPost || errorTag} />;
+  if (errorTag) {
+    return <FailToLoad error={errorTag} />;
   }
 
   return (

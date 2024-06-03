@@ -10,7 +10,7 @@ const PostCardSkeleton = (): JSX.Element => {
           width: { xs: '90vw', sm: '42vw', md: '45vw', lg: '33vw' },
           height: '300px',
           maxWidth: {
-            lg:  '300px',
+            lg: '300px',
             md: '452px',
             sm: '350px',
             xs: '470px',

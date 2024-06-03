@@ -16,11 +16,12 @@ import { generateSearchParams, isEmpty } from '@/utils';
 export const queryAllPosts = async (
   params?: SearchParams,
   limit: number = PER_PAGE,
+  validateTags: string[] = [],
 ): Promise<{ errorMessage: string; data: Post[]; total: number }> => {
   let errorMessage = '';
   const searchParams = (params && generateSearchParams(params)) || '';
   const url = `${API_ROUTES.POSTS}?${SORTED}${USER_INCLUDED}${LIMIT(limit)}${searchParams}`;
-  const response = await APIs.get(url, VALIDATE_TAGS.POSTS).catch((error) => {
+  const response = await APIs.get(url, [VALIDATE_TAGS.POSTS, ...validateTags]).catch((error) => {
     errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
   });
 
@@ -37,7 +38,7 @@ export const queryAllPosts = async (
 export const queryPostDetail = async (id: string): Promise<{ errorMessage: string; data: Post | null }> => {
   let errorMessage = '';
   const url = `${API_ROUTES.POSTS}/${id}?${USER_INCLUDED}`;
-  const response = await APIs.get(url, VALIDATE_TAGS.POSTS).catch((error) => {
+  const response = await APIs.get(url, [VALIDATE_TAGS.POSTS]).catch((error) => {
     errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
   });
 
@@ -57,7 +58,6 @@ export const createPost = async (values: PostCreate) => {
   });
   if (!errorMessage) {
     revalidateTag(VALIDATE_TAGS.POSTS);
-    revalidatePath(ROUTES.HOME);
     return {
       data: response,
       errorMessage,

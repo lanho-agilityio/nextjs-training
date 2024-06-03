@@ -1,15 +1,12 @@
 import { API_BASE_URL } from '@/constants';
 
 class API {
-  async get(path: string, tag?: string, time?: number) {
+  async get(path: string, tag?: string[]) {
     const link = new URL(`${API_BASE_URL}${path}`);
     const response = await fetch(link, {
       method: 'GET',
       next: {
-        tags: tag ? [tag] : [],
-
-        // Re-validate every minute
-        revalidate: time || 60,
+        tags: tag ? [...tag] : [],
       },
     }).catch((error) => {
       throw new Error(error);
