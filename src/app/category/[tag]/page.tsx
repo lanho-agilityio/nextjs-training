@@ -4,6 +4,9 @@ import dynamic from 'next/dynamic';
 // APIs
 import { queryAllPosts } from '@/services';
 
+// Constants
+import { ROUTES } from '@/constants';
+
 // Components
 import { Heading, FailToLoad, PostTableSkeleton } from '@/components';
 
@@ -37,7 +40,7 @@ export default async function CategoryPage({
   searchParams: SearchParams;
 }) {
   const postsResult = await queryAllPosts({ tag: params.tag, ...searchParams });
-  const { data: posts, total: totalPosts, errorMessage } = postsResult;
+  const { total: totalPosts, errorMessage } = postsResult;
 
   if (errorMessage) {
     return <FailToLoad error={errorMessage} />;
@@ -46,7 +49,7 @@ export default async function CategoryPage({
   return (
     <main>
       <Heading title={decodeURIComponent(params.tag)} description={`${totalPosts} Articles`} />
-      <PostTable posts={posts} totalPosts={totalPosts} isFiltered={false} />
+      <PostTable queryParams={{ tag: params.tag }} isFiltered={false} validateTags={[ROUTES.CATEGORY(params.tag)]} />
     </main>
   );
 }

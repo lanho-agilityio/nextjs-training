@@ -7,14 +7,15 @@ const PostCardSkeleton = (): JSX.Element => {
       <Box
         sx={{
           position: 'relative',
-          width: '100%',
-          height: { xs: '30vh', sm: '30vh', md: '33vh' },
-          maxHeight: {
-            lg: '401px',
-            md: '560px',
-            sm: '461px',
-            xs: '600px',
+          width: { xs: '90vw', sm: '42vw', md: '45vw', lg: '33vw' },
+          height: '300px',
+          maxWidth: {
+            lg: '300px',
+            md: '452px',
+            sm: '350px',
+            xs: '470px',
           },
+          borderRadius: '6px',
         }}
       >
         <Skeleton variant="rectangular" sx={{ width: ' 100%', height: ' 100%', borderRadius: '6px' }} />

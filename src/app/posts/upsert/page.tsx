@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import { notFound } from 'next/navigation';
+import { cookies } from 'next/headers';
 import { Box } from '@mui/material';
 
 // APIs
@@ -9,13 +9,13 @@ import { queryAllCategory, queryPostDetail } from '@/services';
 // Components
 import { FailToLoad, Heading, PostFormSkeleton } from '@/components';
 
-const PostForm = dynamic(() => import('../../../../components/PostForm'), {
+const PostForm = dynamic(() => import('../../../components/PostForm'), {
   loading: () => <PostFormSkeleton />,
   ssr: false,
 });
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const id = params.id;
+export async function generateMetadata({ searchParams }: { searchParams: { id: string } }): Promise<Metadata> {
+  const id = searchParams.id;
   const response = await queryPostDetail(id);
 
   if (response.data) {
@@ -36,23 +36,26 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
-export default async function EditPage({ params }: { params: { id: string } }) {
-  const [postsResult, tagsResults] = await Promise.all([queryPostDetail(params.id), queryAllCategory()]);
+export default async function UpsertPage({ searchParams }: { searchParams: { id: string } }) {
+  const userId = cookies().get('id')?.value;
 
-  const { data: post, errorMessage: errorPost } = postsResult;
+  const [postsResult, tagsResults] = await Promise.all([queryPostDetail(searchParams.id), queryAllCategory()]);
+
+  const { data: post } = postsResult;
   const { data: tags, errorMessage: errorTag } = tagsResults;
 
-  if (!post) {
-    notFound();
-  }
+  const formData = userId === post?.userId ? post : null;
 
-  if (errorPost || errorTag) {
-    return <FailToLoad error={errorPost || errorTag} />;
+  if (errorTag) {
+    return <FailToLoad error={errorTag} />;
   }
 
   return (
     <main>
-      <Heading title="Edit" description="Edit your post." />
+      <Heading
+        title={formData ? 'Edit' : 'Create'}
+        description={formData ? 'Edit your post.' : 'Create a post here.'}
+      />
       <Box
         sx={{
           display: 'flex',
@@ -62,7 +65,7 @@ export default async function EditPage({ params }: { params: { id: string } }) {
           paddingTop: '40px',
         }}
       >
-        <PostForm tags={tags} data={post} />
+        <PostForm tags={tags} data={formData} />
       </Box>
     </main>
   );

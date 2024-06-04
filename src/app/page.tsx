@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const { data, total, errorMessage } = await queryAllPosts(undefined, PER_PAGE_HOME);
+  const { data, total, errorMessage } = await queryAllPosts(undefined, PER_PAGE_HOME, [ROUTES.HOME]);
 
   if (errorMessage) {
     return <FailToLoad error={errorMessage} />;
@@ -55,7 +55,7 @@ export default async function Home() {
           id="view-all-posts"
           aria-label="View all posts"
           href={ROUTES.ARCHIVE}
-          _style={{
+          linkStyle={{
             color: COLORS.DESCRIPTION,
             border: `1px solid ${COLORS.DESCRIPTION}`,
             borderRadius: '6px',

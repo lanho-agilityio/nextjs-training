@@ -22,13 +22,13 @@ const PostCardImage = ({ alt, src, to, isRecentPost = false, isArchived = false 
         id="post-image"
         sx={{
           position: 'relative',
-          width: '100%',
-          height: { xs: '30vh', sm: '30vh', md: '33vh' },
-          maxHeight: {
-            lg: !isArchived && isRecentPost ? '265px' : '300px',
-            md: !isArchived && isRecentPost ? '265px' : '350px',
-            sm: !isArchived && isRecentPost ? '203px' : '300px',
-            xs: '300px',
+          width: { xs: '90vw', sm: '42vw', md: '45vw', lg: !isArchived && isRecentPost ? '45vw' : '33vw' },
+          height: '300px',
+          maxWidth: {
+            lg: !isArchived && isRecentPost ? '470px' : '300px',
+            md: '452px',
+            sm: '350px',
+            xs: '470px',
           },
           background: COLORS.DESCRIPTION_ICON,
           borderRadius: '6px',
