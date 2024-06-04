@@ -30,7 +30,7 @@ const UserProfile = ({ onLogoutClick, onCreatePostClick }: UserProfileProps): JS
   }, []);
 
   const handleCreatePostClick = useCallback(() => {
-    onCreatePostClick(ROUTES.UPSERT_POST(''));
+    onCreatePostClick(ROUTES.UPSERT_POST_DEFAULT);
   }, [onCreatePostClick]);
 
   return (

@@ -10,5 +10,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ['/posts/create', '/posts/edit/:path*'],
+  matcher: ['/posts/upsert/:path*'],
 };
