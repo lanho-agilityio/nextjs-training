@@ -19,7 +19,7 @@ const PostNotFound = (): JSX.Element => {
       {user ? (
         <NavLink
           title="Create a post?"
-          to={ROUTES.UPSERT_POST('')}
+          to={ROUTES.UPSERT_POST()}
           linkStyle={{ color: COLORS.POST_LINK, fontSize: '18px' }}
         />
       ) : (
