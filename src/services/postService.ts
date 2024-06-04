@@ -20,71 +20,85 @@ export const queryAllPosts = async (
 ): Promise<{ errorMessage: string; data: Post[]; total: number }> => {
   let errorMessage = '';
   const searchParams = (params && generateSearchParams(params)) || '';
-  const url = `${API_ROUTES.POSTS}?${SORTED}${USER_INCLUDED}${LIMIT(limit)}${searchParams}`;
-  const response = await APIs.get(url, [VALIDATE_TAGS.POSTS, ...validateTags]).catch((error) => {
-    errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
-  });
+  try {
+    const url = `${API_ROUTES.POSTS}?${SORTED}${USER_INCLUDED}${LIMIT(limit)}${searchParams}`;
+    const response = await APIs.get(url, [VALIDATE_TAGS.POSTS, ...validateTags]);
 
-  const data = (response && (await response.json())) || [];
-  const total = Number(response?.headers.get('x-total-count')) || 0;
+    const data = (response && (await response.json())) || [];
+    const total = Number(response?.headers.get('x-total-count')) || 0;
 
-  return {
-    errorMessage,
-    data,
-    total,
-  };
+    return {
+      errorMessage,
+      data,
+      total,
+    };
+  } catch (error) {
+    errorMessage = (error as Error).message || ERROR_MESSAGES.DEFAULT_API_ERROR;
+    return {
+      errorMessage,
+      data: [],
+      total: 0,
+    };
+  }
 };
 
 export const queryPostDetail = async (id: string): Promise<{ errorMessage: string; data: Post | null }> => {
   let errorMessage = '';
   const url = `${API_ROUTES.POSTS}/${id}?${USER_INCLUDED}`;
-  const response = await APIs.get(url, [VALIDATE_TAGS.POSTS]).catch((error) => {
-    errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
-  });
-
-  const data = response && (await response.json());
-  const postDetail = isEmpty(data) ? null : data;
-
-  return {
-    data: postDetail,
-    errorMessage,
-  };
+  try {
+    const response = await APIs.get(url, [VALIDATE_TAGS.POSTS]);
+    const data = response && (await response.json());
+    const postDetail = isEmpty(data) ? null : data;
+    return {
+      errorMessage,
+      data: postDetail,
+    };
+  } catch (error) {
+    errorMessage = (error as Error).message || ERROR_MESSAGES.DEFAULT_API_ERROR;
+    return {
+      errorMessage,
+      data: null,
+    };
+  }
 };
 
 export const createPost = async (values: PostCreate) => {
   let errorMessage = '';
-  const response = await APIs.post<Post>(API_ROUTES.POSTS, values).catch((error) => {
-    errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
-  });
-  if (!errorMessage) {
+  try {
+    const response = await APIs.post<Post>(API_ROUTES.POSTS, values);
+
     revalidateTag(VALIDATE_TAGS.POSTS);
     return {
       data: response,
       errorMessage,
     };
+  } catch (error) {
+    errorMessage = (error as Error).message || ERROR_MESSAGES.DEFAULT_API_ERROR;
+    return {
+      errorMessage,
+      data: null,
+    };
   }
-  return {
-    data: null,
-    errorMessage,
-  };
 };
 
 export const editPost = async (id: string, values: Post) => {
   let errorMessage = '';
   const url = `${API_ROUTES.POSTS}/${id}`;
-  const response = await APIs.put<Post>(url, values).catch((error) => {
-    errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
-  });
-  if (!errorMessage) {
+
+  try {
+    const response = await APIs.put<Post>(url, values);
+
     revalidateTag(VALIDATE_TAGS.POSTS);
     revalidatePath(ROUTES.POST_DETAIL(values.id));
     return {
       data: response,
       errorMessage,
     };
+  } catch (error) {
+    errorMessage = (error as Error).message || ERROR_MESSAGES.DEFAULT_API_ERROR;
+    return {
+      errorMessage,
+      data: null,
+    };
   }
-  return {
-    data: null,
-    errorMessage,
-  };
 };

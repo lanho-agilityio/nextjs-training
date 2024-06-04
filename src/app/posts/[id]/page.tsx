@@ -40,15 +40,15 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 export default async function DetailPostPage({ params }: { params: { id: string } }) {
   const { data, errorMessage } = await queryPostDetail(params.id);
 
+  if (errorMessage) {
+    return <FailToLoad error={errorMessage} />;
+  }
+
   if (!data) {
     notFound();
   }
 
   const { title, tag, user, imageBase64, content, updatedAt, id } = data;
-
-  if (errorMessage) {
-    return <FailToLoad error={errorMessage} />;
-  }
 
   return (
     <main>

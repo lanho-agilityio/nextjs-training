@@ -96,15 +96,22 @@ export const registerUser = async (arg: UserRegister) => {
 export const queryAuthor = async (id: string) => {
   let errorMessage = '';
   const url = `${API_ROUTES.USER}/${id}`;
-  const response = await APIs.get(url).catch((error) => {
-    errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
-  });
 
-  const data = (response && (await response.json())) || [];
-  const userInfo = isEmpty(data) ? null : data;
+  try {
+    const response = await APIs.get(url);
 
-  return {
-    data: userInfo,
-    errorMessage,
-  };
+    const data = (response && (await response.json())) || [];
+    const userInfo = isEmpty(data) ? null : data;
+
+    return {
+      data: userInfo,
+      errorMessage,
+    };
+  } catch (error) {
+    errorMessage = (error as Error).message || ERROR_MESSAGES.DEFAULT_API_ERROR;
+    return {
+      errorMessage,
+      data: null,
+    };
+  }
 };
