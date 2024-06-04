@@ -44,7 +44,7 @@ interface PostFormValues {
   title: string;
   content: string;
   tag: string;
-  imageName?: string;
+  imageBase64?: string;
 }
 
 const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
@@ -52,7 +52,7 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
   const toast = useToast();
   const { user } = useAuthContext();
 
-  const { title, tag, imageName, content } = data || {};
+  const { title, tag, imageBase64, content } = data || {};
 
   const formType = data ? FORM_TYPE.EDIT : FORM_TYPE.CREATE;
 
@@ -61,9 +61,9 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
       title: title || '',
       content: content || '',
       tag: tag?.value || '',
-      imageName: imageName || undefined,
+      imageBase64: imageBase64 || undefined,
     }),
-    [title, tag, content, imageName],
+    [title, tag, content, imageBase64],
   );
 
   const {
@@ -210,12 +210,12 @@ const PostForm = ({ data, tags }: PostFormProps): JSX.Element => {
           )}
         ></Controller>
         <Controller
-          name="imageName"
+          name="imageBase64"
           control={control}
           render={({ field: { onChange, value, ...rest } }) => (
             <Input
               sx={{ paddingBottom: '24px' }}
-              placeholder="Image"
+              placeholder="Image Link"
               fullWidth
               value={value}
               onChange={(event) => {
