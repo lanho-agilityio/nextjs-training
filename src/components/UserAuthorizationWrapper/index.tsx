@@ -12,7 +12,7 @@ import { LoginForm } from '@/components';
 // Hooks
 import { useAuthContext } from '@/hooks';
 
-const AUTHORIZED_ROUTES = [ROUTES.UPSERT_POST()];
+const AUTHORIZED_ROUTES = [ROUTES.UPSERT_POST_BASE];
 
 interface UserAuthorizationWrapperProps {
   children: ReactNode;
