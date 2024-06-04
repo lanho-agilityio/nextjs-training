@@ -25,7 +25,6 @@ export function useQueryPostList(query?: SearchParams, validateTags?: string[], 
       });
       const posts: Post[] = (await response.json()) || [];
       const total: number = Number(response?.headers.get('x-total-count')) || 0;
-      await new Promise((resolve) => setTimeout(resolve, 1000));
       return { posts, total };
     },
     {
