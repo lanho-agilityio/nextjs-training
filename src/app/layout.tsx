@@ -8,7 +8,7 @@ import { Box } from '@mui/material';
 import { AuthProvider } from '../contexts';
 
 // Components
-import { Footer, Header, ToastProvider } from '@/components';
+import { Footer, Header, ToastProvider, UserAuthorizationWrapper } from '@/components';
 
 // Styles
 import './globals.css';
@@ -34,29 +34,31 @@ export default function RootLayout({
       <body className={inter.className}>
         <ToastProvider>
           <AuthProvider>
-            <AppRouterCacheProvider options={{ key: 'css' }}>
-              <ThemeProvider theme={theme}>
-                <Box
-                  sx={{
-                    paddingBottom: {
-                      xs: '20px',
-                      sm: '20px',
-                      lg: '32px',
-                    },
-                    paddingX: {
-                      xs: '32px',
-                      lg: '20px',
-                    },
-                    maxWidth: '984px',
-                    flex: '1',
-                  }}
-                >
-                  <Header />
-                  <Box>{children}</Box>
-                  <Footer />
-                </Box>
-              </ThemeProvider>
-            </AppRouterCacheProvider>
+            <UserAuthorizationWrapper>
+              <AppRouterCacheProvider options={{ key: 'css' }}>
+                <ThemeProvider theme={theme}>
+                  <Box
+                    sx={{
+                      paddingBottom: {
+                        xs: '20px',
+                        sm: '20px',
+                        lg: '32px',
+                      },
+                      paddingX: {
+                        xs: '32px',
+                        lg: '20px',
+                      },
+                      maxWidth: '984px',
+                      flex: '1',
+                    }}
+                  >
+                    <Header />
+                    <Box>{children}</Box>
+                    <Footer />
+                  </Box>
+                </ThemeProvider>
+              </AppRouterCacheProvider>
+            </UserAuthorizationWrapper>
           </AuthProvider>
         </ToastProvider>
       </body>

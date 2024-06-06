@@ -6,7 +6,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 // Constants
-import { COLORS, ROUTES } from '@/constants';
+import { COLORS, MIN_LENGTH, ROUTES } from '@/constants';
 
 // Components
 import { Button, Input } from '@/components';
@@ -19,14 +19,16 @@ import { useToast } from '../Toast';
 import { UserRegister } from '@/models';
 
 // Utils
-import { validateMatched, validateRequired } from '@/utils';
+import { validateMatched, validateMinLength, validateRequired } from '@/utils';
 
 const validations = {
   username: {
     required: validateRequired,
+    validateMinLength: (value: string) => validateMinLength(value, MIN_LENGTH, 'Username'),
   },
   password: {
     required: validateRequired,
+    validateMinLength: (value: string) => validateMinLength(value, MIN_LENGTH, 'Password'),
   },
   confirmPassword: {
     required: validateRequired,
@@ -91,7 +93,10 @@ const SignUpForm = (): JSX.Element => {
           name="username"
           control={control}
           rules={{
-            validate: validations.username,
+            validate: {
+              ...validations.username,
+              validateMinLength: (value) => validations.username.validateMinLength(value),
+            },
           }}
           render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
             <Input
@@ -111,7 +116,10 @@ const SignUpForm = (): JSX.Element => {
           name="password"
           control={control}
           rules={{
-            validate: validations.password,
+            validate: {
+              ...validations.password,
+              validateMinLength: (value) => validations.password.validateMinLength(value),
+            },
           }}
           render={({ field: { onChange, value, ...rest }, fieldState: { error } }) => (
             <Input

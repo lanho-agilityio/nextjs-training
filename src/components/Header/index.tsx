@@ -142,7 +142,7 @@ const NavBar = (): JSX.Element => {
                 key={route.to}
                 to={route.to}
                 title={route.title}
-                _style={{
+                linkStyle={{
                   paddingLeft: 0,
                 }}
               />

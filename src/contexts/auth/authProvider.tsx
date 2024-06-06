@@ -1,20 +1,12 @@
 'use client';
 import { createContext, ReactNode, useCallback, useMemo, useReducer } from 'react';
 import { deleteCookie, setCookie } from 'cookies-next';
-import { Dialog } from '@mui/material';
-import { usePathname } from 'next/navigation';
 
 // APIs
 import { loginUser, registerUser } from '@/services';
 
-// Constants
-import { ROUTES } from '@/constants';
-
 // Contexts
 import authReducer, { USER_ACTION } from './authReducer';
-
-// Components
-import { LoginForm } from '@/components';
 
 // Models
 import { UserLogin, UserRegister, UserSession } from '@/models';
@@ -28,17 +20,11 @@ export interface AuthContextType {
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
-const AUTHORIZED_ROUTES = [ROUTES.CREATE_POST, ROUTES.EDIT_POST()];
-
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const pathname = usePathname();
   const [user, dispatch] = useReducer(
     authReducer,
     typeof window !== 'undefined' ? JSON.parse(window.sessionStorage.getItem('user') || 'null') : null,
   );
-
-  const isOpenLoginDialog = !user && !!AUTHORIZED_ROUTES.find((route) => pathname.includes(route));
-
   const onLogin = useCallback(
     async (values: UserLogin, handleSuccess?: () => void, handleError?: (errorMessage: string) => void) => {
       const response = await loginUser(values);
@@ -90,12 +76,5 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     [user, logout, onLogin, onRegister],
   );
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-      <Dialog open={isOpenLoginDialog}>
-        <LoginForm onSubmit={onLogin} />
-      </Dialog>
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

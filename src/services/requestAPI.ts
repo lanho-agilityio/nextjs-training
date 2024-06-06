@@ -1,26 +1,18 @@
 import { API_BASE_URL } from '@/constants';
 
 class API {
-  async get<T>(path: string, tag?: string, time?: number): Promise<{ data: T; total: number }> {
-    const response = await fetch(`${API_BASE_URL}${path}`, {
+  async get(path: string, tag?: string[]) {
+    const link = new URL(`${API_BASE_URL}${path}`);
+    const response = await fetch(link, {
       method: 'GET',
       next: {
-        tags: tag ? [tag] : [],
-
-        // Re-validate every minute
-        revalidate: time || 60,
+        tags: tag ? [...tag] : [],
       },
     }).catch((error) => {
       throw new Error(error);
     });
-    const data = await response.json();
 
-    const total = Number(response.headers.get('x-total-count')) || data.length || 0;
-
-    return {
-      data,
-      total,
-    };
+    return response;
   }
 
   async post<T>(path: string, payload: object = {}): Promise<T> {

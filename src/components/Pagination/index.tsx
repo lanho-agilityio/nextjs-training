@@ -27,46 +27,50 @@ const Pagination = ({
 
   return (
     <>
-      <Button
-        name="previous"
-        variant="outlined"
-        sx={{
-          borderColor: COLORS.DESCRIPTION,
-          color: COLORS.DESCRIPTION,
-          backgroundColor: 'white',
-          '&:hover': {
+      {hasPrevious && (
+        <Button
+          name="previous"
+          variant="outlined"
+          sx={{
             borderColor: COLORS.DESCRIPTION,
-            backgroundColor: COLORS.AUTHOR_CARD_BACKGROUND,
-          },
-          textTransform: 'none',
-          fontSize: '16px',
-        }}
-        disabled={!hasPrevious}
-        onClick={onClickPrevious}
-        startIcon={<KeyboardArrowLeftIcon />}
-      >
-        Previous
-      </Button>
+            color: COLORS.DESCRIPTION,
+            backgroundColor: 'white',
+            '&:hover': {
+              borderColor: COLORS.DESCRIPTION,
+              backgroundColor: COLORS.AUTHOR_CARD_BACKGROUND,
+            },
+            textTransform: 'none',
+            fontSize: '16px',
+          }}
+          disabled={!hasPrevious}
+          onClick={onClickPrevious}
+          startIcon={<KeyboardArrowLeftIcon />}
+        >
+          Previous
+        </Button>
+      )}
 
-      <Button
-        variant="outlined"
-        sx={{
-          borderColor: COLORS.DESCRIPTION,
-          color: COLORS.DESCRIPTION,
-          backgroundColor: 'white',
-          '&:hover': {
+      {hasNext && (
+        <Button
+          variant="outlined"
+          sx={{
             borderColor: COLORS.DESCRIPTION,
-            backgroundColor: COLORS.AUTHOR_CARD_BACKGROUND,
-          },
-          textTransform: 'none',
-          fontSize: '16px',
-        }}
-        disabled={!hasNext}
-        onClick={onClickNext}
-        endIcon={<KeyboardArrowRightIcon />}
-      >
-        Next
-      </Button>
+            color: COLORS.DESCRIPTION,
+            backgroundColor: 'white',
+            '&:hover': {
+              borderColor: COLORS.DESCRIPTION,
+              backgroundColor: COLORS.AUTHOR_CARD_BACKGROUND,
+            },
+            textTransform: 'none',
+            fontSize: '16px',
+          }}
+          disabled={!hasNext}
+          onClick={onClickNext}
+          endIcon={<KeyboardArrowRightIcon />}
+        >
+          Next
+        </Button>
+      )}
     </>
   );
 };

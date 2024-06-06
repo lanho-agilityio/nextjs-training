@@ -21,10 +21,13 @@ const hashPassword = (password: string) => {
 
 const checkUserExisted = async (username: string): Promise<boolean> => {
   const url = `${API_ROUTES.USER}?username=${username}`;
-  const response = await APIs.get<User[]>(url, VALIDATE_TAGS.USERS).catch((error) => {
+  const response = await APIs.get(url, [VALIDATE_TAGS.USERS]).catch((error) => {
     throw new Error(error || ERROR_MESSAGES.DEFAULT_API_ERROR);
   });
-  if (response.total > 0) {
+
+  const data = (response && (await response.json())) || [];
+
+  if (data.length > 0) {
     return true;
   }
   return false;
@@ -33,11 +36,12 @@ const checkUserExisted = async (username: string): Promise<boolean> => {
 const verifyUser = async (params: UserLogin): Promise<User> => {
   const hashedPw = hashPassword(params.password);
   const api = `${API_ROUTES.USER}?username=${params.username}&password=${hashedPw}`;
-  const { data: users, total } = await APIs.get<User[]>(api).catch((error) => {
+  const response = await APIs.get(api).catch((error) => {
     throw new Error(error || ERROR_MESSAGES.DEFAULT_API_ERROR);
   });
-  if (total > 0) {
-    return users[0];
+  const data = (response && (await response.json())) || [];
+  if (data.length > 0) {
+    return data[0];
   }
   throw new Error(ERROR_MESSAGES.USER_NOT_FOUND);
 };
@@ -92,14 +96,22 @@ export const registerUser = async (arg: UserRegister) => {
 export const queryAuthor = async (id: string) => {
   let errorMessage = '';
   const url = `${API_ROUTES.USER}/${id}`;
-  const response = await APIs.get<UserLogin>(url, VALIDATE_TAGS.POSTS).catch((error) => {
-    errorMessage = error || ERROR_MESSAGES.DEFAULT_API_ERROR;
-  });
 
-  const userInfo = isEmpty(response?.data) ? null : response?.data;
+  try {
+    const response = await APIs.get(url);
 
-  return {
-    data: userInfo,
-    errorMessage,
-  };
+    const data = (response && (await response.json())) || [];
+    const userInfo = isEmpty(data) ? null : data;
+
+    return {
+      data: userInfo,
+      errorMessage,
+    };
+  } catch (error) {
+    errorMessage = (error as Error).message || ERROR_MESSAGES.DEFAULT_API_ERROR;
+    return {
+      errorMessage,
+      data: null,
+    };
+  }
 };

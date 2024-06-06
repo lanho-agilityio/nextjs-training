@@ -29,10 +29,19 @@ export const generateSearchParams = (params: SearchParams): string => {
   return search.join('');
 };
 
+/**
+ * Generate multiple tag query params (ex. &tag.value=Health&tag.value=Tech)
+ * */
 export const generateCategoryParams = (tags: string[]): string => {
   return tags.map((value) => SEARCH_PARAMS.TAG(value)).join('');
 };
 
+/**
+ *
+ * @param value FILTER_TIME
+ * @returns generate appropriate updatedAt query values
+ * &updatedAt_gte=${startDate}&updatedAt_lte=${endDate}
+ */
 export const generateDateParams = (value: FILTER_TIME): string => {
   let startDate = '';
   let endDate = '';
@@ -47,6 +56,18 @@ export const generateDateParams = (value: FILTER_TIME): string => {
     previous.setDate(date.getDate() - (value === FILTER_TIME.LAST_7_DAYS ? 7 : 30));
   }
   startDate = dayjs(previous).startOf('day').toISOString();
-  endDate = dayjs(new Date()).toISOString();
+  endDate = dayjs(new Date()).endOf('day').toISOString();
   return SEARCH_PARAMS.TIME(startDate, endDate);
+};
+
+/**
+ *
+ * @param searchParams URLSearchParams
+ * @returns get the object with all the search params
+ */
+export const getSearchParams = <T>(searchParams: URLSearchParams): T => {
+  const entries = searchParams && Array.from(searchParams.entries());
+  const queryParams: T = entries && entries.reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {} as T);
+
+  return queryParams;
 };

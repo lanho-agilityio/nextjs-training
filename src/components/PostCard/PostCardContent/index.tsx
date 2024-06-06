@@ -30,7 +30,7 @@ const PostCardContent = ({ id, title, tag, author, updatedAt }: PostCardContentP
           aria-label={title}
           title={title}
           href={ROUTES.POST_DETAIL(id)}
-          _style={{
+          linkStyle={{
             marginTop: '8px',
             fontSize: '18px',
             lineHeight: '28px',
