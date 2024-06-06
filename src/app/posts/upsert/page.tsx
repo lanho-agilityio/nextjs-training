@@ -44,6 +44,7 @@ export default async function UpsertPage({ searchParams }: { searchParams: { id:
   const { data: post } = postsResult;
   const { data: tags, errorMessage: errorTag } = tagsResults;
 
+  // If logged in and userId is not the same as the userId in post => create post form
   const formData = userId === post?.userId ? post : null;
 
   if (errorTag) {
