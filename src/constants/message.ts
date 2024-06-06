@@ -5,6 +5,8 @@ export const ERROR_MESSAGES = {
   USER_EXISTED: 'This user already exists. Please log in or create another account',
   USER_NOT_FOUND: 'This user does not exist. Please sign up.',
   POST_NOT_FOUND: 'Post Not Found',
+  MIN_LENGTH: (ariaLabel: string, minLength: number | string) =>
+    `${ariaLabel} must have minimum ${minLength} characters.`,
 };
 
 export const SUCCESS_MESSAGES = {
