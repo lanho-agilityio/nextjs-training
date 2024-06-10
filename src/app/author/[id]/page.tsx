@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import { notFound } from 'next/navigation';
 import { Avatar, Box } from '@mui/material';
 
 // APIs
@@ -41,6 +42,10 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 export default async function AuthorPage({ params }: { params: { id: string } }) {
   const authorResult = await queryAuthor(params.id);
   const { data: author, errorMessage } = authorResult;
+
+  if (!author) {
+    notFound();
+  }
 
   if (errorMessage) {
     return <FailToLoad error={errorMessage} />;

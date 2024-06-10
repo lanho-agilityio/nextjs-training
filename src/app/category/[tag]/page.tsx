@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import { notFound } from 'next/navigation';
 
 // APIs
 import { queryAllPosts } from '@/services';
@@ -41,6 +42,10 @@ export default async function CategoryPage({
 }) {
   const postsResult = await queryAllPosts({ tag: params.tag, ...searchParams });
   const { total: totalPosts, errorMessage } = postsResult;
+
+  if (totalPosts === 0) {
+    notFound();
+  }
 
   if (errorMessage) {
     return <FailToLoad error={errorMessage} />;
